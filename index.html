@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>子家旅遊筆記 · Travel Notes</title>
+<meta name="description" content="子家的旅遊指南合集 — 自由行精選景點、行程模板、實用 tips。">
+<style>
+  * { box-sizing: border-box; }
+  :root {
+    --ink: #0E1116;
+    --ink-soft: #2c3e50;
+    --muted: #6B7280;
+    --line: #E5E7EB;
+    --bg: #F7FAFC;
+    --paper: #FFFFFF;
+    --accent: #0891B2;
+    --accent-deep: #155E75;
+    --accent-soft: #ECFEFF;
+    --gold: #D97706;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    margin: 0;
+    background: linear-gradient(135deg, #E0F2FE 0%, #F0FDF4 100%);
+    color: var(--ink-soft);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+  .container { max-width: 980px; margin: 0 auto; padding: 48px 20px 60px; }
+  header { text-align: center; margin-bottom: 48px; }
+  .eyebrow {
+    color: var(--accent-deep);
+    font-size: 0.85em;
+    letter-spacing: 0.18em;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  h1 {
+    font-size: 2.8em;
+    margin: 0 0 10px;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-deep) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.5px;
+  }
+  .subtitle { color: var(--muted); font-size: 1.1em; }
+  .section-title {
+    font-size: 1.05em;
+    color: var(--accent-deep);
+    margin: 36px 0 14px;
+    padding-left: 12px;
+    border-left: 4px solid var(--accent);
+    font-weight: 700;
+  }
+  .trips { display: grid; gap: 20px; grid-template-columns: 1fr; }
+  @media (min-width: 720px) {
+    .trips { grid-template-columns: repeat(2, 1fr); }
+    .trip-card.featured { grid-column: span 2; }
+  }
+  .trip-card {
+    background: var(--paper);
+    border-radius: 18px;
+    padding: 24px 26px;
+    box-shadow: 0 4px 14px rgba(15,23,42,0.06);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.18s, box-shadow 0.18s;
+    display: block;
+    border-left: 5px solid var(--accent);
+    position: relative;
+    overflow: hidden;
+  }
+  .trip-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 28px rgba(15,23,42,0.10);
+  }
+  .trip-card.featured { border-left-color: var(--gold); }
+  .trip-card.featured::after {
+    content: "★ NEW";
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    background: var(--gold);
+    color: white;
+    font-size: 0.72em;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 12px;
+    letter-spacing: 0.1em;
+  }
+  .trip-meta {
+    color: var(--accent-deep);
+    font-weight: 600;
+    font-size: 0.88em;
+    margin-bottom: 6px;
+    letter-spacing: 0.05em;
+  }
+  .trip-card.featured .trip-meta { color: var(--gold); }
+  .trip-title {
+    font-size: 1.35em;
+    font-weight: 700;
+    margin: 4px 0 10px;
+    color: var(--ink);
+  }
+  .trip-desc { color: #4a5568; font-size: 0.96em; margin-bottom: 14px; }
+  .trip-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    background: var(--accent-soft);
+    color: var(--accent-deep);
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 0.8em;
+    font-weight: 500;
+  }
+  .trip-card.featured .tag {
+    background: #FEF3C7;
+    color: #92400E;
+  }
+  .coming-soon {
+    opacity: 0.55;
+    border-left-color: #cbd5e0;
+    cursor: default;
+    pointer-events: none;
+  }
+  footer {
+    text-align: center;
+    margin-top: 56px;
+    color: #94a3b8;
+    font-size: 0.88em;
+  }
+  footer a { color: #64748b; text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="eyebrow">TZCHIA · TRAVEL</div>
+    <h1>✈️ 子家旅遊筆記</h1>
+    <p class="subtitle">自由行精選景點 · 行程模板 · 實用 tips</p>
+  </header>
+
+  <div class="section-title">🗾 日本</div>
+  <div class="trips">
+    <a class="trip-card featured" href="./fukuoka-kyushu-guide.html">
+      <div class="trip-meta">📍 九州 · 福岡</div>
+      <div class="trip-title">福岡九州自由行精選指南</div>
+      <div class="trip-desc">
+        21 處必去景點、6 大必嚐美食、屋台文化、太宰府／糸島／北九州近郊路線、
+        5 日經典行程模板、地下鐵交通攻略 — 第一次去九州一篇搞定。
+      </div>
+      <div class="trip-tags">
+        <span class="tag">🏯 太宰府</span>
+        <span class="tag">🍜 博多拉麵</span>
+        <span class="tag">🌊 糸島</span>
+        <span class="tag">🏮 屋台</span>
+        <span class="tag">🚇 地下鐵</span>
+        <span class="tag">📅 5 日行程</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="section-title">🇹🇼 台灣家族小旅行</div>
+  <div class="trips">
+    <a class="trip-card" href="https://tzchia.github.io/family-day-trips/" target="_blank" rel="noopener">
+      <div class="trip-meta">↗ family-day-trips</div>
+      <div class="trip-title">家族出遊行程記錄</div>
+      <div class="trip-desc">
+        跟表姐家的台灣一日遊 — 野柳・金山・三芝 北海岸路線等。
+      </div>
+      <div class="trip-tags">
+        <span class="tag">🚗 自駕</span>
+        <span class="tag">👨‍👩‍👧 親子</span>
+      </div>
+    </a>
+    <div class="trip-card coming-soon">
+      <div class="trip-meta">📅 未來規劃中</div>
+      <div class="trip-title">⋯ 更多旅遊筆記</div>
+      <div class="trip-desc">陸續累積中</div>
+    </div>
+  </div>
+
+  <footer>
+    Made with ❤️ · <a href="https://github.com/tzchia/travel">GitHub</a> · 最後更新 2026/06/05
+  </footer>
+</div>
+</body>
+</html>
