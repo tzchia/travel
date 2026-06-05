@@ -6,14 +6,14 @@
 
 ## 內容
 
-- **福岡九州自由行精選指南** (`fukuoka-kyushu-guide.html`) — 21 必去景點、7 大美食、5 日行程模板、地下鐵交通攻略
+- **福岡 5 天 4 夜親子交通計畫** (`fukuoka-family-202606.html`) — 6/9-6/13 親子實際執行版
 
 ## 結構
 
 ```
 travel/
-├── index.html                    # 首頁導覽
-├── fukuoka-kyushu-guide.html     # 福岡九州指南
+├── index.html                       # 首頁導覽
+├── fukuoka-family-202606.html       # 福岡親子交通計畫
 └── README.md
 ```
 
@@ -23,7 +23,3 @@ travel/
 2. 在 `index.html` 加新卡片
 3. `git add -A && git commit -m "..." && git push`
 4. 等 GitHub Pages 重建（30-60 秒）
-
-## License
-
-個人筆記，整合自公開旅遊資訊。
