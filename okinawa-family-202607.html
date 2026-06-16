@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="googlebot" content="noindex, nofollow">
+<title>沖繩 5 天 4 夜雙家庭親子遊｜7/23–7/27</title>
+<meta name="description" content="2026/7/23–7/27 沖繩本島五天四夜，雙家庭 4 大 3 小（10歲/5歲/1歲）親子自駕。美麗海水族館、JUNGLIA叢林樂園、沖繩兒童王國、國際通，含每日 timeline、互動地圖、住宿餐廳候選、費用、出發前 checklist。">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<style>
+  * { box-sizing: border-box; }
+  :root {
+    --ink: #0E1116;
+    --ink-soft: #1f3340;
+    --muted: #6B7280;
+    --line: #E2E8F0;
+    --paper: #FFFFFF;
+    --sea: #0891B2;
+    --sea-deep: #0E7490;
+    --sea-soft: #ECFEFF;
+    --coral: #FB7185;
+    --coral-deep: #E11D6F;
+    --sand: #F59E0B;
+    --sand-soft: #FEF3C7;
+    --leaf: #10B981;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    margin: 0;
+    background: #F0FAFB;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 940px; margin: 0 auto; padding: 0 16px 64px; }
+  a { color: var(--sea-deep); }
+
+  /* ===== HERO ===== */
+  .hero {
+    position: relative;
+    border-radius: 0 0 28px 28px;
+    overflow: hidden;
+    background: linear-gradient(160deg, #22D3EE 0%, #0891B2 45%, #0E7490 100%);
+    color: #fff;
+    padding: 38px 22px 30px;
+    margin-bottom: 22px;
+    box-shadow: 0 10px 30px rgba(8,145,178,0.25);
+  }
+  .hero .waves { position: absolute; left: 0; right: 0; bottom: -2px; width: 100%; height: 58px; display: block; }
+  .hero .sun {
+    position: absolute; top: 26px; right: 28px; width: 64px; height: 64px;
+    background: radial-gradient(circle, #FDE68A 0%, #FCD34D 60%, rgba(252,211,77,0) 72%);
+    border-radius: 50%;
+  }
+  .hero .back { display:inline-block; color:#E0F7FA; text-decoration:none; font-size:0.86em; opacity:0.95; margin-bottom:14px; }
+  .hero .back:hover { text-decoration: underline; }
+  .hero .eyebrow { font-size: 0.8em; letter-spacing: 0.22em; font-weight: 700; opacity: 0.92; text-transform: uppercase; }
+  .hero h1 { font-size: 2.05em; margin: 8px 0 6px; line-height: 1.18; letter-spacing: -0.5px; font-weight: 800; }
+  .hero .dates { font-size: 1.04em; font-weight: 600; opacity: 0.97; }
+  .hero .who { margin-top: 12px; display:flex; flex-wrap:wrap; gap:7px; position:relative; z-index:2; }
+  .hero .who .b {
+    background: rgba(255,255,255,0.18); backdrop-filter: blur(3px);
+    border: 1px solid rgba(255,255,255,0.28);
+    padding: 4px 11px; border-radius: 999px; font-size: 0.83em; font-weight: 600;
+  }
+  @media (min-width: 640px) { .hero h1 { font-size: 2.5em; } }
+
+  /* ===== TLDR ===== */
+  .tldr {
+    background: linear-gradient(135deg, #FFF7ED 0%, #FFFBEB 100%);
+    border: 1px solid #FDE68A;
+    border-left: 6px solid var(--sand);
+    border-radius: 16px; padding: 18px 20px; margin: 4px 0 26px;
+  }
+  .tldr b { color: var(--coral-deep); }
+
+  /* ===== quick facts ===== */
+  .facts { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; margin-bottom: 30px; }
+  @media (min-width: 640px) { .facts { grid-template-columns: repeat(4,1fr); } }
+  .fact {
+    background: var(--paper); border-radius: 14px; padding: 15px 14px; text-align: center;
+    box-shadow: 0 3px 12px rgba(15,23,42,0.05); border-top: 3px solid var(--sea);
+  }
+  .fact .ico { font-size: 1.6em; }
+  .fact .k { font-size: 0.74em; color: var(--muted); letter-spacing: 0.04em; margin-top: 4px; }
+  .fact .v { font-size: 1.0em; font-weight: 700; color: var(--ink); margin-top: 2px; }
+
+  h2.sec {
+    font-size: 1.35em; font-weight: 800; color: var(--sea-deep);
+    margin: 40px 0 4px; display: flex; align-items: center; gap: 9px;
+  }
+  h2.sec .em { font-size: 1.1em; }
+  .sec-sub { color: var(--muted); font-size: 0.9em; margin: 0 0 18px; padding-left: 2px; }
+
+  /* ===== SVG island map ===== */
+  .island-card { background: var(--paper); border-radius: 18px; padding: 8px; box-shadow: 0 4px 16px rgba(15,23,42,0.06); margin-bottom: 12px; }
+  .island-card svg { width: 100%; height: auto; display:block; border-radius: 12px; }
+
+  /* ===== Leaflet ===== */
+  #map { height: 440px; border-radius: 18px; box-shadow: 0 4px 16px rgba(15,23,42,0.08); z-index: 1; }
+  .leaflet-tooltip.spot-label {
+    background: rgba(255,255,255,0.94); border: 1.5px solid var(--sea);
+    border-radius: 8px; font-weight: 700; color: var(--sea-deep); font-size: 12px;
+    padding: 2px 7px; box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  }
+  .map-legend { display:flex; flex-wrap:wrap; gap:14px; margin-top:12px; font-size:0.85em; color:var(--ink-soft); }
+  .map-legend span { display:inline-flex; align-items:center; gap:6px; }
+  .dot { width:13px; height:13px; border-radius:50%; display:inline-block; border:2px solid #fff; box-shadow:0 0 0 1px rgba(0,0,0,0.15); }
+
+  /* ===== cost ===== */
+  .cost-grid { display:grid; gap:10px; }
+  .cost-row {
+    display:flex; justify-content:space-between; align-items:center; gap:12px;
+    background:var(--paper); border-radius:12px; padding:12px 16px; box-shadow:0 2px 8px rgba(15,23,42,0.04);
+    border-left:4px solid var(--sea);
+  }
+  .cost-row .label { font-weight:600; }
+  .cost-row .sub { font-size:0.8em; color:var(--muted); font-weight:400; }
+  .cost-row .amt { font-weight:800; color:var(--sea-deep); white-space:nowrap; }
+  .cost-total {
+    background: linear-gradient(135deg,#0891B2,#0E7490); color:#fff; border-left-color:#FCD34D;
+  }
+  .cost-total .amt { color:#FCD34D; font-size:1.15em; }
+
+  /* ===== timeline / days ===== */
+  .day {
+    background: var(--paper); border-radius: 18px; margin-bottom: 18px; overflow: hidden;
+    box-shadow: 0 4px 16px rgba(15,23,42,0.06);
+  }
+  .day > summary {
+    list-style: none; cursor: pointer; padding: 18px 20px;
+    display: flex; align-items: center; gap: 13px;
+    background: linear-gradient(100deg, var(--day-c1), var(--day-c2));
+    color: #fff;
+  }
+  .day > summary::-webkit-details-marker { display:none; }
+  .day .dnum {
+    flex: none; width: 46px; height: 46px; border-radius: 12px;
+    background: rgba(255,255,255,0.22); border:1px solid rgba(255,255,255,0.35);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    font-weight: 800; line-height: 1;
+  }
+  .day .dnum small { font-size: 0.58em; font-weight: 600; opacity: 0.9; }
+  .day .dhead { flex: 1; }
+  .day .dhead .dt { font-size: 0.82em; opacity: 0.92; font-weight: 600; }
+  .day .dhead .dtitle { font-size: 1.08em; font-weight: 800; line-height: 1.3; }
+  .day .chev { transition: transform .2s; opacity:0.85; }
+  .day[open] .chev { transform: rotate(180deg); }
+  .d1 > summary { --day-c1:#06B6D4; --day-c2:#0891B2; }
+  .d2 > summary { --day-c1:#0EA5E9; --day-c2:#2563EB; }
+  .d3 > summary { --day-c1:#10B981; --day-c2:#059669; }
+  .d4 > summary { --day-c1:#F59E0B; --day-c2:#EA580C; }
+  .d5 > summary { --day-c1:#8B5CF6; --day-c2:#7C3AED; }
+
+  .day-body { padding: 16px 18px 20px; }
+  .tl { position: relative; margin: 0; padding: 0 0 0 4px; }
+  .tl .item {
+    position: relative; padding: 0 0 16px 26px; border-left: 2px solid var(--line);
+  }
+  .tl .item:last-child { border-left-color: transparent; padding-bottom: 0; }
+  .tl .item::before {
+    content:''; position:absolute; left:-7px; top:3px; width:12px; height:12px; border-radius:50%;
+    background:#fff; border:3px solid var(--sea);
+  }
+  .tl .item.hi::before { border-color: var(--coral); width:14px; height:14px; left:-8px; }
+  .tl .item.meal::before { border-color: var(--sand); }
+  .tl .time { font-weight:800; color:var(--sea-deep); font-size:0.9em; }
+  .tl .act { font-weight:700; color:var(--ink); }
+  .tl .act .tagi { font-size:0.72em; font-weight:700; padding:1px 7px; border-radius:6px; margin-left:6px; vertical-align:middle; }
+  .tagi.car { background:#E0F2FE; color:#0369A1; }
+  .tagi.eat { background:var(--sand-soft); color:#B45309; }
+  .tagi.star { background:#FFE4E6; color:var(--coral-deep); }
+  .tl .nt { font-size:0.85em; color:var(--muted); margin-top:2px; }
+  .tl .nt a { color: var(--sea-deep); }
+
+  .two { display:grid; gap:14px; }
+  @media (min-width:640px){ .two { grid-template-columns:1fr 1fr; } }
+
+  /* generic card */
+  .card {
+    background: var(--paper); border-radius: 14px; padding: 16px 17px;
+    box-shadow: 0 3px 12px rgba(15,23,42,0.05);
+  }
+  .card h4 { margin: 0 0 8px; font-size: 1.02em; color: var(--ink); display:flex; align-items:center; gap:7px; }
+  .card .meta { font-size:0.84em; color:var(--muted); }
+  .card .price { font-weight:800; color:var(--coral-deep); }
+
+  /* stay cards */
+  .stay {
+    border-left: 5px solid var(--sea); position:relative;
+  }
+  .stay.rec { border-left-color: var(--coral); }
+  .stay .badge {
+    position:absolute; top:14px; right:14px; background:var(--coral); color:#fff;
+    font-size:0.7em; font-weight:800; padding:3px 9px; border-radius:999px; letter-spacing:0.06em;
+  }
+  .stay .dist { font-size:0.82em; color:var(--sea-deep); font-weight:600; }
+  .stay .desc { font-size:0.88em; color:#475569; margin:6px 0 8px; }
+  .stay a.book {
+    display:inline-block; background:var(--sea-soft); color:var(--sea-deep); text-decoration:none;
+    font-weight:700; font-size:0.82em; padding:6px 13px; border-radius:9px;
+  }
+  .stay a.book:hover { background:#CFFAFE; }
+
+  /* meal blocks */
+  .meal-day { margin-bottom:14px; }
+  .meal-day .mh { font-weight:800; color:var(--sea-deep); margin-bottom:8px; font-size:0.98em; display:flex; align-items:center; gap:7px; }
+  .meal-row { display:flex; gap:10px; padding:7px 0; border-bottom:1px dashed var(--line); }
+  .meal-row:last-child { border-bottom:none; }
+  .meal-row .mt { flex:none; width:74px; font-weight:700; font-size:0.8em; color:#B45309; }
+  .meal-row .mc { font-size:0.9em; }
+  .meal-row .mc a { font-size:0.85em; }
+
+  /* POI candidate grid */
+  .poi-grid { display:grid; gap:13px; }
+  @media (min-width:640px){ .poi-grid { grid-template-columns:1fr 1fr; } }
+  .poi {
+    background:var(--paper); border-radius:14px; padding:14px 16px; box-shadow:0 3px 12px rgba(15,23,42,0.05);
+    border-top:3px solid var(--region-c, var(--sea));
+  }
+  .poi .rt { font-size:0.72em; font-weight:800; color:var(--region-c); letter-spacing:0.08em; }
+  .poi h4 { margin:3px 0 5px; font-size:1.0em; color:var(--ink); }
+  .poi .stars { color:var(--sand); font-size:0.92em; letter-spacing:1px; }
+  .poi .io { font-size:0.72em; font-weight:700; padding:1px 8px; border-radius:6px; margin-left:6px; }
+  .io.in { background:#EDE9FE; color:#6D28D9; }
+  .io.out { background:#DCFCE7; color:#15803D; }
+  .io.both { background:#FEF3C7; color:#B45309; }
+  .poi .feat { font-size:0.86em; color:#475569; margin:7px 0 6px; white-space:pre-line; }
+  .poi a.more { font-size:0.82em; font-weight:600; }
+
+  /* checklist */
+  .check-cols { display:grid; gap:14px; }
+  @media (min-width:640px){ .check-cols { grid-template-columns:repeat(3,1fr); } }
+  .check { background:var(--paper); border-radius:14px; padding:15px 16px; box-shadow:0 3px 12px rgba(15,23,42,0.05); }
+  .check h4 { margin:0 0 10px; display:flex; align-items:center; gap:7px; font-size:1.0em; }
+  .check ul { list-style:none; margin:0; padding:0; }
+  .check li { padding:5px 0 5px 26px; position:relative; font-size:0.9em; border-bottom:1px dashed var(--line); }
+  .check li:last-child { border-bottom:none; }
+  .check li::before { content:'☐'; position:absolute; left:2px; top:4px; color:var(--sea); font-weight:700; }
+  .check li small { color:var(--muted); }
+
+  /* warn / info boxes */
+  .note-box {
+    border-radius:14px; padding:14px 17px; margin-bottom:13px; font-size:0.92em;
+  }
+  .note-box.warn { background:#FFF1F2; border:1px solid #FECDD3; border-left:5px solid var(--coral); }
+  .note-box.info { background:var(--sea-soft); border:1px solid #A5F3FC; border-left:5px solid var(--sea); }
+  .note-box.tip  { background:#F0FDF4; border:1px solid #BBF7D0; border-left:5px solid var(--leaf); }
+  .note-box b { color: var(--ink); }
+  .note-box ul { margin:8px 0 0; padding-left:20px; }
+  .note-box li { margin:4px 0; }
+
+  .src-list { font-size:0.82em; color:var(--muted); }
+  .src-list a { color:var(--sea-deep); word-break:break-all; }
+
+  footer { text-align:center; margin-top:48px; color:#94a3b8; font-size:0.85em; }
+  footer a { color:#64748b; }
+</style>
+</head>
+<body>
+
+<!-- ===================== HERO ===================== -->
+<div class="hero">
+  <div class="sun"></div>
+  <div class="wrap" style="padding-bottom:0;">
+    <a class="back" href="./index.html">← 子家旅遊筆記</a>
+    <div class="eyebrow">OKINAWA · 沖繩本島</div>
+    <h1>🐢 沖繩 5 天 4 夜<br>雙家庭親子遊</h1>
+    <div class="dates">📅 2026 / 7 / 23（四）– 7 / 27（一）· 旺季出遊</div>
+    <div class="who">
+      <span class="b">👨‍👩‍👧‍👦 4 大 3 小</span>
+      <span class="b">🧒 10 歲</span>
+      <span class="b">🧒 5 歲</span>
+      <span class="b">👶 1 歲</span>
+      <span class="b">🚗 兩台車自駕</span>
+      <span class="b">✈️ 高雄＋桃園會合</span>
+    </div>
+  </div>
+  <svg class="waves" viewBox="0 0 1440 58" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,30 C180,58 360,8 540,26 C720,44 900,6 1080,24 C1260,42 1380,20 1440,28 L1440,58 L0,58 Z" fill="#F0FAFB"/>
+  </svg>
+</div>
+
+<div class="wrap">
+
+  <!-- ===================== TL;DR ===================== -->
+  <div class="tldr">
+    💡 <b>一句話：</b>兩家人（亭宇子誠家從高雄、子家玉青家從桃園）7/23 在那霸機場會合，租 OTS 車北上以
+    <b>本部町</b>為基地住 3 晚，主攻 <b>美麗海水族館</b>＋<b>JUNGLIA 叢林樂園</b>；7/26 南下沖繩兒童王國後進駐
+    <b>那霸國際通</b>，7/27 還車賦歸。行程已替 <b>1 歲午睡</b>（壓在車程）與 <b>旺季酷暑</b>（戶外↔室內可彈性互換）預留緩衝。
+  </div>
+
+  <!-- ===================== QUICK FACTS ===================== -->
+  <div class="facts">
+    <div class="fact"><div class="ico">🗓️</div><div class="k">天數</div><div class="v">5 天 4 夜</div></div>
+    <div class="fact"><div class="ico">🏨</div><div class="k">住宿基地</div><div class="v">本部 ×3<br>那霸 ×1</div></div>
+    <div class="fact"><div class="ico">🚗</div><div class="k">交通</div><div class="v">OTS 自駕<br>WCX 級</div></div>
+    <div class="fact"><div class="ico">💰</div><div class="k">機票＋住宿</div><div class="v">NT$ 52,843</div></div>
+  </div>
+
+  <!-- ===================== MEMBERS & FLIGHTS ===================== -->
+  <h2 class="sec"><span class="em">👨‍👩‍👧‍👦</span>同行成員 & 航班</h2>
+  <p class="sec-sub">兩家分頭從高雄、桃園出發，7/23 在那霸機場會合；7/27 各自返程。</p>
+  <div class="two">
+    <div class="card" style="border-left:5px solid var(--sea);">
+      <h4>🏠 亭宇子誠家 · 高雄出發</h4>
+      <div style="font-size:0.92em;margin:4px 0 12px;color:var(--ink-soft);">
+        子誠爸 · 亭宇媽 · 大姐姐 <b>10 歲</b> · 小姐姐 <b>5 歲</b>
+      </div>
+      <div style="font-size:0.86em;line-height:1.9;">
+        ✈️ <b>去程</b> 虎航 IT288 · 7/23 <b>09:30–12:25</b><br>
+        <span style="color:var(--muted);padding-left:1.6em;">KHH 高雄 → OKA 那霸</span><br>
+        ✈️ <b>回程</b> 虎航 IT289 · 7/27 <b>14:00–14:55</b><br>
+        <span style="color:var(--muted);padding-left:1.6em;">OKA 那霸 → KHH 高雄</span>
+      </div>
+    </div>
+    <div class="card" style="border-left:5px solid var(--coral);">
+      <h4>🏠 子家玉青家 · 桃園出發</h4>
+      <div style="font-size:0.92em;margin:4px 0 12px;color:var(--ink-soft);">
+        子家爸 · 玉青媽 · 寶寶 <b>1 歲</b>
+      </div>
+      <div style="font-size:0.86em;line-height:1.9;">
+        ✈️ <b>去程</b> 7/23 <b>13:30–15:55</b><br>
+        <span style="color:var(--muted);padding-left:1.6em;">TPE 桃園 → OKA 那霸</span><br>
+        ✈️ <b>回程</b> 7/27 <b>16:45–17:20</b><br>
+        <span style="color:var(--muted);padding-left:1.6em;">OKA 那霸 → TPE 桃園</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== ISLAND MAP (SVG) ===================== -->
+  <h2 class="sec"><span class="em">🗺️</span>路線示意圖</h2>
+  <p class="sec-sub">沖繩本島南北狹長，本趟「先衝北部 → 中部過渡 → 南部那霸收尾」一筆畫不走回頭路。</p>
+  <div class="island-card">
+    <svg viewBox="0 0 760 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="沖繩本島行程示意圖">
+      <defs>
+        <linearGradient id="seaG" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#CFF6FB"/><stop offset="1" stop-color="#A5E9F2"/>
+        </linearGradient>
+        <linearGradient id="landG" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#BBF0CF"/><stop offset="1" stop-color="#9FE3B8"/>
+        </linearGradient>
+        <marker id="arrow" markerWidth="10" markerHeight="10" refX="7" refY="3.2" orient="auto">
+          <path d="M0,0 L8,3.2 L0,6.4 Z" fill="#0E7490"/>
+        </marker>
+      </defs>
+      <rect width="760" height="420" fill="url(#seaG)"/>
+      <!-- stylized Okinawa main island (NE-SW diagonal) -->
+      <path d="M560,40 C600,60 610,95 588,120 C566,145 540,150 520,168
+               C500,186 492,205 470,220 C448,235 420,236 396,250
+               C372,264 356,286 330,300 C300,316 272,318 246,330
+               C214,344 196,372 168,372 C150,372 150,352 168,338
+               C196,316 214,312 236,298 C262,282 276,260 300,246
+               C326,231 352,232 376,218 C398,205 408,186 430,170
+               C452,154 480,152 502,134 C522,118 528,96 540,78
+               C548,64 548,46 560,40 Z" fill="url(#landG)" stroke="#6EE7B7" stroke-width="2"/>
+      <!-- route line -->
+      <path d="M170,358 L200,340 L420,225 L540,150 L560,120"
+            fill="none" stroke="#0E7490" stroke-width="3.5" stroke-dasharray="2 9"
+            stroke-linecap="round" marker-end="url(#arrow)" opacity="0.85"/>
+      <!-- region labels -->
+      <text x="600" y="92" font-size="15" font-weight="800" fill="#0E7490">北部</text>
+      <text x="600" y="110" font-size="10" fill="#0E7490">本部・美麗海・JUNGLIA</text>
+      <text x="408" y="200" font-size="15" font-weight="800" fill="#B45309">中部</text>
+      <text x="408" y="216" font-size="10" fill="#B45309">兒童王國・美國村</text>
+      <text x="120" y="330" font-size="15" font-weight="800" fill="#7C3AED">南部</text>
+      <text x="120" y="346" font-size="10" fill="#7C3AED">那霸・國際通・機場</text>
+      <!-- pins -->
+      <g font-size="20">
+        <text x="540" y="128" text-anchor="middle">🐢</text>
+        <text x="560" y="108" text-anchor="middle">🎢</text>
+        <text x="430" y="232" text-anchor="middle">🦁</text>
+        <text x="200" y="345" text-anchor="middle">🛫</text>
+        <text x="232" y="320" text-anchor="middle">🛍️</text>
+      </g>
+      <!-- start/end badges -->
+      <g font-size="11" font-weight="700">
+        <rect x="150" y="372" width="118" height="22" rx="11" fill="#7C3AED"/>
+        <text x="209" y="387" text-anchor="middle" fill="#fff">START / END 那霸</text>
+        <rect x="500" y="22" width="150" height="22" rx="11" fill="#0E7490"/>
+        <text x="575" y="37" text-anchor="middle" fill="#fff">D1–D3 本部基地</text>
+      </g>
+    </svg>
+  </div>
+  <p class="sec-sub" style="margin-top:4px;">🐢 美麗海　🎢 JUNGLIA　🦁 兒童王國　🛍️ 美國村　🛫 那霸機場（起訖）</p>
+
+  <!-- ===================== LEAFLET MAP ===================== -->
+  <h2 class="sec"><span class="em">📍</span>互動地圖</h2>
+  <p class="sec-sub">點圖釘看景點名稱。藍＝景點、橘＝住宿基地、桃紅＝那霸市區。</p>
+  <div id="map"></div>
+  <div class="map-legend">
+    <span><i class="dot" style="background:#0891B2"></i>景點 / 樂園</span>
+    <span><i class="dot" style="background:#F59E0B"></i>住宿基地</span>
+    <span><i class="dot" style="background:#FB7185"></i>那霸市區</span>
+    <span><i class="dot" style="background:#7C3AED"></i>機場 / 取還車</span>
+  </div>
+
+  <!-- ===================== COST ===================== -->
+  <h2 class="sec"><span class="em">💰</span>費用總覽</h2>
+  <p class="sec-sub">機票＋住宿皆已確認。租車、餐食、門票、油資、停車現場另計。</p>
+  <div class="cost-grid">
+    <div class="cost-row">
+      <div><span class="label">✈️ 泰國亞洲航空</span><br><span class="sub">機票 · 2026-05-11 開票</span></div>
+      <div class="amt">NT$ 12,630</div>
+    </div>
+    <div class="cost-row">
+      <div><span class="label">✈️ 樂桃航空</span><br><span class="sub">機票 · 2026-05-11 開票</span></div>
+      <div class="amt">NT$ 9,616</div>
+    </div>
+    <div class="cost-row">
+      <div><span class="label">🏝️ Suppai Resort Okinawa</span><br><span class="sub">住宿 · 本部 7/23–7/26（3 晚）· ✅ 已確認</span></div>
+      <div class="amt">NT$ 19,553</div>
+    </div>
+    <div class="cost-row">
+      <div><span class="label">🌃 Paradise inn 牧志</span><br><span class="sub">住宿 · 那霸 7/26–7/27（1 晚）· ✅ 已確認</span></div>
+      <div class="amt">NT$ 11,044</div>
+    </div>
+    <div class="cost-row cost-total">
+      <div><span class="label">已確認合計</span><br><span class="sub" style="color:#CFFAFE;">機票 22,246 ＋ 住宿 30,597</span></div>
+      <div class="amt">NT$ 52,843</div>
+    </div>
+  </div>
+  <div class="note-box info" style="margin-top:12px;">
+    🚗 <b>租車（尚未含上表）：</b>OTS Rinku-Toyosaki，WCX 級，估 <b>日幣 90,340</b>（約 NT$ 19,xxx）。需帶 <b>台灣駕照 ＋ 駕照日文譯本 ＋ 護照</b>。營業 08:00–19:00，機場有免費接駁（約 15 分）。</div>
+
+  <!-- ===================== DAILY TIMELINE ===================== -->
+  <h2 class="sec"><span class="em">📆</span>每日行程</h2>
+  <p class="sec-sub">點每天標題展開／收合。🔴 重點行程　🟠 用餐　🔵 一般。時間為沖繩當地時間（與台灣相同 UTC+9 vs UTC+8，<b>沖繩比台灣快 1 小時</b>）。</p>
+
+  <!-- DAY 1 -->
+  <details class="day d1" open>
+    <summary>
+      <div class="dnum"><small>DAY</small>1</div>
+      <div class="dhead">
+        <div class="dt">7/23（四）· 抵達會合</div>
+        <div class="dtitle">那霸機場 → 取車 → iias 豐崎 → 本部住宿</div>
+      </div>
+      <div class="chev">▾</div>
+    </summary>
+    <div class="day-body">
+      <div class="tl">
+        <div class="item"><div class="time">09:30–12:25</div><div class="act">✈️ 亭宇子誠家 抵達那霸<span class="tagi star">高雄 IT288</span></div><div class="nt">子誠爸、亭宇媽、大姐姐(10)、小姐姐(5)。入境、拿行李、聯絡 OTS 接駁。</div></div>
+        <div class="item"><div class="time">13:15–14:00</div><div class="act">🚗 子誠爸 OTS 豐崎取車<span class="tagi car">接駁約15分</span></div><div class="nt">帶台灣駕照＋日文譯本＋護照。取完車可先到旁邊 iias Toyosaki 逛街等人。</div></div>
+        <div class="item"><div class="time">13:30–15:55</div><div class="act">✈️ 子家玉青家 抵達那霸<span class="tagi star">桃園出發</span></div><div class="nt">子家爸、玉青媽、寶寶(1)。</div></div>
+        <div class="item meal"><div class="time">14:00–16:30</div><div class="act">🛍️ iias Toyosaki 等人、補給<span class="tagi eat">買行動糧</span></div><div class="nt">商店 10:00–21:00、超市 09:00–22:00、餐廳 11:00–23:00。先買車上能吃的，避免晚餐太晚餓到小孩。</div></div>
+        <div class="item"><div class="time">16:45–17:15</div><div class="act">🤝 機場會合、裝行李、換尿布、買水/零食</div></div>
+        <div class="item hi"><div class="time">17:15–19:30</div><div class="act">🚗 前往本部住宿<span class="tagi car">約2小時 / 100–110km</span></div><div class="nt">走高速；中途可停 <b>許田休息站</b>（19:00 打烊）或便利商店。1 歲剛好在車上睡。</div></div>
+        <div class="item meal"><div class="time">19:30–20:30</div><div class="act">🍜 本部晚餐<span class="tagi eat">待定</span></div><div class="nt">抵達晚就選 Hanasaki Marche 或飯店外帶（見餐廳區）。</div></div>
+        <div class="item"><div class="time">20:30 後</div><div class="act">🛁 入住、洗澡、睡覺</div></div>
+      </div>
+    </div>
+  </details>
+
+  <!-- DAY 2 -->
+  <details class="day d2">
+    <summary>
+      <div class="dnum"><small>DAY</small>2</div>
+      <div class="dhead">
+        <div class="dt">7/24（五）· 海洋大日</div>
+        <div class="dtitle">美麗海水族館 ＋ 海洋博公園</div>
+      </div>
+      <div class="chev">▾</div>
+    </summary>
+    <div class="day-body">
+      <div class="note-box info" style="margin:0 0 12px;">🐋 <b>旺季注意：</b>7/18–7/31 水族館 08:30–20:00（最後入館 19:00）。建議停 <b>P7 停車場</b>離館較近。</div>
+      <div class="tl">
+        <div class="item meal"><div class="time">07:30–08:30</div><div class="act">🥐 早餐<span class="tagi eat">前一晚先買</span></div><div class="nt">前一天在附近 LAWSON／全家買好帶回住宿吃。</div></div>
+        <div class="item"><div class="time">08:45–09:00</div><div class="act">🚗 住宿 → 美麗海 P7<span class="tagi car">5–20分</span></div></div>
+        <div class="item hi"><div class="time">09:00–12:00</div><div class="act">🐢 美麗海水族館<span class="tagi star">09:30 鬼蝠魟餵食秀</span></div>
+          <div class="nt">黑潮之海餵食秀：鬼蝠魟 9:30、鯨鯊 15:00 & 17:00。海豚秀 Okichan 劇場 10:30/11:30/13:00/15:00/17:00。海龜餵食 11–12/14–15。</div></div>
+        <div class="item meal"><div class="time">12:00–13:15</div><div class="act">🍜 午餐<span class="tagi eat">本部水產</span></div><div class="nt">島豚家／岸本食堂／海邦丸二館（見餐廳區）。</div></div>
+        <div class="item"><div class="time">13:15–14:30</div><div class="act">😴 車上 / 飯店午睡或 Café 休息<span class="tagi star">1歲關鍵</span></div></div>
+        <div class="item"><div class="time">14:30–16:30</div><div class="act">🐬 海洋博公園・海豚劇場・海龜館・海牛館・海洋文化館</div><div class="nt">夏季主要區域開到 19:30，水族館相關區域旺季到 19:00。</div></div>
+        <div class="item"><div class="time">16:30–17:30</div><div class="act">🌅 翡翠海灘 / 備瀨福木林道看夕陽<span class="tagi car">太熱可刪</span></div><div class="nt">距水族館開車 5 分，有收費停車場。</div></div>
+        <div class="item meal"><div class="time">18:00–19:30</div><div class="act">🥩 本部晚餐<span class="tagi eat">燒肉本部牧場需預訂</span></div></div>
+      </div>
+    </div>
+  </details>
+
+  <!-- DAY 3 -->
+  <details class="day d3">
+    <summary>
+      <div class="dnum"><small>DAY</small>3</div>
+      <div class="dhead">
+        <div class="dt">7/25（六）· 樂園衝刺</div>
+        <div class="dtitle">JUNGLIA 叢林樂園 ＋ 百年古家「大家」</div>
+      </div>
+      <div class="chev">▾</div>
+    </summary>
+    <div class="day-body">
+      <div class="note-box warn" style="margin:0 0 12px;">🎢 <b>週六 JUNGLIA 10:00–19:00。</b>停車、入園、驗票都要抓時間。越野車實境秀限 4 歲以上、空中滑索限 132cm 以上（未滿 10 歲需 18 歲以上陪同）。先確認 <b>10 歲最想玩</b>的設施＋整理券。</div>
+      <div class="tl">
+        <div class="item meal"><div class="time">08:30–09:30</div><div class="act">🥪 出發吃早餐 或 車上吃<span class="tagi eat">CAMEL三明治/Potama飯糰</span></div><div class="nt">先擦防曬、備水壺、替換衣物。</div></div>
+        <div class="item"><div class="time">09:30–10:00</div><div class="act">🚗 本部 → JUNGLIA<span class="tagi car">30分</span></div></div>
+        <div class="item"><div class="time">10:00–10:30</div><div class="act">🎟️ 停車、入園、App / 整理券確認</div></div>
+        <div class="item hi"><div class="time">10:30–12:30</div><div class="act">🎢 JUNGLIA 上半場<span class="tagi star">優先戶外熱門</span></div></div>
+        <div class="item meal"><div class="time">12:30–14:00</div><div class="act">🍽️ 園內午餐＋休息<span class="tagi eat">Wild Banquet / Panorama</span></div></div>
+        <div class="item hi"><div class="time">14:00–16:00</div><div class="act">🎈 JUNGLIA 下半場<span class="tagi star">5歲/1歲找陰影室內</span></div></div>
+        <div class="item"><div class="time">16:00–17:00</div><div class="act">🎁 點心、買紀念品、準備離園</div><div class="nt">不建議壓到最後一刻。</div></div>
+        <div class="item"><div class="time">17:20–17:45</div><div class="act">🚗 JUNGLIA → 百年古家 大家<span class="tagi car">15分</span></div><div class="nt">建議訂 18:00。</div></div>
+        <div class="item meal hi"><div class="time">18:00–19:30</div><div class="act">🐖 百年古家「大家」阿古豬晚餐<span class="tagi star">一個月前要預訂</span></div><div class="nt">子家朋友介紹。線上預約 tablecheck。可留意名護夏日祭典（名護漁港）。</div></div>
+        <div class="item"><div class="time">19:30–20:00</div><div class="act">🚗 大家 → 本部住宿<span class="tagi car">山路夜路慢開</span></div></div>
+      </div>
+    </div>
+  </details>
+
+  <!-- DAY 4 -->
+  <details class="day d4">
+    <summary>
+      <div class="dnum"><small>DAY</small>4</div>
+      <div class="dhead">
+        <div class="dt">7/26（日）· 南下進城</div>
+        <div class="dtitle">沖繩兒童王國 → 那霸國際通</div>
+      </div>
+      <div class="chev">▾</div>
+    </summary>
+    <div class="day-body">
+      <div class="note-box info" style="margin:0 0 12px;">🦁 <b>週日兒童王國 09:30–21:00（最後入園 20:00），週末比平日開更晚。</b>Wonder Museum 是沖繩唯一兒童博物館，適合雨天與酷熱天躲太陽。</div>
+      <div class="tl">
+        <div class="item"><div class="time">08:00–08:45</div><div class="act">🧳 退房、行李上車</div><div class="nt">前晚先收好大件行李。</div></div>
+        <div class="item"><div class="time">08:45–10:30</div><div class="act">🚗 本部 → 沖繩兒童王國<span class="tagi car">1.5小時</span></div><div class="nt">中途買早餐（MOKULELE 塔可飯）、便利商店上廁所。</div></div>
+        <div class="item hi"><div class="time">10:30–12:30</div><div class="act">🦓 兒童王國：動物園區</div></div>
+        <div class="item meal"><div class="time">12:30–13:30</div><div class="act">🍱 午餐<span class="tagi eat">海族工房園區自助</span></div><div class="nt">不排隊為原則。</div></div>
+        <div class="item"><div class="time">13:30–15:00</div><div class="act">🔬 Wonder Museum／室內互動展<span class="tagi star">避暑</span></div></div>
+        <div class="item"><div class="time">15:00–16:00</div><div class="act">🚗 兒童王國 → 那霸住宿<span class="tagi car">40分</span></div><div class="nt">週日下午車多。</div></div>
+        <div class="item"><div class="time">16:00–17:30</div><div class="act">🛁 入住、休息、洗澡<span class="tagi star">讓小孩回血</span></div></div>
+        <div class="item meal hi"><div class="time">18:00–20:00</div><div class="act">🛍️ 國際通 / 牧志公設市場 / 壺屋通 散步晚餐</div><div class="nt">市區散步即可，不再加開車景點。晚餐選擇見餐廳區。</div></div>
+      </div>
+    </div>
+  </details>
+
+  <!-- DAY 5 -->
+  <details class="day d5">
+    <summary>
+      <div class="dnum"><small>DAY</small>5</div>
+      <div class="dhead">
+        <div class="dt">7/27（一）· 賦歸</div>
+        <div class="dtitle">那霸早午餐 → 還車 → 機場</div>
+      </div>
+      <div class="chev">▾</div>
+    </summary>
+    <div class="day-body">
+      <div class="note-box warn" style="margin:0 0 12px;">⏰ <b>亭宇子誠家 14:00 航班（IT289）較緊</b>，午餐機場解決。OTS Toyosaki 還車選 12:00 時段；接駁到機場約 15–25 分，建議 12:30 前到機場。<b>還車前先加滿油。</b></div>
+      <div class="tl">
+        <div class="item meal"><div class="time">08:00–09:30</div><div class="act">🍳 那霸早午餐<span class="tagi eat">Furinkazan / 泊港漁市場</span></div></div>
+        <div class="item"><div class="time">09:30–10:30</div><div class="act">💊 國際通 / 藥妝 / 伴手禮短逛</div><div class="nt">注意不要買到太趕。</div></div>
+        <div class="item"><div class="time">10:30–11:15</div><div class="act">🚗 飯店取行李、退房、前往 OTS<span class="tagi car">20–40分・先加滿油</span></div></div>
+        <div class="item"><div class="time">11:15–12:00</div><div class="act">🔑 OTS 還車</div></div>
+        <div class="item"><div class="time">12:00–12:30</div><div class="act">🚐 OTS 接駁到那霸機場<span class="tagi car">15–25分</span></div></div>
+        <div class="item hi"><div class="time">14:00–14:55</div><div class="act">✈️ 亭宇子誠家 那霸 → 高雄<span class="tagi star">虎航 IT289</span></div></div>
+        <div class="item"><div class="time">14:00 後</div><div class="act">🍔 子家玉青家 機場午餐<span class="tagi eat">A&amp;W 備案</span></div><div class="nt">A&amp;W 那霸機場店 06:30–20:00。15:30 前報到。</div></div>
+        <div class="item hi"><div class="time">16:45–17:20</div><div class="act">✈️ 子家玉青家 那霸 → 桃園</div></div>
+      </div>
+    </div>
+  </details>
+
+  <!-- ===================== STAY ===================== -->
+  <h2 class="sec"><span class="em">🏨</span>住宿（已確認）</h2>
+  <p class="sec-sub">兩間皆已訂房確認 ✅ · 合計 TWD 30,597（4 晚）</p>
+  <div class="two">
+    <div class="card stay rec">
+      <span class="badge" style="background:var(--leaf);">✅ 已確認</span>
+      <h4>🏝️ Suppai Resort Okinawa</h4>
+      <div class="dist">🛏️ D1–D3 本部 · 7/23–7/26（3 晚）</div>
+      <div class="desc">距美麗海水族館<b>開車 3 分</b>的好立地，一棟包租附按摩浴池（ジャグジー）、花園與免費私人停車位。</div>
+      <div class="price">TWD 19,553</div><br>
+      <a class="book" href="https://reurl.cc/groGpL" target="_blank" rel="noopener">訂房詳情 ↗</a>
+    </div>
+    <div class="card stay rec" style="border-left-color:var(--coral);">
+      <span class="badge" style="background:var(--leaf);">✅ 已確認</span>
+      <h4>🌃 Paradise inn 牧志</h4>
+      <div class="dist" style="color:var(--coral-deep);">🛏️ D4 那霸 · 7/26–7/27（1 晚）</div>
+      <div class="desc">距國際通 0.3km，大家族向包棟貸切宿，各層獨立鑰匙個室、敷地內免費停車場，地點絕佳。</div>
+      <div class="price">TWD 11,044</div><br>
+      <a class="book" href="https://reurl.cc/K2olj9" target="_blank" rel="noopener">訂房詳情 ↗</a>
+    </div>
+  </div>
+  <div class="note-box info" style="margin-top:12px;">
+    🗓️ <b>住宿時序：</b>7/23 入住 Suppai Resort（本部基地，連住 3 晚跑美麗海＋JUNGLIA）→ 7/26 兒童王國後南下，退房改入 Paradise inn 牧志（國際通旁）→ 7/27 退房還車賦歸。
+  </div>
+
+  <!-- ===================== MEALS ===================== -->
+  <h2 class="sec"><span class="em">🍴</span>餐廳口袋名單</h2>
+  <p class="sec-sub">★ 需預約的店家在當天先打電話／線上訂。沖繩麵店多只開午間，記得抓時段。</p>
+
+  <div class="card meal-day">
+    <div class="mh">🐢 D2 · 美麗海周邊（沖繩麵）</div>
+    <div class="meal-row"><div class="mt">午餐</div><div class="mc">島豚家（11:00–15:30）· <a href="https://maps.app.goo.gl/ogbwdTENzsrWUJ2n9" target="_blank" rel="noopener">地圖</a><br>岸本食堂（11:00–17:00）· <a href="https://maps.app.goo.gl/FW5tYiu8GJ9qMvP28" target="_blank" rel="noopener">地圖</a><br>海邦丸二館（11:30–15:00）· <a href="https://maps.app.goo.gl/SaSbEVHnFWiv14xL8" target="_blank" rel="noopener">地圖</a></div></div>
+    <div class="meal-row"><div class="mt">晚餐 ★</div><div class="mc">燒肉本部牧場（和牛，需預訂；20:00 後結帳 9 折）· <a href="https://maps.app.goo.gl/koLaaoRce8azYYGq8" target="_blank" rel="noopener">地圖</a></div></div>
+  </div>
+
+  <div class="card meal-day">
+    <div class="mh">🎢 D3 · JUNGLIA 樂園日</div>
+    <div class="meal-row"><div class="mt">早餐</div><div class="mc">CAMEL SANDWICH（三明治）· <a href="https://maps.app.goo.gl/DJZ5U3tvoSw6uyzt5" target="_blank" rel="noopener">地圖</a><br>Potama 本部店（沖繩飯糰）· <a href="https://maps.app.goo.gl/o4JJEN3WR81iXv7DA" target="_blank" rel="noopener">地圖</a></div></div>
+    <div class="meal-row"><div class="mt">午餐</div><div class="mc">園內：Wild Banquet Kitchen（平價）· <a href="https://maps.app.goo.gl/CjSKRDNRBvNqeqvq6" target="_blank" rel="noopener">地圖</a><br>Panorama Dining（較高價）· <a href="https://maps.app.goo.gl/agV2QdUkfdbhfFoYA" target="_blank" rel="noopener">地圖</a></div></div>
+    <div class="meal-row"><div class="mt">晚餐 ★★</div><div class="mc">百年古家「大家」阿古豬（<b>一個月前要預訂</b>）· <a href="https://www.tablecheck.com/shops/ufuya/reserve" target="_blank" rel="noopener">線上預約</a> · <a href="https://maps.app.goo.gl/h8FgZEWpQcodnQKR9" target="_blank" rel="noopener">地圖</a></div></div>
+  </div>
+
+  <div class="card meal-day">
+    <div class="mh">🦁 D4 · 兒童王國 → 那霸</div>
+    <div class="meal-row"><div class="mt">早餐</div><div class="mc">MOKULELE（塔可飯）· <a href="https://maps.app.goo.gl/Yw8RmnGmWRPgYYRx9" target="_blank" rel="noopener">地圖</a></div></div>
+    <div class="meal-row"><div class="mt">午餐</div><div class="mc">海族工房（園區內自助餐）· <a href="https://maps.app.goo.gl/8shDbFD81p5KVVw99" target="_blank" rel="noopener">地圖</a></div></div>
+    <div class="meal-row"><div class="mt">晚餐（那霸）</div><div class="mc">肉屋ししや（和牛）· CHOKOTTO 壽司 · Uomaru / 節子鮮魚店（生魚片）· 波照間（沖繩料理）· 琉家拉麵（營業到凌晨）· 爐端燒 Uguisu（★需訂位）· 炸牛元村<br>🍦 Blue Seal 國際通店 · 塩屋鹽味冰淇淋</div></div>
+  </div>
+
+  <div class="card meal-day" style="margin-bottom:0;">
+    <div class="mh">🛫 D5 · 那霸早午餐</div>
+    <div class="meal-row"><div class="mt">早午餐</div><div class="mc">Furinkazan（茶泡飯、烤魚定食 07:00–14:00）· <a href="https://maps.app.goo.gl/94qcw7dzKfeUxnut5" target="_blank" rel="noopener">地圖</a><br>泊港漁市場（06:00–18:00）· <a href="https://maps.app.goo.gl/BfsHauRMnBCuyzTK7" target="_blank" rel="noopener">地圖</a></div></div>
+    <div class="meal-row"><div class="mt">午餐</div><div class="mc">還車後機場解決（A&amp;W 那霸機場店 06:30–20:00）</div></div>
+  </div>
+
+  <!-- ===================== POI CANDIDATES ===================== -->
+  <h2 class="sec"><span class="em">⭐</span>景點候選池</h2>
+  <p class="sec-sub">主行程之外的加碼／替換口袋名單，★ 為家庭喜愛度。下雨或太熱時可把戶外換成室內。<span style="color:#6D28D9;">紫＝室內</span>　<span style="color:#15803D;">綠＝室外</span>　<span style="color:#B45309;">黃＝皆有</span></p>
+
+  <div class="sec-sub" style="font-weight:700;color:var(--sea-deep);margin-bottom:8px;">🔵 北部</div>
+  <div class="poi-grid" style="--region-c:#0891B2;">
+    <div class="poi"><div class="rt">北部</div><h4>🐢 美麗海水族館 <span class="io in">內</span></h4><div class="stars">★★★★★</div><div class="feat">黑潮之海、海豚秀、鬼蝠魟/鯨鯊餵食、海牛海龜。建議 10:00 前入園，人多時轉去海洋博公園（翡翠海灘玩水）。</div><a class="more" href="https://churaumi.okinawa/tc/haisai/" target="_blank" rel="noopener">官網 ↗</a> · <a class="more" href="https://www.gltjp.com/zh-hant/article/item/21171/" target="_blank" rel="noopener">遊記 ↗</a></div>
+    <div class="poi"><div class="rt">北部</div><h4>🎢 JUNGLIA 叢林樂園 <span class="io out">外</span></h4><div class="stars">★★★</div><div class="feat">越野車實境秀（4 歲以上）、熱氣球、空中滑索（132cm 以上）。等待隊伍有解放服務。</div><a class="more" href="https://natasha-traveler.tw/okinawa-junglia-review/" target="_blank" rel="noopener">遊記 ↗</a></div>
+    <div class="poi"><div class="rt">北部</div><h4>🌅 備瀨福木林道 <span class="io out">外</span></h4><div class="stars">★★★★</div><div class="feat">海景夕陽。距美麗海開車 5 分，有收費停車場。</div><a class="more" href="https://chrysie.pixnet.net/blog/posts/7115617640" target="_blank" rel="noopener">遊記 ↗</a></div>
+    <div class="poi"><div class="rt">北部</div><h4>🦅 Neo Park 名護自然動植物公園 <span class="io out">外</span></h4><div class="stars">★★★★</div><div class="feat">開放式動物園，可愛小動物與稀有保育動物，有猛禽秀。</div><a class="more" href="https://okinawa.letsgojp.com/archives/668980/" target="_blank" rel="noopener">遊記 ↗</a></div>
+    <div class="poi"><div class="rt">北部</div><h4>🐬 本部元氣村 <span class="io out">外</span></h4><div class="stars">★★★</div><div class="feat">海豚互動體驗（需預約）、手機繩 DIY。</div><a class="more" href="https://owf.jp/english/dolphin/" target="_blank" rel="noopener">官網 ↗</a></div>
+    <div class="poi"><div class="rt">北部</div><h4>💗 古宇利島 <span class="io both">外/內</span></h4><div class="stars">★</div><div class="feat">（偏大人景點）古宇利大橋、海灘、海洋塔、心形岩、渡海海灘。</div><a class="more" href="https://www.jathao.com/2024/03/okinawa-kouri-island.html" target="_blank" rel="noopener">遊記 ↗</a></div>
+  </div>
+
+  <div class="sec-sub" style="font-weight:700;color:var(--sand);margin:18px 0 8px;">🟠 中部</div>
+  <div class="poi-grid" style="--region-c:#EA580C;">
+    <div class="poi"><div class="rt">中部</div><h4>🦁 沖繩兒童王國 <span class="io both">外/內</span></h4><div class="stars">★★★★★</div><div class="feat">夜間動物園與點燈（週末延長至 21:00）、神奇博物館、遊樂園區。</div><a class="more" href="https://fullfenblog.tw/okinawa-zoo/" target="_blank" rel="noopener">遊記 ↗</a></div>
+    <div class="poi"><div class="rt">中部</div><h4>🎆 北谷美國村 <span class="io in">內</span></h4><div class="stars">★★★</div><div class="feat">週六晚煙火秀、濱海步道＆海灘。</div><a class="more" href="https://www.gltjp.com/zh-hant/article/item/21095/" target="_blank" rel="noopener">遊記 ↗</a></div>
+    <div class="poi"><div class="rt">中部</div><h4>🛍️ AEON Mall 來客夢 <span class="io in">內</span></h4><div class="stars">★★★</div><div class="feat">超大商城，避暑好去處。</div></div>
+    <div class="poi"><div class="rt">中部</div><h4>✈️ 道之驛 嘉手納 <span class="io in">內</span></h4><div class="stars">★★</div><div class="feat">中部公路休息站，可眺望東北亞最大空軍基地。</div><a class="more" href="https://tc.tabirai.net/sightseeing/article/okinawa-michinoekikadena/" target="_blank" rel="noopener">介紹 ↗</a></div>
+  </div>
+
+  <div class="sec-sub" style="font-weight:700;color:#7C3AED;margin:18px 0 8px;">🟣 南部</div>
+  <div class="poi-grid" style="--region-c:#7C3AED;">
+    <div class="poi"><div class="rt">南部</div><h4>🌋 沖繩 World 玉泉洞 <span class="io both">外/內</span></h4><div class="stars">★★★★★</div><div class="feat">玉泉洞、太鼓秀、毒蛇秀、南島洞窟探險。</div><a class="more" href="https://okinawa.letsgojp.com/archives/757370/" target="_blank" rel="noopener">遊記 ↗</a></div>
+    <div class="poi"><div class="rt">南部</div><h4>🛍️ 國際通・牧志市場・壺屋通 <span class="io out">外</span></h4><div class="stars">★★★★</div><div class="feat">那霸市區一日遊，美食、伴手禮、陶器老街。走路逛街。</div><a class="more" href="https://www.wendyjourney.com/kokusai-dori/" target="_blank" rel="noopener">國際通 ↗</a> · <a class="more" href="https://www.wendyjourney.com/makishi-public-market/" target="_blank" rel="noopener">市場 ↗</a></div>
+    <div class="poi"><div class="rt">南部</div><h4>🏬 iias Toyosaki <span class="io in">內</span></h4><div class="stars">★★★</div><div class="feat">大型購物中心，靠近機場與 OTS。</div><a class="more" href="https://okinawa.letsgojp.com/archives/544483/" target="_blank" rel="noopener">介紹 ↗</a></div>
+  </div>
+
+  <!-- ===================== CHECKLIST ===================== -->
+  <h2 class="sec"><span class="em">✅</span>出發前 Checklist</h2>
+  <p class="sec-sub">子家玉青家（桃園）依成員分裝；亭宇子誠家（高雄）清單待補。</p>
+  <div class="check-cols">
+    <div class="check">
+      <h4>🧳 寶寶 <small>(1 歲)</small></h4>
+      <ul>
+        <li>耳罩 <small>· 看煙火用</small></li>
+        <li>推車袋</li>
+      </ul>
+    </div>
+    <div class="check">
+      <h4>🧳 玉青媽</h4>
+      <ul>
+        <li><small>（待補）</small></li>
+      </ul>
+    </div>
+    <div class="check">
+      <h4>🧳 子家</h4>
+      <ul>
+        <li>自拍棒</li>
+        <li>拉鍊大購物袋 ×2</li>
+        <li>預定托運行李</li>
+      </ul>
+    </div>
+  </div>
+  <div class="note-box tip" style="margin-top:14px;">
+    🛂 <b>租車三寶（缺一不可）：</b>台灣駕照 ＋ 駕照日文譯本（監理站申辦）＋ 護照。<br>
+    📞 <b>必訂死線：</b>百年古家「大家」需 <b>1 個月前</b>預訂；燒肉本部牧場、爐端燒 Uguisu 需提前訂位。<br>
+    🧴 嬰幼兒清單：防曬、泳具/泳褲、午睡毯、退熱貼、常備藥、足量尿布。
+  </div>
+
+  <!-- ===================== TIPS ===================== -->
+  <h2 class="sec"><span class="em">⚠️</span>重要提醒</h2>
+  <div class="note-box warn">
+    <b>🌡️ 7 月旺季 × 酷暑：</b>
+    <ul>
+      <li>水族館、JUNGLIA、兒童王國週末都延長營業，但人潮也最多——重點項目（鬼蝠魟 9:30、10 歲想玩的設施）先排，早入園。</li>
+      <li>戶外景點（備瀨林道、海灘、美國村）<b>太熱就跳過</b>，改去室內（來客夢、Wonder Museum、玉泉洞）。</li>
+      <li>隨身大量補水、行動糧；推車遮陽、嬰兒防中暑。</li>
+    </ul>
+  </div>
+  <div class="note-box info">
+    <b>👶 1 歲午睡節奏：</b>D2/D4 已把長車程（午後）對齊午睡時段。Day 2 的 13:15–14:30「車上/Café 休息」是刻意保留，請務必執行，不要硬塞景點。
+  </div>
+  <div class="note-box tip">
+    <b>🚗 兩台車自駕：</b>每天出發前對好 Google Maps 同一目的地＋會合點；山路夜路（D3 回程）慢開。OTS 還車前加滿油，留好油單。
+  </div>
+
+  <!-- ===================== SOURCES ===================== -->
+  <h2 class="sec"><span class="em">🔗</span>官方與參考來源</h2>
+  <div class="card src-list">
+    美麗海水族館：<a href="https://churaumi.okinawa/tc/haisai/" target="_blank" rel="noopener">churaumi.okinawa</a><br>
+    海洋博公園：<a href="https://oki-park.jp/" target="_blank" rel="noopener">oki-park.jp</a><br>
+    沖繩兒童王國：<a href="https://www.okzm.jp/" target="_blank" rel="noopener">okzm.jp</a><br>
+    OTS 租車：<a href="https://www.otsinternational.jp/" target="_blank" rel="noopener">otsinternational.jp</a><br>
+    iias Toyosaki：<a href="https://toyosaki.iias.jp/" target="_blank" rel="noopener">toyosaki.iias.jp</a><br>
+    百年古家「大家」預約：<a href="https://www.tablecheck.com/shops/ufuya/reserve" target="_blank" rel="noopener">tablecheck.com</a>
+  </div>
+
+  <footer>
+    🐢 沖繩家庭遊 · 資料整理自家庭共用試算表 · 行程時間為沖繩當地時間<br>
+    Made with ❤️ · <a href="https://github.com/tzchia/travel">GitHub</a> · 最後更新 2026/06/16
+  </footer>
+
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+  var map = L.map('map', { scrollWheelZoom: false }).setView([26.45, 127.82], 9);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; OpenStreetMap &copy; CARTO', maxZoom: 19
+  }).addTo(map);
+
+  function pin(lat, lng, label, color) {
+    var m = L.circleMarker([lat, lng], {
+      radius: 9, color: '#fff', weight: 2, fillColor: color, fillOpacity: 1
+    }).addTo(map);
+    m.bindTooltip(label, { permanent: true, direction: 'top', className: 'spot-label', offset: [0,-6] });
+    return m;
+  }
+
+  var SEA = '#0891B2', SAND = '#F59E0B', CORAL = '#FB7185', PUR = '#7C3AED';
+
+  // attractions
+  pin(26.6943, 127.8779, '🐢 美麗海水族館', SEA);
+  pin(26.6912, 127.8779, '🐬 海洋博公園', SEA);
+  pin(26.7060, 127.8800, '🌅 備瀨福木林道', SEA);
+  pin(26.6940, 127.9930, '🎢 JUNGLIA', SEA);
+  pin(26.6080, 127.9760, '🐖 百年古家 大家', SAND);
+  pin(26.3475, 127.8060, '🦁 沖繩兒童王國', SEA);
+  pin(26.3160, 127.7560, '🎆 北谷美國村', SAND);
+  pin(26.1410, 127.7470, '🌋 沖繩World 玉泉洞', SEA);
+  // bases
+  pin(26.6600, 127.8800, '🏨 本部住宿基地', SAND);
+  // naha city
+  pin(26.2140, 127.6870, '🛍️ 國際通／牧志', CORAL);
+  pin(26.1620, 127.6530, '🏬 iias 豐崎／OTS', PUR);
+  pin(26.1958, 127.6463, '🛫 那霸機場', PUR);
+
+  // route line: airport -> iias -> motobu base -> junglia -> kids kingdom -> naha
+  var route = [
+    [26.1958,127.6463],[26.1620,127.6530],[26.6600,127.8800],
+    [26.6940,127.9930],[26.3475,127.8060],[26.2140,127.6870]
+  ];
+  L.polyline(route, { color:'#0E7490', weight:3, opacity:0.55, dashArray:'2 9' }).addTo(map);
+</script>
+</body>
+</html>
