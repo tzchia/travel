@@ -85,6 +85,9 @@
     .trklegend span{display:inline-flex;align-items:center;gap:6px}
     .trklegend i{width:22px;height:0;border-top-width:3px;border-top-style:solid;display:inline-block}
     @media print{.trkmap{display:none}}
+    /* 當日足跡（嵌進每個 Day 卡片內） */
+    .daymap{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line)}
+    .daymap .dm-head{font-size:14px;font-weight:900;color:var(--navy);margin-bottom:9px;display:flex;align-items:center;gap:6px}
     @media print{.print{display:none}.sidedock{display:none}.wrap{max-width:none}.card,.hero{box-shadow:none}a{border-bottom:none}.hero{break-inside:avoid}.card{break-inside:avoid}}
   </style>
 </head>
@@ -108,7 +111,7 @@
   <div class="navbar" id="navbar">
     <div class="progressbar"><i id="progressFill"></i></div>
     <div class="toc" id="toc">
-    <a href="#map">景點圖</a><a href="#overview">每日交通總覽</a><a href="#day1">Day 1</a><a href="#day2">Day 2</a><a href="#day3">Day 3</a><a href="#day4">Day 4</a><a href="#day5">Day 5</a><a href="#day6">Day 6</a><a href="#trackmap">🗺️ 足跡地圖</a><a href="#reconcile">🧾 收據對帳</a><a href="#compare">🛍️ 戰利品比價</a><a href="#passes">交通卡</a><a href="#tips">親子 tips</a>
+    <a href="#map">景點圖</a><a href="#overview">每日交通總覽</a><a href="#day1">Day 1</a><a href="#day2">Day 2</a><a href="#day3">Day 3</a><a href="#day4">Day 4</a><a href="#day5">Day 5</a><a href="#day6">Day 6</a><a href="#reconcile">🧾 收據對帳</a><a href="#compare">🛍️ 戰利品比價</a><a href="#passes">交通卡</a><a href="#tips">親子 tips</a>
     </div>
   </div>
 
@@ -124,7 +127,6 @@
     <a href="#day4"><span class="sd-dot"></span>Day 4</a>
     <a href="#day5"><span class="sd-dot"></span>Day 5</a>
     <a href="#day6"><span class="sd-dot"></span>Day 6</a>
-    <a href="#trackmap"><span class="sd-dot"></span>🗺️ 足跡地圖</a>
     <a href="#reconcile"><span class="sd-dot"></span>🧾 收據對帳</a>
     <a href="#compare"><span class="sd-dot"></span>🛍️ 戰利品比價</a>
     <a href="#passes"><span class="sd-dot"></span>交通卡</a>
@@ -215,6 +217,11 @@
       <div class="step"><div class="time">22:13</div><div><strong>回飯店休息</strong><div class="mini">早睡調整時差，為 Day 2 大濠公園儲備電力。</div></div></div>
     </div>
     <div class="note"><strong>💡 博多拉麵加麵小知識：</strong>第一碗份量偏少（店家以「加麵」為前提）。湯還剩、麵快吃完時點：<em>「替え玉お願いします！」</em>（kaedama onegaishimasu）。一幸舍是另買食券／告知店員，看現場做法。</div>
+    <div class="daymap">
+      <div class="dm-head">🗺️ 當日足跡</div>
+      <div class="trkmap" id="m1"></div>
+      <div class="trkroute"><span class="seg">✈️ 福岡機場 17:07</span> → <span class="seg">🚌 巴士 11 分</span> → <span class="seg">🏨 メトロポリタン</span> → <span class="seg">🍜 一幸舍</span> → <span class="seg">🛒 超市</span></div>
+    </div>
   </section>
 
   <section class="card day d2" id="day2">
@@ -231,6 +238,11 @@
       <div class="step"><div class="time">23:10</div><div><strong>步行＋短程交通回飯店</strong><div class="mini">回 ホテルメトロポリタン福岡（住吉 2-9-4）。晚上 11 點才到，今天算放電很徹底。</div></div></div>
     </div>
     <div class="note"><strong>📌 計畫調整：</strong>大濠公園 ✅ 已完成；<strong>麵包超人博物館</strong>今天沒去。若還想補，可塞進 Day 4（6/12）下午回市區後，或這趟先放生。</div>
+    <div class="daymap">
+      <div class="dm-head">🗺️ 當日足跡</div>
+      <div class="trkmap" id="m2"></div>
+      <div class="trkroute"><span class="seg">🌳 大濠公園</span> → <span class="seg">🍣 玄海丸</span> → <span class="seg">🏬 Mina/LOFT</span> → <span class="seg">🏬 PARCO</span> → <span class="seg">🍲 大名 22:30</span><br><span class="mini">步行 6km／4h36m、9 個造訪點</span></div>
+    </div>
   </section>
 
   <section class="card day d3" id="day3">
@@ -258,6 +270,11 @@
     </div>
     <div class="note"><strong>💡 帶娃 outlet 攻略：</strong>進場先到 service counter 借嬰兒車／拿樓層圖與優惠券；折扣品牌（運動鞋、童裝、媽媽包）通常比市區便宜。雨天完全 OK——大半是室內。回程 JR 班距較疏，先查好末班與快速車時刻。</div>
     <div class="note" style="background:#f0f7ff;border-left-color:#277bca;color:#0e3a5c"><strong>原計畫備案（海之中道海濱公園＋Marine World）：</strong>若 outlet 玩一天太累或天氣太好想戶外，可改回海之中道（JR 博多→香椎→海之中道，單程約 40 分）。Marine World 水族館有海豚秀、授乳室、嬰兒車借用，雨天也行。兩個擇一即可，別硬塞同一天。</div>
+    <div class="daymap">
+      <div class="dm-head">🗺️ 當日足跡</div>
+      <div class="trkmap" id="m3"></div>
+      <div class="trkroute"><span class="seg">🚃 JR 鹿兒島本線</span> → <span class="seg">🛍️ THE OUTLETS 北九州</span> → <span class="seg">🛒 AEON 八幡東</span><br><span class="mini">單筆最大：NIKE 7 雙 ¥35,993</span></div>
+    </div>
   </section>
 
   <section class="card day d4" id="day4">
@@ -283,6 +300,18 @@
       <div class="step"><div class="time">15:00</div><div><strong>天神／博多購物</strong><div class="mini">藥妝、尿布、伴手禮，晚餐後整理行李。<br><strong>逛街地點選擇：</strong>天神（地下街通風、人潮少、好逛）／博多運河城（180 公尺運河噴水秀，43,500 ㎡ 集購物美食娛樂）／JR 博多城（一站買齊伴手禮的首選）／三井 LaLaport 福岡（220+ 店，鋼彈 PARK，遠但豐富）。<br><strong>🎁 經典伴手禮 3 選</strong>：博多 TORIMON（明月堂 1929 老店，白豆沙饀 + 牛奶香外皮）／博多之女（二鶴堂，年輪蛋糕 + 羊羹日西融合）／辣味明太子仙貝（福太郎，福岡限定多種口味）。</div></div></div>
     </div>
     <div class="note"><strong>雨天版：</strong>太宰府取消，改博多站、Canal City、天神地下街、百貨餐廳。隔天早班機，前一晚不要拖太晚。</div>
+    <div class="daymap">
+      <div class="dm-head">🗺️ 當日足跡</div>
+      <div class="dm-sub" style="font-size:13px;font-weight:800;color:#a8480a;margin:2px 0 7px">上午 · 🏃 晨跑＋神社參拜</div>
+      <div class="trkpair">
+        <div class="trkmap" id="m4a"></div>
+        <div class="trkmap" id="m4b"></div>
+      </div>
+      <div class="trkroute"><span class="seg" style="background:#fff1e6;border-color:#ffd2ab;color:#a8480a">🏃 晨跑 3.98km · 48:20</span> 住吉→櫛田神社→住吉神社→飯店<br>午前帶老婆小孩參拜：<span class="seg">⛩️ 住吉神社</span> <span class="seg">⛩️ 櫛田神社</span> <span class="seg">🤖 運河城 Gundam</span><br><span class="mini">＊御守費用見下方收據對帳</span></div>
+      <div class="dm-sub" style="font-size:13px;font-weight:800;color:#0e5f9e;margin:14px 0 7px">下午 · ⛩️ 太宰府</div>
+      <div class="trkmap" id="m4c"></div>
+      <div class="trkroute"><span class="seg">🚃 西鐵 太宰府</span> → <span class="seg">⛩️ 太宰府天滿宮（梅枝餅）</span> → <span class="seg">⛩️ 竈門神社</span> → <span class="seg">🍲 天神もんじ</span></div>
+    </div>
   </section>
 
   <section class="card day d5" id="day5">
@@ -297,6 +326,11 @@
       <div class="step"><div class="time">夜</div><div><strong>博多駅西 Lawson 補給、回飯店</strong><div class="mini">¥957。早點休息，隔天才真的回得了家。</div></div></div>
     </div>
     <div class="note"><strong>🛡️ 理賠提醒：</strong>虎航的延誤證明（航班離/到證明，開立日 6/14）寫明「延誤至 14 日起飛、改班號 IT2241、機務因素」。憑此＋住宿／餐飲收據，可向信用卡附贈或自購的<strong>旅遊不便險</strong>申請班機延誤賠償（多數需延誤 4 小時以上，本案延誤逾 24 小時）。記得保留登機證或訂位確認。</div>
+    <div class="daymap">
+      <div class="dm-head">🗺️ 當日足跡</div>
+      <div class="trkmap" id="m5"></div>
+      <div class="trkroute"><span class="seg" style="background:#fdeeee;border-color:#f3c9c9;color:#a32a2a">✈️ 福岡機場 IT241 延誤</span> → 折返博多 → <span class="seg">🧗 攀岩 ホアホア</span> → <span class="seg">🍢 焼とり家 庵 22:36</span><br><span class="mini">改住 APA 博多駅前，多留一晚</span></div>
+    </div>
   </section>
 
   <section class="card day d6" id="day6">
@@ -306,74 +340,14 @@
       <div class="step"><div class="time">12:21</div><div><strong>IT2241 FUK → TPE 起飛</strong><div class="mini">表定 10:55，實際延後到 12:21 才起飛。</div></div></div>
       <div class="step"><div class="time">13:44</div><div><strong>抵達桃園</strong><div class="mini">表定 12:25、實際 13:44 落地。比原計畫晚了約一天又一個多小時，平安到家。</div></div></div>
     </div>
+    <div class="daymap">
+      <div class="dm-head">🗺️ 當日足跡</div>
+      <div class="trkmap dz" id="m6"></div>
+      <div class="trkroute"><span class="seg">🏨 APA 博多</span> → <span class="seg">✈️ 福岡機場</span> → <span class="seg">🛬 桃園機場 13:44</span><br><span class="mini">台灣端僅標機場，不含住家位置；跨海為示意</span></div>
+    </div>
   </section>
 
 
-  <section class="card" id="trackmap">
-    <h2>🗺️ 每日足跡地圖（GPS 重建）</h2>
-    <p>用 Google Maps 時間軸＋運動 App 的 GPS 紀錄，把 6 天實際走過的點連起來。<strong>時間與消費以收據為準（日本時間）</strong>，移動路線與停留點以時間軸為輔（時間軸本身有定位誤差，僅作示意）。地圖可縮放、拖曳；標記點即各日主要停留地。<span class="mini">＊台灣端只畫到桃園機場，家／公司／超市等私人點位一律不標。</span></p>
-    <div class="trkgrid">
-
-      <div class="mapcard">
-        <h3>Day 1 ·<span style="color:var(--muted);font-weight:600;font-size:14px">6/9（二）抵達</span></h3>
-        <p class="dsub">福岡機場 →巴士→ 博多站 → 入住 → 一幸舍拉麵 → 超市</p>
-        <div class="trkmap" id="m1"></div>
-        <div class="trkroute"><span class="seg">✈️ 福岡機場 17:07</span> → <span class="seg">🚌 巴士 11 分</span> → <span class="seg">🏨 メトロポリタン</span> → <span class="seg">🍜 一幸舍</span> → <span class="seg">🛒 超市</span></div>
-      </div>
-
-      <div class="mapcard">
-        <h3>Day 2 ·<span style="color:var(--muted);font-weight:600;font-size:14px">6/10（三）天神購物</span></h3>
-        <p class="dsub">博多 → 大濠公園 → 天神（玄海丸／LOFT／PARCO）→ 大名もんじ</p>
-        <div class="trkmap" id="m2"></div>
-        <div class="trkroute"><span class="seg">🌳 大濠公園</span> → <span class="seg">🍣 玄海丸</span> → <span class="seg">🏬 Mina/LOFT</span> → <span class="seg">🏬 PARCO</span> → <span class="seg">🍲 大名 22:30</span><br><span class="mini">步行 6km／4h36m、9 個造訪點</span></div>
-      </div>
-
-      <div class="mapcard">
-        <h3>Day 3 ·<span style="color:var(--muted);font-weight:600;font-size:14px">6/11（四）北九州 Outlet</span></h3>
-        <p class="dsub">博多 →JR 50–70 分→ 北九州 outlet（NIKE／UA／AEON）→ 回博多もつ鍋</p>
-        <div class="trkmap" id="m3"></div>
-        <div class="trkroute"><span class="seg">🚃 JR 鹿兒島本線</span> → <span class="seg">🛍️ THE OUTLETS 北九州</span> → <span class="seg">🛒 AEON 八幡東</span><br><span class="mini">單筆最大：NIKE 7 雙 ¥35,993</span></div>
-      </div>
-
-      <div class="mapcard">
-        <h3>Day 4 上午 ·<span style="color:#a8480a;font-weight:600;font-size:14px">6/12（五）晨跑＋神社</span></h3>
-        <p class="dsub">09:24 晨跑 3.98km → 帶家人拜訪住吉神社＋櫛田神社</p>
-        <div class="trkpair">
-          <div class="trkmap" id="m4a"></div>
-          <div class="trkmap" id="m4b"></div>
-        </div>
-        <div class="trkroute"><span class="seg" style="background:#fff1e6;border-color:#ffd2ab;color:#a8480a">🏃 晨跑 3.98km · 48:20</span> 住吉→櫛田神社→住吉神社→飯店<br>午前帶老婆小孩參拜：<span class="seg">⛩️ 住吉神社 御守 <span class="amt">¥2,000</span></span> <span class="seg">⛩️ 櫛田神社</span> <span class="seg">🤖 運河城 Gundam</span></div>
-      </div>
-
-      <div class="mapcard">
-        <h3>Day 4 下午 ·<span style="color:var(--muted);font-weight:600;font-size:14px">6/12（五）太宰府</span></h3>
-        <p class="dsub">西鐵→ 太宰府天滿宮 → 寶滿宮竈門神社 → 天神晚餐</p>
-        <div class="trkmap" id="m4c"></div>
-        <div class="trkroute"><span class="seg">🚃 西鐵 太宰府</span> → <span class="seg">⛩️ 太宰府天滿宮（梅枝餅）</span> → <span class="seg">⛩️ 竈門神社 御守 <span class="amt">¥6,000</span></span> → <span class="seg">🍲 天神もんじ</span><br><span class="mini">御守兩處共 ¥8,000</span></div>
-      </div>
-
-      <div class="mapcard">
-        <h3>Day 5 ·<span style="color:#a32a2a;font-weight:600;font-size:14px">6/13（六）延誤滯留</span></h3>
-        <p class="dsub">機場用餐 → ⚠️虎航延誤改隔日 → 折返博多攀岩＋串燒</p>
-        <div class="trkmap" id="m5"></div>
-        <div class="trkroute"><span class="seg" style="background:#fdeeee;border-color:#f3c9c9;color:#a32a2a">✈️ 福岡機場 IT241 延誤</span> → 折返博多 → <span class="seg">🧗 攀岩 ホアホア</span> → <span class="seg">🍢 焼とり家 庵 22:36</span><br><span class="mini">改住 APA 博多駅前，多留一晚</span></div>
-      </div>
-
-      <div class="mapcard" style="grid-column:1/-1">
-        <h3>Day 6 ·<span style="color:var(--muted);font-weight:600;font-size:14px">6/14（日）返台</span></h3>
-        <p class="dsub">博多 → 福岡機場 → ✈️ IT2241 12:21 → 桃園機場 13:44（跨海示意）</p>
-        <div class="trkmap dz" id="m6"></div>
-        <div class="trkroute"><span class="seg">🏨 APA 博多</span> → <span class="seg">✈️ 福岡機場</span> → <span class="seg">🛬 桃園機場 13:44</span><br><span class="mini">台灣端僅標機場，不含住家位置</span></div>
-      </div>
-
-    </div>
-    <div class="trklegend">
-      <span><i style="border-top-color:#277bca"></i>當日移動路線</span>
-      <span><i style="border-top-color:#e36d16;border-top-style:dashed"></i>晨跑 GPS 軌跡</span>
-      <span><i style="border-top-color:#d94b4b;border-top-style:dashed"></i>航班（跨海示意）</span>
-    </div>
-    <p class="mini" style="margin-top:10px">地圖底圖 © OpenStreetMap、© CARTO。座標經 OSM Nominatim 查核；晨跑軌跡依運動 App GPS 圖形近似描繪。時間軸有定位誤差，路線僅供回顧示意，精確時間與金額以收據為準。</p>
-  </section>
 
   <section class="card" id="reconcile">
     <h2>🧾 收據整理 × 💳 刷卡對帳（行後紀錄）</h2>
@@ -381,7 +355,7 @@
     <div class="grid three" style="margin:12px 0">
       <div class="pill good" style="text-align:center"><div class="mini">💳 信用卡入帳（純兌換）</div><div class="big">NT$26,615</div><div class="mini">≈ 日幣 ¥134,474（23 筆）</div></div>
       <div class="pill" style="text-align:center;border-color:#ffd9a8;background:#fff6ec"><div class="mini">➕ 國外交易手續費 1.5%</div><div class="big">≈ NT$399</div><div class="mini">帳單另列；合計實付 NT$27,014</div></div>
-      <div class="pill" style="text-align:center;border-color:#a9cde8;background:#f2f9ff"><div class="mini">💴 非信用卡（日幣）</div><div class="big">¥3,058</div><div class="mini">Suica＋PayPay＋JR現金</div></div>
+      <div class="pill" style="text-align:center;border-color:#a9cde8;background:#f2f9ff"><div class="mini">💴 非信用卡（日幣）</div><div class="big">¥11,058</div><div class="mini">Suica＋PayPay＋JR現金＋神社御守 ¥8,000</div></div>
     </div>
     <div class="note"><strong>📅 實際返台是 6/14（日）下午</strong>，因虎航 IT241 維修延誤改隔日 IT2241，被迫多留一晚——6/13 晚上還在博多攀岩（18:13）＋吃串燒（焼とり家 庵 22:36），6/14 機場 Lawson 買早餐後才搭機，13:44 落地桃園。帳單入帳日多為 6/15。</div>
     <h3 style="margin-top:18px">逐筆對帳表</h3>
@@ -405,6 +379,8 @@
       <tr><td>6/11</td><td>AEON 八幡東·嬰兒食品等 5 件</td><td style="text-align:right">¥1,660</td><td style="text-align:right">NT$329</td><td><span class="tag pink">退稅</span>消費稅 ¥130 已退</td></tr>
       <tr><td>6/11</td><td>もつ鍋 前田屋（味噌 2 人前）</td><td style="text-align:right">¥6,215</td><td style="text-align:right">NT$1,230</td><td>收據註「再發行」</td></tr>
       <tr><td>6/11</td><td>FamilyMart 博多明治公園</td><td style="text-align:right">¥1,123</td><td style="text-align:right">NT$222</td><td></td></tr>
+      <tr><td>6/12</td><td>住吉神社 御守（晨跑後帶家人參拜）⛩️</td><td style="text-align:right">¥2,000</td><td style="text-align:right">—</td><td><span class="tag">現金</span>神社授与所，無刷卡收據</td></tr>
+      <tr><td>6/12</td><td>寶滿宮竈門神社 御守 ⛩️</td><td style="text-align:right">¥6,000</td><td style="text-align:right">—</td><td><span class="tag">現金</span>神社授与所，無刷卡收據</td></tr>
       <tr><td>6/12</td><td>もんじ 天神大名店（吃到飽 ×2）</td><td style="text-align:right">¥6,455</td><td style="text-align:right">NT$1,276</td><td>= 両国だしもんじゃ（同店）</td></tr>
       <tr><td>6/12</td><td>LAWSON 太宰府天滿宮前</td><td style="text-align:right">¥342</td><td style="text-align:right">NT$68</td><td><span class="tag gray">另一張卡</span>收據卡號末 9301</td></tr>
       <tr><td>6/13</td><td>コクミン 福岡空港（杯麵 ×2）</td><td style="text-align:right">¥576</td><td style="text-align:right">NT$114</td><td>帳單記 FUKUOKA AIRPORT</td></tr>
@@ -433,7 +409,7 @@
           <li><strong>退稅 2 筆</strong>：AEON 龍角散、嬰兒食品在櫃台退了消費稅，但信用卡仍以含稅金額入帳（退稅另以現金／拆單退回）。</li>
           <li><strong>2 筆刷不同卡</strong>（MaxValu、太宰府 Lawson）：收據卡號末 9301，與主卡（星展 eco 永續卡末 6711）不同；金額仍出現在同一份帳單，已併入統計。</li>
           <li><strong>機場／OUTLET 帳單以英文店名入帳</strong>：FUKUOKA AIRPORT＝コクミン＋ROYAL MIYABI；AEONMALL THE OUTLETS＝UNDER ARMOUR＋びっくりドンキー；TOBATATEN＝SPINA 戶畑店；RO-SON＝LAWSON；已逐筆對回實際店家。</li>
-          <li><strong>非信用卡 ¥3,058</strong>：7-11 兩筆（Suica／PayPay）＋ JR 車內現金票，不會出現在刷卡帳單。</li>
+          <li><strong>非信用卡 ¥11,058</strong>：7-11 兩筆（Suica／PayPay ¥1,458）＋ JR 車內現金票 ¥1,600 ＋ <strong>神社御守 ¥8,000</strong>（住吉 ¥2,000＋竈門 ¥6,000，神社授与所現金、無刷卡收據），都不會出現在刷卡帳單。</li>
           <li><strong>🛡️ 班機延誤可理賠</strong>：6/13 原訂回程因虎航維修延誤逾 24 小時，多出的攀岩 ¥2,300、串燒 ¥6,610、多住一晚等支出，憑虎航「航班離/到證明」可向旅遊不便險申請。</li>
         </ul>
       </div>
@@ -669,7 +645,7 @@
   var m4b=mk('m4b',true);
   if(m4b){
     var sumi2=[33.58575,130.41343], kushida2=[33.59307,130.41068], canal=[33.58967,130.41114];
-    pin(m4b,sumi2[0],sumi2[1],'⛩️ 住吉神社 ¥2,000',null,'#d94b4b');
+    pin(m4b,sumi2[0],sumi2[1],'⛩️ 住吉神社',null,'#d94b4b');
     pin(m4b,kushida2[0],kushida2[1],'⛩️ 櫛田神社',null);
     pin(m4b,canal[0],canal[1],'🤖 運河城',null,'#7c3aed');
     line(m4b,[sumi2,canal,kushida2],'#277bca');
@@ -682,7 +658,7 @@
     var dzStation=[33.51923,130.53135], tenmangu=[33.51987,130.53265], kamado=[33.52883,130.55244], tenjin=[33.5901,130.39893];
     pin(m4c,tenjin[0],tenjin[1],'🚃 天神',null,'#8a93a0');
     pin(m4c,tenmangu[0],tenmangu[1],'⛩️ 太宰府天滿宮',null,'#ff8a3d');
-    pin(m4c,kamado[0],kamado[1],'⛩️ 竈門神社 ¥6,000',null,'#d94b4b');
+    pin(m4c,kamado[0],kamado[1],'⛩️ 竈門神社',null,'#d94b4b');
     line(m4c,[tenjin,tenmangu,kamado],'#277bca','3 9');
     m4c.fitBounds([tenmangu,kamado,tenjin],{padding:[34,34]});
   }
