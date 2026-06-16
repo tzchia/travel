@@ -83,7 +83,7 @@
   <div class="navbar" id="navbar">
     <div class="progressbar"><i id="progressFill"></i></div>
     <div class="toc" id="toc">
-    <a href="#map">景點圖</a><a href="#overview">每日交通總覽</a><a href="#day1">Day 1</a><a href="#day2">Day 2</a><a href="#day3">Day 3</a><a href="#day4">Day 4</a><a href="#day5">Day 5</a><a href="#day6">Day 6</a><a href="#reconcile">🧾 收據對帳</a><a href="#passes">交通卡</a><a href="#tips">親子 tips</a>
+    <a href="#map">景點圖</a><a href="#overview">每日交通總覽</a><a href="#day1">Day 1</a><a href="#day2">Day 2</a><a href="#day3">Day 3</a><a href="#day4">Day 4</a><a href="#day5">Day 5</a><a href="#day6">Day 6</a><a href="#reconcile">🧾 收據對帳</a><a href="#compare">🛍️ 戰利品比價</a><a href="#passes">交通卡</a><a href="#tips">親子 tips</a>
     </div>
   </div>
 
@@ -100,6 +100,7 @@
     <a href="#day5"><span class="sd-dot"></span>Day 5</a>
     <a href="#day6"><span class="sd-dot"></span>Day 6</a>
     <a href="#reconcile"><span class="sd-dot"></span>🧾 收據對帳</a>
+    <a href="#compare"><span class="sd-dot"></span>🛍️ 戰利品比價</a>
     <a href="#passes"><span class="sd-dot"></span>交通卡</a>
     <a href="#tips"><span class="sd-dot"></span>親子 tips</a>
   </nav>
@@ -346,6 +347,83 @@
       </div>
     </div>
     <p class="mini">對帳基準：日文紙本收據（金額為日幣原價）× 台幣信用卡帳單明細（實際入帳）。整理日 2026-06-16。本表為私人記帳用途，已隱去姓名與完整卡號。</p>
+  </section>
+
+  <section class="card" id="compare">
+    <h2>🛍️ 戰利品日台比價：撿到多少便宜？</h2>
+    <p>把這趟買的<strong>衣服、鞋子、防水尿布、寶寶餅乾、藥品</strong>逐項拉出來，跟台灣官網／電商現售價比。日本實付＝收據日幣 × 你的刷卡隱含匯率（<strong>¥1 ≈ NT$0.198</strong>，已含 1.5% 海外手續費）；台灣價取現售區間中位。</p>
+    <div class="note"><strong>一句話結論：</strong>鞋子和運動服在 OUTLET 買最賺（NIKE 省 62%），寶寶用品順手帶不吃虧，<strong>但 UNIQLO 牛仔褲、溫灸貼其實台灣買更便宜</strong>，下次別特地揹。</div>
+
+    <div class="pillrow" style="margin:14px 0">
+      <div class="pill good"><div class="mini">👕 衣服（UNIQLO+UA）</div><div class="big">省 37%</div><div class="mini">日付 NT$7,673 ← 台 NT$12,150</div></div>
+      <div class="pill good"><div class="mini">👟 鞋子（NIKE）</div><div class="big">省 62%</div><div class="mini">日付 NT$7,126 ← 台 NT$18,725</div></div>
+      <div class="pill good"><div class="mini">👶 寶寶用品</div><div class="big">省 47%</div><div class="mini">日付 NT$303 ← 台 NT$569</div></div>
+    </div>
+    <div class="pillrow" style="margin:0 0 8px">
+      <div class="pill"><div class="mini">💰 三類合計（不含藥品）</div><div class="big" style="color:#1d5739">共省 NT$16,342</div><div class="mini">日本花 NT$15,102，同物在台要 NT$31,444（省 52%）</div></div>
+    </div>
+
+    <h3>各類省多少（％）</h3>
+    <div class="mapbox" style="padding:16px">
+      <svg viewBox="0 0 720 220" role="img" aria-label="各類別日台價差長條圖">
+        <defs><linearGradient id="barg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#277bca"/><stop offset="1" stop-color="#0e5f9e"/></linearGradient></defs>
+        <!-- 鞋 62% -->
+        <text x="12" y="40" font-size="16" font-weight="800" fill="#14304a">👟 鞋</text>
+        <rect x="80" y="26" width="520" height="22" rx="11" fill="#e3edf5"/>
+        <rect x="80" y="26" width="322" height="22" rx="11" fill="url(#barg)"/>
+        <text x="412" y="43" font-size="14" font-weight="900" fill="#0e5f9e">62%</text>
+        <!-- 寶寶 47% -->
+        <text x="12" y="90" font-size="16" font-weight="800" fill="#14304a">👶 寶寶</text>
+        <rect x="80" y="76" width="520" height="22" rx="11" fill="#e3edf5"/>
+        <rect x="80" y="76" width="244" height="22" rx="11" fill="url(#barg)"/>
+        <text x="334" y="93" font-size="14" font-weight="900" fill="#0e5f9e">47%</text>
+        <!-- 衣 37% -->
+        <text x="12" y="140" font-size="16" font-weight="800" fill="#14304a">👕 衣</text>
+        <rect x="80" y="126" width="520" height="22" rx="11" fill="#e3edf5"/>
+        <rect x="80" y="126" width="192" height="22" rx="11" fill="url(#barg)"/>
+        <text x="282" y="143" font-size="14" font-weight="900" fill="#0e5f9e">37%</text>
+        <!-- 藥 倒貼 -->
+        <text x="12" y="190" font-size="16" font-weight="800" fill="#14304a">💊 藥</text>
+        <rect x="80" y="176" width="520" height="22" rx="11" fill="#e3edf5"/>
+        <rect x="80" y="176" width="120" height="22" rx="11" fill="#d94b4b"/>
+        <text x="210" y="193" font-size="13" font-weight="900" fill="#d94b4b">溫灸貼台灣便宜 2 倍</text>
+      </svg>
+      <div class="legend"><span><span class="dot blue"></span>數字越長＝在日本買越划算（省越多）</span><span><span class="dot redDot"></span>紅色＝台灣買更便宜</span></div>
+    </div>
+
+    <h3>逐項比價表</h3>
+    <p class="mini">綠＝日本買賺到、灰＝差不多、紅＝台灣買就好。台灣價為現售參考（UNIQLO 官網被擋，取蝦皮全新轉售；藥品取同類替代品）。</p>
+    <table>
+      <tr><th>類</th><th>品項</th><th>日本實付</th><th>台灣參考</th><th>判定</th></tr>
+      <tr><td>👟 鞋</td><td>NIKE Zoom Fly 4 跑鞋 ×2</td><td>NT$1,069/雙</td><td>NT$4,000–4,500</td><td><span class="tag green">省 75%</span></td></tr>
+      <tr><td>👟 鞋</td><td>NIKE Structure Plus 寬楦跑鞋</td><td>NT$2,673</td><td>NT$4,900</td><td><span class="tag green">省 45%</span></td></tr>
+      <tr><td>👟 鞋</td><td>NIKE V5 RNR（入門跑鞋）</td><td>NT$891</td><td>NT$1,470–2,100</td><td><span class="tag green">省 50%</span></td></tr>
+      <tr><td>👟 鞋</td><td>NIKE Indy V領運動內衣 ×3</td><td>NT$356–534</td><td>NT$1,080–1,280</td><td><span class="tag green">省 55–70%</span></td></tr>
+      <tr><td>👕 衣</td><td>UA Crossback 運動內衣（印花）×2</td><td>NT$388–713</td><td>NT$1,480</td><td><span class="tag green">省 52–74%</span></td></tr>
+      <tr><td>👕 衣</td><td>UA Armour 中強度運動內衣</td><td>NT$614</td><td>NT$1,380</td><td><span class="tag green">省 56%</span></td></tr>
+      <tr><td>👕 衣</td><td>UA Velocity Twist 短袖 XL</td><td>NT$535</td><td>NT$1,280–1,380</td><td><span class="tag green">省 60%</span></td></tr>
+      <tr><td>👕 衣</td><td>UNIQLO 童 T／UT</td><td>NT$99</td><td>NT$290–390</td><td><span class="tag green">省 71%</span></td></tr>
+      <tr><td>👕 衣</td><td>UNIQLO 短褲 ×3</td><td>NT$588</td><td>NT$870–1,170</td><td><span class="tag green">省 42%</span></td></tr>
+      <tr><td>👕 衣</td><td>UNIQLO DRY-EX 機能 T ×4</td><td>NT$394/件</td><td>NT$390–590</td><td><span class="tag green">省 20%</span></td></tr>
+      <tr><td>👶 寶寶</td><td>嬰兒副食品 ×2</td><td>NT$46/包</td><td>NT$125</td><td><span class="tag green">省 63%</span></td></tr>
+      <tr><td>👶 寶寶</td><td>寶寶米菓（綠蔬／入口即化）×2</td><td>NT$68/包</td><td>NT$75–139</td><td><span class="tag green">省 36%</span></td></tr>
+      <tr><td>👶 寶寶</td><td>Moony／大王 戲水褲（3 片）</td><td>NT$75</td><td>NT$75–135</td><td><span class="tag green">省 29%</span></td></tr>
+      <tr><td>👕 衣</td><td>UNIQLO Ultra Stretch 短褲（女）</td><td>NT$592</td><td>NT$590–790</td><td><span class="tag gray">差不多</span></td></tr>
+      <tr><td>👕 衣</td><td>UNIQLO Jersey／棉質長褲（女）</td><td>NT$592</td><td>NT$590–790</td><td><span class="tag gray">差不多</span></td></tr>
+      <tr><td>👖 衣</td><td>UNIQLO EZY 牛仔褲（男／女）×2</td><td>NT$988</td><td>NT$790–990</td><td><span class="tag orange">台灣便宜</span></td></tr>
+      <tr><td>💊 藥</td><td>せんねん灸 免點火溫灸貼</td><td>NT$1,049</td><td>同類 NT$300–400</td><td><span class="tag orange">台灣便宜 2 倍</span></td></tr>
+      <tr><td>💊 藥</td><td>龍角散（第3類·鐵罐）×2</td><td>NT$392/罐</td><td>台灣電商未上架原款</td><td><span class="tag gray">無同款</span></td></tr>
+    </table>
+
+    <div class="warn"><strong>🇹🇼 這幾樣下次別特地揹：</strong>
+      <ul class="small-list">
+        <li><strong>UNIQLO EZY 牛仔褲</strong>：日本免稅後 NT$988，台灣官網才 790–990，<strong>反而倒貼</strong>。UNIQLO 基本款日台價差很小，遇特價台灣更便宜。</li>
+        <li><strong>せんねん灸溫灸貼</strong>：日本 NT$1,049，台灣同類自發熱艾草貼整盒換算才 300–400，<strong>日本貴 2 倍多</strong>（除非你指定原廠せんねん灸品牌）。</li>
+        <li><strong>UNIQLO 機能短褲／長褲</strong>：日台幾乎同價，免揹重量。</li>
+      </ul>
+    </div>
+    <div class="ok"><strong>✅ 這幾樣日本買對了：</strong>NIKE／UA 的<strong>鞋子和運動內衣</strong>是這趟最大贏家——OUTLET 出清價只有台灣專櫃的 1/4 到 1/2，光鞋子就省了上萬。寶寶米菓、戲水褲金額小但也都比台灣便宜，順手帶不虧。</div>
+    <p class="mini">比價基準：日本實付＝收據日幣 × 隱含匯率 ¥1≈NT$0.198（含海外手續費）。台灣價為 2026-06 現售參考——UNIQLO 台灣官網有機器人防護無法即時抓價，改用蝦皮全新轉售價；龍角散／溫灸貼台灣主流電商未上架原款，取同類替代品估算。價格僅供決策參考，非精準逐筆。</p>
   </section>
 
   <section class="card" id="passes">
