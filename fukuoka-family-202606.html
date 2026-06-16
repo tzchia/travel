@@ -3,7 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="googlebot" content="noindex, nofollow">
   <title>福岡 6天5夜親子旅遊紀錄｜6/9–6/14 · 子家旅遊筆記</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>
     :root{
       --navy:#14304a; --blue:#2377c7; --sky:#dff2ff; --mint:#dff7e8; --green:#2d8a5c;
@@ -60,6 +63,28 @@
     .sidedock a.active{background:#14304a;color:#fff}
     .sidedock a.active .sd-dot{background:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.28)}
     @media(min-width:1100px){.sidedock{display:flex}.navbar{display:none}}
+    /* ===== 每日足跡地圖（Leaflet） ===== */
+    .trkgrid{display:grid;gap:16px;grid-template-columns:1fr 1fr}
+    @media(max-width:860px){.trkgrid{grid-template-columns:1fr}}
+    .mapcard{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px;box-shadow:0 6px 18px rgba(37,49,59,.05)}
+    .mapcard h3{margin:0 0 4px;color:var(--navy);font-size:18px;display:flex;align-items:center;gap:8px}
+    .mapcard .dsub{font-size:13px;color:var(--muted);margin:0 0 10px}
+    .trkmap{height:300px;border-radius:14px;overflow:hidden;z-index:1;border:1px solid var(--line)}
+    .trkmap.tall{height:340px}
+    .trkmap.dz{height:300px}
+    .trkpair{display:grid;gap:10px;grid-template-columns:1fr 1fr}
+    @media(max-width:560px){.trkpair{grid-template-columns:1fr}}
+    .trkpair .trkmap{height:260px}
+    .trkroute{font-size:13px;color:#3c4a55;margin-top:10px;line-height:1.7}
+    .trkroute .seg{display:inline-block;background:#eef6ff;border:1px solid #d4e6f7;border-radius:999px;padding:1px 9px;margin:2px 1px;font-weight:700;color:#0e5f9e;font-size:12px}
+    .trkroute .amt{color:#b5530a;font-weight:800}
+    .leaflet-tooltip.trk-label{background:rgba(255,255,255,.95);border:1.5px solid #277bca;border-radius:8px;font-weight:800;color:#14304a;font-size:11.5px;padding:1px 6px;box-shadow:0 2px 6px rgba(0,0,0,.12)}
+    .leaflet-tooltip.trk-label.run{border-color:#e36d16;color:#a8480a}
+    .leaflet-tooltip.trk-label.air{border-color:#d94b4b;color:#a32a2a}
+    .trklegend{display:flex;flex-wrap:wrap;gap:14px;margin-top:12px;font-size:13px;color:#4b5b66}
+    .trklegend span{display:inline-flex;align-items:center;gap:6px}
+    .trklegend i{width:22px;height:0;border-top-width:3px;border-top-style:solid;display:inline-block}
+    @media print{.trkmap{display:none}}
     @media print{.print{display:none}.sidedock{display:none}.wrap{max-width:none}.card,.hero{box-shadow:none}a{border-bottom:none}.hero{break-inside:avoid}.card{break-inside:avoid}}
   </style>
 </head>
@@ -83,7 +108,7 @@
   <div class="navbar" id="navbar">
     <div class="progressbar"><i id="progressFill"></i></div>
     <div class="toc" id="toc">
-    <a href="#map">景點圖</a><a href="#overview">每日交通總覽</a><a href="#day1">Day 1</a><a href="#day2">Day 2</a><a href="#day3">Day 3</a><a href="#day4">Day 4</a><a href="#day5">Day 5</a><a href="#day6">Day 6</a><a href="#reconcile">🧾 收據對帳</a><a href="#compare">🛍️ 戰利品比價</a><a href="#passes">交通卡</a><a href="#tips">親子 tips</a>
+    <a href="#map">景點圖</a><a href="#overview">每日交通總覽</a><a href="#day1">Day 1</a><a href="#day2">Day 2</a><a href="#day3">Day 3</a><a href="#day4">Day 4</a><a href="#day5">Day 5</a><a href="#day6">Day 6</a><a href="#trackmap">🗺️ 足跡地圖</a><a href="#reconcile">🧾 收據對帳</a><a href="#compare">🛍️ 戰利品比價</a><a href="#passes">交通卡</a><a href="#tips">親子 tips</a>
     </div>
   </div>
 
@@ -99,6 +124,7 @@
     <a href="#day4"><span class="sd-dot"></span>Day 4</a>
     <a href="#day5"><span class="sd-dot"></span>Day 5</a>
     <a href="#day6"><span class="sd-dot"></span>Day 6</a>
+    <a href="#trackmap"><span class="sd-dot"></span>🗺️ 足跡地圖</a>
     <a href="#reconcile"><span class="sd-dot"></span>🧾 收據對帳</a>
     <a href="#compare"><span class="sd-dot"></span>🛍️ 戰利品比價</a>
     <a href="#passes"><span class="sd-dot"></span>交通卡</a>
@@ -282,6 +308,72 @@
     </div>
   </section>
 
+
+  <section class="card" id="trackmap">
+    <h2>🗺️ 每日足跡地圖（GPS 重建）</h2>
+    <p>用 Google Maps 時間軸＋運動 App 的 GPS 紀錄，把 6 天實際走過的點連起來。<strong>時間與消費以收據為準（日本時間）</strong>，移動路線與停留點以時間軸為輔（時間軸本身有定位誤差，僅作示意）。地圖可縮放、拖曳；標記點即各日主要停留地。<span class="mini">＊台灣端只畫到桃園機場，家／公司／超市等私人點位一律不標。</span></p>
+    <div class="trkgrid">
+
+      <div class="mapcard">
+        <h3>Day 1 ·<span style="color:var(--muted);font-weight:600;font-size:14px">6/9（二）抵達</span></h3>
+        <p class="dsub">福岡機場 →巴士→ 博多站 → 入住 → 一幸舍拉麵 → 超市</p>
+        <div class="trkmap" id="m1"></div>
+        <div class="trkroute"><span class="seg">✈️ 福岡機場 17:07</span> → <span class="seg">🚌 巴士 11 分</span> → <span class="seg">🏨 メトロポリタン</span> → <span class="seg">🍜 一幸舍</span> → <span class="seg">🛒 超市</span></div>
+      </div>
+
+      <div class="mapcard">
+        <h3>Day 2 ·<span style="color:var(--muted);font-weight:600;font-size:14px">6/10（三）天神購物</span></h3>
+        <p class="dsub">博多 → 大濠公園 → 天神（玄海丸／LOFT／PARCO）→ 大名もんじ</p>
+        <div class="trkmap" id="m2"></div>
+        <div class="trkroute"><span class="seg">🌳 大濠公園</span> → <span class="seg">🍣 玄海丸</span> → <span class="seg">🏬 Mina/LOFT</span> → <span class="seg">🏬 PARCO</span> → <span class="seg">🍲 大名 22:30</span><br><span class="mini">步行 6km／4h36m、9 個造訪點</span></div>
+      </div>
+
+      <div class="mapcard">
+        <h3>Day 3 ·<span style="color:var(--muted);font-weight:600;font-size:14px">6/11（四）北九州 Outlet</span></h3>
+        <p class="dsub">博多 →JR 50–70 分→ 北九州 outlet（NIKE／UA／AEON）→ 回博多もつ鍋</p>
+        <div class="trkmap" id="m3"></div>
+        <div class="trkroute"><span class="seg">🚃 JR 鹿兒島本線</span> → <span class="seg">🛍️ THE OUTLETS 北九州</span> → <span class="seg">🛒 AEON 八幡東</span><br><span class="mini">單筆最大：NIKE 7 雙 ¥35,993</span></div>
+      </div>
+
+      <div class="mapcard">
+        <h3>Day 4 上午 ·<span style="color:#a8480a;font-weight:600;font-size:14px">6/12（五）晨跑＋神社</span></h3>
+        <p class="dsub">09:24 晨跑 3.98km → 帶家人拜訪住吉神社＋櫛田神社</p>
+        <div class="trkpair">
+          <div class="trkmap" id="m4a"></div>
+          <div class="trkmap" id="m4b"></div>
+        </div>
+        <div class="trkroute"><span class="seg" style="background:#fff1e6;border-color:#ffd2ab;color:#a8480a">🏃 晨跑 3.98km · 48:20</span> 住吉→櫛田神社→住吉神社→飯店<br>午前帶老婆小孩參拜：<span class="seg">⛩️ 住吉神社 御守 <span class="amt">¥2,000</span></span> <span class="seg">⛩️ 櫛田神社</span> <span class="seg">🤖 運河城 Gundam</span></div>
+      </div>
+
+      <div class="mapcard">
+        <h3>Day 4 下午 ·<span style="color:var(--muted);font-weight:600;font-size:14px">6/12（五）太宰府</span></h3>
+        <p class="dsub">西鐵→ 太宰府天滿宮 → 寶滿宮竈門神社 → 天神晚餐</p>
+        <div class="trkmap" id="m4c"></div>
+        <div class="trkroute"><span class="seg">🚃 西鐵 太宰府</span> → <span class="seg">⛩️ 太宰府天滿宮（梅枝餅）</span> → <span class="seg">⛩️ 竈門神社 御守 <span class="amt">¥6,000</span></span> → <span class="seg">🍲 天神もんじ</span><br><span class="mini">御守兩處共 ¥8,000</span></div>
+      </div>
+
+      <div class="mapcard">
+        <h3>Day 5 ·<span style="color:#a32a2a;font-weight:600;font-size:14px">6/13（六）延誤滯留</span></h3>
+        <p class="dsub">機場用餐 → ⚠️虎航延誤改隔日 → 折返博多攀岩＋串燒</p>
+        <div class="trkmap" id="m5"></div>
+        <div class="trkroute"><span class="seg" style="background:#fdeeee;border-color:#f3c9c9;color:#a32a2a">✈️ 福岡機場 IT241 延誤</span> → 折返博多 → <span class="seg">🧗 攀岩 ホアホア</span> → <span class="seg">🍢 焼とり家 庵 22:36</span><br><span class="mini">改住 APA 博多駅前，多留一晚</span></div>
+      </div>
+
+      <div class="mapcard" style="grid-column:1/-1">
+        <h3>Day 6 ·<span style="color:var(--muted);font-weight:600;font-size:14px">6/14（日）返台</span></h3>
+        <p class="dsub">博多 → 福岡機場 → ✈️ IT2241 12:21 → 桃園機場 13:44（跨海示意）</p>
+        <div class="trkmap dz" id="m6"></div>
+        <div class="trkroute"><span class="seg">🏨 APA 博多</span> → <span class="seg">✈️ 福岡機場</span> → <span class="seg">🛬 桃園機場 13:44</span><br><span class="mini">台灣端僅標機場，不含住家位置</span></div>
+      </div>
+
+    </div>
+    <div class="trklegend">
+      <span><i style="border-top-color:#277bca"></i>當日移動路線</span>
+      <span><i style="border-top-color:#e36d16;border-top-style:dashed"></i>晨跑 GPS 軌跡</span>
+      <span><i style="border-top-color:#d94b4b;border-top-style:dashed"></i>航班（跨海示意）</span>
+    </div>
+    <p class="mini" style="margin-top:10px">地圖底圖 © OpenStreetMap、© CARTO。座標經 OSM Nominatim 查核；晨跑軌跡依運動 App GPS 圖形近似描繪。時間軸有定位誤差，路線僅供回顧示意，精確時間與金額以收據為準。</p>
+  </section>
 
   <section class="card" id="reconcile">
     <h2>🧾 收據整理 × 💳 刷卡對帳（行後紀錄）</h2>
@@ -496,6 +588,128 @@
 
   <div class="footer">Made for TC family｜福岡 6/9–6/14 親子慢旅（行後紀錄版）· <a href="./index.html">旅遊首頁</a> · <a href="https://github.com/tzchia/travel">GitHub</a></div>
 </div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+(function(){
+  if(typeof L==='undefined') return;
+  var TILE='https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png';
+  var TILE_LBL='https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
+  var ATTR='&copy; OpenStreetMap &copy; CARTO';
+  function mk(id, labels){
+    var el=document.getElementById(id); if(!el) return null;
+    var m=L.map(id,{scrollWheelZoom:false,zoomControl:true,attributionControl:true});
+    L.tileLayer(labels?TILE_LBL:TILE,{attribution:ATTR,maxZoom:19}).addTo(m);
+    return m;
+  }
+  function pin(m,lat,lng,label,cls,color){
+    var c=color||'#277bca';
+    var mk=L.circleMarker([lat,lng],{radius:8,color:'#fff',weight:2,fillColor:c,fillOpacity:1}).addTo(m);
+    mk.bindTooltip(label,{permanent:true,direction:'top',className:'trk-label'+(cls?(' '+cls):''),offset:[0,-6]});
+    return [lat,lng];
+  }
+  function line(m,pts,color,dash){
+    L.polyline(pts,{color:color||'#277bca',weight:3.5,opacity:.7,dashArray:dash||null}).addTo(m);
+  }
+
+  // ===== Day 1 =====
+  var m1=mk('m1',true);
+  if(m1){
+    var fukAir=[33.58482,130.44429], hakata=[33.59004,130.4199], hotel=[33.586,130.4135], ichi=[33.58824,130.41708];
+    pin(m1,fukAir[0],fukAir[1],'✈️ 福岡機場','air','#d94b4b');
+    pin(m1,hotel[0],hotel[1],'🏨 メトロポリタン',null,'#2d8a5c');
+    pin(m1,ichi[0],ichi[1],'🍜 一幸舍',null);
+    line(m1,[fukAir,hotel,ichi],'#277bca');
+    m1.fitBounds([fukAir,ichi],{padding:[34,34]});
+  }
+
+  // ===== Day 2 =====
+  var m2=mk('m2',true);
+  if(m2){
+    var ohori=[33.59004,130.38551], genkai=[33.59319,130.39832], parco=[33.5901,130.39893], daimyo=[33.58926,130.39283], hk2=[33.586,130.4135];
+    pin(m2,ohori[0],ohori[1],'🌳 大濠公園',null,'#2d8a5c');
+    pin(m2,genkai[0],genkai[1],'🍣 玄海丸／LOFT',null);
+    pin(m2,parco[0],parco[1],'🏬 PARCO',null);
+    pin(m2,daimyo[0],daimyo[1],'🍲 大名もんじ',null,'#ff8a3d');
+    pin(m2,hk2[0],hk2[1],'🏨 飯店',null,'#8a93a0');
+    line(m2,[hk2,ohori,genkai,parco,daimyo,hk2],'#277bca');
+    m2.fitBounds([ohori,hk2],{padding:[34,34]});
+  }
+
+  // ===== Day 3 =====
+  var m3=mk('m3',true);
+  if(m3){
+    var hak3=[33.59004,130.4199], swStation=[33.87126,130.80636], aeon=[33.8699,130.81102];
+    pin(m3,hak3[0],hak3[1],'🚉 博多站',null,'#8a93a0');
+    pin(m3,swStation[0],swStation[1],'🛍️ 北九州 outlet',null,'#7c3aed');
+    line(m3,[hak3,swStation],'#7c3aed','3 9');
+    m3.fitBounds([hak3,swStation],{padding:[40,40]});
+  }
+
+  // ===== Day 4a 晨跑（GPS 軌跡近似） =====
+  var m4a=mk('m4a',false);
+  if(m4a){
+    var hotel4=[33.5862,130.4128];
+    // 晨跑 GPS 形狀近似：飯店→北上祇園町→櫛田神社→博多町家→折返南下→住吉神社繞圈→回飯店
+    var run=[
+      [33.5862,130.4128],[33.5872,130.4118],[33.5888,130.4112],[33.5905,130.4108],
+      [33.59307,130.41068],[33.5938,130.4110],[33.5942,130.4118],[33.5935,130.4112],
+      [33.5918,130.4110],[33.5900,130.4116],[33.5882,130.4124],[33.5868,130.4130],
+      [33.58575,130.41343],[33.5852,130.4140],[33.5858,130.4148],[33.5864,130.4138],
+      [33.5862,130.4128]
+    ];
+    var kushida=[33.59307,130.41068], sumi=[33.58575,130.41343];
+    line(m4a,run,'#e36d16','2 7');
+    pin(m4a,hotel4[0],hotel4[1],'🏁 飯店 09:24','run','#e36d16');
+    pin(m4a,kushida[0],kushida[1],'⛩️ 櫛田神社','run','#e36d16');
+    pin(m4a,sumi[0],sumi[1],'⛩️ 住吉神社','run','#e36d16');
+    m4a.fitBounds(run,{padding:[26,26]});
+  }
+
+  // ===== Day 4b 神社參拜近景 =====
+  var m4b=mk('m4b',true);
+  if(m4b){
+    var sumi2=[33.58575,130.41343], kushida2=[33.59307,130.41068], canal=[33.58967,130.41114];
+    pin(m4b,sumi2[0],sumi2[1],'⛩️ 住吉神社 ¥2,000',null,'#d94b4b');
+    pin(m4b,kushida2[0],kushida2[1],'⛩️ 櫛田神社',null);
+    pin(m4b,canal[0],canal[1],'🤖 運河城',null,'#7c3aed');
+    line(m4b,[sumi2,canal,kushida2],'#277bca');
+    m4b.fitBounds([sumi2,kushida2],{padding:[40,40]});
+  }
+
+  // ===== Day 4c 太宰府 =====
+  var m4c=mk('m4c',true);
+  if(m4c){
+    var dzStation=[33.51923,130.53135], tenmangu=[33.51987,130.53265], kamado=[33.52883,130.55244], tenjin=[33.5901,130.39893];
+    pin(m4c,tenjin[0],tenjin[1],'🚃 天神',null,'#8a93a0');
+    pin(m4c,tenmangu[0],tenmangu[1],'⛩️ 太宰府天滿宮',null,'#ff8a3d');
+    pin(m4c,kamado[0],kamado[1],'⛩️ 竈門神社 ¥6,000',null,'#d94b4b');
+    line(m4c,[tenjin,tenmangu,kamado],'#277bca','3 9');
+    m4c.fitBounds([tenmangu,kamado,tenjin],{padding:[34,34]});
+  }
+
+  // ===== Day 5 延誤 =====
+  var m5=mk('m5',true);
+  if(m5){
+    var fukAir5=[33.58482,130.44429], apa=[33.59291,130.41547], hoa=[33.5905,130.4185];
+    pin(m5,fukAir5[0],fukAir5[1],'✈️ 機場 延誤','air','#d94b4b');
+    pin(m5,apa[0],apa[1],'🏨 APA 博多駅前',null,'#2d8a5c');
+    pin(m5,hoa[0],hoa[1],'🧗 攀岩 ホアホア',null,'#7c3aed');
+    line(m5,[fukAir5,apa,hoa,apa],'#277bca');
+    m5.fitBounds([fukAir5,apa],{padding:[40,40]});
+  }
+
+  // ===== Day 6 返台（跨海示意） =====
+  var m6=mk('m6',true);
+  if(m6){
+    var fukAir6=[33.58482,130.44429], tpe=[25.07932,121.2346];
+    pin(m6,fukAir6[0],fukAir6[1],'✈️ 福岡機場','air','#d94b4b');
+    pin(m6,tpe[0],tpe[1],'🛬 桃園機場 13:44','air','#d94b4b');
+    line(m6,[fukAir6,tpe],'#d94b4b','3 9');
+    m6.fitBounds([fukAir6,tpe],{padding:[40,40]});
+  }
+})();
+</script>
+
 <script>
 (function(){
   var toc=document.getElementById('toc');
