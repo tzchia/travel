@@ -176,6 +176,44 @@
   footer a { color: #64748b; text-decoration: none; }
   footer a:hover { color: var(--accent); }
   .leaflet-popup-content { font-family: inherit; font-size: 0.85em; line-height:1.5; }
+
+  /* ---- context photos ---- */
+  .hero-photo {
+    margin: 0 auto 22px; max-width: 980px; border-radius: 16px; overflow: hidden;
+    box-shadow: 0 6px 20px rgba(15,23,42,0.12); position: relative;
+  }
+  .hero-photo img { width: 100%; display: block; }
+  .hero-photo figcaption {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.62));
+    color: #fff; font-size: 0.74em; padding: 22px 14px 8px; text-align: right;
+  }
+  .hero-photo figcaption a { color: #E0F2FE; text-decoration: underline; }
+  figure.ctx { margin: 12px 0 4px; }
+  figure.ctx img {
+    width: 100%; max-height: 360px; object-fit: cover; display: block;
+    border-radius: 12px; box-shadow: 0 3px 12px rgba(15,23,42,0.10);
+  }
+  figure.ctx figcaption {
+    font-size: 0.74em; color: var(--muted); margin-top: 6px; line-height: 1.5;
+  }
+  figure.ctx figcaption b { color: var(--ink-soft); }
+  figure.ctx figcaption a { color: var(--accent-deep); text-decoration: none; border-bottom:1px dotted; }
+  .ctx-grid { display: grid; gap: 12px; grid-template-columns: 1fr; }
+  @media (min-width: 640px){ .ctx-grid.two { grid-template-columns: 1fr 1fr; } }
+
+  /* topo external links */
+  .topo-links { display:flex; flex-wrap:wrap; gap:10px; margin: 6px 0 2px; }
+  .topo-btn {
+    display:inline-flex; align-items:center; gap:6px; text-decoration:none;
+    background: var(--accent-soft); color: var(--accent-deep); border: 1px solid #A5F3FC;
+    border-radius: 999px; padding: 6px 14px; font-size: 0.8em; font-weight: 600;
+  }
+  .topo-btn:hover { background:#CFFAFE; }
+  .photo-disclaimer {
+    font-size: 0.78em; color:#92400E; background:#FFFBEB; border:1px solid #FDE68A;
+    border-radius: 10px; padding: 8px 12px; margin: 6px 0 0; line-height:1.55;
+  }
 </style>
 </head>
 <body>
@@ -194,6 +232,13 @@
     路線難度／長度／心得皆為原紀錄；地圖僅標公開知名灘區位置，個別 crag 精確座標待對照 theCrag 後再補。
     未特別註明領攀者者＝<b>本人 lead</b>（不保證 on-sight）。
   </div>
+
+  <figure class="hero-photo">
+    <img loading="lazy" src="./assets/krabi/phra-nang-panorama.jpg"
+         alt="Railay 灣 Phra Nang 海灘全景，背景為石灰岩峭壁">
+    <figcaption>Railay 灣・Phra Nang 海灘全景（地點實景，非特定路線）· Photo:
+      <a href="https://commons.wikimedia.org/wiki/File:Phra_Nang_beach_panorama.jpg" target="_blank" rel="noopener">kallerna</a> / Wikimedia Commons · CC BY-SA 3.0</figcaption>
+  </figure>
 
   <!-- STATS -->
   <div class="stats">
@@ -232,6 +277,16 @@
     你這趟的岩場都集中在 Railay–Tonsai–Phra Nang 這片石灰岩半島。圖上標的是<b>公開知名灘區位置</b>（非個別 crag 精確座標）；
     Duncan's Boot／Escher World／Diamond Wall／Gibbon Roof／Big Wave Pillar／One Two Three／The Bar 等多在 Tonsai 一帶，
     Thaiwand Wall 在 Railay West，Phra-Nang Beach 即蘇美南岬。精確逐 crag 釘點可再對 theCrag 補上。
+  </div>
+
+  <div class="topo-links">
+    <a class="topo-btn" href="https://www.thecrag.com/en/climbing/thailand/railay" target="_blank" rel="noopener">🧭 theCrag · Railay 地形圖</a>
+    <a class="topo-btn" href="https://www.thecrag.com/en/climbing/thailand/tonsai" target="_blank" rel="noopener">🧭 theCrag · Tonsai</a>
+    <a class="topo-btn" href="https://www.mountainproject.com/area/106660730/railay-tonsai" target="_blank" rel="noopener">🏔 Mountain Project · Railay/Tonsai</a>
+  </div>
+  <div class="photo-disclaimer">
+    ⚠️ <b>關於照片</b>：本頁實景照皆取自 Wikimedia Commons 的創用 CC 授權圖（已標攝者／來源／授權），是各灘區的<b>代表性實景脈絡照，並非你所爬特定路線的側拍</b>。
+    有版權的 guidebook topo（畫線地形圖）不可重製轉貼，請點上方按鈕到 theCrag／Mountain Project 看正版地形圖。
   </div>
 
   <!-- TIMELINE -->
@@ -281,6 +336,10 @@
     <div class="day-body">
       <div class="crag">
         <div class="crag-name">Phra-Nang Beach</div>
+        <figure class="ctx">
+          <img loading="lazy" src="./assets/krabi/phra-nang-climber.jpg" alt="攀岩者在 Phra Nang 海灘石灰岩壁上攀登">
+          <figcaption><b>Phra Nang 海灘攀岩實景</b>（此地點的代表性照片，非你所爬的 Lak Kai／Titanium from Hell）· Photo: <a href="https://commons.wikimedia.org/wiki/File:Rock_climber_Phra_Nang_2.jpg" target="_blank" rel="noopener">kallerna</a> / Wikimedia Commons · CC BY-SA 3.0</figcaption>
+        </figure>
         <div class="route">
           <div class="route-head"><span class="grade" style="background:var(--g6a)">6a</span><span class="rname"><em>Lak Kai</em></span><span class="rlen">12m</span><span class="chip me">我 lead</span></div>
           <div class="rnote">沒那麼簡單的簡單路線，部分滴水、多處含沙。</div>
@@ -401,6 +460,10 @@
       </div>
       <div class="crag">
         <div class="crag-name">Big Wave Pillar — The Beauty &amp; the Beast</div>
+        <figure class="ctx">
+          <img loading="lazy" src="./assets/krabi/tonsai-climber.jpg" alt="攀岩者在 Tonsai 石灰岩柱上攀登">
+          <figcaption><b>Tonsai 石灰岩柱攀岩實景</b>（此區域代表性照片，非你所爬的 Beauty &amp; the Beast）· Photo: <a href="https://commons.wikimedia.org/wiki/File:Climbing_Ton_Sai_2.jpg" target="_blank" rel="noopener">kallerna</a> / Wikimedia Commons · CC BY-SA 3.0</figcaption>
+        </figure>
         <div class="extra">路線就在路邊，不時有路人仰望。起攀處有四米高的石洞，是 theCrag 上 Krabi 唯一的抱石區域，我也在此將粉袋借給一對抱石的外國朋友。</div>
         <div class="route">
           <div class="route-head"><span class="grade" style="background:var(--g6a)">6a+</span><span class="rname">p1 · <em>the beast</em></span><span class="rlen">30m</span><span class="chip me">我 lead</span></div>
@@ -429,6 +492,10 @@
     <div class="day-body">
       <div class="crag">
         <div class="crag-name">Tonsai Beach — The Bar · <em>Humanality</em>（多繩距）</div>
+        <figure class="ctx">
+          <img loading="lazy" src="./assets/krabi/tonsai-roof.jpg" alt="攀岩者在 Tonsai 大懸岩（roof）上攀登">
+          <figcaption><b>Tonsai Roof 攀岩實景</b>（此區域代表性照片，非你所爬的 Humanality 路線）· Photo: <a href="https://commons.wikimedia.org/wiki/File:Climbing_at_Ton_Sai_Roof,_Thailand.jpg" target="_blank" rel="noopener">Maria Ly</a> / Wikimedia Commons · CC BY 2.0</figcaption>
+        </figure>
         <div class="route">
           <div class="route-head"><span class="grade" style="background:#94A3B8">—</span><span class="rname">p1 · overhang ladders! &amp; tunnel traveling</span><span class="chip me">我 lead</span></div>
         </div>
@@ -481,6 +548,10 @@
     <div class="day-body">
       <div class="crag">
         <div class="crag-name">One Two Three</div>
+        <figure class="ctx">
+          <img loading="lazy" src="./assets/krabi/railay-cave.jpg" alt="攀岩者在 Railay 石灰岩洞穴頂攀登">
+          <figcaption><b>Railay 洞頂攀岩實景</b>（此半島代表性照片，非你所爬的 Kratoy）· Photo: <a href="https://commons.wikimedia.org/wiki/File:Man_climbing_in_Railee.jpg" target="_blank" rel="noopener">JurriaanH</a> / Wikimedia Commons · CC BY-SA 3.0</figcaption>
+        </figure>
         <div class="route">
           <div class="route-head"><span class="grade" style="background:var(--g6c)">6c</span><span class="rname"><em>Kratoy (Lady Boy)</em></span><span class="rlen">26m</span><span class="chip me">我 lead</span><span class="chip star">非常有趣</span></div>
           <div class="rnote">crux 是翻第二個天花板；接下來右邊比較容易濕，往左爬洞頂更穩妥，且有推 pillar 穩定身體的驚險動作 XD；後段沿著浮雕石灰岩柱爬的重心轉換、掛腳、青蛙腿，非常有趣！</div>

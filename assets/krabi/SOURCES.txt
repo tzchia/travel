@@ -1,0 +1,33 @@
+Krabi climbing page — image sources (Wikimedia Commons, CC licensed)
+REAL-SCENE context photos of the beaches/areas, NOT topos of the climber's specific routes.
+
+phra-nang-panorama.jpg
+  area: Phra Nang
+  license: CC BY-SA 3.0
+  author: kallerna
+  source: https://commons.wikimedia.org/wiki/File:Phra_Nang_beach_panorama.jpg
+
+phra-nang-climber.jpg
+  area: Phra Nang
+  license: CC BY-SA 3.0
+  author: kallerna
+  source: https://commons.wikimedia.org/wiki/File:Rock_climber_Phra_Nang_2.jpg
+
+tonsai-roof.jpg
+  area: Tonsai
+  license: CC BY 2.0
+  author: Maria Ly
+  source: https://commons.wikimedia.org/wiki/File:Climbing_at_Ton_Sai_Roof,_Thailand.jpg
+
+tonsai-climber.jpg
+  area: Tonsai
+  license: CC BY-SA 3.0
+  author: kallerna
+  source: https://commons.wikimedia.org/wiki/File:Climbing_Ton_Sai_2.jpg
+
+railay-cave.jpg
+  area: Railay
+  license: CC BY-SA 3.0
+  author: JurriaanH
+  source: https://commons.wikimedia.org/wiki/File:Man_climbing_in_Railee.jpg
+
