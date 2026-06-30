@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="googlebot" content="noindex, nofollow">
+<title>喀比攀岩 8 天 · Krabi Climbing 2025/02</title>
+<meta name="description" content="2025/02/07–14 泰國喀比 Railay·Tonsai·Phra Nang 攀岩逐日紀錄與可視化回顧。">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<style>
+  * { box-sizing: border-box; }
+  :root {
+    --ink: #0E1116;
+    --ink-soft: #2c3e50;
+    --muted: #6B7280;
+    --line: #E5E7EB;
+    --bg: #F7FAFC;
+    --paper: #FFFFFF;
+    --accent: #0891B2;
+    --accent-deep: #155E75;
+    --accent-soft: #ECFEFF;
+    --gold: #D97706;
+    /* grade colors */
+    --g5:   #16A34A;  --g5bg:  #DCFCE7;
+    --g6a:  #0891B2;  --g6abg: #CFFAFE;
+    --g6b:  #2563EB;  --g6bbg: #DBEAFE;
+    --g6c:  #EA580C;  --g6cbg: #FFEDD5;
+    --g7:   #DC2626;  --g7bg:  #FEE2E2;
+    --g7b:  #7C3AED;  --g7bbg: #EDE9FE;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    margin: 0;
+    background: linear-gradient(135deg, #E0F2FE 0%, #F0FDF4 100%);
+    color: var(--ink-soft);
+    min-height: 100vh;
+    line-height: 1.65;
+  }
+  .container { max-width: 980px; margin: 0 auto; padding: 40px 18px 60px; }
+
+  /* back link */
+  .backlink { display: inline-flex; align-items:center; gap:6px; color: var(--accent-deep);
+    text-decoration:none; font-size:0.9em; font-weight:600; margin-bottom: 22px; }
+  .backlink:hover { color: var(--accent); }
+
+  header.hero { text-align: center; margin-bottom: 34px; }
+  .eyebrow { color: var(--accent-deep); font-size: 0.82em; letter-spacing: 0.18em;
+    font-weight: 600; text-transform: uppercase; margin-bottom: 8px; }
+  h1 {
+    font-size: 2.6em; margin: 0 0 10px; letter-spacing: -0.5px;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-deep) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .subtitle { color: var(--muted); font-size: 1.05em; }
+
+  /* truth note */
+  .truth {
+    background: #FFFBEB; border: 1px solid #FDE68A; color: #92400E;
+    border-radius: 12px; padding: 10px 14px; font-size: 0.84em; margin: 0 auto 30px;
+    max-width: 760px; line-height: 1.55;
+  }
+
+  /* stat grid */
+  .stats { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; margin-bottom: 16px; }
+  @media (min-width: 640px){ .stats { grid-template-columns: repeat(4,1fr);} }
+  .stat {
+    background: var(--paper); border-radius: 14px; padding: 16px 14px; text-align:center;
+    box-shadow: 0 3px 12px rgba(15,23,42,0.05); border-top: 3px solid var(--accent);
+  }
+  .stat .num { font-size: 1.7em; font-weight: 800; color: var(--accent-deep); line-height:1.1; }
+  .stat .lbl { font-size: 0.78em; color: var(--muted); margin-top: 4px; }
+  .stat.fav { border-top-color: var(--gold); }
+  .stat.fav .num { font-size: 1.05em; color: var(--gold); }
+
+  .section-title {
+    font-size: 1.08em; color: var(--accent-deep); margin: 34px 0 14px; padding-left: 12px;
+    border-left: 4px solid var(--accent); font-weight: 700;
+  }
+
+  /* difficulty chart */
+  .panel { background: var(--paper); border-radius: 16px; padding: 20px 22px;
+    box-shadow: 0 4px 14px rgba(15,23,42,0.06); }
+  .bar-row { display:flex; align-items:center; gap:10px; margin: 7px 0; font-size: 0.9em; }
+  .bar-grade { width: 42px; text-align:right; font-weight:700; color: var(--ink); flex:none; }
+  .bar-track { flex:1; background:#F1F5F9; border-radius: 8px; height: 22px; overflow:hidden; }
+  .bar-fill { height:100%; border-radius:8px; transition: width .6s ease; }
+  .bar-cnt { width: 26px; text-align:left; font-weight:700; color: var(--muted); flex:none; }
+  .legend { display:flex; flex-wrap:wrap; gap: 10px 16px; margin-top: 14px; font-size:0.78em; color:var(--muted); }
+  .legend span { display:inline-flex; align-items:center; gap:5px; }
+  .dot { width:11px; height:11px; border-radius:3px; display:inline-block; }
+
+  /* map */
+  #map { height: 340px; border-radius: 16px; box-shadow: 0 4px 14px rgba(15,23,42,0.06);
+    border: 1px solid var(--line); }
+  .map-note { font-size: 0.8em; color: var(--muted); margin-top: 8px; line-height:1.5; }
+
+  /* timeline controls */
+  .tl-controls { display:flex; justify-content:flex-end; margin-bottom: 8px; }
+  .tl-controls button {
+    background: var(--accent-soft); color: var(--accent-deep); border: 1px solid #A5F3FC;
+    border-radius: 999px; padding: 5px 14px; font-size: 0.82em; font-weight:600; cursor:pointer;
+    font-family: inherit;
+  }
+  .tl-controls button:hover { background:#CFFAFE; }
+
+  /* day details */
+  details.day {
+    background: var(--paper); border-radius: 16px; margin-bottom: 14px;
+    box-shadow: 0 3px 12px rgba(15,23,42,0.05); overflow: hidden; border-left: 5px solid var(--accent);
+  }
+  details.day > summary {
+    list-style: none; cursor: pointer; padding: 16px 20px; display:flex; align-items:center;
+    gap: 12px; user-select:none;
+  }
+  details.day > summary::-webkit-details-marker { display:none; }
+  .day-date { font-weight: 800; color: var(--accent-deep); font-size: 1.05em; flex:none; }
+  .day-where { color: var(--ink); font-weight: 600; font-size: 0.95em; }
+  .day-sub { color: var(--muted); font-size: 0.8em; }
+  .chev { margin-left:auto; color: var(--muted); transition: transform .2s; flex:none; }
+  details.day[open] .chev { transform: rotate(90deg); }
+  .day-body { padding: 4px 20px 18px; }
+
+  .crag {
+    margin-top: 12px; padding-top: 4px;
+  }
+  .crag-name {
+    font-weight: 700; color: var(--accent-deep); font-size: 0.92em; margin: 10px 0 4px;
+    display:flex; align-items:center; gap:7px;
+  }
+  .crag-name::before { content:"▸"; color: var(--accent); }
+  .partners { font-size: 0.8em; color: var(--muted); margin: 2px 0 8px; }
+  .partners b { color: var(--ink-soft); font-weight:600; }
+
+  .route {
+    border: 1px solid var(--line); border-radius: 11px; padding: 10px 13px; margin: 8px 0;
+    background: #FCFEFF;
+  }
+  .route.notclimbed { background: repeating-linear-gradient(45deg,#F8FAFC,#F8FAFC 8px,#F1F5F9 8px,#F1F5F9 16px); opacity:.92; }
+  .route.observed { background:#F8FAFC; }
+  .route-head { display:flex; align-items:center; gap:9px; flex-wrap:wrap; }
+  .grade {
+    font-weight: 800; font-size: 0.82em; padding: 2px 9px; border-radius: 7px; flex:none;
+    color:#fff; letter-spacing:.3px;
+  }
+  .rname { font-weight: 700; color: var(--ink); }
+  .rname em { font-style: italic; color: var(--ink-soft); font-weight:600; }
+  .rlen { font-size: 0.8em; color: var(--muted); }
+  .chip {
+    font-size: 0.72em; font-weight:700; padding: 2px 8px; border-radius: 999px; flex:none;
+  }
+  .chip.me   { background: var(--accent-soft); color: var(--accent-deep); }
+  .chip.lead { background:#FEF3C7; color:#92400E; }
+  .chip.partner { background:#F1F5F9; color:#475569; }
+  .chip.no   { background:#FEE2E2; color:#991B1B; }
+  .chip.obs  { background:#E2E8F0; color:#475569; }
+  .chip.star { background:#FEF3C7; color:#92400E; }
+  .rnote { font-size: 0.85em; color: #475569; margin-top: 6px; line-height:1.6; }
+  .rnote .warn { color:#B45309; }
+
+  .extra {
+    font-size: 0.82em; color:#64748b; background:#F8FAFC; border-radius:10px;
+    padding: 8px 12px; margin: 8px 0; border-left:3px solid #CBD5E1; line-height:1.6;
+  }
+  .extra b { color: var(--ink-soft); }
+  .nm { /* night market */ border-left-color:#F59E0B; background:#FFFBEB; color:#92400E; }
+
+  /* partners panel */
+  .pp { display:flex; flex-wrap:wrap; gap:8px; }
+  .pcard { background:var(--accent-soft); color:var(--accent-deep); border-radius:999px;
+    padding:6px 14px; font-size:0.86em; font-weight:600; }
+  .pcard small { color: var(--muted); font-weight:500; }
+
+  footer { text-align: center; margin-top: 48px; color: #94a3b8; font-size: 0.85em; }
+  footer a { color: #64748b; text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+  .leaflet-popup-content { font-family: inherit; font-size: 0.85em; line-height:1.5; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <a class="backlink" href="./index.html">← 回旅遊筆記</a>
+
+  <header class="hero">
+    <div class="eyebrow">TZCHIA · CLIMBING · KRABI</div>
+    <h1>🧗 喀比攀岩 8 天</h1>
+    <p class="subtitle">泰國 Krabi · Railay｜Tonsai｜Phra Nang · 2025/02/07–02/14</p>
+  </header>
+
+  <div class="truth">
+    📌 <b>資料來源</b>：以下逐日內容全部來自當事人第一手攀岩筆記（逐字謄錄），未經任何虛構補充。
+    路線難度／長度／心得皆為原紀錄；地圖僅標公開知名灘區位置，個別 crag 精確座標待對照 theCrag 後再補。
+    未特別註明領攀者者＝<b>本人 lead</b>（不保證 on-sight）。
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat"><div class="num">8</div><div class="lbl">攀登天數</div></div>
+    <div class="stat"><div class="num">~14</div><div class="lbl">岩壁／路線區</div></div>
+    <div class="stat"><div class="num">31<span style="font-size:.55em">段</span></div><div class="lbl">有難度標示攀登</div></div>
+    <div class="stat"><div class="num">7a<span style="font-size:.5em"> · 7b*</span></div><div class="lbl">自己領攀最硬</div></div>
+  </div>
+  <div class="stats" style="grid-template-columns:repeat(2,1fr);">
+    <div class="stat fav"><div class="num">⭐ Diamonds Are Forever 6b+</div><div class="lbl">此行最愛 slab（很有小川山的感覺）</div></div>
+    <div class="stat fav"><div class="num">⭐ Titanium from Hell 7a</div><div class="lbl">爬過最好玩的 tufa roof</div></div>
+  </div>
+
+  <!-- DIFFICULTY -->
+  <div class="section-title">📊 難度分布</div>
+  <div class="panel">
+    <div class="bar-row"><div class="bar-grade">5 / 5c</div><div class="bar-track"><div class="bar-fill" style="width:67%;background:var(--g5)"></div></div><div class="bar-cnt">6</div></div>
+    <div class="bar-row"><div class="bar-grade">6a</div><div class="bar-track"><div class="bar-fill" style="width:11%;background:var(--g6a)"></div></div><div class="bar-cnt">1</div></div>
+    <div class="bar-row"><div class="bar-grade">6a+</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--g6a)"></div></div><div class="bar-cnt">9</div></div>
+    <div class="bar-row"><div class="bar-grade">6b</div><div class="bar-track"><div class="bar-fill" style="width:44%;background:var(--g6b)"></div></div><div class="bar-cnt">4</div></div>
+    <div class="bar-row"><div class="bar-grade">6b+</div><div class="bar-track"><div class="bar-fill" style="width:78%;background:var(--g6b)"></div></div><div class="bar-cnt">7</div></div>
+    <div class="bar-row"><div class="bar-grade">6c</div><div class="bar-track"><div class="bar-fill" style="width:22%;background:var(--g6c)"></div></div><div class="bar-cnt">2</div></div>
+    <div class="bar-row"><div class="bar-grade">7a</div><div class="bar-track"><div class="bar-fill" style="width:11%;background:var(--g7)"></div></div><div class="bar-cnt">1</div></div>
+    <div class="bar-row"><div class="bar-grade">7b*</div><div class="bar-track"><div class="bar-fill" style="width:11%;background:var(--g7b)"></div></div><div class="bar-cnt">1</div></div>
+    <div class="map-note" style="margin-top:12px">
+      統計為「實際攀登（領攀或跟攀）且有難度標示」的 31 段；另含 Humanality p1（無難度標示）。
+      另有 2 條想爬未爬（<em>Left of Cleft</em> 7b、<em>Best Route in Minnesota</em> 6c）與 1 條旁觀（外國人光腳 7a）未計入。
+      7b* 為 <em>Alter Schwede!</em>，當事人對「是否為該區／該線」仍有疑慮。
+    </div>
+  </div>
+
+  <!-- MAP -->
+  <div class="section-title">🗺️ 岩場地理（喀比攀岩半島）</div>
+  <div id="map"></div>
+  <div class="map-note">
+    你這趟的岩場都集中在 Railay–Tonsai–Phra Nang 這片石灰岩半島。圖上標的是<b>公開知名灘區位置</b>（非個別 crag 精確座標）；
+    Duncan's Boot／Escher World／Diamond Wall／Gibbon Roof／Big Wave Pillar／One Two Three／The Bar 等多在 Tonsai 一帶，
+    Thaiwand Wall 在 Railay West，Phra-Nang Beach 即蘇美南岬。精確逐 crag 釘點可再對 theCrag 補上。
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="section-title">📅 逐日紀錄</div>
+  <div class="tl-controls"><button id="toggleAll">全部展開</button></div>
+
+  <!-- 02/07 -->
+  <details class="day" open>
+    <summary>
+      <span class="day-date">02/07</span>
+      <span><span class="day-where">Duncan's Boot · Lap Lair</span><br><span class="day-sub">同行：庭軒、Liya、魏教練</span></span>
+      <span class="chev">▸</span>
+    </summary>
+    <div class="day-body">
+      <div class="crag">
+        <div class="crag-name">Duncan's Boot</div>
+        <div class="route">
+          <div class="route-head">
+            <span class="grade" style="background:var(--g7b)">7b</span>
+            <span class="rname"><em>Alter Schwede!</em></span><span class="rlen">12m</span>
+            <span class="chip me">我 lead</span><span class="chip star">⚠ 有疑慮</span>
+          </div>
+          <div class="rnote"><span class="warn">是否是這區或這條路線皆尚有疑慮</span>，但 overhang 撤收大擺盪導致手推牆後割傷是事實。會爬這條是為了讓其他人 lead 原路線，面前看起來好玩又簡單的 pillar。左手靠近手腕處傷口很深，沒想到熱帶地區新陳代謝快，三天就癒合了。</div>
+        </div>
+      </div>
+      <div class="crag">
+        <div class="crag-name">Lap Lair / Wee's Present / Cave Wall</div>
+        <div class="route">
+          <div class="route-head">
+            <span class="grade" style="background:var(--g5)">5</span>
+            <span class="rname"><em>Way To The Top</em></span><span class="rlen">20m</span>
+            <span class="chip partner">Liya lead</span>
+          </div>
+        </div>
+        <div class="extra">遇到拿著彩圖 guidebook 的日本人，我們拿著示意圖版本像簡配版…</div>
+      </div>
+    </div>
+  </details>
+
+  <!-- 02/08 -->
+  <details class="day">
+    <summary>
+      <span class="day-date">02/08</span>
+      <span><span class="day-where">Phra-Nang Beach · Thaiwand Wall</span><br><span class="day-sub">同行：庭軒、Liya</span></span>
+      <span class="chev">▸</span>
+    </summary>
+    <div class="day-body">
+      <div class="crag">
+        <div class="crag-name">Phra-Nang Beach</div>
+        <div class="route">
+          <div class="route-head"><span class="grade" style="background:var(--g6a)">6a</span><span class="rname"><em>Lak Kai</em></span><span class="rlen">12m</span><span class="chip me">我 lead</span></div>
+          <div class="rnote">沒那麼簡單的簡單路線，部分滴水、多處含沙。</div>
+        </div>
+        <div class="route">
+          <div class="route-head"><span class="grade" style="background:var(--g7)">7a</span><span class="rname"><em>Titanium from Hell / Tales of Power</em></span><span class="rlen">10m</span><span class="chip me">我 lead</span><span class="chip star">⭐ 最好玩 tufa roof</span></div>
+          <div class="rnote">目前爬過最好玩的 tufa roof，crux 塞右腳，就可以在大交叉時穩定身體。</div>
+        </div>
+        <div class="route notclimbed">
+          <div class="route-head"><span class="grade" style="background:var(--g7b)">7b</span><span class="rname"><em>Left of Cleft</em></span><span class="rlen">26m</span><span class="chip no">想爬沒爬到</span></div>
+          <div class="rnote">因為右邊商業團佔線。偷學了日本人撤收大懸岩第一個 bolt 不大擺盪的方式 ^^</div>
+        </div>
+      </div>
+      <div class="crag">
+        <div class="crag-name">Thaiwand Wall</div>
+        <div class="route">
+          <div class="route-head"><span class="grade" style="background:var(--g5)">5</span><span class="rname">p1 · same start of #2#3#4</span><span class="chip partner">Liya lead</span></div>
+        </div>
+        <div class="route">
+          <div class="route-head"><span class="grade" style="background:var(--g6b)">6b+</span><span class="rname">p2 · <em>Continental Drifters / Wild Wyoming</em></span><span class="rlen">29m（from ground）</span><span class="chip me">我 lead</span></div>
+          <div class="rnote">這條路線小三角，橫渡出去蠻刺激的，但不難。</div>
+        </div>
+        <div class="route">
+          <div class="route-head"><span class="grade" style="background:var(--g5)">5</span><span class="rname">p3 · 橫渡到 Inaka (The Country) p3 top</span><span class="chip me">我 lead</span></div>
+          <div class="rnote">沒有 bolts or threads，直接往左上橫渡。這一段雖然難度只有 5，但 leading fall 肯定是十公尺以上的超級大墜落，幸好我們三人都安然度過。會橫渡是因為左上 top 明顯更好確保與垂降。</div>
+        </div>
+        <div class="route">
+          <div class="route-head"><span class="grade" style="background:var(--g6a)">6a+</span><span class="rname">p1 · <em>Circus Oz & Lord Of The Thais</em></span><span class="rlen">25m</span><span class="chip me">我 lead</span></div>
+          <div class="rnote">簡單長路線，爬完渾身暖呼呼的，舒服。有機會再來爬上面的多繩距。</div>
+        </div>
+        <div class="extra">穿拖鞋帶包爬路線之間的 5，穿越蝙蝠洞抵達 Escher world。蝙蝠洞裏頭絕對安靜，讓人想一再復回。出洞循風穿越樹林，踏上 Escher world 外的海灘；經過近海的 Happy Island，忽然發現左邊餐廳所有人都一身白 —— 在岩壁月光下辦婚禮！</div>
+      </div>
+    </div>
+  </details>
+
+  <!-- 02/09 -->
+  <details class="day">
+    <summary>
+      <span class="day-date">02/09</span>
+      <span><span class="day-where">North Wall · Rock'n Roll / Life of Leif</span><br><span class="day-sub">同行：庭軒、Liya、季璁</span></span>
+      <span class="chev">▸</span>
+    </summary>
+    <div class="day-body">
+      <div class="crag">
+        <div class="crag-name">North Wall — Rock'n Roll wall</div>
+        <div class="route">
+          <div class="route-head"><span class="grade" style="background:var(--g6b)">6b</span><span class="rname">p1 · <em>Motor City Madhouse</em></span><span class="rlen">20m</span><span class="chip me">我 lead</span></div>
+          <div class="rnote">從梯子起攀兩個快扣之後有點 overhang，決定下降 take 的時候可能是腳勾繩導致倒栽蔥，旁邊的 guide 提示這邊要向右爬。top 有像是鳥骨的化石，但 guidebook 說是蟻巢化石。</div>
+        </div>
+        <div class="route">
+          <div class="route-head"><span class="grade" style="background:var(--g6c)">6c</span><span class="rname">p2</span><span class="chip me">我 lead</span></div>
+          <div class="rnote">先是在光滑面上推撐、鑽進洞內再鑽出，crux 在完攀前兩個快扣，肩膀用力。crux 前發現一種類似蒼蠅的昆蟲，巢的入口是吸管形狀的。</div>
+        </div>
+        <div class="route">
+          <div class="route-head"><span class="grade" style="background:var(--g5)">5c</span><span class="rname"><em>Psycho Killer</em></span><span class="rlen">26m</span><span class="chip partner">季璁 lead</span></div>
+        </div>
+      </div>
+      <div class="crag">
+        <div class="crag-name">North Wall — Life of Leif wall</div>
+        <div class="route">
+          <div class="route-head"><span class="grade" style="background:var(--g6a)">6a+</span><span class="rname"><em>Dazed and Confused</em></span><span class="rlen">30m</span><span class="chip me">我 lead</span></div>
+          <div class="rnote">Dance with pillar, love it!</div>
+        </div>
+      </div>
+      <div class="extra nm">🌙 <b>夜市（初訪）</b>：150 baht 吃蠍子，腹部含沙，難吃 XD；季璁點的鹽烤魚很不錯。</div>
+    </div>
+  </details>
+
+  <!-- 02/10 -->
+  <details class="day">
+    <summary>
+      <span class="day-date">02/10</span>
+      <span><span class="day-where">Escher World · Diamond Wall</span><br><span class="day-sub">同行：季璁</span></span>
+      <span class="chev">▸</span>
+    </summary>
+    <div class="day-body">
+      <div class="crag">
+        <div class="crag-name">Escher World</div>
+        <div class="route notclimbed">
+          <div class="route-head"><span class="grade" style="background:var(--g6c)">6c</span><span class="rname"><em>Best Route in Minnesota</em></span><span class="rlen">25m</span><span class="chip no">沒爬到</span></div>
+          <div class="rnote">季璁狂推，巧遇 Thomas & Yvonne 爬，我們沒爬到。</div>
+        </div>
+        <div class="route">
+          <div class="route-head"><span class="grade" style="background:var(--g6a)">6a+</span><span class="rname"><em>Goodbye Salvador</em></span><span class="rlen">10m</span><span class="chip me">我 lead</span></div>
+          <div class="rnote">看起來難，雖然有些地方腳點不好找，但手點都相當好。</div>
+        </div>
+      </div>
+      <div class="crag">
+        <div class="crag-name">Diamond Wall</div>
+        <div class="route">
+          <div class="route-head"><span class="grade" style="background:var(--g6b)">6b+</span><span class="rname">p1 · <em>Les Petites Oreilles</em></span><span class="chip me">我 lead</span></div>
+          <div class="rnote">a little bit powerful. 像是千光寺羽球場的路線。</div>
+        </div>
+        <div class="route">
+          <div class="route-head"><span class="grade" style="background:var(--g6b)">6b+</span><span class="rname">p2 · <em>Diamonds Are Forever</em></span><span class="chip me">我 lead</span><span class="chip star">⭐ 此行最愛 slab</span></div>
+          <div class="rnote">slab. technical at the second last bolt. scary at the very last bolt. 很有小川山的感覺！</div>
+        </div>
+        <div class="extra">季璁、兩個吃太飽爬不動的人；季璁找到不用 10 baht 的對外開放渡假村廁所 XD。</div>
+      </div>
+      <div class="extra nm">🌙 <b>夜市</b>：為了買褲子再訪，買到一件耐磨、兩件仿 adidas XD；在很外圍的水果攤吃到榴槤，希望下次能產季來吃 (?</div>
+    </div>
+  </details>
+
+  <!-- 02/11 -->
+  <details class="day">
+    <summary>
+      <span class="day-date">02/11</span>
+      <span><span class="day-where">Gibbon Roof · Big Wave Pillar</span><br><span class="day-sub">同行：庭軒、Liya</span></span>
+      <span class="chev">▸</span>
+    </summary>
+    <div class="day-body">
+      <div class="crag">
+        <div class="crag-name">Gibbon Roof</div>
+        <div class="route">
+          <div class="route-head"><span class="grade" style="background:var(--g6a)">6a+</span><span class="rname"><em>Infected Mushrooms</em></span><span class="rlen">14m</span><span class="chip partner">庭軒 lead</span></div>
+          <div class="rnote">後半段微翻懸岩難。這邊全天林蔭裏頭，蚊子特兇。極左的簡單路線在沙質邊坡上，很難確保。</div>
+        </div>
+      </div>
+      <div class="crag">
+        <div class="crag-name">Big Wave Pillar — The Beauty &amp; the Beast</div>
+        <div class="extra">路線就在路邊，不時有路人仰望。起攀處有四米高的石洞，是 theCrag 上 Krabi 唯一的抱石區域，我也在此將粉袋借給一對抱石的外國朋友。</div>
+        <div class="route">
+          <div class="route-head"><span class="grade" style="background:var(--g6a)">6a+</span><span class="rname">p1 · <em>the beast</em></span><span class="rlen">30m</span><span class="chip me">我 lead</span></div>
+          <div class="rnote">非常簡單，確保站是個可以躺的凹槽。</div>
+        </div>
+        <div class="route">
+          <div class="route-head"><span class="grade" style="background:var(--g6a)">6a+</span><span class="rname">p2 · <em>connection</em></span><span class="rlen">25m</span><span class="chip partner">庭軒 lead</span></div>
+          <div class="rnote">多繩距輪流 lead 才是 alpine 嘛~XD</div>
+        </div>
+        <div class="route">
+          <div class="route-head"><span class="grade" style="background:var(--g6b)">6b</span><span class="rname">p3 · <em>the beauty</em></span><span class="rlen">30m</span><span class="chip me">我 lead</span><span class="chip star">喜歡</span></div>
+          <div class="rnote">起攀腳點不佳，比較吃上肢力量，後段也是 dance with pillar，非常喜歡。有點 hanging belay。</div>
+        </div>
+      </div>
+      <div class="extra nm">🌙 <b>夜市（三訪）</b>：原為找送給玉青的太陽眼鏡，但發現觀光區的東西真的沒有比台灣便宜，而且品質很難說，遂作罷。</div>
+    </div>
+  </details>
+
+  <!-- 02/12 -->
+  <details class="day">
+    <summary>
+      <span class="day-date">02/12</span>
+      <span><span class="day-where">Tonsai《The Bar》· Sleeping Indian《The Monitor》</span><br><span class="day-sub">同行：庭軒、Liya、唐天佑 Thomas</span></span>
+      <span class="chev">▸</span>
+    </summary>
+    <div class="day-body">
+      <div class="crag">
+        <div class="crag-name">Tonsai Beach — The Bar · <em>Humanality</em>（多繩距）</div>
+        <div class="route">
+          <div class="route-head"><span class="grade" style="background:#94A3B8">—</span><span class="rname">p1 · overhang ladders! &amp; tunnel traveling</span><span class="chip me">我 lead</span></div>
+        </div>
+        <div class="route">
+          <div class="route-head"><span class="grade" style="background:var(--g6a)">6a+</span><span class="rname">p2</span><span class="chip me">我 lead</span></div>
+          <div class="rnote">crux at first two bolts, follow by extreme polished slab.</div>
+        </div>
+        <div class="route">
+          <div class="route-head"><span class="grade" style="background:var(--g6b)">6b+</span><span class="rname">p3 · go right</span><span class="chip me">我 lead</span></div>
+          <div class="rnote">left looks good at first, but un-mantle-able at last.</div>
+        </div>
+        <div class="route">
+          <div class="route-head"><span class="grade" style="background:var(--g6b)">6b</span><span class="rname">p4 · go left then right</span><span class="chip me">我 lead</span></div>
+          <div class="rnote">notice there is a pillar behind.</div>
+        </div>
+      </div>
+      <div class="crag">
+        <div class="crag-name">Sleeping Indian Wall — The Monitor（五繩距）</div>
+        <div class="extra">確保位置皆為斜土坡，物品易滑落。Thomas 覺得這開滿窗戶的洞穴是 Krabi 最奇妙的地方。</div>
+        <div class="route">
+          <div class="route-head"><span class="grade" style="background:var(--g6b)">6b+</span><span class="rname">p1</span><span class="chip me">我 lead</span></div>
+          <div class="rnote">後一公尺連續耐力，same with S5. Just Climb 6b+。</div>
+        </div>
+        <div class="route">
+          <div class="route-head"><span class="grade" style="background:var(--g6b)">6b+</span><span class="rname">p2</span><span class="chip lead">★ 我 leading（明確）</span></div>
+          <div class="rnote">從 top 後斜上草坡進洞，再從佛像石右方鑽出抵達確保點；攀登者繞出窗外即可起攀，一開始會需要抓一些 crimp。我這次 leading 選擇在繞出去前使用架繩器先掛 7a 第一個快扣。</div>
+        </div>
+        <div class="route">
+          <div class="route-head"><span class="grade" style="background:var(--g5)">5</span><span class="rname">p3</span><span class="chip me">我 lead</span></div>
+          <div class="rnote">透過石柱的窗能看到 Tonsai 海灘。</div>
+        </div>
+        <div class="route">
+          <div class="route-head"><span class="grade" style="background:var(--g6b)">6b</span><span class="rname">p4 · easy</span><span class="chip me">我 lead</span></div>
+        </div>
+        <div class="route">
+          <div class="route-head"><span class="grade" style="background:var(--g6a)">6a+</span><span class="rname">p5 · easy</span><span class="chip me">我 lead</span></div>
+        </div>
+        <div class="extra"><b>垂降三法</b>：① back-clip — Yvonne 建議不打繩尾結，避免卡到岩縫。② belay on previous top, top rope and clean the pitch（書上建議）。③ repel along the pillar and traverse 180° 到 p2 top anchors → 可從 p2 anchors 直降 p1 anchors，不需回到 p2 start 再穿過 tunnel。</div>
+      </div>
+    </div>
+  </details>
+
+  <!-- 02/13 -->
+  <details class="day">
+    <summary>
+      <span class="day-date">02/13</span>
+      <span><span class="day-where">One Two Three</span><br><span class="day-sub">同行：庭軒、Liya</span></span>
+      <span class="chev">▸</span>
+    </summary>
+    <div class="day-body">
+      <div class="crag">
+        <div class="crag-name">One Two Three</div>
+        <div class="route">
+          <div class="route-head"><span class="grade" style="background:var(--g6c)">6c</span><span class="rname"><em>Kratoy (Lady Boy)</em></span><span class="rlen">26m</span><span class="chip me">我 lead</span><span class="chip star">非常有趣</span></div>
+          <div class="rnote">crux 是翻第二個天花板；接下來右邊比較容易濕，往左爬洞頂更穩妥，且有推 pillar 穩定身體的驚險動作 XD；後段沿著浮雕石灰岩柱爬的重心轉換、掛腳、青蛙腿，非常有趣！</div>
+        </div>
+        <div class="route">
+          <div class="route-head"><span class="grade" style="background:var(--g5)">5</span><span class="rname">某一條</span><span class="chip partner">Liya lead</span></div>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <!-- 02/14 -->
+  <details class="day">
+    <summary>
+      <span class="day-date">02/14</span>
+      <span><span class="day-where">North Wall · Jurassic X-Mas / Life of Leif</span><br><span class="day-sub">同行：庭軒、Liya、季璁、唐天佑 Thomas</span></span>
+      <span class="chev">▸</span>
+    </summary>
+    <div class="day-body">
+      <div class="crag">
+        <div class="crag-name">North Wall — Jurassic X-Mas</div>
+        <div class="route">
+          <div class="route-head"><span class="grade" style="background:var(--g6a)">6a+</span><span class="rname"><em>Queen of the Highway</em></span><span class="rlen">30m</span><span class="chip me">我 lead</span></div>
+        </div>
+      </div>
+      <div class="crag">
+        <div class="crag-name">North Wall — Life of Leif</div>
+        <div class="route">
+          <div class="route-head"><span class="grade" style="background:var(--g6b)">6b+</span><span class="rname"><em>Life of Leif</em></span><span class="rlen">28m</span><span class="chip me">我 lead</span></div>
+          <div class="rnote">後段的寬 pinch 好舒服。</div>
+        </div>
+        <div class="route observed">
+          <div class="route-head"><span class="grade" style="background:var(--g7)">7a</span><span class="rname"><em>Lime Crush</em> or <em>Cyber Punks</em>（推測）</span><span class="rlen">10m</span><span class="chip obs">👀 旁觀</span></div>
+          <div class="rnote">遇到外國人光腳爬 7a 的路線，沿著懸岩邊緣，大點可掛腳。（非本人所爬）</div>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <!-- PARTNERS -->
+  <div class="section-title">👥 同行夥伴</div>
+  <div class="panel">
+    <div class="pp">
+      <span class="pcard">庭軒 <small>· 7 天</small></span>
+      <span class="pcard">Liya <small>· 7 天</small></span>
+      <span class="pcard">季璁 <small>· 3 天</small></span>
+      <span class="pcard">唐天佑 Thomas <small>· 2 天</small></span>
+      <span class="pcard">Yvonne <small>· 同場</small></span>
+      <span class="pcard">魏教練 <small>· 02/07</small></span>
+    </div>
+    <div class="map-note" style="margin-top:12px">夥伴出場天數依逐日紀錄署名統計（同場巧遇的 Thomas &amp; Yvonne 於 02/10 出現但當日同行欄未列）。</div>
+  </div>
+
+  <footer>
+    🧗 Krabi 2025/02 · 逐字第一手紀錄 · Made with ❤️ ·
+    <a href="https://github.com/tzchia/travel">GitHub</a> · 最後更新 2026/06/30
+  </footer>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+  // ---- 展開/收合全部 ----
+  (function(){
+    var btn = document.getElementById('toggleAll');
+    var days = Array.prototype.slice.call(document.querySelectorAll('details.day'));
+    function refresh(){
+      var allOpen = days.every(function(d){ return d.open; });
+      btn.textContent = allOpen ? '全部收合' : '全部展開';
+    }
+    btn.addEventListener('click', function(){
+      var allOpen = days.every(function(d){ return d.open; });
+      days.forEach(function(d){ d.open = !allOpen; });
+      refresh();
+    });
+    days.forEach(function(d){ d.addEventListener('toggle', refresh); });
+    refresh();
+  })();
+
+  // ---- 地圖（公開知名灘區，非個別 crag 精確座標）----
+  (function(){
+    var map = L.map('map', { scrollWheelZoom:false }).setView([8.0095, 98.8375], 14);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap &copy; CARTO',
+      subdomains: 'abcd', maxZoom: 19
+    }).addTo(map);
+
+    var spots = [
+      { ll:[8.0181,98.8344], name:'Tonsai Beach', desc:'多數 crag 集中於此：Duncan\'s Boot、Escher World、Diamond Wall、Gibbon Roof、Big Wave Pillar、One Two Three、The Bar（Humanality）等。' },
+      { ll:[8.0086,98.8356], name:'Railay West / Thaiwand Wall', desc:'02/08 Thaiwand Wall 多繩距橫渡到 Inaka。' },
+      { ll:[8.0107,98.8389], name:'Railay East', desc:'半島東側，攀岩聚落與通道。' },
+      { ll:[8.0042,98.8401], name:'Phra Nang Beach', desc:'02/08 Lak Kai 6a、Titanium from Hell 7a（tufa roof）。' }
+    ];
+    spots.forEach(function(s){
+      L.marker(s.ll).addTo(map).bindPopup('<b>'+s.name+'</b><br>'+s.desc);
+    });
+  })();
+</script>
+</body>
+</html>
