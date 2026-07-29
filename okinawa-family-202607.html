@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
 <meta name="googlebot" content="noindex, nofollow">
-<title>沖繩 5 天 4 夜雙家庭親子遊｜7/23–7/27</title>
-<meta name="description" content="2026/7/23–7/27 沖繩本島五天四夜，雙家庭 4 大 3 小（10歲/5歲/1歲）親子自駕。美麗海水族館、名護 Neo Park／鳳梨園、沖繩世界玉泉洞、ASHIBINAA Outlet、國際通，含每日 timeline、互動地圖、住宿餐廳候選、費用。">
+<title>沖繩 5 天 4 夜雙家庭親子遊｜7/23–7/27（行後實錄）</title>
+<meta name="description" content="2026/7/23–7/27 沖繩本島五天四夜，雙家庭 4 大 3 小（10歲/5歲/1歲）親子自駕・行後實錄版。依收據時刻與 Google Maps 時間軸重建：美麗海水族館、備瀨崎浮潛、名護鳳梨園、百年古家大家、沖繩世界玉泉洞、DMM水族館、國際通，含收據對帳。">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <style>
   * { box-sizing: border-box; }
@@ -254,6 +254,24 @@
   .src-list { font-size:0.82em; color:var(--muted); }
   .src-list a { color:var(--sea-deep); word-break:break-all; }
 
+  /* ===== reconcile 收據對帳 ===== */
+  .pillrow { display:grid; gap:12px; margin-bottom:16px; }
+  @media (min-width:640px){ .pillrow { grid-template-columns:repeat(3,1fr); } }
+  .pill-card { background:var(--paper); border-radius:14px; padding:14px 16px; box-shadow:0 3px 12px rgba(15,23,42,0.05); border-top:3px solid var(--sea); text-align:center; }
+  .pill-card .pk { font-size:0.76em; color:var(--muted); letter-spacing:0.04em; }
+  .pill-card .pv { font-size:1.25em; font-weight:800; color:var(--sea-deep); margin-top:3px; }
+  .pill-card .ps { font-size:0.74em; color:var(--muted); margin-top:2px; }
+  .rc-wrap { overflow-x:auto; background:var(--paper); border-radius:14px; box-shadow:0 3px 12px rgba(15,23,42,0.05); }
+  table.rc { width:100%; border-collapse:collapse; font-size:0.84em; min-width:640px; }
+  table.rc th { background:var(--sea-soft); color:var(--sea-deep); font-weight:800; text-align:left; padding:9px 11px; white-space:nowrap; }
+  table.rc td { padding:8px 11px; border-top:1px solid var(--line); vertical-align:top; }
+  table.rc td.amt { text-align:right; font-weight:700; white-space:nowrap; }
+  table.rc tr.card-row td { background:#FFFBEB; }
+  .paytag { font-size:0.78em; font-weight:700; padding:1px 7px; border-radius:6px; white-space:nowrap; }
+  .paytag.cash { background:#DCFCE7; color:#15803D; }
+  .paytag.card { background:#FEF3C7; color:#B45309; }
+  .paytag.twd { background:#EDE9FE; color:#6D28D9; }
+
   footer { text-align:center; margin-top:48px; color:#94a3b8; font-size:0.85em; }
   footer a { color:#64748b; }
 
@@ -291,13 +309,13 @@
     <a class="back" href="./index.html">← 子家旅遊筆記</a>
     <div class="eyebrow">OKINAWA · 沖繩本島</div>
     <h1>🐢 沖繩 5 天 4 夜<br>雙家庭親子遊</h1>
-    <div class="dates">📅 2026 / 7 / 23（四）– 7 / 27（一）· 旺季出遊</div>
+    <div class="dates">📅 2026 / 7 / 23（四）– 7 / 27（一）· ✅ 已成行 · 行後實錄版</div>
     <div class="who">
       <span class="b">👨‍👩‍👧‍👦 4 大 3 小</span>
       <span class="b">🧒 10 歲</span>
       <span class="b">🧒 5 歲</span>
       <span class="b">👶 1 歲</span>
-      <span class="b">🚗 兩台車自駕</span>
+      <span class="b">🚗 8 人座 Serena 一車自駕</span>
       <span class="b">✈️ 高雄＋桃園會合</span>
     </div>
   </div>
@@ -312,7 +330,7 @@
   <div class="navbar" id="navbar">
     <div class="progressbar"><i id="progressFill"></i></div>
     <div class="toc" id="toc">
-      <a href="#members">成員航班</a><a href="#routemap">路線圖</a><a href="#mapview">互動地圖</a><a href="#cost">費用</a><a href="#days">每日行程</a><a href="#stay">住宿</a><a href="#food">餐廳</a><a href="#spots">景點池</a><a href="#sources">來源</a>
+      <a href="#members">成員航班</a><a href="#routemap">路線圖</a><a href="#mapview">互動地圖</a><a href="#cost">費用</a><a href="#days">每日行程</a><a href="#reconcile">收據對帳</a><a href="#stay">住宿</a><a href="#food">餐廳</a><a href="#spots">景點池</a><a href="#sources">來源</a>
     </div>
   </div>
 
@@ -324,6 +342,7 @@
     <a href="#mapview"><span class="sd-dot"></span>互動地圖</a>
     <a href="#cost"><span class="sd-dot"></span>費用總覽</a>
     <a href="#days"><span class="sd-dot"></span>每日行程</a>
+    <a href="#reconcile"><span class="sd-dot"></span>收據對帳</a>
     <a href="#stay"><span class="sd-dot"></span>住宿</a>
     <a href="#food"><span class="sd-dot"></span>餐廳口袋名單</a>
     <a href="#spots"><span class="sd-dot"></span>景點候選池</a>
@@ -332,16 +351,15 @@
 
   <!-- ===================== TL;DR ===================== -->
   <div class="tldr">
-    💡 <b>一句話：</b>兩家人（亭宇子誠家從高雄、子家玉青家從桃園）7/23 在那霸機場會合，租 OTS 車北上以
-    <b>本部町</b>為基地住 3 晚，主攻 <b>美麗海水族館</b>＋<b>名護 Neo Park／鳳梨園</b>；7/26 南下 <b>沖繩世界玉泉洞</b>＋<b>ASHIBINAA Outlet</b> 後進駐
-    <b>那霸國際通</b>，7/27 還車賦歸。行程已替 <b>1 歲午睡</b>（壓在車程）與 <b>旺季酷暑</b>（戶外↔室內可彈性互換）預留緩衝。
+    💡 <b>行後一句話：</b>兩家人 7/23 那霸會合後北上<b>本部町</b>住 3 晚——D2 <b>美麗海水族館</b>整天、D3 早上<b>備瀨崎浮潛</b>＋下午<b>名護鳳梨園</b>＋晚上<b>百年古家「大家」</b>阿古豬；D4 南下<b>沖繩世界玉泉洞</b>後進駐那霸，加碼 <b>DMM 水族館</b>＋深夜國際通；D5 還車賦歸。
+    行前規劃的 Neo Park、名護夏日祭典、ASHIBINAA Outlet 臨場換成備瀨崎玩水、名護採買夜、iias 豐崎——本頁已依<b>收據時刻</b>與 <b>Google Maps 時間軸</b>重建為實際走法，並附<a href="#reconcile"><b>收據對帳</b></a>。
   </div>
 
   <!-- ===================== QUICK FACTS ===================== -->
   <div class="facts">
     <div class="fact"><div class="ico">🗓️</div><div class="k">天數</div><div class="v">5 天 4 夜</div></div>
     <div class="fact"><div class="ico">🏨</div><div class="k">住宿基地</div><div class="v">本部 ×3<br>那霸 ×1</div></div>
-    <div class="fact"><div class="ico">🚗</div><div class="k">交通</div><div class="v">OTS 自駕<br>WCX 級</div></div>
+    <div class="fact"><div class="ico">🚗</div><div class="k">交通</div><div class="v">OTS 自駕<br>Serena 8人座</div></div>
     <div class="fact"><div class="ico">💰</div><div class="k">機票＋住宿</div><div class="v">NT$ 53,046</div></div>
   </div>
 
@@ -429,11 +447,11 @@
       </g>
     </svg>
   </div>
-  <p class="sec-sub" style="margin-top:4px;">🐢 美麗海　🦅 名護 Neo Park／鳳梨園　🌋 沖繩世界玉泉洞　🛍️ 國際通　🛫 那霸機場（起訖）</p>
+  <p class="sec-sub" style="margin-top:4px;">🐢 美麗海／備瀨崎（D2–D3）　🍍 名護鳳梨園・大家（D3）　🌋 沖繩世界玉泉洞（D4）　🛍️ 國際通・iias 豐崎（D4–D5）　🛫 那霸機場（起訖）</p>
 
   <!-- ===================== LEAFLET MAP ===================== -->
-  <h2 class="sec" id="mapview"><span class="em">📍</span>互動地圖</h2>
-  <p class="sec-sub">點圖釘看景點名稱。藍＝景點、橘＝住宿基地、桃紅＝那霸市區。</p>
+  <h2 class="sec" id="mapview"><span class="em">📍</span>互動地圖（實際足跡）</h2>
+  <p class="sec-sub">依收據與 Google Maps 時間軸標出實際去過的點。藍＝景點、橘＝用餐/住宿、桃紅＝那霸市區、紫＝機場/取還車。</p>
   <div id="map"></div>
   <div class="map-legend">
     <span><i class="dot" style="background:#0891B2"></i>景點 / 樂園</span>
@@ -468,7 +486,7 @@
     </div>
   </div>
   <div class="note-box info" style="margin-top:12px;">
-    🚗 <b>租車（尚未含上表）：</b>OTS Rinku-Toyosaki，WCX 級，估 <b>日幣 90,340</b>（約 NT$ 19,000，匯率浮動以現場結算為準）。需帶 <b>台灣駕照 ＋ 駕照日文譯本 ＋ 護照</b>。營業 08:00–19:00，機場有免費接駁（約 15 分）。</div>
+    🚗 <b>租車（實付）：</b>OTS Rinku-Toyosaki，日產 Serena e-POWER 8 人座，7/23 14:00 取 – 7/27 11:44 還，<b>¥90,340</b> 刷卡（含 Premium 安心險＋免責補償＋兒童座椅＋ETC）。門票 KKDAY 台幣直刷 NT$5,374（美麗海 2,014／鳳梨園 1,492／玉泉洞 1,868）。當地餐食購物明細見 <a href="#reconcile">收據對帳</a>。</div>
 
   <!-- ===================== DAILY TIMELINE ===================== -->
   <h2 class="sec" id="days"><span class="em">📆</span>每日行程</h2>
@@ -479,22 +497,24 @@
     <summary>
       <div class="dnum"><small>DAY</small>1</div>
       <div class="dhead">
-        <div class="dt">7/23（四）· 抵達會合</div>
-        <div class="dtitle">那霸機場 → 取車 → iias 豐崎 → 本部住宿</div>
+        <div class="dt">7/23（四）· 抵達會合 ✅ 實走</div>
+        <div class="dtitle">那霸機場 → OTS 取車 → 伊芸SA → 海邦丸晚餐 → 本部住宿</div>
       </div>
       <div class="chev">▾</div>
     </summary>
     <div class="day-body">
+      <div class="note-box tip" style="margin:0 0 12px;">✅ <b>實際走法回顧：</b>兩家如期會合，但比規劃晚出發——實際租到的是<b>一台 8 人座 Serena e-POWER</b>（非兩台車），全員同車北上。原定 iias 豐崎逛街等人改為機場直接會合；晚餐臨場選了<b>海邦丸</b>（原口袋名單之一），飯後全家便利商店大採買當隔日早餐。時間以收據為準、移動依 Google Maps 時間軸。</div>
       <div class="tl">
-        <div class="item"><div class="time">09:30–12:25</div><div class="act">✈️ 亭宇子誠家 抵達那霸<span class="tagi star">高雄 IT288</span></div><div class="nt">子誠爸、亭宇媽、大姐姐(10)、小姐姐(5)。入境、拿行李、聯絡 OTS 接駁。</div></div>
-        <div class="item"><div class="time">13:15–14:00</div><div class="act">🚗 子誠爸 OTS 豐崎取車<span class="tagi car">接駁約15分</span></div><div class="nt">帶台灣駕照＋日文譯本＋護照。取完車可先到旁邊 iias Toyosaki 逛街等人。</div></div>
-        <div class="item"><div class="time">13:30–15:55</div><div class="act">✈️ 子家玉青家 抵達那霸<span class="tagi star">桃園出發</span></div><div class="nt">子家爸、玉青媽、寶寶(1)。</div></div>
-        <div class="item meal"><div class="time">14:00–16:30</div><div class="act">🛍️ iias Toyosaki 等人、補給<span class="tagi eat">買行動糧</span></div><div class="nt">商店 10:00–21:00、超市 09:00–22:00、餐廳 11:00–23:00。先買車上能吃的，避免晚餐太晚餓到小孩。</div></div>
-        <div class="item"><div class="time">14:30–16:00</div><div class="act">👕 子誠逛 UNIQLO（イーアス沖縄豊崎店）<span class="tagi star">🛍️ 購物任務</span></div><div class="nt">iias 商場內就有 UNIQLO；趁等桃園班機的空檔挑。館內藥妝店可<b>順便查</b>クリーンデンタル 美白ケア，看得到就先買、沒有不強求（主力留 D4 國際通唐吉訶德）。</div></div>
-        <div class="item"><div class="time">16:45–17:15</div><div class="act">🤝 機場會合、裝行李、換尿布、買水/零食</div></div>
-        <div class="item hi"><div class="time">17:15–19:30</div><div class="act">🚗 前往本部住宿<span class="tagi car">約2小時 / 100–110km</span></div><div class="nt">走高速；中途可停 <b>許田休息站</b>（19:00 打烊）或便利商店。1 歲剛好在車上睡。</div></div>
-        <div class="item meal"><div class="time">19:30–20:30</div><div class="act">🍜 本部晚餐<span class="tagi eat">待定</span></div><div class="nt">抵達晚就選 Hanasaki Marche 或飯店外帶（見餐廳區）。</div></div>
-        <div class="item"><div class="time">20:30 後</div><div class="act">🛁 入住、洗澡、睡覺</div></div>
+        <div class="item"><div class="time">09:30–12:25</div><div class="act">✈️ 亭宇子誠家 抵達那霸<span class="tagi star">高雄 IT288</span></div><div class="nt">子誠爸、亭宇媽、大姐姐(10)、小姐姐(5)。入境後先往 OTS。</div></div>
+        <div class="item hi"><div class="time">14:00</div><div class="act">🚗 子誠爸 OTS 臨空豐崎取車<span class="tagi star">收據鎖點</span></div><div class="nt">貸渡證出發 14:00：<b>日產 Serena e-POWER（WCX・8 人座）</b>沖繩304わ6499，乘車 7 人，含 Premium 安心險＋免責補償＋兒童座椅＋ETC 卡，<b>¥90,340</b> 刷卡(Edy)。出發里程 618km。</div></div>
+        <div class="item"><div class="time">約14:14–16:10</div><div class="act">✈️ 子家玉青家 抵達那霸<span class="tagi car">Timeline</span></div><div class="nt">子家爸、玉青媽、寶寶(1)。桃園 → 那霸，飛行約 1 小時 56 分。</div></div>
+        <div class="item"><div class="time">約16:10–17:00</div><div class="act">🤝 機場會合 → OTS 接駁、裝行李<span class="tagi car">11km・43分</span></div><div class="nt">原定 iias 豐崎逛街等人未成行（UNIQLO 購物任務順延到 D4/D5）。</div></div>
+        <div class="item"><div class="time">約17:10–19:00</div><div class="act">🚗 上高速北上<span class="tagi car">49km・51分</span></div><div class="nt">1 歲寶寶如規劃在車上睡。</div></div>
+        <div class="item meal"><div class="time">19:01</div><div class="act">🍘 伊芸SA（下行線）休息<span class="tagi eat">收據 ¥2,494</span></div><div class="nt">やんそーれ賣店：田芋起司蛋糕、BabyStar 島辣椒、雞皮仙貝（現金）。取代原定的許田休息站。</div></div>
+        <div class="item meal hi"><div class="time">21:29 結帳</div><div class="act">🐟 海人料理 海邦丸 晚餐<span class="tagi eat">收據 ¥5,630</span></div><div class="nt">本部町山川。生鮭魚鮭魚卵丼＋大盛、沖繩御膳、苦瓜炒什錦（現金，桌 4 人）。口袋名單直接命中。</div></div>
+        <div class="item"><div class="time">約21:45</div><div class="act">🏝️ 入住 Suppai Resort（山川 931）<span class="tagi car">900m・4分</span></div></div>
+        <div class="item"><div class="time">23:14</div><div class="act">🏪 全家 もとぶ山川店 大採買<span class="tagi eat">收據 ¥7,123</span></div><div class="nt">約 30 項：牛乳、布丁、優格、冰品、三明治、炸物——隔日早餐＋宵夜一次補齊（現金）。</div></div>
+        <div class="item"><div class="time">23:25 後</div><div class="act">🛁 回住宿、洗澡、睡覺</div></div>
       </div>
     </div>
   </details>
@@ -504,23 +524,22 @@
     <summary>
       <div class="dnum"><small>DAY</small>2</div>
       <div class="dhead">
-        <div class="dt">7/24（五）· 海洋大日</div>
-        <div class="dtitle">美麗海水族館 ＋ 海洋博公園</div>
+        <div class="dt">7/24（五）· 海洋大日 ✅ 實走</div>
+        <div class="dtitle">美麗海水族館 → 島豚家 → 備瀨福木林道夕陽</div>
       </div>
       <div class="chev">▾</div>
     </summary>
     <div class="day-body">
-      <div class="note-box info" style="margin:0 0 12px;">🐋 <b>旺季注意：</b>7/18–7/31 水族館 08:30–20:00（最後入館 19:00）。建議停 <b>P7 停車場</b>離館較近。</div>
+      <div class="note-box tip" style="margin:0 0 12px;">✅ <b>實際走法回顧：</b>照劇本走的一天——水族館一路玩到下午 1 點過（比規劃的「12:00 吃午餐」多泡了一小時），午餐命中口袋名單<b>島豚家</b>，回住宿午睡充足後傍晚去<b>備瀨福木林道</b>看夕陽。門票是前一天（7/23）先在 KKDAY 買好的（NT$2,014）。原定「燒肉本部牧場晚餐」未成行，改超市＋LAWSON 簡單解決。</div>
       <div class="tl">
-        <div class="item meal"><div class="time">07:30–08:30</div><div class="act">🥐 早餐<span class="tagi eat">前一晚先買</span></div><div class="nt">前一天在附近 LAWSON／全家買好帶回住宿吃。</div></div>
-        <div class="item"><div class="time">08:45–09:00</div><div class="act">🚗 住宿 → 美麗海 P7<span class="tagi car">5–20分</span></div></div>
-        <div class="item hi"><div class="time">09:00–12:00</div><div class="act">🐢 美麗海水族館<span class="tagi star">09:30 鬼蝠魟餵食秀</span></div>
-          <div class="nt">黑潮之海餵食秀：鬼蝠魟 9:30、鯨鯊 15:00 &amp; 17:00（<b>水上觀覽路線暫停開放</b>）。海豚秀 Okichan 劇場 10:30/11:30/13:00/15:00/17:00。海豚餵食（付費・不需預約 10:00–16:00）、海龜餵食 11–12/14–15。</div></div>
-        <div class="item meal"><div class="time">12:00–13:15</div><div class="act">🍜 午餐<span class="tagi eat">本部水產</span></div><div class="nt">島豚家／岸本食堂／海邦丸二館（見餐廳區）。</div></div>
-        <div class="item"><div class="time">13:15–14:30</div><div class="act">😴 車上 / 飯店午睡或 Café 休息<span class="tagi star">1歲關鍵</span></div></div>
-        <div class="item"><div class="time">14:30–16:30</div><div class="act">🐬 海洋博公園・海豚劇場・海龜館・海牛館・海洋文化館</div><div class="nt">夏季主要區域開到 19:30，水族館相關區域旺季到 19:00。</div></div>
-        <div class="item"><div class="time">16:30–17:30</div><div class="act">🌅 翡翠海灘 / 備瀨福木林道看夕陽<span class="tagi car">太熱可刪</span></div><div class="nt">距水族館開車 5 分，有收費停車場。</div></div>
-        <div class="item meal"><div class="time">18:00–19:30</div><div class="act">🥩 本部晚餐<span class="tagi eat">燒肉本部牧場需預訂</span></div></div>
+        <div class="item meal"><div class="time">07:30–08:50</div><div class="act">🥐 住宿早餐<span class="tagi eat">D1 全家採買</span></div><div class="nt">前一晚 23:14 全家便利商店那批（麵包、優格、牛乳）。</div></div>
+        <div class="item"><div class="time">09:00–09:07</div><div class="act">🚗 住宿 → 海洋博公園<span class="tagi car">1.1km・7分</span></div></div>
+        <div class="item hi"><div class="time">09:07–13:21</div><div class="act">🐢 美麗海水族館＋海洋博公園<span class="tagi star">一票玩 4 小時</span></div><div class="nt">門票 KKDAY 7/23 預購 <b>NT$2,014</b>。黑潮之海、鬼蝠魟餵食、海豚劇場一次看滿；比規劃多待一小時，午睡直接順延。</div></div>
+        <div class="item meal"><div class="time">13:25–14:40</div><div class="act">🐖 島豚家 午餐<span class="tagi eat">收據 ¥3,200</span></div><div class="nt">13:49 結帳（現金）：特製炙燒島豚沖繩麵 ×2、漬物、半熟蛋。口袋名單命中。</div></div>
+        <div class="item"><div class="time">14:49–15:59</div><div class="act">🛒 San-A 本部大浜（谷茶）採買<span class="tagi car">Timeline</span></div><div class="nt">超市補給（現金小額，未留收據）。</div></div>
+        <div class="item"><div class="time">16:11–18:49</div><div class="act">😴 回住宿午睡＋泳池戲水<span class="tagi star">1歲關鍵・如規劃</span></div></div>
+        <div class="item hi"><div class="time">18:55–19:51</div><div class="act">🌅 備瀨福木林道 看夕陽<span class="tagi car">1.8km・5分</span></div><div class="nt">規劃寫「太熱可刪」，實際傍晚去剛剛好。</div></div>
+        <div class="item"><div class="time">19:54–20:17</div><div class="act">🏪 LAWSON 海洋博公園前店<span class="tagi eat">晚餐補給</span></div><div class="nt">簡單解決，20:20 回住宿。</div></div>
       </div>
     </div>
   </details>
@@ -530,25 +549,23 @@
     <summary>
       <div class="dnum"><small>DAY</small>3</div>
       <div class="dhead">
-        <div class="dt">7/25（六）· 動物・鳳梨・祭典</div>
-        <div class="dtitle">Neo Park ＋ 名護鳳梨園 → 百年古家「大家」→ 名護夏日祭典</div>
+        <div class="dt">7/25（六）· 浮潛・鳳梨・阿古豬 ✅ 實走</div>
+        <div class="dtitle">備瀨崎浮潛 → 名護鳳梨園 → 百年古家「大家」→ 名護採買夜</div>
       </div>
       <div class="chev">▾</div>
     </summary>
     <div class="day-body">
-      <div class="note-box warn" style="margin:0 0 12px;">🍽️ <b>晚餐「大家」已訂 17:30（確認碼 VQHR2Q）</b>，記得 <b>17:00 前離開名護鳳梨園</b>、約 16:45 開始收尾。<br>🎆 餐後順路可到 <b>名護漁港</b>看名護夏日祭典氛圍，回本部走山路夜路請慢開。</div>
+      <div class="note-box tip" style="margin:0 0 12px;">✅ <b>實際走法回顧：</b>上午臨場改玩<b>備瀨崎浮潛</b>（原規劃的 Neo Park 未去），中午回住宿睡飽再出發名護；鳳梨園待好待滿近 3 小時，晚餐<b>百年古家「大家」</b>如訂位吃了兩個半小時（實際 ¥25,120，比預點金額多加點）。餐後不是去夏日祭典，而是一路<b>名護採買夜</b>：全家 → San-A/DAISO → AEON/Mister Donut → 再回 San-A，22:18 才回到本部。</div>
       <div class="tl">
-        <div class="item meal"><div class="time">08:30–09:30</div><div class="act">🥪 出發吃早餐 或 車上吃<span class="tagi eat">CAMEL三明治/Potama飯糰</span></div><div class="nt">先擦防曬、備水壺、替換衣物。</div></div>
-        <div class="item"><div class="time">09:30–10:00</div><div class="act">🚗 本部住宿 → Neo Park<span class="tagi car">30分</span></div></div>
-        <div class="item"><div class="time">10:00–10:30</div><div class="act">🅿️ 停車、入園</div></div>
-        <div class="item hi"><div class="time">10:30–12:30</div><div class="act">🦅 Neo Park 名護自然動植物公園<span class="tagi star">開放式動物園・猛禽秀</span></div><div class="nt">可愛小動物與稀有保育動物，開放式園區適合三個小孩放電。</div></div>
-        <div class="item meal"><div class="time">12:30–14:00</div><div class="act">🍱 附近午餐＋休息<span class="tagi eat">待定</span></div></div>
-        <div class="item hi"><div class="time">14:00–16:00</div><div class="act">🍍 名護鳳梨園<span class="tagi star">自動鳳梨號小火車</span></div><div class="nt">鳳梨號電車、溫室植物園、鳳梨吃到飽與伴手禮，室內外皆有可避暑。</div></div>
-        <div class="item"><div class="time">16:00–17:00</div><div class="act">🎁 點心、買紀念品、準備離園</div><div class="nt">配合 17:30 晚餐，不建議壓到最後一刻。</div></div>
-        <div class="item"><div class="time">17:20–17:30</div><div class="act">🚗 名護鳳梨園 → 百年古家 大家<span class="tagi car">10分</span></div></div>
-        <div class="item meal hi"><div class="time">17:30–19:00</div><div class="act">🐖 百年古家「大家」阿古豬晚餐<span class="tagi star">✅ 已訂 VQHR2Q</span></div><div class="nt">7/25(六) 17:30 · 成人4 兒童2 幼兒1。已先點 <b>特製阿古涮涮鍋 ×2 ＋ 最棒的阿古涮涮鍋 ×2（¥22,720）</b>。子家朋友介紹。</div></div>
-        <div class="item"><div class="time">19:10–19:30</div><div class="act">🎆 名護夏日祭典（名護漁港）<span class="tagi star">順路一瞥</span></div><div class="nt">餐後順路，時間有限就感受煙火／攤位氛圍。</div></div>
-        <div class="item"><div class="time">19:30–20:00</div><div class="act">🚗 名護漁港 → 本部住宿<span class="tagi car">山路夜路慢開</span></div></div>
+        <div class="item hi"><div class="time">08:02–09:34</div><div class="act">🤿 備瀨崎 浮潛玩水<span class="tagi star">臨場加碼</span></div><div class="nt">住宿出發 2.8km。停車費 <b>¥500</b>（備瀨區手寫收據，現金）。取代原規劃 Neo Park。</div></div>
+        <div class="item"><div class="time">09:46–13:27</div><div class="act">😴 回住宿：沖澡、午睡、午餐<span class="tagi star">1歲關鍵</span></div><div class="nt">吃 D1 全家採買存糧。</div></div>
+        <div class="item"><div class="time">13:27–13:57</div><div class="act">🚗 本部 → 名護鳳梨園<span class="tagi car">15km・30分</span></div></div>
+        <div class="item hi"><div class="time">13:57–16:47</div><div class="act">🍍 名護鳳梨園<span class="tagi star">待了近 3 小時</span></div><div class="nt">門票 KKDAY <b>NT$1,492</b>。園內咖啡廳 14:38 結帳 <b>¥3,800</b>（整顆鳳梨刨冰、鳳梨香檬飲、漂浮汽水 ×2）；離園前 16:21 賣店買鳳梨團扇 <b>¥400</b>（皆現金）。</div></div>
+        <div class="item"><div class="time">16:47–17:07</div><div class="act">📚 漫畫倉庫 名護店 快閃<span class="tagi car">700m</span></div><div class="nt">鳳梨園旁順路一逛（未消費）。</div></div>
+        <div class="item meal hi"><div class="time">17:13–19:47</div><div class="act">🐖 百年古家「大家」阿古豬晚餐<span class="tagi star">✅ 訂位 17:30・刷卡 ¥25,120</span></div><div class="nt">特選阿古涮涮鍋 ×2＋極上阿古涮涮鍋 ×2＋阿古苦瓜炒什錦＋白飯 ×5（12 點）。19:19 刷 VISA <b>¥25,120</b>（台幣入帳 NT$4,969，匯率 5.055）。百年古民家庭園座位，值回票價。</div></div>
+        <div class="item"><div class="time">19:49–20:01</div><div class="act">🏪 全家 名護東江五丁目店<span class="tagi car">7.9km</span></div></div>
+        <div class="item"><div class="time">20:03–21:47</div><div class="act">🛍️ 名護採買夜：San-A 東江（DAISO）→ AEON 名護（Mister Donut）→ 再回 San-A<span class="tagi star">臨場加碼</span></div><div class="nt">百元商店掃貨＋甜甜圈宵夜（現金小額，未留收據）。取代原規劃的名護夏日祭典。</div></div>
+        <div class="item"><div class="time">21:47–22:18</div><div class="act">🚗 名護 → 本部住宿<span class="tagi car">21km・31分</span></div><div class="nt">山路夜路慢開，如規劃。</div></div>
       </div>
       <!-- JUNGLIA facility guide relocated to 景點候選池 (spots section) -->
     </div>
@@ -559,24 +576,24 @@
     <summary>
       <div class="dnum"><small>DAY</small>4</div>
       <div class="dhead">
-        <div class="dt">7/26（日）· 南下進城</div>
-        <div class="dtitle">沖繩世界玉泉洞 → ASHIBINAA Outlet → 國際通</div>
+        <div class="dt">7/26（日）· 南下進城 ✅ 實走</div>
+        <div class="dtitle">沖繩世界玉泉洞 → 山羊料理 → 那霸入住 → DMM水族館・iias 豐崎 → 深夜國際通</div>
       </div>
       <div class="chev">▾</div>
     </summary>
     <div class="day-body">
-      <div class="note-box info" style="margin:0 0 12px;">🌋 <b>沖繩世界（玉泉洞）09:00–17:30</b>，招牌 EISA 太鼓秀、鐘乳石玉泉洞、毒蛇博物公園、南島洞窟探險。<br>🛍️ <b>ASHIBINAA Outlet（豐見城）</b>室內外混合可吹冷氣避暑，順道解決晚餐；週日下午往那霸車多，抓好時間。<br>🦷 <b>購物任務｜子家＋玉青買牙膏：</b>クリーンデンタル 薬用 <b>美白ケア 100g</b>（第一三共ヘルスケア，粉紅盒）。國際通唐吉訶德 24 小時營業，晚上散步順手買；沒找到可退一步找 100g 的其他 クリーンデンタル 系列。價格現場為準（唐吉訶德實拍約 ¥1,300 上下、浮動）。</div>
+      <div class="note-box tip" style="margin:0 0 12px;">✅ <b>實際走法回顧：</b>上午一口氣開 91km 直達<b>沖繩世界玉泉洞</b>（門票 KKDAY NT$1,868），午餐在園區 CHURA島＋加碼<b>仲地山羊料理店</b>；<b>ASHIBINAA Outlet 未去</b>，先進 Paradise inn 歇息，傍晚改衝 AEON 那霸與 <b>iias 豐崎（DMM 水族館＋UNIQLO）</b>，晚上 10 點再出門吃<b>暖暮拉麵</b>、逛<b>唐吉訶德到半夜</b>——牙膏購物任務如規劃在深夜唐吉訶德達成。全天 139km，最操的一天。</div>
       <div class="tl">
-        <div class="item"><div class="time">08:00–08:45</div><div class="act">🧳 退房、行李上車</div><div class="nt">前晚先收好大件行李。</div></div>
-        <div class="item"><div class="time">08:45–10:30</div><div class="act">🚗 本部 → 沖繩世界<span class="tagi car">約1小時40分</span></div><div class="nt">中途買早餐（MOKULELE 塔可飯）、便利商店上廁所。</div></div>
-        <div class="item hi"><div class="time">10:30–12:30</div><div class="act">🌋 沖繩世界（玉泉洞）<span class="tagi star">EISA 太鼓秀</span></div><div class="nt">鐘乳石玉泉洞、太鼓秀、毒蛇博物公園、南島洞窟探險。營業 09:00–17:30。</div></div>
-        <div class="item meal"><div class="time">12:30–13:30</div><div class="act">🍱 午餐<span class="tagi eat">園內 / 附近</span></div></div>
-        <div class="item"><div class="time">13:30–14:00</div><div class="act">🚗 沖繩世界 → ASHIBINAA Outlet<span class="tagi car">30分</span></div></div>
-        <div class="item meal hi"><div class="time">14:00–18:00</div><div class="act">🛍️ ASHIBINAA Outlet（含晚餐）<span class="tagi eat">避暑逛街</span></div><div class="nt">豐見城 outlet，室內外混合可吹冷氣。週日下午車多。</div></div>
-        <div class="item"><div class="time">18:00–18:30</div><div class="act">🚗 ASHIBINAA → 那霸住宿<span class="tagi car">30分</span></div></div>
-        <div class="item"><div class="time">18:45–20:00</div><div class="act">🛁 入住、休息、洗澡<span class="tagi star">讓小孩回血</span></div></div>
-        <div class="item hi"><div class="time">20:00–20:40</div><div class="act">🦷 子家＋玉青 → 唐吉訶德／藥妝買牙膏<span class="tagi star">🛍️ 購物任務</span></div><div class="nt">目標 <b>クリーンデンタル 美白ケア 100g</b>（第一三共，粉紅盒）。國際通唐吉訶德 24h；子誠家可同時陪小孩逛或先在附近甜點區等。</div></div>
-        <div class="item hi"><div class="time">20:40–22:00</div><div class="act">🌃 全家 國際通 / 牧志公設市場 / 壺屋通 散步</div><div class="nt">市區散步即可，不再加開車景點。晚餐若已在 outlet 解決，這裡以逛街＋甜點為主。</div></div>
+        <div class="item"><div class="time">09:00–10:26</div><div class="act">🚗 本部 → 沖繩世界<span class="tagi car">91km・1小時26分</span></div><div class="nt">前晚已收行李，9:00 準時退房出發。</div></div>
+        <div class="item hi"><div class="time">10:26–14:23</div><div class="act">🌋 沖繩世界（玉泉洞）<span class="tagi star">待了近 4 小時</span></div><div class="nt">門票 KKDAY <b>NT$1,868</b>。鐘乳石玉泉洞、EISA 太鼓秀、王國村；午餐在園區餐廳 CHURA島。</div></div>
+        <div class="item meal"><div class="time">14:42–15:41</div><div class="act">🐐 仲地山羊料理店<span class="tagi eat">臨場加碼</span></div><div class="nt">八重瀨町老店，山羊湯初體驗（現金，未留收據）。</div></div>
+        <div class="item"><div class="time">15:41–16:28</div><div class="act">🚗 南部 → 那霸 Paradise inn<span class="tagi car">18km・47分</span></div></div>
+        <div class="item"><div class="time">16:28–18:03</div><div class="act">🏨 入住 Paradise inn 牧志、休息<span class="tagi star">讓小孩回血・如規劃</span></div></div>
+        <div class="item"><div class="time">18:50–19:05</div><div class="act">🛒 AEON 那霸店（金城）快閃<span class="tagi car">8.7km</span></div></div>
+        <div class="item hi"><div class="time">19:22–21:11</div><div class="act">🐠 iias 豐崎：DMM Kariyushi 水族館＋UNIQLO<span class="tagi star">取代 ASHIBINAA</span></div><div class="nt">UNIQLO イーアス沖繩豐崎店 20:46 結帳 <b>¥5,428</b>（Ultra Stretch 短褲 ×3，免稅 −¥542，現金）——D1 沒逛到的這裡補上。</div></div>
+        <div class="item"><div class="time">21:11–21:40</div><div class="act">🚗 回 Paradise inn<span class="tagi car">9.8km・29分</span></div></div>
+        <div class="item meal"><div class="time">22:12–23:07</div><div class="act">🍜 暖暮拉麵 那霸牧志店<span class="tagi eat">宵夜場</span></div><div class="nt">飯店步行可達（現金，未留收據）。</div></div>
+        <div class="item hi"><div class="time">23:19–00:16</div><div class="act">🦷 唐吉訶德 國際通店 逛到半夜<span class="tagi star">🛍️ 購物任務達成</span></div><div class="nt">クリーンデンタル 牙膏＋伴手禮。24 小時營業果然是深夜親子的救贖。</div></div>
       </div>
     </div>
   </details>
@@ -586,25 +603,83 @@
     <summary>
       <div class="dnum"><small>DAY</small>5</div>
       <div class="dhead">
-        <div class="dt">7/27（一）· 賦歸</div>
-        <div class="dtitle">那霸早午餐 → 還車 → 機場</div>
+        <div class="dt">7/27（一）· 賦歸 ✅ 實走</div>
+        <div class="dtitle">SPLASH 伴手禮 → 加油還車 → iias 豐崎最後採買 → 機場</div>
       </div>
       <div class="chev">▾</div>
     </summary>
     <div class="day-body">
-      <div class="note-box warn" style="margin:0 0 12px;">⏰ <b>亭宇子誠家 14:00 航班（IT289）較緊</b>，午餐機場解決。OTS Toyosaki 還車選 12:00 時段；接駁到機場約 15–25 分，建議 12:30 前到機場。<b>還車前先加滿油。</b></div>
+      <div class="note-box tip" style="margin:0 0 12px;">✅ <b>實際走法回顧：</b>前晚唐吉訶德逛到 00:16，早上睡到近 10 點才退房。途中 <b>SPLASH OKINAWA</b> 買伴手禮、<b>若狹加油站</b>加滿油，11:16 準時還車（原定 11:30）；還車後步行到 iias 豐崎——<b>AEON Style 買午餐、UNIQLO 免稅大採購 ¥12,682</b>——15:13 搭 OTS 接駁進機場，LAWSON 買登機口輕食，16:45 起飛回桃園。亭宇子誠家 IT289 14:00 班機則提早於機場分手。</div>
       <div class="tl">
-        <div class="item meal"><div class="time">08:00–09:30</div><div class="act">🍳 那霸早午餐<span class="tagi eat">Furinkazan / 泊港漁市場</span></div></div>
-        <div class="item"><div class="time">09:30–10:30</div><div class="act">💊 國際通 / 藥妝 / 伴手禮短逛<span class="tagi star">牙膏補買備案</span></div><div class="nt">主要伴手禮＋<b>昨晚沒買到的 クリーンデンタル 美白ケア 100g 在此補買</b>。注意不要買到太趕。</div></div>
-        <div class="item"><div class="time">10:30–11:15</div><div class="act">🚗 飯店取行李、退房、前往 OTS<span class="tagi car">20–40分・先加滿油</span></div></div>
-        <div class="item"><div class="time">11:15–12:00</div><div class="act">🔑 OTS 還車</div></div>
-        <div class="item"><div class="time">12:00–12:30</div><div class="act">🚐 OTS 接駁到那霸機場<span class="tagi car">15–25分</span></div></div>
-        <div class="item hi"><div class="time">14:00–14:55</div><div class="act">✈️ 亭宇子誠家 那霸 → 高雄<span class="tagi star">虎航 IT289</span></div></div>
-        <div class="item"><div class="time">14:00 後</div><div class="act">🍔 子家玉青家 機場午餐<span class="tagi eat">A&amp;W 備案</span></div><div class="nt">A&amp;W 那霸機場店 06:30–20:00。15:30 前報到。</div></div>
-        <div class="item hi"><div class="time">16:45–17:20</div><div class="act">✈️ 子家玉青家 那霸 → 桃園</div></div>
+        <div class="item"><div class="time">09:56</div><div class="act">🏨 Paradise inn 退房出發<span class="tagi car">市區順路採買</span></div></div>
+        <div class="item"><div class="time">10:24</div><div class="act">🎁 SPLASH OKINAWA 3號店（久茂地）<span class="tagi eat">收據 ¥2,420</span></div><div class="nt">チムドン Miracle Cup ×2（現金）。</div></div>
+        <div class="item"><div class="time">10:42</div><div class="act">⛽ 有村商事 若狹SS 加滿油<span class="tagi star">還車前必辦</span></div><div class="nt">Regular 30.59L @¥145 ＝ <b>¥4,880</b>（現金）。4 天跑約 350km。</div></div>
+        <div class="item hi"><div class="time">11:16–11:44</div><div class="act">🔑 OTS 臨空豐崎 還車<span class="tagi star">比預定 11:30 提早</span></div><div class="nt">確定料金與預定同額 ¥90,340，無追加。</div></div>
+        <div class="item"><div class="time">11:52–15:13</div><div class="act">🛍️ 步行 iias 豐崎：午餐＋最後採買<span class="tagi star">3 小時緩衝</span></div><div class="nt">AEON Style 豐崎 12:13 結帳 <b>¥1,311</b>（宮平牛乳、運動飲料、黑巧克力、鹽昆布、桃子）；UNIQLO 14:09 刷卡 <b>¥12,682</b>（長褲、防曬外套、DRY-EX T 恤等 5 件，免稅 −¥1,268，VISA/MC）。</div></div>
+        <div class="item"><div class="time">14:00–14:55</div><div class="act">✈️ 亭宇子誠家 那霸 → 高雄<span class="tagi star">虎航 IT289</span></div></div>
+        <div class="item"><div class="time">15:13–15:44</div><div class="act">🚐 OTS 接駁 → 那霸機場<span class="tagi car">5.4km・31分</span></div></div>
+        <div class="item meal"><div class="time">16:04</div><div class="act">🏪 LAWSON 國內線登機口前店<span class="tagi eat">收據 ¥859</span></div><div class="nt">綜合三明治、炭烤沙拉雞、炸雞（現金）——登機前墊肚子。</div></div>
+        <div class="item hi"><div class="time">16:45–17:20</div><div class="act">✈️ 子家玉青家 那霸 → 桃園<span class="tagi star">飛行 1 小時 29 分</span></div></div>
       </div>
     </div>
   </details>
+
+  <!-- ===================== RECONCILE 收據對帳 ===================== -->
+  <h2 class="sec" id="reconcile"><span class="em">🧾</span>收據對帳</h2>
+  <p class="sec-sub">依 17 張憑證去重後 15 筆＋KKDAY 門票 3 筆。日幣現金與刷卡分列；台幣入帳以信用卡帳單驗證（隱含匯率 5.0–5.08 為正常區間，含約 1.5% 海外手續費）。已隱去姓名與完整卡號。</p>
+
+  <div class="pillrow">
+    <div class="pill-card" style="border-top-color:var(--sand);">
+      <div class="pk">💳 日幣刷卡（3 筆）</div>
+      <div class="pv">¥128,142</div>
+      <div class="ps">租車 90,340＋大家 25,120＋UNIQLO 12,682</div>
+    </div>
+    <div class="pill-card" style="border-top-color:var(--leaf);">
+      <div class="pk">💴 日幣現金（12 筆）</div>
+      <div class="pv">¥38,045</div>
+      <div class="ps">餐食・超商・伴手禮・油資・停車</div>
+    </div>
+    <div class="pill-card" style="border-top-color:#7C3AED;">
+      <div class="pk">🎫 台幣直刷 KKDAY 門票（3 筆）</div>
+      <div class="pv">NT$5,374</div>
+      <div class="ps">美麗海 2,014・鳳梨園 1,492・玉泉洞 1,868</div>
+    </div>
+  </div>
+
+  <div class="rc-wrap">
+    <table class="rc">
+      <thead><tr><th>時間</th><th>店家（地點）</th><th>內容</th><th>金額</th><th>付款</th></tr></thead>
+      <tbody>
+        <tr class="card-row"><td>7/23 14:00</td><td>OTS レンタカー 臨空豐崎</td><td>Serena e-POWER 租車 4 日＋保險＋兒童座椅＋ETC</td><td class="amt">¥90,340</td><td><span class="paytag card">刷卡 Edy</span></td></tr>
+        <tr><td>7/23 19:01</td><td>やんそーれ（伊芸SA 下行）</td><td>田芋起司蛋糕、島辣椒 BabyStar、雞皮仙貝</td><td class="amt">¥2,494</td><td><span class="paytag cash">現金</span></td></tr>
+        <tr><td>7/23 21:29</td><td>海人料理 海邦丸（本部山川）</td><td>鮭魚卵丼、沖繩御膳、苦瓜炒什錦</td><td class="amt">¥5,630</td><td><span class="paytag cash">現金</span></td></tr>
+        <tr><td>7/23 23:14</td><td>全家 もとぶ山川店</td><td>早餐宵夜大採買約 30 項</td><td class="amt">¥7,123</td><td><span class="paytag cash">現金</span></td></tr>
+        <tr><td>7/23（入帳）</td><td>KKDAY（台灣）</td><td>美麗海水族館門票（7/24 使用）</td><td class="amt">NT$2,014</td><td><span class="paytag twd">台幣直刷</span></td></tr>
+        <tr><td>7/24 13:49</td><td>島豚家（本部豐原）</td><td>炙燒島豚沖繩麵 ×2、漬物、半熟蛋</td><td class="amt">¥3,200</td><td><span class="paytag cash">現金</span></td></tr>
+        <tr><td>7/25 上午</td><td>備瀨區停車場（備瀨崎）</td><td>浮潛停車費・手寫收據</td><td class="amt">¥500</td><td><span class="paytag cash">現金</span></td></tr>
+        <tr><td>7/25（入帳）</td><td>KKDAY（台灣）</td><td>名護鳳梨園門票</td><td class="amt">NT$1,492</td><td><span class="paytag twd">台幣直刷</span></td></tr>
+        <tr><td>7/25 14:38</td><td>名護鳳梨園 咖啡廳</td><td>整顆鳳梨刨冰、鳳梨香檬飲、漂浮汽水 ×2</td><td class="amt">¥3,800</td><td><span class="paytag cash">現金</span></td></tr>
+        <tr><td>7/25 16:21</td><td>名護鳳梨園 賣店</td><td>鳳梨迷你團扇</td><td class="amt">¥400</td><td><span class="paytag cash">現金</span></td></tr>
+        <tr class="card-row"><td>7/25 19:19</td><td>百年古家 大家（名護中山）</td><td>阿古豬涮涮鍋套餐 ×4、苦瓜炒什錦、白飯 ×5</td><td class="amt">¥25,120</td><td><span class="paytag card">VISA</span></td></tr>
+        <tr><td>7/26（入帳）</td><td>KKDAY（台灣）</td><td>沖繩世界（玉泉洞）門票</td><td class="amt">NT$1,868</td><td><span class="paytag twd">台幣直刷</span></td></tr>
+        <tr><td>7/26 20:46</td><td>UNIQLO イーアス沖繩豐崎</td><td>Ultra Stretch 短褲 ×3（免稅 −¥542）</td><td class="amt">¥5,428</td><td><span class="paytag cash">現金</span></td></tr>
+        <tr><td>7/27 10:24</td><td>SPLASH OKINAWA 3号店（久茂地）</td><td>チムドン Miracle Cup ×2</td><td class="amt">¥2,420</td><td><span class="paytag cash">現金</span></td></tr>
+        <tr><td>7/27 10:42</td><td>有村商事 若狹SS（加油站）</td><td>Regular 30.59L @¥145（還車前加滿）</td><td class="amt">¥4,880</td><td><span class="paytag cash">現金</span></td></tr>
+        <tr><td>7/27 12:13</td><td>AEON STYLE 豐崎</td><td>宮平牛乳、運動飲料、黑巧克力、鹽昆布、桃子</td><td class="amt">¥1,311</td><td><span class="paytag cash">現金</span></td></tr>
+        <tr class="card-row"><td>7/27 14:09</td><td>UNIQLO イーアス沖繩豐崎</td><td>長褲、UV 外套、DRY-EX T 恤等 5 件（免稅 −¥1,268）</td><td class="amt">¥12,682</td><td><span class="paytag card">VISA/MC</span></td></tr>
+        <tr><td>7/27 16:04</td><td>LAWSON 那霸機場國內線登機口前</td><td>綜合三明治、沙拉雞、炸雞</td><td class="amt">¥859</td><td><span class="paytag cash">現金</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note-box tip" style="margin-top:14px;">
+    ✅ <b>去重與配對：</b>百年古家的 CARDNET 簽單（¥25,120）與店家收據為同一筆已合併；名護鳳梨園入園券（Adult #344）本身無金額，對應 KKDAY 7/25 NT$1,492。<br>
+    ✅ <b>匯率驗證：</b>百年古家 ¥25,120 → 台幣入帳 <b>NT$4,969</b>，隱含匯率 <b>5.055</b>（正常區間 5.0–5.08 ✓）。KKDAY 三筆為台灣旅行社台幣直刷，無海外手續費。
+  </div>
+  <div class="note-box warn">
+    ⏳ <b>待入帳追蹤：</b>OTS 租車 <b>¥90,340</b>（預期約 NT$17,870±）與 UNIQLO 7/27 <b>¥12,682</b>（預期約 NT$2,510±）截至查核日尚未見於帳單截圖——出帳後可回填驗證匯率。<br>
+    📝 D2 San-A 谷茶、D3 名護採買夜（San-A／DAISO／Mister Donut）、D4 CHURA島午餐・山羊料理・暖暮拉麵・唐吉訶德為現金小額或未留收據，不列入上表總額。
+  </div>
 
   <!-- ===================== STAY ===================== -->
   <h2 class="sec" id="stay"><span class="em">🏨</span>住宿（已確認）</h2>
@@ -628,7 +703,7 @@
     </div>
   </div>
   <div class="note-box info" style="margin-top:12px;">
-    🗓️ <b>住宿時序：</b>7/23 入住 Suppai Resort（本部基地，連住 3 晚跑美麗海＋海洋博、Neo Park＋名護鳳梨園）→ 7/26 沖繩世界玉泉洞＋ASHIBINAA Outlet 後南下，退房改入 Paradise inn 牧志（國際通旁）→ 7/27 退房還車賦歸。
+    🗓️ <b>住宿時序（實際）：</b>7/23 入住 Suppai Resort（本部山川，連住 3 晚：D2 美麗海＋備瀨夕陽、D3 備瀨崎浮潛＋鳳梨園＋大家）→ 7/26 玉泉洞後南下改入 Paradise inn 牧志（國際通旁，深夜逛街超方便）→ 7/27 退房還車賦歸。
   </div>
 
   <!-- ===================== MEALS ===================== -->
@@ -723,8 +798,8 @@
   </div>
 
   <footer>
-    🐢 沖繩家庭遊 · 資料整理自家庭共用試算表 · 行程時間為沖繩當地時間<br>
-    Made with ❤️ · <a href="https://github.com/tzchia/travel">GitHub</a> · 依家庭共用試算表精修 · 最後更新 2026/07/07
+    🐢 沖繩家庭遊 · 行後實錄：依 17 張收據憑證＋信用卡帳單＋Google Maps 時間軸重建 · 時間為沖繩當地時間<br>
+    Made with ❤️ · <a href="https://github.com/tzchia/travel">GitHub</a> · 最後更新 2026/07/29
   </footer>
 
 </div>
@@ -746,26 +821,33 @@
 
   var SEA = '#0891B2', SAND = '#F59E0B', CORAL = '#FB7185', PUR = '#7C3AED';
 
-  // attractions
-  pin(26.6943, 127.8779, '🐢 美麗海水族館', SEA);
-  pin(26.6912, 127.8779, '🐬 海洋博公園', SEA);
-  pin(26.7060, 127.8800, '🌅 備瀨福木林道', SEA);
-  pin(26.5885, 127.9846, '🦅 Neo Park 名護', SEA);
-  pin(26.6135, 127.9490, '🍍 名護鳳梨園', SEA);
-  pin(26.6080, 127.9760, '🐖 百年古家 大家', SAND);
-  pin(26.1410, 127.7470, '🌋 沖繩World 玉泉洞', SEA);
-  pin(26.1706, 127.6558, '🛍️ ASHIBINAA Outlet', SEA);
+  // 實際去過的點（依收據與 Timeline）
+  pin(26.6943, 127.8779, '🐢 美麗海水族館 D2', SEA);
+  pin(26.7121, 127.8767, '🤿 備瀨崎浮潛 D3', SEA);
+  pin(26.7060, 127.8800, '🌅 備瀨福木林道 D2', SEA);
+  pin(26.6883, 127.8916, '🐖 島豚家 D2', SAND);
+  pin(26.6822, 127.8836, '🐟 海邦丸 D1', SAND);
+  pin(26.6135, 127.9490, '🍍 名護鳳梨園 D3', SEA);
+  pin(26.6080, 127.9760, '🐖 百年古家 大家 D3', SAND);
+  pin(26.6098, 127.9847, '🛍️ 名護採買夜 D3', CORAL);
+  pin(26.4588, 127.8801, '🍘 伊芸SA D1', PUR);
+  pin(26.1404, 127.7495, '🌋 沖繩World 玉泉洞 D4', SEA);
+  pin(26.1126, 127.7283, '🐐 仲地山羊料理 D4', SAND);
+  pin(26.1563, 127.6507, '🐠 DMM水族館・iias 豐崎 D4/D5', SEA);
   // bases
-  pin(26.6600, 127.8800, '🏨 本部住宿基地', SAND);
+  pin(26.6600, 127.8800, '🏨 Suppai Resort（本部×3晚）', SAND);
+  pin(26.2172, 127.6851, '🏨 Paradise inn 牧志（×1晚）', SAND);
   // naha city
-  pin(26.2140, 127.6870, '🛍️ 國際通／牧志', CORAL);
-  pin(26.1620, 127.6530, '🏬 iias 豐崎／OTS', PUR);
+  pin(26.2151, 127.6840, '🦷 唐吉訶德・暖暮 D4深夜', CORAL);
+  pin(26.2156, 127.6825, '🎁 SPLASH 久茂地 D5', CORAL);
+  pin(26.1589, 127.6544, '🔑 OTS 臨空豐崎', PUR);
   pin(26.1958, 127.6463, '🛫 那霸機場', PUR);
 
-  // route line: airport -> iias -> motobu base -> nago(neo park/pineapple) -> gyokusendo -> ashibinaa -> naha
+  // 實際路線：機場→OTS→伊芸SA→本部(3晚)→名護(鳳梨園/大家)→玉泉洞→那霸→豐崎→機場
   var route = [
-    [26.1958,127.6463],[26.1620,127.6530],[26.6600,127.8800],
-    [26.6135,127.9490],[26.1410,127.7470],[26.1706,127.6558],[26.2140,127.6870]
+    [26.1958,127.6463],[26.1589,127.6544],[26.4588,127.8801],[26.6600,127.8800],
+    [26.6135,127.9490],[26.6080,127.9760],[26.1404,127.7495],[26.2172,127.6851],
+    [26.1563,127.6507],[26.1958,127.6463]
   ];
   L.polyline(route, { color:'#0E7490', weight:3, opacity:0.55, dashArray:'2 9' }).addTo(map);
 </script>
