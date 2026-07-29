@@ -94,8 +94,6 @@
   .sec-sub { color: var(--muted); font-size: 0.9em; margin: 0 0 18px; padding-left: 2px; }
 
   /* ===== SVG island map ===== */
-  .island-card { background: var(--paper); border-radius: 18px; padding: 8px; box-shadow: 0 4px 16px rgba(15,23,42,0.06); margin-bottom: 12px; }
-  .island-card svg { width: 100%; height: auto; display:block; border-radius: 12px; }
 
   /* ===== Leaflet ===== */
   #map { height: 440px; border-radius: 18px; box-shadow: 0 4px 16px rgba(15,23,42,0.08); z-index: 1; }
@@ -330,7 +328,7 @@
   <div class="navbar" id="navbar">
     <div class="progressbar"><i id="progressFill"></i></div>
     <div class="toc" id="toc">
-      <a href="#members">成員航班</a><a href="#routemap">路線圖</a><a href="#mapview">互動地圖</a><a href="#cost">費用</a><a href="#days">每日行程</a><a href="#reconcile">收據對帳</a><a href="#stay">住宿</a><a href="#food">餐廳</a><a href="#spots">景點池</a><a href="#sources">來源</a>
+      <a href="#members">成員航班</a><a href="#mapview">互動地圖</a><a href="#cost">費用</a><a href="#days">每日行程</a><a href="#reconcile">收據對帳</a><a href="#stay">住宿</a><a href="#food">餐廳</a><a href="#spots">景點池</a><a href="#sources">來源</a>
     </div>
   </div>
 
@@ -338,7 +336,6 @@
     <div class="sd-head">本頁導覽</div>
     <div class="sd-prog"><i id="sideFill"></i></div>
     <a href="#members"><span class="sd-dot"></span>成員 &amp; 航班</a>
-    <a href="#routemap"><span class="sd-dot"></span>路線示意圖</a>
     <a href="#mapview"><span class="sd-dot"></span>互動地圖</a>
     <a href="#cost"><span class="sd-dot"></span>費用總覽</a>
     <a href="#days"><span class="sd-dot"></span>每日行程</a>
@@ -393,61 +390,6 @@
     </div>
   </div>
 
-  <!-- ===================== ISLAND MAP (SVG) ===================== -->
-  <h2 class="sec" id="routemap"><span class="em">🗺️</span>路線示意圖</h2>
-  <p class="sec-sub">沖繩本島南北狹長，本趟「先衝北部 → 中部過渡 → 南部那霸收尾」一筆畫不走回頭路。</p>
-  <div class="island-card">
-    <svg viewBox="0 0 760 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="沖繩本島行程示意圖">
-      <defs>
-        <linearGradient id="seaG" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#CFF6FB"/><stop offset="1" stop-color="#A5E9F2"/>
-        </linearGradient>
-        <linearGradient id="landG" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#BBF0CF"/><stop offset="1" stop-color="#9FE3B8"/>
-        </linearGradient>
-        <marker id="arrow" markerWidth="10" markerHeight="10" refX="7" refY="3.2" orient="auto">
-          <path d="M0,0 L8,3.2 L0,6.4 Z" fill="#0E7490"/>
-        </marker>
-      </defs>
-      <rect width="760" height="420" fill="url(#seaG)"/>
-      <!-- stylized Okinawa main island (NE-SW diagonal) -->
-      <path d="M560,40 C600,60 610,95 588,120 C566,145 540,150 520,168
-               C500,186 492,205 470,220 C448,235 420,236 396,250
-               C372,264 356,286 330,300 C300,316 272,318 246,330
-               C214,344 196,372 168,372 C150,372 150,352 168,338
-               C196,316 214,312 236,298 C262,282 276,260 300,246
-               C326,231 352,232 376,218 C398,205 408,186 430,170
-               C452,154 480,152 502,134 C522,118 528,96 540,78
-               C548,64 548,46 560,40 Z" fill="url(#landG)" stroke="#6EE7B7" stroke-width="2"/>
-      <!-- route line -->
-      <path d="M170,358 L200,340 L420,225 L540,150 L560,120"
-            fill="none" stroke="#0E7490" stroke-width="3.5" stroke-dasharray="2 9"
-            stroke-linecap="round" marker-end="url(#arrow)" opacity="0.85"/>
-      <!-- region labels -->
-      <text x="600" y="92" font-size="15" font-weight="800" fill="#0E7490">北部</text>
-      <text x="600" y="110" font-size="10" fill="#0E7490">本部・美麗海・名護</text>
-      <text x="408" y="200" font-size="15" font-weight="800" fill="#B45309">中部</text>
-      <text x="408" y="216" font-size="10" fill="#B45309">南下過境</text>
-      <text x="120" y="330" font-size="15" font-weight="800" fill="#7C3AED">南部</text>
-      <text x="120" y="346" font-size="10" fill="#7C3AED">那霸・玉泉洞・國際通</text>
-      <!-- pins -->
-      <g font-size="20">
-        <text x="540" y="128" text-anchor="middle">🐢</text>
-        <text x="560" y="108" text-anchor="middle">🦅</text>
-        <text x="430" y="232" text-anchor="middle">🍍</text>
-        <text x="200" y="345" text-anchor="middle">🛫</text>
-        <text x="232" y="320" text-anchor="middle">🌋</text>
-      </g>
-      <!-- start/end badges -->
-      <g font-size="11" font-weight="700">
-        <rect x="150" y="372" width="118" height="22" rx="11" fill="#7C3AED"/>
-        <text x="209" y="387" text-anchor="middle" fill="#fff">START / END 那霸</text>
-        <rect x="500" y="22" width="150" height="22" rx="11" fill="#0E7490"/>
-        <text x="575" y="37" text-anchor="middle" fill="#fff">D1–D3 本部基地</text>
-      </g>
-    </svg>
-  </div>
-  <p class="sec-sub" style="margin-top:4px;">🐢 美麗海／備瀨崎（D2–D3）　🍍 名護鳳梨園・大家（D3）　🌋 沖繩世界玉泉洞（D4）　🛍️ 國際通・iias 豐崎（D4–D5）　🛫 那霸機場（起訖）</p>
 
   <!-- ===================== LEAFLET MAP ===================== -->
   <h2 class="sec" id="mapview"><span class="em">📍</span>互動地圖（實際足跡）</h2>
