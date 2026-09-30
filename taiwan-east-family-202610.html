@@ -25,9 +25,6 @@ h1{margin:.25rem 0 .55rem;font-size:clamp(1.8rem,5vw,3rem);line-height:1.18}
 .hero p{margin:.4rem 0;max-width:760px;color:#edf5ef}
 .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 .badge{padding:6px 10px;border:1px solid rgba(255,255,255,.3);border-radius:999px;background:rgba(255,255,255,.11);font-size:.9rem}
-nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);overflow-x:auto;white-space:nowrap}
-nav .wrap{max-width:980px;margin:auto;padding:9px 14px;display:flex;gap:8px}
-nav a{display:inline-block;padding:7px 11px;border-radius:999px;color:#365443;background:#f3f7f4;font-size:.9rem}
 main{max-width:980px;margin:auto;padding:22px 16px 54px}
 .summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}
 .metric{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
@@ -73,14 +70,34 @@ li{margin:.22rem 0}
   .hero{padding-top:30px}
 }
 @media print{
-  nav{display:none} body{background:white} .hero{background:white;color:#111;padding:10px 0;border-bottom:2px solid #333}
+  body{background:white} .hero{background:white;color:#111;padding:10px 0;border-bottom:2px solid #333}
   .hero p,.hero .kicker{color:#333} .badge{border:1px solid #aaa;background:white;color:#111}
   main{max-width:none;padding:10px} .day{box-shadow:none;break-inside:avoid} a{color:#111}
 }
 
-#progress-wrap{position:fixed;top:0;left:0;width:100%;height:4px;background:rgba(255,255,255,.18);z-index:30}
-#reading-progress{height:100%;width:0;background:linear-gradient(90deg,#7bc5a0,#2f6f54)}
-nav{top:4px}
+/* ===== 頁內導覽：捲動進度條 + TOC + 桌機側欄（移植自沖繩／福岡頁，改用山林綠） ===== */
+section[id]{scroll-margin-top:86px}
+.navbar{position:sticky;top:0;z-index:60;background:rgba(245,247,244,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);margin:0 0 18px;padding:9px 10px 6px;border-radius:16px;border:1px solid var(--line);box-shadow:0 6px 20px rgba(47,111,84,.10)}
+.progressbar{height:5px;background:#dbe8df;border-radius:999px;overflow:hidden;margin-bottom:9px}
+.progressbar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,#7bc5a0,#2f6f54);border-radius:999px;transition:width .08s linear}
+.toc{display:flex;gap:8px;flex-wrap:nowrap;overflow-x:auto;margin:0;padding:2px 2px 6px;scrollbar-width:thin;scroll-behavior:smooth}
+.toc::-webkit-scrollbar{height:6px}.toc::-webkit-scrollbar-thumb{background:#b9d3c3;border-radius:999px}
+.toc a{flex:0 0 auto;white-space:nowrap;border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 12px;color:#365443;font-weight:800;text-decoration:none;font-size:13.5px;transition:background .15s,color .15s,border-color .15s}
+.toc a:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+.toc a.active{background:#294f3b;color:#fff;border-color:#294f3b}
+.sidedock{position:fixed;right:16px;top:50%;transform:translateY(-50%);z-index:55;display:none;flex-direction:column;gap:2px;background:rgba(245,247,244,.95);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:16px;padding:12px 10px;box-shadow:0 12px 30px rgba(47,111,84,.18);max-height:88vh;overflow:auto;scrollbar-width:thin}
+.sidedock::-webkit-scrollbar{width:5px}.sidedock::-webkit-scrollbar-thumb{background:#b9d3c3;border-radius:999px}
+.sidedock .sd-head{font-size:11px;font-weight:900;color:var(--muted);letter-spacing:.08em;padding:0 8px 6px;text-transform:uppercase}
+.sidedock .sd-prog{height:4px;background:#dbe8df;border-radius:999px;overflow:hidden;margin:0 6px 8px}
+.sidedock .sd-prog>i{display:block;height:100%;width:0;background:linear-gradient(90deg,#7bc5a0,#2f6f54);border-radius:999px;transition:width .08s linear}
+.sidedock a{display:flex;align-items:center;gap:9px;padding:6px 10px;border-radius:10px;font-size:13px;font-weight:700;color:var(--muted);border:0;text-decoration:none;white-space:nowrap;transition:background .15s,color .15s}
+.sidedock a .sd-dot{width:9px;height:9px;border-radius:999px;background:#c5d8cc;flex:0 0 auto;transition:background .15s,box-shadow .15s}
+.sidedock a:hover{background:var(--accent2);color:var(--ink);text-decoration:none}
+.sidedock a:hover .sd-dot{background:var(--accent)}
+.sidedock a.active{background:#294f3b;color:#fff}
+.sidedock a.active .sd-dot{background:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.28)}
+@media (min-width:1280px){.sidedock{display:flex}.navbar{display:none}}
+@media print{.navbar,.sidedock{display:none}}
 .section-title{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin:0 0 10px}
 .section-title h2{margin:0}
 .subtle{color:var(--muted);font-size:.92rem}
@@ -120,10 +137,50 @@ nav{top:4px}
   .overview-notes{grid-template-columns:1fr}
 }
 
+/* ===== 景點照片（本地 assets，CC 授權，見「來源與授權」） ===== */
+.hero-photo{margin:0 0 18px;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#eef3ef;box-shadow:0 4px 16px rgba(34,55,42,.06)}
+.hero-photo img{display:block;width:100%;height:clamp(220px,38vw,420px);object-fit:cover}
+.hero-photo figcaption{padding:10px 14px;font-size:.9rem;background:#fff}
+.photo-card img{height:190px}
+.photo-card figcaption{line-height:1.5}
+.credit a{color:var(--muted);text-decoration:underline dotted}
+.photo-strip{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(240px,1fr);gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 18px 16px;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+.photo-strip::-webkit-scrollbar{height:6px}.photo-strip::-webkit-scrollbar-thumb{background:#b9d3c3;border-radius:999px}
+.photo-strip .photo-card{scroll-snap-align:start;margin:0}
+.photo-strip .photo-card img{height:170px}
+.strip-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:14px 18px 6px}
+.strip-head h3{margin:0;font-size:1rem}
+.strip-head .subtle{font-size:.84rem}
+@media (min-width:901px){.day-media{grid-template-columns:1.25fr .75fr}}
+.section-title{flex-wrap:wrap}
+.section-title h2{white-space:nowrap}
+.route-stat{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.route-stat span{font-size:.8rem;color:var(--muted);background:#f6faf7;border:1px solid var(--line);border-radius:999px;padding:3px 9px}
+.leaflet-tooltip.wp-label{background:rgba(255,255,255,.95);border:1.5px solid #2f6f54;border-radius:8px;font-weight:800;color:#243127;font-size:11.5px;padding:1px 6px;box-shadow:0 2px 6px rgba(0,0,0,.12)}
+.credits{font-size:.84rem;color:var(--muted);columns:2;column-gap:24px}
+.credits li{break-inside:avoid;margin:.3rem 0}
+@media (max-width:900px){.credits{columns:1}.photo-strip{grid-auto-columns:minmax(220px,70%)}}
+@media (max-width:720px){.photo-strip{padding-left:13px;padding-right:13px;grid-auto-columns:minmax(200px,82%)}.strip-head{display:block;padding-left:13px;padding-right:13px}.strip-head .subtle{margin-top:4px}.hero-photo img{height:220px}}
+@media print{.photo-strip{display:grid;grid-auto-flow:row;grid-template-columns:1fr 1fr;overflow:visible}}
+/* ===== D3 陶錫工藝專區 ===== */
+#taoxi{scroll-margin-top:86px}
+.craft{padding:4px 18px 10px;border-bottom:1px solid #edf1ee;background:#fff}
+.craft-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0}
+.craft .info-panel{height:100%}
+.craft-status{background:#fff7e7;border-color:#eadfca}
+.craft-status .status{display:inline-block;padding:4px 10px;border-radius:999px;background:#d59a3a;color:#fff;font-weight:800;font-size:.86rem;margin:2px 0 8px}
+.craft-table{margin:6px 0 4px;font-size:.88rem}
+.craft-table td:nth-child(2),.craft-table td:nth-child(3){white-space:nowrap}
+.craft-table .fit{font-weight:800;color:#2f6f54}
+.craft-table .fit.lo{color:#b5530a}
+.craft .quick-links a{background:#fff}
+.craft .source{margin-top:8px}
+@media (max-width:900px){.craft-grid{grid-template-columns:1fr}}
+@media (max-width:720px){.craft{padding-left:13px;padding-right:13px}.craft-table{font-size:.82rem}.craft-table td,.craft-table th{padding:7px 8px}}
+@media print{.craft-grid{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
-<div id="progress-wrap"><div id="reading-progress"></div></div>
 <header class="hero">
   <div class="wrap">
     <div class="kicker">兩大一小（1.5 歲）｜自駕｜2026</div>
@@ -138,13 +195,33 @@ nav{top:4px}
   </div>
 </header>
 
-<nav><div class="wrap">
-  <a href="#overview">總覽</a><a href="#highlights">圖片精選</a><a href="#tripmap">總路線圖</a><a href="#d1">D1</a><a href="#d2">D2</a><a href="#d3">D3</a>
-  <a href="#d4">D4</a><a href="#d5">D5</a><a href="#d6">D6</a><a href="#d7">D7</a>
-  <a href="#stay">住宿區域</a><a href="#checklist">注意事項</a>
-</div></nav>
-
 <main>
+<!-- ===== 頁內導覽（手機/平板：頂端 sticky 橫條；桌機寬螢幕：右側懸浮） ===== -->
+<div class="navbar" id="navbar">
+  <div class="progressbar"><i id="progressFill"></i></div>
+  <div class="toc" id="toc">
+    <a href="#overview">總覽</a><a href="#highlights">景點圖片</a><a href="#tripmap">總路線圖</a><a href="#d1">D1 蘇花</a><a href="#d2">D2 縱谷</a><a href="#d3">D3 陶錫・瓦拉米</a><a href="#d4">D4 池上</a><a href="#d5">D5 南迴</a><a href="#d6">D6 船帆石</a><a href="#d7">D7 龍磐</a><a href="#stay">住宿</a><a href="#checklist">注意事項</a><a href="#sources">來源</a>
+  </div>
+</div>
+
+<nav class="sidedock" id="sidedock" aria-label="頁面導覽">
+  <div class="sd-head">本頁導覽</div>
+  <div class="sd-prog"><i id="sideFill"></i></div>
+  <a href="#overview"><span class="sd-dot"></span>總覽</a>
+  <a href="#highlights"><span class="sd-dot"></span>景點圖片精選</a>
+  <a href="#tripmap"><span class="sd-dot"></span>全程總路線圖</a>
+  <a href="#d1"><span class="sd-dot"></span>D1 蘆洲 → 花蓮</a>
+  <a href="#d2"><span class="sd-dot"></span>D2 花蓮 → 玉里</a>
+  <a href="#d3"><span class="sd-dot"></span>D3 陶錫・瓦拉米</a>
+  <a href="#d4"><span class="sd-dot"></span>D4 池上 → 台東</a>
+  <a href="#d5"><span class="sd-dot"></span>D5 南迴 → 旭海</a>
+  <a href="#d6"><span class="sd-dot"></span>D6 馬場 → 船帆石</a>
+  <a href="#d7"><span class="sd-dot"></span>D7 龍磐慢遊</a>
+  <a href="#stay"><span class="sd-dot"></span>住宿區域</a>
+  <a href="#checklist"><span class="sd-dot"></span>注意事項</a>
+  <a href="#sources"><span class="sd-dot"></span>來源與授權</a>
+</nav>
+
 <section id="overview">
   <div class="summary">
     <div class="metric"><b>7 天</b><span>10/3 六 ～ 10/9 五</span></div>
@@ -159,40 +236,28 @@ nav{top:4px}
 <section id="highlights" class="gallery-wrap">
   <div class="section-title">
     <h2>景點圖片精選</h2>
-    <div class="subtle">挑了幾個這趟最有代表性的景點，方便你們先抓旅行氛圍。</div>
+    <div class="subtle">全程最有代表性的景點實景（Wikimedia Commons 創用 CC 授權，來源見頁尾）。每日卡片內另有當天沿線照片。</div>
   </div>
   <div class="gallery-grid">
-    <figure class="photo-card">
-      <img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/%E7%83%8F%E7%9F%B3%E6%B8%AF.jpg" alt="宜蘭烏石港">
-      <figcaption><strong>烏石港</strong>：D1 作為宜蘭短停與放風備選。<span class="credit">圖片來源：Wikimedia Commons</span></figcaption>
-    </figure>
-    <figure class="photo-card">
-      <img loading="lazy" src="https://www.forest.gov.tw/Attachments/ArticlePicture/10000210/Img/87e27e2df54243f194b9c8e39b439c64.jpg" alt="大農大富平地森林園區">
-      <figcaption><strong>大農大富平地森林園區</strong>：平坦、寬敞、很適合親子推車。<span class="credit">圖片來源：農業部林業及自然保育署</span></figcaption>
-    </figure>
-    <figure class="photo-card">
-      <img loading="lazy" src="https://tour.taitung.gov.tw/image/43483/?r=1773806816995" alt="伯朗大道">
-      <figcaption><strong>伯朗大道</strong>：D4 早上最經典的稻田路線。<span class="credit">圖片來源：臺東觀光旅遊網</span></figcaption>
-    </figure>
-    <figure class="photo-card">
-      <img loading="lazy" src="https://tour.taitung.gov.tw/image/42251/?r=1774359617928" alt="初鹿牧場">
-      <figcaption><strong>初鹿牧場</strong>：和瑞穗不同，安排在 D4 下午比較順。<span class="credit">圖片來源：臺東觀光旅遊網</span></figcaption>
-    </figure>
-    <figure class="photo-card">
-      <img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Chuanfan%20Rock%EF%BC%88WEI%2C%20WAN-CHEN%EF%BC%89%EF%BC%8D%E8%88%B9%E5%B8%86%E7%9F%B3.jpg" alt="船帆石">
-      <figcaption><strong>船帆石</strong>：10/8 之後用低移動量慢慢玩。<span class="credit">圖片來源：Wikimedia Commons</span></figcaption>
-    </figure>
-    <figure class="photo-card">
-      <img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/%E9%BE%8D%E7%A3%90%E5%85%AC%E5%9C%92.jpg" alt="龍磐公園">
-      <figcaption><strong>龍磐公園</strong>：10/9 早上很適合短停看海景，但要特別顧小孩。<span class="credit">圖片來源：Wikimedia Commons</span></figcaption>
-    </figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/qingshui-cliff-04.jpg" alt="清水斷崖"><figcaption>清水斷崖（D1 蘇花公路）：碧藍太平洋與大理岩壁，匯德／崇德觀景台看得到。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3AChingshui_Cliff_shoreline.jpg" target="_blank" rel="noopener">白士 李</a> / Wikimedia Commons · CC BY 2.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/wushi-harbor-01.jpg" alt="烏石港與蘭陽博物館"><figcaption>烏石港與蘭陽博物館（D1 頭城放風備選）：停車場就在港區，平坦好推車。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3AWushi_Harbor_and_Waiao_Beach.jpg" target="_blank" rel="noopener">Yu tptw</a> / Wikimedia Commons · CC BY-SA 4.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/danongdafu-road-04.jpg" alt="大農大富平地森林園區"><figcaption>大農大富平地森林園區（D2）：筆直林道通往海岸山脈，推車散步的主軸。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3ARoad_through_Danongdafu_Forest_Park.jpg" target="_blank" rel="noopener">Ken Marshall</a> / Wikimedia Commons · CC BY 2.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/kecheng-01.jpg" alt="玉里客城鐵橋"><figcaption>玉里客城鐵橋（D2–D3 住宿玉里）：紅色鋼拱橋橫跨稻田，台30線路邊即可拍。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3AKecheng_Bridge_in_the_green_landscape_of_Yuli_Township.jpg" target="_blank" rel="noopener">大頭家族</a> / Wikimedia Commons · CC BY-SA 2.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/shanfeng-bridge-03.jpg" alt="山風橋"><figcaption>山風橋（D3 瓦拉米前段）：日治時期水泥拱門的山風二號吊橋，就在山風瀑布旁。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3AShanfeng_Suspension_Bridge.jpg" target="_blank" rel="noopener">Ken Marshall</a> / Wikimedia Commons · CC BY 2.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/nanan-waterfall-06.jpg" alt="南安瀑布"><figcaption>南安瀑布（D3）：台30線路邊停車走幾步就到，去瓦拉米前順路 10 分鐘。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3A%E8%8A%B1%E8%93%AE%E5%8D%97%E5%AE%89%E7%80%91%E5%B8%83.jpg" target="_blank" rel="noopener">Matt8830</a> / Wikimedia Commons · CC BY-SA 4.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/brown-ave-01.jpg" alt="伯朗大道"><figcaption>伯朗大道（D4 早上第一站）：筆直田間大道直指中央山脈。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3AMr._Brown_Avenue_through_golden_rice_fields_towards_mountains.jpg" target="_blank" rel="noopener">Joel Sow</a> / Wikimedia Commons · CC BY 2.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/chulu-ranch-02.jpg" alt="初鹿牧場"><figcaption>初鹿牧場（D4 下午）：整片草坡，鋪野餐墊讓孩子爬爬走走。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3A%E5%8F%B0%E6%B9%BE%E5%8D%91%E5%8D%97%E5%88%9D%E9%B9%BF%E7%89%A7%E5%9C%BA.jpg" target="_blank" rel="noopener">焱岚</a> / Wikimedia Commons · CC BY 4.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/duoliang-01.jpg" alt="多良車站"><figcaption>多良車站（D5 南迴短休）：鐵軌與太平洋同框，看海 20 分鐘就走。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3AOverlooking_the_ocean_at_Duoliang_Train_Station.jpg" target="_blank" rel="noopener">明章 徐</a> / Wikimedia Commons · CC BY-SA 2.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/grassland-04.jpg" alt="旭海大草原"><figcaption>旭海大草原（D5）：俯瞰山谷與海灣，風大記得幫小孩戴帽。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3A2023_Syuhai_Grassland_Recreation_Area_S6.jpg" target="_blank" rel="noopener">Taiwankengo</a> / Wikimedia Commons · CC BY 4.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/sailrock-01.jpg" alt="船帆石"><figcaption>船帆石（D6–D7 住宿旁）：約 18 公尺高的珊瑚礁巨岩，民宿走幾步就到岸邊。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3AKenting_Hengchun-Township_Taiwan_Sail-Rock-01.jpg" target="_blank" rel="noopener">CEphoto, Uwe Aranas</a> / Wikimedia Commons · CC BY-SA 3.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/longpan-03.jpg" alt="龍磐公園"><figcaption>龍磐公園（D7）：石灰岩台地眺望太平洋，站在崖邊一次看到海、山與整段東海岸。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3A%E9%BE%8D%E7%A3%90%E5%85%AC%E5%9C%92.jpg" target="_blank" rel="noopener">A0925173679</a> / Wikimedia Commons · CC BY-SA 4.0</span></figcaption></figure>
   </div>
 </section>
 
 <section id="tripmap" class="map-wrap">
   <div class="section-title">
     <h2>全程總路線圖</h2>
-    <div class="subtle">下面是 7 天移動的示意地圖；每一天的卡片內也有獨立路線圖。</div>
+    <div class="subtle">7 天實際道路路線（依 OpenStreetMap 路網計算，非直線示意）；每一天的卡片內也有獨立路線圖與沿線照片。</div>
   </div>
   <div id="map-overview"></div>
   <div class="legend">
@@ -214,7 +279,7 @@ nav{top:4px}
       <div class="quick-links">
         <a href="#d1">看 D1</a><a href="#d2">看 D2</a><a href="#d3">看 D3</a><a href="#d4">看 D4</a><a href="#d5">看 D5</a><a href="#d6">看 D6</a><a href="#d7">看 D7</a>
       </div>
-      <p class="subtle" style="margin-top:10px">地圖底圖使用 OpenStreetMap／Leaflet，方便手機上縮放查看。</p>
+      <p class="subtle" style="margin-top:10px">地圖底圖 OpenStreetMap，Leaflet 呈現；點路線上的圓點可看站名，手機可雙指縮放。</p>
     </div>
   </div>
 </section>
@@ -223,19 +288,17 @@ nav{top:4px}
   <div class="dayhead">
     <h2>D1｜10/3（六）蘆洲 → 宜蘭 → 花蓮</h2>
     <div class="route">週六國五南下：提早離開蘆洲，午睡放在蘇花移動段。</div>
-    <div class="daymeta"><span class="pill">住宿：花蓮市</span><span class="pill">預估駕駛 3.5–4.2h</span><span class="pill">重點：不排大景點</span></div>
+    <div class="daymeta"><span class="pill">住宿：花蓮市</span><span class="pill">預估駕駛 3.8–4.2h</span><span class="pill">重點：不排大景點</span></div>
   </div>
   <div class="day-media">
     <div>
       <div class="route-steps"><span>蘆洲</span><span>宜蘭放風</span><span>蘇花公路</span><span>花蓮住宿</span></div>
       <div id="map-d1" class="day-map"></div>
-      <div class="source">D1 以順利抵達花蓮為主，地圖只作移動示意。</div>
+      <div class="source">D1 以順利抵達花蓮為主；地圖為 OpenStreetMap 路網計算的實際道路路線（國5＋台9 蘇花／蘇花改）。</div>
+      <div class="route-stat"><span>道路里程 ≈ 186 km</span><span>純駕駛 ≈ 3 小時 45 分（OSRM 正常路況估值，不含停留）</span></div>
     </div>
     <div class="side-stack">
-      <figure class="photo-card">
-        <img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/%E7%83%8F%E7%9F%B3%E6%B8%AF.jpg" alt="烏石港">
-        <figcaption><strong>宜蘭短停氣氛圖：烏石港</strong><span class="credit">來源：Wikimedia Commons</span></figcaption>
-      </figure>
+      <figure class="photo-card hero-card"><img loading="lazy" src="./assets/taiwan-east/qingshui-cliff-03.jpg" alt="清水斷崖北段近乎垂直的大理岩壁直落海面"><figcaption>清水斷崖北段近乎垂直的大理岩壁直落海面：從觀景台看下去就是這種高度感。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3ATaroko_National_Park_Qingshui_Cliff_%28Huaiwun%29.jpg" target="_blank" rel="noopener">Huaiwun</a> / Wikimedia Commons · CC BY-SA 4.0</span></figcaption></figure>
       <div class="info-panel">
         <h3>D1 重點</h3>
         <ul>
@@ -244,6 +307,18 @@ nav{top:4px}
         </ul>
       </div>
     </div>
+  </div>
+  <div class="strip-head"><h3>📷 D1 沿線實景</h3><div class="subtle">國五 → 蘭陽平原 → 蘇花 → 花蓮市，由北往南排。</div></div>
+  <div class="photo-strip">
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/xueshan-tunnel-pinglin-01.jpg" alt="從坪林觀音台俯瞰國道五號雪山隧道坪林端"><figcaption>從坪林觀音台俯瞰國道五號雪山隧道坪林端：D1 早上出發後鑽進 12.9 公里長隧道，出口就是宜蘭。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3A%E5%9D%AA%E6%9E%97%E8%A7%80%E9%9F%B3%E5%8F%B0%E6%9C%9B%E9%9B%AA%E5%B1%B1%E9%9A%A7%E9%81%93%E5%9D%AA%E6%9E%97%E7%AB%AF.jpg" target="_blank" rel="noopener">Outlookxp</a> / Wikimedia Commons · CC BY 4.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/lanyang-plain-04.jpg" alt="從北宜山區俯瞰蘭陽平原與海岸線"><figcaption>從北宜山區俯瞰蘭陽平原與海岸線：出雪隧後映入眼簾的就是這片綠色平原。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3A%E8%98%AD%E9%99%BD%E5%B9%B3%E5%8E%9F_Lanyang_Plain_-_panoramio_%282%29.jpg" target="_blank" rel="noopener">lienyuan lee</a> / Wikimedia Commons · CC BY 3.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/guishan-island-05.jpg" alt="海上的龜山島全貌，龜首、龜甲清楚可辨"><figcaption>海上的龜山島全貌，龜首、龜甲清楚可辨：從頭城、烏石港一帶的海岸望出去就是這座島。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3AGuishan_Island.jpg" target="_blank" rel="noopener">阿爾特斯</a> / Wikimedia Commons · CC BY-SA 3.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/wushi-harbor-05.jpg" alt="烏石港碼頭的賞鯨船，後方是烏石港海景酒店"><figcaption>烏石港碼頭的賞鯨船，後方是烏石港海景酒店（蘭陽博物館在港區另一側）：碼頭邊平坦好推車，看船 15 分鐘就走。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3A2022_Wushi_Harbor_N3.jpg" target="_blank" rel="noopener">Taiwankengo</a> / Wikimedia Commons · CC BY-SA 4.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/suhua-highway-08.jpg" alt="蘇花公路沿海路段與太魯閣國家公園入口標示"><figcaption>蘇花公路沿海路段與太魯閣國家公園入口標示：D1 下午沿台9線南行，山海就在車窗兩側。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3ASuhua_Highway_through_Taroko_National_Park.jpg" target="_blank" rel="noopener">大頭家族</a> / Wikimedia Commons · CC BY-SA 2.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/nanao-station-02.jpg" alt="南澳車站站體與站前廣場"><figcaption>南澳車站站體與站前廣場：D1 蘇花中途短休候選，廣場平坦可讓小孩下車走走。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3A%E5%8D%97%E6%BE%B3%E8%BB%8A%E7%AB%99-1.JPG" target="_blank" rel="noopener">Small28</a> / Wikimedia Commons · CC BY-SA 3.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/dongdamen-03.jpg" alt="開市前的東大門夜市入口與原住民一條街巨像"><figcaption>開市前的東大門夜市入口與原住民一條街巨像：D1 傍晚若到市區散步找晚餐，廣場寬敞好推車。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3AHualien_City11.jpg" target="_blank" rel="noopener">Peter in s</a> / Wikimedia Commons · CC BY-SA 4.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/beibin-park-01.jpg" alt="太平洋公園北濱段的礫石海灘，遠處是花蓮港與郵輪"><figcaption>太平洋公園北濱段的礫石海灘，遠處是花蓮港與郵輪：離東大門夜市走路 10 分鐘，飯後可來吹海風。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3AHualien_Pacific_Landscape_Park.jpg" target="_blank" rel="noopener">NHC</a> / Wikimedia Commons · CC BY-SA 4.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/hualien-harbor-06.jpg" alt="傍晚的花蓮港賞鯨碼頭與市區燈火"><figcaption>傍晚的花蓮港賞鯨碼頭與市區燈火：D1 抵達花蓮後的黃昏氣氛。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3AHualien_harbour_in_the_evening.jpg" target="_blank" rel="noopener">Ken Marshall from Absecon, New Jersey, USA</a> / Wikimedia Commons · CC BY 2.0</span></figcaption></figure>
   </div>
   <div class="timeline">
     <div class="row"><div class="time">06:00</div><div class="event"><b>蘆洲出發 <span class="tag drive">開車</span></b><div class="note">比一般週六車潮提早；導航若已顯示國五壅塞，寧可再提前 15–30 分鐘。</div></div></div>
@@ -260,19 +335,17 @@ nav{top:4px}
   <div class="dayhead">
     <h2>D2｜10/4（日）花蓮 → 大農大富 → 花蓮觀光糖廠 → 玉里</h2>
     <div class="route">取代瑞穗牧場：森林＋糖廠，和後面的初鹿、悠客馬場不重複。</div>
-    <div class="daymeta"><span class="pill">住宿：玉里（連住 2 晚）</span><span class="pill">預估駕駛 2.1–2.4h</span></div>
+    <div class="daymeta"><span class="pill">住宿：玉里（連住 2 晚）</span><span class="pill">預估駕駛 2.2–2.5h</span></div>
   </div>
   <div class="day-media">
     <div>
       <div class="route-steps"><span>花蓮</span><span>大農大富</span><span>花蓮觀光糖廠</span><span>玉里</span></div>
       <div id="map-d2" class="day-map"></div>
-      <div class="source">D2 把活動集中在平地與縱谷上，方便孩子放電。</div>
+      <div class="source">D2 活動集中在縱谷平地；大農大富在糖廠南邊約 4 km，先森林後糖廠會小折返，順序可對調。</div>
+      <div class="route-stat"><span>道路里程 ≈ 103 km</span><span>純駕駛 ≈ 2 小時 09 分（OSRM 正常路況估值，不含停留）</span></div>
     </div>
     <div class="side-stack">
-      <figure class="photo-card">
-        <img loading="lazy" src="https://www.forest.gov.tw/Attachments/ArticlePicture/10000210/Img/84b5f60273524b80a1c529bf240decab.jpg" alt="大農大富空拍">
-        <figcaption><strong>大農大富空拍景觀</strong><span class="credit">來源：農業部林業及自然保育署</span></figcaption>
-      </figure>
+      <figure class="photo-card hero-card"><img loading="lazy" src="./assets/taiwan-east/kecheng-04.jpg" alt="蒸汽火車「仲夏寶島號」"><figcaption>蒸汽火車「仲夏寶島號」（2024 年 8 月特別列車）駛過玉里客城鐵橋，前景是綠油油稻田：D2 傍晚到玉里的必拍點，平常看到的是一般電聯車。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3A%E4%BB%B2%E5%A4%8F%E5%AF%B6%E5%B3%B6%E8%99%9F_Summer_Formosa%2C_%E7%8E%89%E9%87%8C%E5%AE%A2%E5%9F%8E%E9%90%B5%E6%A9%8B_%2820240810%29_%2853922778024%29.jpg" target="_blank" rel="noopener">Takeshi Aida from Hong Kong, Hong Kong</a> / Wikimedia Commons · CC BY-SA 2.0</span></figcaption></figure>
       <div class="info-panel">
         <h3>D2 重點</h3>
         <ul>
@@ -281,6 +354,17 @@ nav{top:4px}
         </ul>
       </div>
     </div>
+  </div>
+  <div class="strip-head"><h3>📷 D2 沿線實景</h3><div class="subtle">森林園區 → 糖廠 → 北回歸線 → 縱谷 → 玉里。</div></div>
+  <div class="photo-strip">
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/danongdafu-road-tree-01.jpg" alt="大農大富園區一帶的平坦小路與雲霧山景"><figcaption>大農大富園區一帶的平坦小路與雲霧山景：D2 上午第一站，推嬰兒車在平坦林道慢慢走。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3ARoad_with_a_tree_in_Guangfu.jpg" target="_blank" rel="noopener">billy1125</a> / Wikimedia Commons · CC BY 2.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/sugar-06.jpg" alt="光復糖廠園區的生態池與紅色涼亭"><figcaption>光復糖廠園區的生態池與紅色涼亭：D2 中午在這裡吃冰、餵魚休息。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3A%E8%8A%B1%E8%93%AE%E7%B3%96%E5%BB%A0.jpg" target="_blank" rel="noopener">P1340</a> / Wikimedia Commons · CC BY-SA 3.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/sugar-deputy-04.jpg" alt="光復糖廠 1934 年的日式木造副廠長宿舍"><figcaption>光復糖廠 1934 年的日式木造副廠長宿舍：吃完冰可以在宿舍區散步拍照。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3ADeputy_Factory_Manager%27s_Quarters_%281934%29%2C_Hualien_Sugar_Factory%2C_Guangfu_Township%2C_Hualien_County_%28Taiwan%29.jpg" target="_blank" rel="noopener">Mk2010</a> / Wikimedia Commons · CC BY-SA 4.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/sugar-train-07.jpg" alt="糖廠戶外展示的舊糖鐵貨車廂，背後是青翠山脈"><figcaption>糖廠戶外展示的舊糖鐵貨車廂，背後是青翠山脈：車廂旁設有階梯，可近距離參觀。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3ATaiwan_2009_GuangFu_Sugar_Factory_Historical_Train_Exhibition_FRD_6170.jpg" target="_blank" rel="noopener">Fred Hsu (Wikipedia:User:Fred Hsu on en.wikipedia)</a> / Wikimedia Commons · CC BY-SA 3.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/tropic-02.jpg" alt="瑞穗舞鶴台地的北回歸線標誌碑"><figcaption>瑞穗舞鶴台地的北回歸線標誌碑：台9線路邊，D2 南下順路停 10 分鐘拍照。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3ARuisui_Tropic_of_Cancer_Marker_20150228a.jpg" target="_blank" rel="noopener">Wei-Te Wong from Taipei City, Taiwan, Republic of China</a> / Wikimedia Commons · CC BY-SA 2.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/valley-xiuguluan-04.jpg" alt="從瑞港公路"><figcaption>從瑞港公路（花64）俯瞰秀姑巒溪與花東縱谷：D2 經過瑞穗時的縱谷全景。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3AXiuguluan_River_and_the_East_Rift_Valley%2C_looking_southwest_from_the_kilometer_4_on_Hualien_Township_Road_64_in_the_morning_on_6_September_2014.jpg" target="_blank" rel="noopener">CHUAN MING LIANG</a> / Wikimedia Commons · CC BY 2.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/valley-yuli-rice-06.jpg" alt="玉里稻田裡的黑熊彩稻圖"><figcaption>玉里稻田裡的黑熊彩稻圖（2017 年 10 月攝；彩稻為季節性活動，不一定看得到），遠處是紅色客城鐵橋：玉里米的故鄉。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3ALandscape_of_rice_paddy_field_in_Yuli.jpg" target="_blank" rel="noopener">billy1125</a> / Wikimedia Commons · CC BY 2.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/yuli-noodle-01.jpg" alt="一碗玉里乾麵"><figcaption>一碗玉里乾麵：油麵配肉片、韭菜與肉燥，是 D2 在玉里的晚餐首選。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3AYuli_Noodles_in_a_bowl_close-up.jpg" target="_blank" rel="noopener">芳蘭 徐芳蘭</a> / Wikimedia Commons · CC BY 2.0</span></figcaption></figure>
   </div>
   <div class="timeline">
     <div class="row"><div class="time">08:30</div><div class="event"><b>花蓮出發 <span class="tag drive">開車</span></b></div></div>
@@ -297,15 +381,17 @@ nav{top:4px}
   <div class="dayhead">
     <h2>D3｜10/5（一）陶錫工藝 10:00–12:00 → 午睡 → 瓦拉米前段</h2>
     <div class="route">利用玉里連住的優勢：活動結束直接回原房間睡午覺，再走午後短版瓦拉米。</div>
-    <div class="daymeta"><span class="pill">住宿：玉里</span><span class="pill">預估駕駛 1.2–1.6h</span><span class="pill">陶錫須預約</span></div>
+    <div class="daymeta"><span class="pill">住宿：玉里</span><span class="pill">預估駕駛 1.1–1.5h</span><span class="pill">陶錫：預約制，10/5 尚待店家確認</span></div>
   </div>
   <div class="day-media">
     <div>
       <div class="route-steps"><span>玉里住宿</span><span>陶錫工藝</span><span>回房午睡</span><span>瓦拉米前段</span><span>回玉里</span></div>
       <div id="map-d3" class="day-map"></div>
-      <div class="source">D3 是全程最穩的一天，因為中午可以回原住宿午睡。</div>
+      <div class="source">陶錫工藝在玉里北邊觀音里（縣道 193 往瑞穗方向，約 12 km、16–17 分）；下午南安／瓦拉米則走台 30 線往西。中午回原住宿午睡，是全程最穩的一天。</div>
+      <div class="route-stat"><span>道路里程 ≈ 54 km</span><span>純駕駛 ≈ 1 小時 05 分（OSRM 正常路況估值，不含停留）</span></div>
     </div>
     <div class="side-stack">
+      <figure class="photo-card hero-card"><img loading="lazy" src="./assets/taiwan-east/walami-trail-01.jpg" alt="瓦拉米步道前段的林蔭土徑"><figcaption>瓦拉米步道前段的林蔭土徑：D3 下午的散步目標，路面平緩、樹蔭滿滿，推車不便但背巾好走。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3A%E5%B9%BD%E9%9D%9C%E7%9A%84%E7%93%A6%E6%8B%89%E7%B1%B3%E6%AD%A5%E9%81%93_-_panoramio.jpg" target="_blank" rel="noopener">chienhaw</a> / Wikimedia Commons · CC BY-SA 3.0</span></figcaption></figure>
       <div class="info-panel">
         <h3>D3 重點</h3>
         <p>這天不追求走很多，而是把「活動體驗＋穩定午睡＋一小段自然步道」串在一起。真正的主軸其實是節奏舒服。</p>
@@ -320,10 +406,86 @@ nav{top:4px}
       </div>
     </div>
   </div>
+  <div class="craft" id="taoxi">
+    <div class="strip-head"><h3>🫖 陶錫工藝體驗：這天的重點</h3><div class="subtle">預約制・玉里鎮觀音里 25 鄰 168-1 號（縣道 193 旁）・玉里車站開車約 12 km／16–17 分</div></div>
+    <div class="craft-grid">
+      <div class="info-panel">
+        <h3>這是什麼地方</h3>
+        <p>「陶錫工藝 Táoxi Craft」藏在玉里北邊觀音里的稻田之間，是兩位從臺南移居花蓮的博物館人在 2022 年成立的工作室：陶藝師王邦珍（原本做藝術策展）與錫工藝師楊蕙如（原本推廣文學，後來成為人間國寶陳萬能錫工藝傳習計畫第一期、也是首位女性結業藝生，曾赴法國 Boisbuchet 與日本高岡進修）。自宅式空間「前棟展覽、中間廚房、後棟工坊」，天氣好會把桌子搬到戶外，看著稻田捏陶或打錫，課程中有蜜香紅茶和手作小點心。</p>
+        <p>「打錫」是這裡最特別的體驗：錫熔點只有約 231°C、質地軟、延展性好又無毒，學員親手熔錫、澆鑄、用木槌鐵槌鍛敲、再以銼刀與水砂紙修磨，把秀姑巒溪溪石的意象做成錫石、小皿或餐具，當天帶走。陶藝課則以「花草拓印」為主，到教室周邊採集落葉落果壓印在陶板上，由工坊代燒約 6 週後郵寄到府。Google 地圖 61 則評論全數 5 星，常見的形容是「像去人家家裡作客」、「老師把複雜的打錫流程簡化到零基礎也能上手」。曾登上 La Vie 雜誌，並多次赴日本仙台「森之都工藝展」參展。</p>
+        <p class="subtle">聯絡：<a href="https://www.facebook.com/Taoxicraft/" target="_blank" rel="noopener">FB 粉專 Taoxicraft</a>（報名表指定的主要聯絡管道）・Email <a href="mailto:taoxicraft@gmail.com">taoxicraft@gmail.com</a>・IG <a href="https://www.instagram.com/_taoxi.craft/" target="_blank" rel="noopener">@_taoxi.craft</a>・電話 0912-014-422（來自 2026 年上半年官網存檔，未再驗證）・官網條款提到「官方 LINE」但 ID 未公開，可私訊索取。官網 taoxicraft.com 於 2026/9/30 實測離線（Wix 站台與網域脫鉤，最後可見版本 2026/6），線上預約自 2025/12 起就已關閉；舊站 <a href="https://taoxicraft.wordpress.com/" target="_blank" rel="noopener">taoxicraft.wordpress.com</a> 仍可開，附 Google 報名表。</p>
+      </div>
+      <div class="info-panel craft-status">
+        <h3>10/5（一）10:00–12:00 能不能上？</h3>
+        <span class="status">狀態：無法線上確認，必須先聯絡店家</span>
+        <ul>
+          <li>店家<b>沒有公開營業日、公休日或固定時段</b>（Google 地圖、FB、IG 都沒列）；舊報名表的場次是「上午場 10:00–12:00、下午場 15:00–17:00」，你們要的時段本身存在，但週一是否開課未知，且評論多為午後場。</li>
+          <li>每場 <b>2–12 人、2 人即成班</b>，兩位大人剛好夠；但建議<b>同報一門</b>，各報不同門可能各自不成班。</li>
+          <li>風險一：2026/9/4–11/22 工作室作品在花蓮文創園區「工藝遶境」展出，2025 年 10 月初也曾赴日本、台北參展 → 要確認 <b>10/5 老師人在玉里</b>。</li>
+          <li>風險二：官網條款寫「場地座位有限，無法攜伴在旁等待」→ <b>帶 1.5 歲幼兒一定要先說明並取得同意</b>。</li>
+          <li>舊版 Google 表單仍可送出：第 2 頁有「體驗日期」自由填寫欄與「上午場 10:00–12:00／下午場 15:00–17:00」單選，但<b>送出只是申請，不是確認</b>。流程是：送表單 → 等工作室 Email 回覆 → 收到後 3 日內全額匯款（無訂金）→ FB 私訊或 Email 回帳號末五碼＋姓名。官網規則「繳款須在上課前 3 天完成」→ <b>10/5 的課最晚 10/2（五）要定案</b>；未經店家回覆確認前不要先匯款。</li>
+        </ul>
+        <p><b>今天（9/30）就做：</b>FB 私訊＋Email 同時送，內容寫明「2026/10/5（一）上午場 10:00–12:00、2 位大人、1 位 1.5 歲幼兒隨行、想上的課程（見下表）、是否方便讓幼兒在戶外等候」。距離只剩 5 天，有回覆再填表單。</p>
+        <div class="quick-links">
+          <a href="https://m.me/Taoxicraft" target="_blank" rel="noopener">FB 私訊</a>
+          <a href="mailto:taoxicraft@gmail.com?subject=10%2F5%20%E4%B8%8A%E5%8D%88%E5%A0%B4%E9%AB%94%E9%A9%97%E8%A9%A2%E5%95%8F">Email</a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSevKp6QjNY0qy88sisnqKdET1TeCojt36sTspT4E2uXBs_pCw/viewform" target="_blank" rel="noopener">錫藝報名表</a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSdUbbYi02XMqyZmsEIYZmEj1m2rY8odA82jmRmFJVXNE-TXsQ/viewform" target="_blank" rel="noopener">陶藝報名表</a>
+          <a href="https://www.google.com/maps/search/?api=1&query=%E9%99%B6%E9%8C%AB%E5%B7%A5%E8%97%9D%20%E7%8E%89%E9%87%8C" target="_blank" rel="noopener">Google 地圖</a>
+        </div>
+      </div>
+    </div>
+    <table class="hotel-table craft-table">
+      <tr><th>課程（選項）</th><th>時間</th><th>費用／人</th><th>做什麼・帶走什麼</th><th>帶 1.5 歲的適合度</th></tr>
+      <tr><td>小錫石｜錫的金屬工藝體驗</td><td>45 分</td><td>880</td><td>熔鑄鍛敲一顆溫潤的小錫石，可淨水或當配飾，當天帶走。</td><td class="fit">★★★ 最短，兩人可輪流各做一次，10–12 點剛好</td></tr>
+      <tr><td>錫光皿｜錫皿工藝體驗</td><td>90 分</td><td>1,680</td><td>錫片鍛敲成一只小皿，著重表面紋理與光澤。</td><td class="fit">★★ 一人上課、一人顧小孩</td></tr>
+      <tr><td>錫銀咖啡勺／錫銀叉</td><td>120 分</td><td>1,680</td><td>親手鍛造一支錫銀咖啡勺或小叉，可日常使用。</td><td class="fit">★★ 同上，時間剛好填滿 2 小時</td></tr>
+      <tr><td>鑄造鍛敲錫藝（Google 表單舊課）</td><td>120 分</td><td>1,380<span class="subtle">（表單；官網另標 1,680）</span></td><td>四階段：錫文化→熔錫澆鑄→裁切鍛敲→修整，成品 9×9 cm 純錫小盤，當天帶走。須包鞋，提供圍裙手套。</td><td class="fit">★★ 有熔錫與錘打，幼兒須遠離工作區</td></tr>
+      <tr><td>花草拓印陶盤｜自然的印記</td><td>120 分</td><td>1,180<span class="subtle">（含燒製、包裝、郵寄）</span></td><td>到教室周邊採集植物，拓印在陶板做 1–2 件小容器（500 g 陶土，可上色）；燒製約 6 週後寄回，10 月體驗約 11 月中收到。</td><td class="fit">★★★ 沒有高溫工具、可戶外，幼兒能一起撿葉子（先剪指甲）</td></tr>
+      <tr><td>阿美陶偶花器</td><td>120 分</td><td>1,380</td><td>取阿美族「陶甑」上下兩鍋結構做成可儲水的花器。</td><td class="fit">★★</td></tr>
+      <tr><td>個性化寵物碗</td><td>150 分</td><td>1,580</td><td>毛孩專屬陶碗，成形、裝飾到上釉。</td><td class="fit lo">★ 超過 2 小時，不建議</td></tr>
+    </table>
+    <p class="source">價格與時間取自官網 2026/2–5 存檔（Wayback；2025/12→2026/2 之間曾調漲）與 2023 年版 Google 報名表，兩處價格不一致，且官網 6 月後離線，一律以店家回覆為準。所有課程規定 10 歲以下需大人同行、需穿包鞋；課程費用含材料、教學、茶點。</p>
+    <div class="craft-grid">
+      <div class="info-panel">
+        <h3>帶 1.5 歲要怎麼安排</h3>
+        <ul>
+          <li><b>方案 A（建議）</b>：兩人各報「小錫石」45 分，一人打錫、一人在戶外稻田邊帶小孩，再交換；總時間約 1.5–2 小時，剛好 10:00–12:00，兩人都有作品。</li>
+          <li><b>方案 B</b>：一人上 2 小時的錫盤／咖啡勺，另一人全程顧小孩。但舊表單規定每場 2 人以上才開課，1 人報名可能不成班，要先問。</li>
+          <li><b>方案 C</b>：兩人一起上「花草拓印陶藝」，幼兒可以在旁撿葉子；不過 2 小時要擀土、上色，還是得有人主顧。</li>
+          <li>錫課現場有約 231°C 的熔錫、鐵槌、銼刀：幼兒完全不能靠近工作區。門口有迎賓狗、秋天戶外有蚊子，帶防蚊與推車。停車位、雨天是否改後棟室內、幼兒等候空間，所有來源都沒資料，私訊時一併問。</li>
+          <li>結束 12:00 直接回玉里午睡，與原計畫相同；錫作品當天帶走，陶作品 6 週後寄到家。</li>
+        </ul>
+      </div>
+      <div class="info-panel">
+        <h3>萬一約不到：週一可行的備案</h3>
+        <ul>
+          <li><b>東豐拾穗農場</b>（玉里鎮東豐里棣芬 71-3 號，193 縣道沿線；03-888-0181／0929-002-568）：食農 DIY（有機米布丁 0.5 小時起、飯糰、豆腐等），無高溫工具、幼兒可在旁；週一至五 07:30–11:30、13:00–17:00，週末公休，10/5 正好開放。部分品項有 4 人成行或 8 天前預約門檻，今天就電話確認。離住宿最近（約 10 分）。</li>
+          <li><b>羅山大自然體驗農家 泥火山豆腐 DIY</b>（富里鄉羅山村 12 鄰 58 號，03-882-1352／0939-327-628）：推石磨、大灶煮豆漿、泥火山滷水點豆腐，約 1 小時、做完現吃；休閒農業網寫週一營業 09:00–12:30、13:30–18:00（另有票券頁寫週三公休，資料衝突），前一天電話預約、不收臨時客。玉里往南約 25 分。</li>
+          <li><b>吉蒸牧場</b>（瑞穗鄉中山路三段 230 號，03-887-5588）：非 DIY，餵小羊小馬、喝鮮乳；農業易遊網載明每日 08:00–17:30、免預約（免門票為部落格資料）。最零風險的週一上午放風點，玉里往北約 30 分。</li>
+          <li><b>花子好食 卓溪果醬</b>（玉里市區中正路 37 號，0955-976-302）：果醬手作，走路就到；是否週一營業需電話確認。</li>
+          <li>不適用 10/5 的：織羅部落「米 86」DIY 只收週二／四／六／日且需 14 天前預約；玉里市區<b>璞石藝術館</b>（民權街 50 號，璞石畫 DIY）週一休館，只能當 10/4（日）下午的備案。</li>
+        </ul>
+      </div>
+    </div>
+    <p class="source">2026/9/30 查核。來源：<a href="https://taoxicraft.wordpress.com/" target="_blank" rel="noopener">陶錫工藝舊官網</a>、兩份 Google 報名表、taoxicraft.com 的 Wayback 存檔（2025/11–2026/5：課程、價格、取消政策）、<a href="https://www.facebook.com/Taoxicraft/" target="_blank" rel="noopener">FB 粉專</a>、Google 地圖店家頁（5.0／61 則）、<a href="https://magazine.ncfta.gov.tw/News_Content2.aspx?n=3135&amp;sms=12639&amp;s=103492" target="_blank" rel="noopener">傳藝 online〈今日創新 明日傳統〉</a>、<a href="https://dfusion.tw/taoxi-craft/" target="_blank" rel="noopener">La Vie／拾光影像報導</a>、<a href="https://www.taiwanfarm.org.tw/zh-TW/Front/Farm/Detail/136" target="_blank" rel="noopener">東豐拾穗農場</a>、<a href="https://www.taiwanfarm.org.tw/zh-TW/Front/Farm/Detail/137" target="_blank" rel="noopener">羅山大自然體驗農家</a>。研究過程未送出任何表單或訊息。</p>
+  </div>
+  <div class="strip-head"><h3>📷 D3 沿線實景</h3><div class="subtle">南安遊客中心 → 南安瀑布 → 登山口 → 山風一號吊橋。</div></div>
+  <div class="photo-strip">
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/walami-trail-02.jpg" alt="瓦拉米步道沿山腰緩緩上行，一側是蕨類山壁、一側是拉庫拉庫溪谷。"><figcaption>瓦拉米步道沿山腰緩緩上行，一側是蕨類山壁、一側是拉庫拉庫溪谷。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3AWalami_Trail_%E7%93%A6%E6%8B%89%E7%B1%B3%E6%AD%A5%E9%81%93_-_panoramio.jpg" target="_blank" rel="noopener">lienyuan lee</a> / Wikimedia Commons · CC BY 3.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/walami-trailhead-02.jpg" alt="台30線「通車路段終點」就是瓦拉米步道登山口，路邊立著「登山口 0.00KM」牌與玉山國家公園入山入園公告"><figcaption>台30線「通車路段終點」就是瓦拉米步道登山口，路邊立著「登山口 0.00KM」牌與玉山國家公園入山入園公告（2012 年照片，告示現況可能不同）；車位只有幾格，多為路邊停車。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3ATerminal_Point_of_the_Paved_Road_%E8%A1%8C%E8%BB%8A%E7%B5%82%E9%BB%9E_-_panoramio.jpg" target="_blank" rel="noopener">lienyuan lee</a> / Wikimedia Commons · CC BY 3.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/shanfeng-bridge-01.jpg" alt="山風一號吊橋橋頭"><figcaption>山風一號吊橋橋頭（登山口起約 0.9 km），吊橋限 10 人，帶小孩走到這裡拍照折返剛好。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3A%E5%B1%B1%E9%A2%A8%E4%B8%80%E8%99%9F%E5%90%8A%E6%A9%8B_20170226.jpg" target="_blank" rel="noopener">Thunder24678</a> / Wikimedia Commons · CC BY-SA 4.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/nanan-waterfall-05.jpg" alt="南安瀑布底下的清澈水潭"><figcaption>南安瀑布底下的清澈水潭：瀑布就在台30線路邊，停車走幾步就到，去瓦拉米前順路停 10 分鐘。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3ANan%27an_Waterfall_with_crystal_clear_water.jpg" target="_blank" rel="noopener">Ken Marshall</a> / Wikimedia Commons · CC BY 2.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/nanan-vc-08.jpg" alt="南安遊客中心前看出去的南安稻田與拉庫拉庫溪谷口群山，一棵檳榔樹立在田埂邊，是南安最經典的山谷稻田景。"><figcaption>南安遊客中心前看出去的南安稻田與拉庫拉庫溪谷口群山，一棵檳榔樹立在田埂邊，是南安最經典的山谷稻田景。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3ANa%27an_Visitor_Center_%2829%29%E6%88%B6%E5%A4%96%E6%99%AF%E7%B7%BB.jpg" target="_blank" rel="noopener">舟集 Toadboat</a> / Wikimedia Commons · CC BY-SA 4.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/nanan-vc-04.jpg" alt="台30線路邊的南安遊客中心"><figcaption>台30線路邊的南安遊客中心：進山前上廁所、換尿布、看展的據點。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3ANanan_Visitor_Center_%E5%8D%97%E5%AE%89%E9%81%8A%E5%AE%A2%E4%B8%AD%E5%BF%83_-_panoramio_%282%29.jpg" target="_blank" rel="noopener">lienyuan lee</a> / Wikimedia Commons · CC BY 3.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/yushan-np-01.jpg" alt="台30線上的玉山國家公園東側入口石碑，過了這裡就是南安、瓦拉米的山谷。"><figcaption>台30線上的玉山國家公園東側入口石碑，過了這裡就是南安、瓦拉米的山谷。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3AYushan_National_Park_%E7%8E%89%E5%B1%B1%E5%9C%8B%E5%AE%B6%E5%85%AC%E5%9C%92_-_panoramio.jpg" target="_blank" rel="noopener">lienyuan lee</a> / Wikimedia Commons · CC BY 3.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/lakulaku-01.jpg" alt="台30線旁的拉庫拉庫溪，溪水碧綠、河床全是白石，是南安一帶最常停車看溪的地方。"><figcaption>台30線旁的拉庫拉庫溪，溪水碧綠、河床全是白石，是南安一帶最常停車看溪的地方。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3ALaku_Laku_River_%E6%8B%89%E5%BA%AB%E5%9E%83%E5%BA%AB%E6%BA%AA_-_panoramio.jpg" target="_blank" rel="noopener">lienyuan lee</a> / Wikimedia Commons · CC BY 3.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/batongguan-plaque-01.jpg" alt="南安遊客中心園區內的「八通關越道路開鑿紀念碑」，瓦拉米步道就是這條日治古道的東段起點。"><figcaption>南安遊客中心園區內的「八通關越道路開鑿紀念碑」，瓦拉米步道就是這條日治古道的東段起點。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3ABatongguan_Traversing_Trail_Commenmorative_Plaque_%E5%85%AB%E9%80%9A%E9%97%9C%E8%B6%8A%E9%81%93%E9%96%8B%E9%91%BF%E7%B4%80%E5%BF%B5%E7%A2%91_-_panoramio.jpg" target="_blank" rel="noopener">lienyuan lee</a> / Wikimedia Commons · CC BY 3.0</span></figcaption></figure>
+  </div>
   <div class="timeline">
     <div class="row"><div class="time">08:00–09:20</div><div class="event"><b>早餐＋準備登山背架</b><div class="note">孩子 09:20 左右補一份小點，避免 12:00 結束時餓過頭。</div></div></div>
     <div class="row"><div class="time">09:30</div><div class="event"><b>玉里出發 → 陶錫工藝 <span class="tag drive">開車</span></b><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=%E9%99%B6%E9%8C%AB%E5%B7%A5%E8%97%9D%20%E7%8E%89%E9%87%8C" target="_blank">開啟地圖</a></div></div>
-    <div class="row"><div class="time">10:00–12:00</div><div class="event"><b>陶錫工藝體驗</b></div></div>
+    <div class="row"><div class="time">10:00–12:00</div><div class="event"><b>陶錫工藝體驗（上午場）</b><div class="note">課程選擇、預約狀態與帶幼兒的安排見上方「陶錫工藝體驗」專區；建議兩人各上 45 分「小錫石」輪流，或一人上 2 小時課。</div><a class="mapbtn" href="#taoxi">看專區</a></div></div>
     <div class="row"><div class="time">12:00–12:25</div><div class="event"><b>回玉里住宿</b><div class="note">成人午餐建議事先買好外帶；孩子可在活動尾段／回程前先補簡單午餐。</div></div></div>
     <div class="row"><div class="time">12:25–13:50</div><div class="event"><b>房內午睡 <span class="tag nap">午睡</span></b><div class="note">這是全程最應該守住的午睡日。</div></div></div>
     <div class="row"><div class="time">14:00–14:35</div><div class="event"><b>玉里 → 南安／瓦拉米登山口 <span class="tag drive">開車</span></b><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=%E7%93%A6%E6%8B%89%E7%B1%B3%E6%AD%A5%E9%81%93%E7%99%BB%E5%B1%B1%E5%8F%A3" target="_blank">開啟地圖</a></div></div>
@@ -337,29 +499,35 @@ nav{top:4px}
   <div class="dayhead">
     <h2>D4｜10/6（二）玉里 → 池上 → 初鹿牧場 → 台東</h2>
     <div class="route">池上放在早上；午睡放在池上到初鹿的車程。</div>
-    <div class="daymeta"><span class="pill">住宿：台東市</span><span class="pill">預估駕駛 2.1–2.5h</span></div>
+    <div class="daymeta"><span class="pill">住宿：台東市</span><span class="pill">預估駕駛 2.4–2.8h</span></div>
   </div>
   <div class="day-media">
     <div>
       <div class="route-steps"><span>玉里</span><span>伯朗大道</span><span>池上早午餐</span><span>初鹿牧場</span><span>台東</span></div>
       <div id="map-d4" class="day-map"></div>
-      <div class="source">D4 的午睡安排在池上往初鹿的車程，節奏最自然。</div>
+      <div class="source">D4 的午睡安排在池上往初鹿的車程（約 55 分鐘純駕駛），節奏最自然。</div>
+      <div class="route-stat"><span>道路里程 ≈ 101 km</span><span>純駕駛 ≈ 2 小時 24 分（OSRM 正常路況估值，不含停留）</span></div>
     </div>
     <div class="side-stack">
-      <figure class="photo-card">
-        <img loading="lazy" src="https://tour.taitung.gov.tw/image/43483/?r=1773806816995" alt="伯朗大道">
-        <figcaption><strong>池上伯朗大道</strong><span class="credit">來源：臺東觀光旅遊網</span></figcaption>
-      </figure>
-      <figure class="photo-card">
-        <img loading="lazy" src="https://tour.taitung.gov.tw/image/42251/?r=1774359617928" alt="初鹿牧場">
-        <figcaption><strong>初鹿牧場</strong><span class="credit">來源：臺東觀光旅遊網</span></figcaption>
-      </figure>
+      <figure class="photo-card hero-card"><img loading="lazy" src="./assets/taiwan-east/brown-ave-04-aerial.jpg" alt="伯朗大道空拍"><figcaption>伯朗大道空拍：金黃稻海中的電動三輪車與單車，帶幼兒可租有遮陽的三輪車代步。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3A%E9%98%A1%E9%99%8C%E9%A8%8E%E8%B7%A1%E2%80%A7%E8%8A%B1%E6%9D%B1%E5%B1%B1%E6%B5%B7%E8%A1%8C%E4%BC%AF%E6%9C%97%E5%A4%A7%E9%81%9301_%28cropped%29.jpg" target="_blank" rel="noopener">觀光局資訊室</a> / Wikimedia Commons · CC BY 4.0</span></figcaption></figure>
     </div>
   </div>
+  <div class="strip-head"><h3>📷 D4 沿線實景</h3><div class="subtle">池上 → 初鹿 → 台東市，午睡放在池上往初鹿的車程。</div></div>
+  <div class="photo-strip">
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/kaneshiro-tree-01.jpg" alt="金城武樹"><figcaption>金城武樹：伯朗大道上的招牌茄苳樹，稻田正黃時最好拍；照片為 2014 年舊貌，現場的樹經過颱風與補植，可能比照片小。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3A%E9%87%91%E5%9F%8E%E6%AD%A6%E6%A8%B9_%2814545001530%29.jpg" target="_blank" rel="noopener">JianEn Yu</a> / Wikimedia Commons · CC BY 2.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/heaven-road-02.jpg" alt="天堂路"><figcaption>天堂路：S 型小路蜿蜒穿過池上水田，遊客騎著有遮陽篷的四輪車慢慢逛，帶幼兒可租這種車代步。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3ATourists_riding_quadricycles_in_Chishang_Heaven_Road.jpg" target="_blank" rel="noopener">大頭家族</a> / Wikimedia Commons · CC BY-SA 2.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/dapo-pond-01.jpg" alt="大坡池"><figcaption>大坡池：池上市區東側的湖泊，環湖有木棧道與自行車道，離早午餐地點只有幾分鐘車程。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3AA_corner_of_Dapo_Pond.jpg" target="_blank" rel="noopener">billy1125</a> / Wikimedia Commons · CC BY 2.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/chishang-rice-02.jpg" alt="池上稻田"><figcaption>池上稻田：剛插秧的水田映著山影與天光，池上米就是從這片田來的。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3AChishang1.jpg" target="_blank" rel="noopener">lumoplank</a> / Wikimedia Commons · CC0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/chishang-bento-01.jpg" alt="池上便當"><figcaption>池上便當（全美行）：木片盒裝的排骨、滷蛋與香腸，早午餐若想吃在地味，車站旁就買得到。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3AA_Chihshang_Boxed_Meal_by_the_Chuan_Mei_Hang_Restaurant_at_Chihshang%2C_Taitung_20190816_01.jpg" target="_blank" rel="noopener">Ken Marshall</a> / Wikimedia Commons · CC BY 2.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/chulu-ranch-01.jpg" alt="初鹿牧場"><figcaption>初鹿牧場：白色柵欄裡的乳牛與大草原，D4 下午讓小孩放電的主要景點。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3AChu_Lu_Ranch_2009.04.11.JPG" target="_blank" rel="noopener">ECTaiwan2010</a> / Wikimedia Commons · Public domain</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/taitung-seaside-01-paposogan.jpg" alt="海濱公園國際地標"><figcaption>海濱公園國際地標：照片為 2013 年舊作「生命之樹」竹編圓頂，2016 尼伯特颱風受損後於 2018 年底以原鋼構重建為「向陽樹」，現場外型與照片不同；買完黃記蔥油餅就在旁邊散步看海。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3APaposogan_in_Seaside_Park_%E6%B5%B7%E6%BF%B1%E5%85%AC%E5%9C%92%E5%9C%8B%E9%9A%9B%E5%9C%B0%E6%A8%99_-_panoramio.jpg" target="_blank" rel="noopener">lienyuan lee</a> / Wikimedia Commons · CC BY 3.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/pipa-lake-02.jpg" alt="森林公園琵琶湖"><figcaption>森林公園琵琶湖：木麻黃環繞的湧泉湖，平坦步道可推車，傍晚散步的備案。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3A%E7%90%B5%E7%90%B6%E6%B9%96_Pipa_Lake_-_panoramio.jpg" target="_blank" rel="noopener">lienyuan lee</a> / Wikimedia Commons · CC BY 3.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/tiehua-04-lanterns.jpg" alt="鐵花村／鐵道藝術村的手繪熱氣球燈籠"><figcaption>鐵花村／鐵道藝術村的手繪熱氣球燈籠：D4 晚上住台東市，飯後可推車來逛逛。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3ALanterns_in_Taitung_Railway_Art_Village.jpg" target="_blank" rel="noopener">WEi WEi</a> / Wikimedia Commons · CC BY 2.0</span></figcaption></figure>
+  </div>
   <div class="timeline">
-    <div class="row"><div class="time">08:15</div><div class="event"><b>玉里退房出發 <span class="tag drive">開車</span></b></div></div>
+    <div class="row"><div class="time">08:05</div><div class="event"><b>玉里退房出發 <span class="tag drive">開車</span></b></div></div>
     <div class="row"><div class="time">09:00–10:45</div><div class="event"><b>池上伯朗大道＋天堂路</b><div class="note">帶幼兒以有遮陽、兒童座椅的電動四輪車最省力。</div><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=%E4%BC%AF%E6%9C%97%E5%A4%A7%E9%81%93%20%E5%A4%A9%E5%A0%82%E8%B7%AF" target="_blank">開啟地圖</a></div></div>
-    <div class="row"><div class="time">10:50–11:40</div><div class="event"><b>池上早午餐 <span class="tag meal">用餐</span></b></div></div>
+    <div class="row"><div class="time">10:55–11:40</div><div class="event"><b>池上早午餐 <span class="tag meal">用餐</span></b></div></div>
     <div class="row"><div class="time">11:50–13:05</div><div class="event"><b>池上 → 初鹿，車上午睡 <span class="tag nap">午睡</span> <span class="tag drive">開車</span></b></div></div>
     <div class="row"><div class="time">13:05–13:40</div><div class="event"><b>午睡緩衝</b><div class="note">若仍熟睡，先用推車延續，不急著進牧場活動。</div></div></div>
     <div class="row"><div class="time">13:40–15:40</div><div class="event"><b>初鹿牧場</b><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=%E5%88%9D%E9%B9%BF%E7%89%A7%E5%A0%B4" target="_blank">開啟地圖</a></div></div>
@@ -379,9 +547,11 @@ nav{top:4px}
     <div>
       <div class="route-steps"><span>台東</span><span>南迴短休</span><span>旭海午餐</span><span>旭海大草原</span><span>199甲</span><span>悠客馬場</span></div>
       <div id="map-d5" class="day-map"></div>
-      <div class="source">D5 是全程最長移動日，所以把午餐與午睡故意卡在旭海平地。</div>
+      <div class="source">全程最長移動日：台9 南迴 → 安朔改走台9戊（舊南迴，不進草埔森永隧道）→ 壽卡轉 199 → 東源 → 199甲 到旭海；午後原路回東源後沿 199 經牡丹水庫下車城。悠客馬場在車城鄉統埔（近四重溪），不在滿州。</div>
+      <div class="route-stat"><span>道路里程 ≈ 158 km</span><span>純駕駛 ≈ 3 小時 34 分（OSRM 正常路況估值，不含停留）</span></div>
     </div>
     <div class="side-stack">
+      <figure class="photo-card hero-card"><img loading="lazy" src="./assets/taiwan-east/xuhai-coast-01.jpg" alt="旭海一帶的濱海公路彎道，路邊就是碧藍太平洋"><figcaption>旭海一帶的濱海公路彎道，路邊就是碧藍太平洋（作者標註牡丹鄉旭海）；壽卡到旭海走的 199／199甲 是山路，這片海要到旭海村後才看得到。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3AMudan-CHO_YEN_CHIA-IMG_1449.jpg" target="_blank" rel="noopener">CHO YEN CHIA</a> / Wikimedia Commons · CC BY-SA 4.0</span></figcaption></figure>
       <div class="info-panel">
         <h3>D5 重點</h3>
         <ul>
@@ -392,9 +562,21 @@ nav{top:4px}
       </div>
       <div class="info-panel">
         <h3>路線判讀</h3>
-        <p>地圖上會看到從海邊切進旭海，再進一步往內陸與滿州方向移動，這就是你們想避開「餐後立刻上山」的安排核心。</p>
+        <p>地圖上會看到從南迴海岸在壽卡切進 199 山路到旭海，午後再原路回東源、沿 199 經牡丹水庫下到車城統埔的悠客馬場；午餐與午睡卡在旭海平地，就是你們想避開「餐後立刻上山」的安排核心。</p>
       </div>
     </div>
+  </div>
+  <div class="strip-head"><h3>📷 D5 沿線實景</h3><div class="subtle">南迴海岸 → 壽卡 → 旭海 → 199／199甲 → 牡丹 → 車城。</div></div>
+  <div class="photo-strip">
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/duoliang-04.jpg" alt="多良車站著名的紅欄杆月台與湛藍海面"><figcaption>多良車站著名的紅欄杆月台與湛藍海面：觀景台就在月台上方，推車可到。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3APlatforms_at_Duoliang_Station_under_sunny_sky_on_22_June_2014.jpg" target="_blank" rel="noopener">JianEn Yu</a> / Wikimedia Commons · CC BY 2.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/nanhui-02.jpg" alt="南迴公路貼著太平洋礫石海岸南行"><figcaption>南迴公路貼著太平洋礫石海岸南行（2012 年攝）：多良到大武一路都是這種海景。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3A%E5%8D%97%E8%BF%B4%E5%85%AC%E8%B7%AF_South-Link_Highway_-_panoramio_%281%29.jpg" target="_blank" rel="noopener">lienyuan lee</a> / Wikimedia Commons · CC BY 3.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/shouka-01.jpg" alt="壽卡鐵馬驛站紅磚樓"><figcaption>壽卡鐵馬驛站紅磚樓：舊南迴公路（台9戊線）翻過南迴最高點、接 199 縣道的分岔口，D5 在此短休上廁所。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3A23-%E5%A3%BD%E5%8D%A1%E9%90%B5%E9%A6%AC%E9%A9%9B%E7%AB%99_%2828896705953%29.jpg" target="_blank" rel="noopener">Sinchen.Lin</a> / Wikimedia Commons · CC BY 2.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/road199-04.jpg" alt="199 縣道 0K 起點就在壽卡鐵馬驛站旁"><figcaption>199 縣道 0K 起點就在壽卡鐵馬驛站旁：從這裡離開台9戊，轉進往東源、旭海的山路。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3A%E5%8F%B0199%E7%BA%BF%E9%9B%B6%E5%85%AC%E9%87%8C_-_Start_of_Country_Road_199_-_2012.02_-_panoramio.jpg" target="_blank" rel="noopener">rheins</a> / Wikimedia Commons · CC BY 3.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/xuhai-port-03.jpg" alt="旭海漁港旁的礫石灣澳與海面"><figcaption>旭海漁港旁的礫石灣澳與海面：午餐後可以帶小孩在岸邊走一小段，不必下水。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3A2023_Xuhai_Fishing_Port_S1.jpg" target="_blank" rel="noopener">Taiwankengo</a> / Wikimedia Commons · CC BY-SA 4.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/grassland-05.jpg" alt="旭海大草原稜線上的觀海涼亭全景"><figcaption>旭海大草原稜線上的觀海涼亭全景：草原步道終點，太平洋就在山谷缺口外。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3A2023_Syuhai_Grassland_Recreation_Area_S1.jpg" target="_blank" rel="noopener">Taiwankengo</a> / Wikimedia Commons · CC BY 4.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/guanyinbi-04.jpg" alt="阿塱壹古道旭海端的南田石礫灘與礁岩"><figcaption>阿塱壹古道旭海端的南田石礫灘與礁岩：古道需事先申請，D5 只在入口附近看看海。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3AAlangyi_Ancient_Trial.jpg" target="_blank" rel="noopener">Ecosi</a> / Wikimedia Commons · CC BY-SA 4.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/dongyuan-03.jpg" alt="東源哭泣湖的湖面睡蓮與芒草"><figcaption>東源哭泣湖的湖面睡蓮與芒草：199 縣道回程順路經過，停車看一眼即可。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3AView_of_pond_in_the_Dongyuan_Wetland.jpg" target="_blank" rel="noopener">中岑 范姜</a> / Wikimedia Commons · CC BY-SA 2.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/mudan-04.jpg" alt="遠眺牡丹水庫大壩與石門村"><figcaption>遠眺牡丹水庫大壩與石門村：199 縣道從壩下經過，是往車城前最後一段山路。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3AMudan_Dam_under_cloudy_sunny_sky.jpg" target="_blank" rel="noopener">晨星 飛鳥</a> / Wikimedia Commons · CC BY-SA 2.0</span></figcaption></figure>
   </div>
   <div class="timeline">
     <div class="row"><div class="time">07:30</div><div class="event"><b>台東出發 <span class="tag drive">開車</span></b><div class="note">這天要留更多路況餘裕，所以比前幾天早。</div></div></div>
@@ -412,20 +594,18 @@ nav{top:4px}
 <section class="day" id="d6">
   <div class="dayhead">
     <h2>D6｜10/8（四）悠客馬場 → 砂島貝殼砂展示館 → 船帆石</h2>
-    <div class="route">取消海生館。下午只排船帆石附近、免門票、短停留也有內容的地方。</div>
-    <div class="daymeta"><span class="pill">住宿：草分木 B&amp;B 船帆石店</span><span class="pill">預估駕駛 1.3–1.7h</span><span class="pill">景點免門票</span></div>
+    <div class="route">取消海生館。車城到船帆石只要 45 分鐘，下午只排船帆石附近、免門票、短停留也有內容的地方。</div>
+    <div class="daymeta"><span class="pill">住宿：草分木 B&amp;B 船帆石店</span><span class="pill">預估駕駛 0.7–1.0h</span><span class="pill">景點免門票</span></div>
   </div>
   <div class="day-media">
     <div>
       <div class="route-steps"><span>悠客馬場</span><span>午餐</span><span>車上午睡</span><span>砂島展示館</span><span>船帆石住宿</span></div>
       <div id="map-d6" class="day-map"></div>
-      <div class="source">D6 完全走輕鬆版，避免海生館那種停留時間長、節奏容易被綁住的景點。</div>
+      <div class="source">D6 走輕鬆版：車城經恆春南門圓環、南灣、墾丁到砂島（會先經過船帆石，回頭 2 km 即住宿）。</div>
+      <div class="route-stat"><span>道路里程 ≈ 31 km</span><span>純駕駛 ≈ 0 小時 42 分（OSRM 正常路況估值，不含停留）</span></div>
     </div>
     <div class="side-stack">
-      <figure class="photo-card">
-        <img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Chuanfan%20Rock%EF%BC%88WEI%2C%20WAN-CHEN%EF%BC%89%EF%BC%8D%E8%88%B9%E5%B8%86%E7%9F%B3.jpg" alt="船帆石">
-        <figcaption><strong>船帆石</strong><span class="credit">來源：Wikimedia Commons</span></figcaption>
-      </figure>
+      <figure class="photo-card hero-card"><img loading="lazy" src="./assets/taiwan-east/sailrock-03.jpg" alt="從礁岩海岸遠望船帆石，藍天白雲配湛藍海水，是 D6–D7 民宿門口的日常風景。"><figcaption>從礁岩海岸遠望船帆石，藍天白雲配湛藍海水，是 D6–D7 民宿門口的日常風景。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3AKenting_National_Park_Of_Chuanfan_Rock.jpg" target="_blank" rel="noopener">Joyechen</a> / Wikimedia Commons · CC BY-SA 4.0</span></figcaption></figure>
       <div class="info-panel">
         <h3>D6 重點</h3>
         <ul>
@@ -434,6 +614,17 @@ nav{top:4px}
         </ul>
       </div>
     </div>
+  </div>
+  <div class="strip-head"><h3>📷 D6 沿線實景</h3><div class="subtle">車城 → 恆春 → 砂島 → 船帆石，全程 26 號公路。</div></div>
+  <div class="photo-strip">
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/hengchun-south-01.jpg" alt="恆春古城南門"><figcaption>恆春古城南門：D6 從車城往墾丁的必經圓環，車上就能看到，也可在附近吃提早午餐。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3A%E6%81%86%E6%98%A5%E5%8F%A4%E5%9F%8E-%E5%8D%97%E9%96%80.jpg" target="_blank" rel="noopener">WEI, WAN-CHEN（魏琬臻）</a> / Wikimedia Commons · CC BY-SA 4.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/shadao-reserve.jpg" alt="砂島生態保護區"><figcaption>砂島生態保護區：湛藍海水、珊瑚礁與白色貝殼砂灘，D6 在展示館旁的觀景區就是看這片海，沙灘本身不可進入。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3AHengchun-CHO_YEN_CHIA-IMG_1663.jpg" target="_blank" rel="noopener">CHO YEN CHIA</a> / Wikimedia Commons · CC BY-SA 4.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/shadao-pano-01.jpg" alt="砂島灣全景"><figcaption>砂島灣全景：珊瑚礁岩與貝殼砂灘一路延伸到灣底，D6 展示館旁的觀景點就是看這片海。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3APanorama_of_Shadao_bay_in_Kenting_01.jpg" target="_blank" rel="noopener">Tbatb</a> / Wikimedia Commons · CC BY-SA 4.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/xiangjiao-bay-01.jpg" alt="香蕉灣的珊瑚礁潮池"><figcaption>香蕉灣的珊瑚礁潮池：位在船帆石與砂島之間的台26線路旁，D6 從砂島回民宿會經過。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3ASiangjiao_Bay_Ecological_Reserve%EF%BC%88WEI%2C_WAN-CHEN%EF%BC%89%EF%BC%8D%E9%A6%99%E8%95%89%E7%81%A3%E7%94%9F%E6%85%8B%E4%BF%9D%E8%AD%B7%E5%8D%80-1.jpg" target="_blank" rel="noopener">WEI, WAN-CHEN（魏琬臻）</a> / Wikimedia Commons · CC BY-SA 4.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/sailrock-reef-03.jpg" alt="船帆石下清澈見底的珊瑚礁水域"><figcaption>船帆石下清澈見底的珊瑚礁水域：這一帶是墾丁的浮潛熱點，大人可輪流下水，小孩在岸邊玩沙。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3AChuanfan_Rock%EF%BC%88WEI%2C_WAN-CHEN%EF%BC%89%EF%BC%8D%E8%88%B9%E5%B8%86%E7%9F%B3%E6%BD%94%E6%B7%A8%E7%9A%84%E7%8F%8A%E7%91%9A%E7%A4%81%E6%B0%B4%E5%9F%9F%E7%92%B0%E5%A2%83.jpg" target="_blank" rel="noopener">WEI, WAN-CHEN（魏琬臻）</a> / Wikimedia Commons · CC BY-SA 4.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/sailrock-beach-02.jpg" alt="船帆石旁的沙灘"><figcaption>船帆石旁的沙灘：金黃沙灘、木麻黃與淺水窪，是帶小孩散步玩沙的好地方（畫面中未入鏡船帆石本體）。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3AChuanfan_Rock_Beach_WEI%2C_WAN-CHEN.jpg" target="_blank" rel="noopener">WEI, WAN-CHEN</a> / Wikimedia Commons · CC BY-SA 4.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/sailrock-05.jpg" alt="從台地俯瞰船帆石聚落與巨岩"><figcaption>從台地俯瞰船帆石聚落與巨岩：民宿就在這片海邊小村裡，走幾分鐘就是沙灘。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3AKenting_National_Park_Chuanfan_Rock-Chen_Chieh_Wei-01.jpg" target="_blank" rel="noopener">Chenchiehwei</a> / Wikimedia Commons · CC BY-SA 4.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/sailrock-beach-03.jpg" alt="傍晚從船帆石岸邊的礁岩向西遙望貓鼻頭方向的夕陽，晚餐前在民宿附近散步就能看到。"><figcaption>傍晚從船帆石岸邊的礁岩向西遙望貓鼻頭方向的夕陽，晚餐前在民宿附近散步就能看到。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3AKenting_National_Park%EF%BC%88WEI%2C_WAN-CHEN%EF%BC%89%EF%BC%8D_%E8%88%B9%E5%B8%86%E7%9F%B3%E6%B5%B7%E7%81%98%E9%81%99%E6%9C%9B%E8%B2%93%E9%BC%BB%E9%A0%AD.jpg" target="_blank" rel="noopener">WEI, WAN-CHEN（魏琬臻）</a> / Wikimedia Commons · CC BY-SA 4.0</span></figcaption></figure>
   </div>
   <div class="timeline">
     <div class="row"><div class="time">08:00–08:50</div><div class="event"><b>早餐、整理行李</b></div></div>
@@ -460,13 +651,11 @@ nav{top:4px}
     <div>
       <div class="route-steps"><span>船帆石住宿</span><span>晨間散步</span><span>龍磐公園</span><span>早午餐</span><span>回房午睡</span></div>
       <div id="map-d7" class="day-map"></div>
-      <div class="source">D7 幾乎不拉車，讓 10/9 連假第一天保持最大彈性。</div>
+      <div class="source">D7 幾乎不拉車：船帆石到龍磐直達約 12 分鐘、經鵝鑾鼻約 15 分鐘，風吹砂再往北 3 分鐘為備選。</div>
+      <div class="route-stat"><span>道路里程 ≈ 15 km</span><span>純駕駛 ≈ 0 小時 25 分（OSRM 正常路況估值，不含停留）</span></div>
     </div>
     <div class="side-stack">
-      <figure class="photo-card">
-        <img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/%E9%BE%8D%E7%A3%90%E5%85%AC%E5%9C%92.jpg" alt="龍磐公園">
-        <figcaption><strong>龍磐公園</strong><span class="credit">來源：Wikimedia Commons</span></figcaption>
-      </figure>
+      <figure class="photo-card hero-card"><img loading="lazy" src="./assets/taiwan-east/longpan-02.jpg" alt="龍磐公園的草原與崩崖"><figcaption>龍磐公園的草原與崩崖：D7 早上從船帆石開車約 15 分鐘就到，牽著小孩在草地上走一小段看海。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3A%E5%A2%BE%E4%B8%81%E5%9C%8B%E5%AE%B6%E5%85%AC%E5%9C%92%E9%BE%8D%E7%A3%90%E5%85%AC%E5%9C%92.jpg" target="_blank" rel="noopener">Joyechen</a> / Wikimedia Commons · CC BY-SA 4.0</span></figcaption></figure>
       <div class="info-panel">
         <h3>D7 重點</h3>
         <ul>
@@ -476,10 +665,21 @@ nav{top:4px}
       </div>
     </div>
   </div>
+  <div class="strip-head"><h3>📷 D7 沿線實景</h3><div class="subtle">船帆石 → 鵝鑾鼻 → 龍磐（→ 風吹砂備選）→ 回住宿。</div></div>
+  <div class="photo-strip">
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/longpan-highway-08.jpg" alt="龍磐公園旁筆直的台26線佳鵝公路"><figcaption>龍磐公園旁筆直的台26線佳鵝公路：D7 從船帆石經鵝鑾鼻往龍磐就是走這段路，路邊即可停車。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3AStraight_highway_near_Longpan_Park_in_Kenting_National_Park.jpg" target="_blank" rel="noopener">Jackly</a> / Wikimedia Commons · CC BY 2.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/sunrise-kenting-01.jpg" alt="墾丁東海岸的海上日出"><figcaption>墾丁東海岸的海上日出：D7 若早起，龍磐一帶是看太平洋日出的地方，看完再回住宿吃早午餐。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3ASunrise_Kenting_National_Park-ID9286.jpg" target="_blank" rel="noopener">Xavier Berlioux</a> / Wikimedia Commons · CC BY-SA 4.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/longpan-morning-01.jpg" alt="清晨的龍磐公園草原與粉色朝霞"><figcaption>清晨的龍磐公園草原與粉色朝霞：D7 晨間散步時的氛圍，天剛亮、風大、人少。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3ALong_Pan_Park_in_the_Morning.jpg" target="_blank" rel="noopener">Jnlin</a> / Wikimedia Commons · CC BY-SA 3.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/fengchuisha-01.jpg" alt="風吹砂"><figcaption>風吹砂（2012 年 2 月攝）：冬季落山風把沙吹上台26線路邊堆成沙丘，10 月初剛入季、沙量通常少很多；D7 從龍磐再往北 3 分鐘車程的備選停靠點。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3A%E9%A3%8E%E5%90%B9%E7%A0%82_-_Sand_Dune_-_2012.02_-_panoramio.jpg" target="_blank" rel="noopener">rheins</a> / Wikimedia Commons · CC BY 3.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/fengchuisha-03.jpg" alt="風吹砂下方的沙灘與碧藍海灣"><figcaption>風吹砂下方的沙灘與碧藍海灣：D7 備選，站在台26線路邊往下看即可，不必走下去。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3AHengchun-CHO_YEN_CHIA-IMG_1620.jpg" target="_blank" rel="noopener">CHO YEN CHIA</a> / Wikimedia Commons · CC BY-SA 4.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/eluanbi-01.jpg" alt="鵝鑾鼻燈塔與白色圍牆"><figcaption>鵝鑾鼻燈塔與白色圍牆：D7 從船帆石往龍磐會路過鵝鑾鼻公園（10 月 07:00–17:30，全票 60 元），時間夠再進去繞一圈草坪。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3AEluanbi_Lighthouse_20240918-1.jpg" target="_blank" rel="noopener">Suicasmo</a> / Wikimedia Commons · CC BY-SA 4.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/sunrise-eluanbi-03.jpg" alt="日出時分的鵝鑾鼻燈塔"><figcaption>日出時分的鵝鑾鼻燈塔（園區內拍攝）：鵝鑾鼻公園 10 月 07:00 才開門，D7 想看海上日出請在龍磐或台26 路邊看，不必進園。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3AEluanbi_Sunrise_WEI%2C_WAN-CHEN.jpg" target="_blank" rel="noopener">WEI, WAN-CHEN</a> / Wikimedia Commons · CC BY-SA 4.0</span></figcaption></figure>
+    <figure class="photo-card"><img loading="lazy" src="./assets/taiwan-east/southpoint-03.jpg" alt="台灣最南點意象標誌與觀海平台"><figcaption>台灣最南點意象標誌與觀海平台：離鵝鑾鼻燈塔不遠，但要從停車場再步行約 10 分鐘，D7 若體力還夠可順路打卡，否則略過。<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File%3AHengchun-Township_Taiwan_Southernmost-Point-of-Taiwan-01.jpg" target="_blank" rel="noopener">CEphoto, Uwe Aranas</a> / Wikimedia Commons · CC BY-SA 3.0</span></figcaption></figure>
+  </div>
   <div class="timeline">
     <div class="row"><div class="time">07:30–08:30</div><div class="event"><b>早餐</b></div></div>
     <div class="row"><div class="time">08:40–09:20</div><div class="event"><b>船帆石／海邊晨間散步</b></div></div>
-    <div class="row"><div class="time">09:30–10:20</div><div class="event"><b>龍磐公園（免費）</b><div class="note">景觀好但風大、邊坡沒有完整護欄，1.5 歲幼兒務必牽抱，不讓孩子自行亂跑。</div><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=%E9%BE%8D%E7%A3%90%E5%85%AC%E5%9C%92" target="_blank">開啟地圖</a></div></div>
+    <div class="row"><div class="time">09:35–10:20</div><div class="event"><b>龍磐公園（免費）</b><div class="note">景觀好但風大、邊坡沒有完整護欄，1.5 歲幼兒務必牽抱，不讓孩子自行亂跑。</div><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=%E9%BE%8D%E7%A3%90%E5%85%AC%E5%9C%92" target="_blank">開啟地圖</a></div></div>
     <div class="row"><div class="time">10:30–11:30</div><div class="event"><b>回船帆石方向＋早午餐</b></div></div>
     <div class="row"><div class="time">12:00–14:00</div><div class="event"><b>回住宿午睡 <span class="tag nap">午睡</span></b></div></div>
     <div class="row"><div class="time">14:30 後</div><div class="event"><b>依 10/9 之後的住宿／返程方向再決定</b><div class="note">若當天要直接回蘆洲，將無法維持「全天累計駕駛 ≤ 4.5 小時」這個條件。</div></div></div>
@@ -494,8 +694,8 @@ nav{top:4px}
     <tr><td>10/3 花蓮</td><td>花蓮車站～國聯一路～中山路北段</td><td>平價選擇多、餐飲與超商密集；比東大門最核心區容易找附停車住宿。</td></tr>
     <tr><td>10/4、10/5 玉里</td><td>玉里車站～中山路二段～民權街</td><td>連住兩晚最重要。外食容易，且 D3 可在陶錫後直接回房午睡。</td></tr>
     <tr><td>10/6 台東</td><td>新生路～博愛路～南京路</td><td>兼顧外食、停車與到海濱公園距離；比最熱鬧核心更容易停車。</td></tr>
-    <tr><td>10/7</td><td>悠客馬場</td><td>已指定。</td></tr>
-    <tr><td>10/8</td><td>草分木 B&amp;B 船帆石店</td><td>已指定；下午行程特別縮在砂島、船帆石周邊。</td></tr>
+    <tr><td>10/7</td><td>悠客馬場（悠客馬術渡假村）</td><td>已指定。屏東縣車城鄉統埔路 23-1 號（近四重溪），D5 從牡丹水庫下來約 20 分鐘；D6 往砂島／船帆石約 45 分鐘。</td></tr>
+    <tr><td>10/8</td><td>草分木 B&amp;B 船帆石店</td><td>已指定（恆春鎮船帆路 606 號，船帆石對面）；下午行程特別縮在砂島、船帆石周邊。</td></tr>
   </table>
 </section>
 
@@ -516,7 +716,7 @@ nav{top:4px}
       <ul>
         <li>D1 週六、D7 國慶連假首日，出發前 30 分鐘再看即時導航。</li>
         <li>D5 是唯一接近 4.5 小時的日子；若南迴已有明顯壅塞，直接取消多良停留。</li>
-        <li>10/7 午餐已移至旭海，並安排餐後至少約 2 小時休息／午睡，再走 199甲。</li>
+        <li>10/7 午餐已移至旭海，餐後先休息／午睡、再逛旭海大草原，距午餐超過 3 小時才走 199甲。</li>
         <li>山區道路若遇豪雨、坍方或交通管制，以公路單位當日公告優先。</li>
       </ul>
     </div>
@@ -532,16 +732,16 @@ nav{top:4px}
     <div class="box">
       <h3>📞 出發前確認</h3>
       <ul>
-        <li>陶錫工藝：再次確認 10/5 10:00–12:00 預約成立。</li>
+        <li>陶錫工藝：預約制且線上系統離線，9/30 起以 FB 私訊＋Email 詢問 10/5 上午場，明說帶 1.5 歲幼兒；未回覆確認前不要匯款。約不到就改東豐拾穗農場或羅山泥火山豆腐 DIY。</li>
         <li>悠客馬場：若大人要正式騎乘，先確認 10/8 上午時段。</li>
-        <li>10/6 初鹿牧場施工區域、10/7 旭海大草原、瓦拉米步道於前一天再查公告。</li>
+        <li>10/6 初鹿牧場營業與體驗時段、10/7 旭海大草原、瓦拉米步道於前一天再查公告。</li>
         <li>旭海午餐選擇少，前一晚先確認至少一間有營業。</li>
       </ul>
     </div>
   </div>
 </section>
 
-<section style="margin-top:24px">
+<section id="sources" style="margin-top:24px">
   <h2>核對過的官方資訊</h2>
   <ul class="source">
     <li><a href="https://recreation.forest.gov.tw/Forest/FP?typ=2&typ_id=08001" target="_blank">大農大富平地森林園區</a>：目前免門票；週二～週日遊客中心 08:00–17:00。</li>
@@ -550,6 +750,90 @@ nav{top:4px}
     <li><a href="https://home.chuluranch.com.tw/" target="_blank">初鹿牧場</a>：目前營業 08:00–17:00。</li>
     <li><a href="https://www.ktnp.gov.tw/News_Content2.aspx?n=5C28A0E32DF925F9&s=5537A1659B4EDB60&sms=C88B5251F308CE96" target="_blank">砂島貝殼砂展示館</a>：08:00–17:00、免費。</li>
     <li><a href="https://www.ktnp.gov.tw/News_Content5.aspx?n=1C70EFC8E5FD1DD2&s=39F6D7CC664B81D0&sms=37351AA0E3CDF06F" target="_blank">船帆石停車場</a>：墾管處目前標示免費。</li>
+  </ul>
+
+  <h3 style="margin-top:22px">圖片來源與授權</h3>
+  <p class="source">本頁景點照片皆取自 <a href="https://commons.wikimedia.org/" target="_blank" rel="noopener">Wikimedia Commons</a> 的創用 CC／公眾領域圖片，已縮圖後存於本站（<code>assets/taiwan-east/</code>，完整清單見 <a href="./assets/taiwan-east/SOURCES.txt" target="_blank">SOURCES.txt</a>）。照片為各景點的代表性實景，非本行程當天拍攝；依授權條款標示攝影者與授權。地圖底圖 © OpenStreetMap 貢獻者；道路路線幾何由 OSRM 依 OpenStreetMap 路網計算。</p>
+  <ul class="credits">
+    <li><a href="https://commons.wikimedia.org/wiki/File%3ABatongguan_Traversing_Trail_Commenmorative_Plaque_%E5%85%AB%E9%80%9A%E9%97%9C%E8%B6%8A%E9%81%93%E9%96%8B%E9%91%BF%E7%B4%80%E5%BF%B5%E7%A2%91_-_panoramio.jpg" target="_blank" rel="noopener">Batongguan Traversing Trail Commenmorative Plaque 八通關越道開鑿紀念碑 - panoramio.jpg</a> — lienyuan lee · CC BY 3.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3AHualien_Pacific_Landscape_Park.jpg" target="_blank" rel="noopener">Hualien Pacific Landscape Park.jpg</a> — NHC · CC BY-SA 4.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3AMr._Brown_Avenue_through_golden_rice_fields_towards_mountains.jpg" target="_blank" rel="noopener">Mr. Brown Avenue through golden rice fields towards mountains.jpg</a> — Joel Sow · CC BY 2.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3A%E9%98%A1%E9%99%8C%E9%A8%8E%E8%B7%A1%E2%80%A7%E8%8A%B1%E6%9D%B1%E5%B1%B1%E6%B5%B7%E8%A1%8C%E4%BC%AF%E6%9C%97%E5%A4%A7%E9%81%9301_%28cropped%29.jpg" target="_blank" rel="noopener">阡陌騎跡‧花東山海行伯朗大道01 (cropped).jpg</a> — 觀光局資訊室 · CC BY 4.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3AA_Chihshang_Boxed_Meal_by_the_Chuan_Mei_Hang_Restaurant_at_Chihshang%2C_Taitung_20190816_01.jpg" target="_blank" rel="noopener">A Chihshang Boxed Meal by the Chuan Mei Hang Restaurant at Chihshang, Taitung 20190816 01.jpg</a> — Ken Marshall · CC BY 2.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3AChishang1.jpg" target="_blank" rel="noopener">Chishang1.jpg</a> — lumoplank · CC0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3AChu_Lu_Ranch_2009.04.11.JPG" target="_blank" rel="noopener">Chu Lu Ranch 2009.04.11.JPG</a> — ECTaiwan2010 · Public domain</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3A%E5%8F%B0%E6%B9%BE%E5%8D%91%E5%8D%97%E5%88%9D%E9%B9%BF%E7%89%A7%E5%9C%BA.jpg" target="_blank" rel="noopener">台湾卑南初鹿牧场.jpg</a> — 焱岚 · CC BY 4.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3ARoad_through_Danongdafu_Forest_Park.jpg" target="_blank" rel="noopener">Road through Danongdafu Forest Park.jpg</a> — Ken Marshall · CC BY 2.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3ARoad_with_a_tree_in_Guangfu.jpg" target="_blank" rel="noopener">Road with a tree in Guangfu.jpg</a> — billy1125 · CC BY 2.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3AA_corner_of_Dapo_Pond.jpg" target="_blank" rel="noopener">A corner of Dapo Pond.jpg</a> — billy1125 · CC BY 2.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3AHualien_City11.jpg" target="_blank" rel="noopener">Hualien City11.jpg</a> — Peter in s · CC BY-SA 4.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3AView_of_pond_in_the_Dongyuan_Wetland.jpg" target="_blank" rel="noopener">View of pond in the Dongyuan Wetland.jpg</a> — 中岑 范姜 · CC BY-SA 2.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3AOverlooking_the_ocean_at_Duoliang_Train_Station.jpg" target="_blank" rel="noopener">Overlooking the ocean at Duoliang Train Station.jpg</a> — 明章 徐 · CC BY-SA 2.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3APlatforms_at_Duoliang_Station_under_sunny_sky_on_22_June_2014.jpg" target="_blank" rel="noopener">Platforms at Duoliang Station under sunny sky on 22 June 2014.jpg</a> — JianEn Yu · CC BY 2.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3AEluanbi_Lighthouse_20240918-1.jpg" target="_blank" rel="noopener">Eluanbi Lighthouse 20240918-1.jpg</a> — Suicasmo · CC BY-SA 4.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3A%E9%A3%8E%E5%90%B9%E7%A0%82_-_Sand_Dune_-_2012.02_-_panoramio.jpg" target="_blank" rel="noopener">风吹砂 - Sand Dune - 2012.02 - panoramio.jpg</a> — rheins · CC BY 3.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3AHengchun-CHO_YEN_CHIA-IMG_1620.jpg" target="_blank" rel="noopener">Hengchun-CHO YEN CHIA-IMG 1620.jpg</a> — CHO YEN CHIA · CC BY-SA 4.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3A2023_Syuhai_Grassland_Recreation_Area_S6.jpg" target="_blank" rel="noopener">2023 Syuhai Grassland Recreation Area S6.jpg</a> — Taiwankengo · CC BY 4.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3A2023_Syuhai_Grassland_Recreation_Area_S1.jpg" target="_blank" rel="noopener">2023 Syuhai Grassland Recreation Area S1.jpg</a> — Taiwankengo · CC BY 4.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3AAlangyi_Ancient_Trial.jpg" target="_blank" rel="noopener">Alangyi Ancient Trial.jpg</a> — Ecosi · CC BY-SA 4.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3AGuishan_Island.jpg" target="_blank" rel="noopener">Guishan Island.jpg</a> — 阿爾特斯 · CC BY-SA 3.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3ATourists_riding_quadricycles_in_Chishang_Heaven_Road.jpg" target="_blank" rel="noopener">Tourists riding quadricycles in Chishang Heaven Road.jpg</a> — 大頭家族 · CC BY-SA 2.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3A%E6%81%86%E6%98%A5%E5%8F%A4%E5%9F%8E-%E5%8D%97%E9%96%80.jpg" target="_blank" rel="noopener">恆春古城-南門.jpg</a> — WEI, WAN-CHEN（魏琬臻） · CC BY-SA 4.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3AHualien_harbour_in_the_evening.jpg" target="_blank" rel="noopener">Hualien harbour in the evening.jpg</a> — Ken Marshall from Absecon, New Jersey, USA · CC BY 2.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3A%E9%87%91%E5%9F%8E%E6%AD%A6%E6%A8%B9_%2814545001530%29.jpg" target="_blank" rel="noopener">金城武樹 (14545001530).jpg</a> — JianEn Yu · CC BY 2.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3AKecheng_Bridge_in_the_green_landscape_of_Yuli_Township.jpg" target="_blank" rel="noopener">Kecheng Bridge in the green landscape of Yuli Township.jpg</a> — 大頭家族 · CC BY-SA 2.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3A%E4%BB%B2%E5%A4%8F%E5%AF%B6%E5%B3%B6%E8%99%9F_Summer_Formosa%2C_%E7%8E%89%E9%87%8C%E5%AE%A2%E5%9F%8E%E9%90%B5%E6%A9%8B_%2820240810%29_%2853922778024%29.jpg" target="_blank" rel="noopener">仲夏寶島號 Summer Formosa, 玉里客城鐵橋 (20240810) (53922778024).jpg</a> — Takeshi Aida from Hong Kong, Hong Kong · CC BY-SA 2.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3ALaku_Laku_River_%E6%8B%89%E5%BA%AB%E5%9E%83%E5%BA%AB%E6%BA%AA_-_panoramio.jpg" target="_blank" rel="noopener">Laku Laku River 拉庫垃庫溪 - panoramio.jpg</a> — lienyuan lee · CC BY 3.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3A%E8%98%AD%E9%99%BD%E5%B9%B3%E5%8E%9F_Lanyang_Plain_-_panoramio_%282%29.jpg" target="_blank" rel="noopener">蘭陽平原 Lanyang Plain - panoramio (2).jpg</a> — lienyuan lee · CC BY 3.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3A%E5%A2%BE%E4%B8%81%E5%9C%8B%E5%AE%B6%E5%85%AC%E5%9C%92%E9%BE%8D%E7%A3%90%E5%85%AC%E5%9C%92.jpg" target="_blank" rel="noopener">墾丁國家公園龍磐公園.jpg</a> — Joyechen · CC BY-SA 4.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3A%E9%BE%8D%E7%A3%90%E5%85%AC%E5%9C%92.jpg" target="_blank" rel="noopener">龍磐公園.jpg</a> — A0925173679 · CC BY-SA 4.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3AStraight_highway_near_Longpan_Park_in_Kenting_National_Park.jpg" target="_blank" rel="noopener">Straight highway near Longpan Park in Kenting National Park.jpg</a> — Jackly · CC BY 2.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3ALong_Pan_Park_in_the_Morning.jpg" target="_blank" rel="noopener">Long Pan Park in the Morning.jpg</a> — Jnlin · CC BY-SA 3.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3AMudan_Dam_under_cloudy_sunny_sky.jpg" target="_blank" rel="noopener">Mudan Dam under cloudy sunny sky.jpg</a> — 晨星 飛鳥 · CC BY-SA 2.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3ANanan_Visitor_Center_%E5%8D%97%E5%AE%89%E9%81%8A%E5%AE%A2%E4%B8%AD%E5%BF%83_-_panoramio_%282%29.jpg" target="_blank" rel="noopener">Nanan Visitor Center 南安遊客中心 - panoramio (2).jpg</a> — lienyuan lee · CC BY 3.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3ANa%27an_Visitor_Center_%2829%29%E6%88%B6%E5%A4%96%E6%99%AF%E7%B7%BB.jpg" target="_blank" rel="noopener">Na&#x27;an Visitor Center (29)戶外景緻.jpg</a> — 舟集 Toadboat · CC BY-SA 4.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3ANan%27an_Waterfall_with_crystal_clear_water.jpg" target="_blank" rel="noopener">Nan&#x27;an Waterfall with crystal clear water.jpg</a> — Ken Marshall · CC BY 2.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3A%E8%8A%B1%E8%93%AE%E5%8D%97%E5%AE%89%E7%80%91%E5%B8%83.jpg" target="_blank" rel="noopener">花蓮南安瀑布.jpg</a> — Matt8830 · CC BY-SA 4.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3A%E5%8D%97%E6%BE%B3%E8%BB%8A%E7%AB%99-1.JPG" target="_blank" rel="noopener">南澳車站-1.JPG</a> — Small28 · CC BY-SA 3.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3A%E5%8D%97%E8%BF%B4%E5%85%AC%E8%B7%AF_South-Link_Highway_-_panoramio_%281%29.jpg" target="_blank" rel="noopener">南迴公路 South-Link Highway - panoramio (1).jpg</a> — lienyuan lee · CC BY 3.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3A%E7%90%B5%E7%90%B6%E6%B9%96_Pipa_Lake_-_panoramio.jpg" target="_blank" rel="noopener">琵琶湖 Pipa Lake - panoramio.jpg</a> — lienyuan lee · CC BY 3.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3ATaroko_National_Park_Qingshui_Cliff_%28Huaiwun%29.jpg" target="_blank" rel="noopener">Taroko National Park Qingshui Cliff (Huaiwun).jpg</a> — Huaiwun · CC BY-SA 4.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3AChingshui_Cliff_shoreline.jpg" target="_blank" rel="noopener">Chingshui Cliff shoreline.jpg</a> — 白士 李 · CC BY 2.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3A%E5%8F%B0199%E7%BA%BF%E9%9B%B6%E5%85%AC%E9%87%8C_-_Start_of_Country_Road_199_-_2012.02_-_panoramio.jpg" target="_blank" rel="noopener">台199线零公里 - Start of Country Road 199 - 2012.02 - panoramio.jpg</a> — rheins · CC BY 3.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3AKenting_Hengchun-Township_Taiwan_Sail-Rock-01.jpg" target="_blank" rel="noopener">Kenting Hengchun-Township Taiwan Sail-Rock-01.jpg</a> — CEphoto, Uwe Aranas · CC BY-SA 3.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3AKenting_National_Park_Of_Chuanfan_Rock.jpg" target="_blank" rel="noopener">Kenting National Park Of Chuanfan Rock.jpg</a> — Joyechen · CC BY-SA 4.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3AKenting_National_Park_Chuanfan_Rock-Chen_Chieh_Wei-01.jpg" target="_blank" rel="noopener">Kenting National Park Chuanfan Rock-Chen Chieh Wei-01.jpg</a> — Chenchiehwei · CC BY-SA 4.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3AChuanfan_Rock_Beach_WEI%2C_WAN-CHEN.jpg" target="_blank" rel="noopener">Chuanfan Rock Beach WEI, WAN-CHEN.jpg</a> — WEI, WAN-CHEN · CC BY-SA 4.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3AKenting_National_Park%EF%BC%88WEI%2C_WAN-CHEN%EF%BC%89%EF%BC%8D_%E8%88%B9%E5%B8%86%E7%9F%B3%E6%B5%B7%E7%81%98%E9%81%99%E6%9C%9B%E8%B2%93%E9%BC%BB%E9%A0%AD.jpg" target="_blank" rel="noopener">Kenting National Park（WEI, WAN-CHEN）－ 船帆石海灘遙望貓鼻頭.jpg</a> — WEI, WAN-CHEN（魏琬臻） · CC BY-SA 4.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3AChuanfan_Rock%EF%BC%88WEI%2C_WAN-CHEN%EF%BC%89%EF%BC%8D%E8%88%B9%E5%B8%86%E7%9F%B3%E6%BD%94%E6%B7%A8%E7%9A%84%E7%8F%8A%E7%91%9A%E7%A4%81%E6%B0%B4%E5%9F%9F%E7%92%B0%E5%A2%83.jpg" target="_blank" rel="noopener">Chuanfan Rock（WEI, WAN-CHEN）－船帆石潔淨的珊瑚礁水域環境.jpg</a> — WEI, WAN-CHEN（魏琬臻） · CC BY-SA 4.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3APanorama_of_Shadao_bay_in_Kenting_01.jpg" target="_blank" rel="noopener">Panorama of Shadao bay in Kenting 01.jpg</a> — Tbatb · CC BY-SA 4.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3AHengchun-CHO_YEN_CHIA-IMG_1663.jpg" target="_blank" rel="noopener">Hengchun-CHO YEN CHIA-IMG 1663.jpg</a> — CHO YEN CHIA · CC BY-SA 4.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3A%E5%B1%B1%E9%A2%A8%E4%B8%80%E8%99%9F%E5%90%8A%E6%A9%8B_20170226.jpg" target="_blank" rel="noopener">山風一號吊橋 20170226.jpg</a> — Thunder24678 · CC BY-SA 4.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3AShanfeng_Suspension_Bridge.jpg" target="_blank" rel="noopener">Shanfeng Suspension Bridge.jpg</a> — Ken Marshall · CC BY 2.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3A23-%E5%A3%BD%E5%8D%A1%E9%90%B5%E9%A6%AC%E9%A9%9B%E7%AB%99_%2828896705953%29.jpg" target="_blank" rel="noopener">23-壽卡鐵馬驛站 (28896705953).jpg</a> — Sinchen.Lin · CC BY 2.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3AHengchun-Township_Taiwan_Southernmost-Point-of-Taiwan-01.jpg" target="_blank" rel="noopener">Hengchun-Township Taiwan Southernmost-Point-of-Taiwan-01.jpg</a> — CEphoto, Uwe Aranas · CC BY-SA 3.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3A%E8%8A%B1%E8%93%AE%E7%B3%96%E5%BB%A0.jpg" target="_blank" rel="noopener">花蓮糖廠.jpg</a> — P1340 · CC BY-SA 3.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3ADeputy_Factory_Manager%27s_Quarters_%281934%29%2C_Hualien_Sugar_Factory%2C_Guangfu_Township%2C_Hualien_County_%28Taiwan%29.jpg" target="_blank" rel="noopener">Deputy Factory Manager&#x27;s Quarters (1934), Hualien Sugar Factory, Guangfu Township, Hualien County (Taiwan).jpg</a> — Mk2010 · CC BY-SA 4.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3ATaiwan_2009_GuangFu_Sugar_Factory_Historical_Train_Exhibition_FRD_6170.jpg" target="_blank" rel="noopener">Taiwan 2009 GuangFu Sugar Factory Historical Train Exhibition FRD 6170.jpg</a> — Fred Hsu (Wikipedia:User:Fred Hsu on en.wikipedia) · CC BY-SA 3.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3ASuhua_Highway_through_Taroko_National_Park.jpg" target="_blank" rel="noopener">Suhua Highway through Taroko National Park.jpg</a> — 大頭家族 · CC BY-SA 2.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3AEluanbi_Sunrise_WEI%2C_WAN-CHEN.jpg" target="_blank" rel="noopener">Eluanbi Sunrise WEI, WAN-CHEN.jpg</a> — WEI, WAN-CHEN · CC BY-SA 4.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3ASunrise_Kenting_National_Park-ID9286.jpg" target="_blank" rel="noopener">Sunrise Kenting National Park-ID9286.jpg</a> — Xavier Berlioux · CC BY-SA 4.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3APaposogan_in_Seaside_Park_%E6%B5%B7%E6%BF%B1%E5%85%AC%E5%9C%92%E5%9C%8B%E9%9A%9B%E5%9C%B0%E6%A8%99_-_panoramio.jpg" target="_blank" rel="noopener">Paposogan in Seaside Park 海濱公園國際地標 - panoramio.jpg</a> — lienyuan lee · CC BY 3.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3ALanterns_in_Taitung_Railway_Art_Village.jpg" target="_blank" rel="noopener">Lanterns in Taitung Railway Art Village.jpg</a> — WEi WEi · CC BY 2.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3ARuisui_Tropic_of_Cancer_Marker_20150228a.jpg" target="_blank" rel="noopener">Ruisui Tropic of Cancer Marker 20150228a.jpg</a> — Wei-Te Wong from Taipei City, Taiwan, Republic of China · CC BY-SA 2.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3AXiuguluan_River_and_the_East_Rift_Valley%2C_looking_southwest_from_the_kilometer_4_on_Hualien_Township_Road_64_in_the_morning_on_6_September_2014.jpg" target="_blank" rel="noopener">Xiuguluan River and the East Rift Valley, looking southwest from the kilometer 4 on Hualien Township Road 64 in the morning on 6 September 2014.jpg</a> — CHUAN MING LIANG · CC BY 2.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3ALandscape_of_rice_paddy_field_in_Yuli.jpg" target="_blank" rel="noopener">Landscape of rice paddy field in Yuli.jpg</a> — billy1125 · CC BY 2.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3A%E5%B9%BD%E9%9D%9C%E7%9A%84%E7%93%A6%E6%8B%89%E7%B1%B3%E6%AD%A5%E9%81%93_-_panoramio.jpg" target="_blank" rel="noopener">幽靜的瓦拉米步道 - panoramio.jpg</a> — chienhaw · CC BY-SA 3.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3AWalami_Trail_%E7%93%A6%E6%8B%89%E7%B1%B3%E6%AD%A5%E9%81%93_-_panoramio.jpg" target="_blank" rel="noopener">Walami Trail 瓦拉米步道 - panoramio.jpg</a> — lienyuan lee · CC BY 3.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3ATerminal_Point_of_the_Paved_Road_%E8%A1%8C%E8%BB%8A%E7%B5%82%E9%BB%9E_-_panoramio.jpg" target="_blank" rel="noopener">Terminal Point of the Paved Road 行車終點 - panoramio.jpg</a> — lienyuan lee · CC BY 3.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3AWushi_Harbor_and_Waiao_Beach.jpg" target="_blank" rel="noopener">Wushi Harbor and Waiao Beach.jpg</a> — Yu tptw · CC BY-SA 4.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3A2022_Wushi_Harbor_N3.jpg" target="_blank" rel="noopener">2022 Wushi Harbor N3.jpg</a> — Taiwankengo · CC BY-SA 4.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3ASiangjiao_Bay_Ecological_Reserve%EF%BC%88WEI%2C_WAN-CHEN%EF%BC%89%EF%BC%8D%E9%A6%99%E8%95%89%E7%81%A3%E7%94%9F%E6%85%8B%E4%BF%9D%E8%AD%B7%E5%8D%80-1.jpg" target="_blank" rel="noopener">Siangjiao Bay Ecological Reserve（WEI, WAN-CHEN）－香蕉灣生態保護區-1.jpg</a> — WEI, WAN-CHEN（魏琬臻） · CC BY-SA 4.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3A%E5%9D%AA%E6%9E%97%E8%A7%80%E9%9F%B3%E5%8F%B0%E6%9C%9B%E9%9B%AA%E5%B1%B1%E9%9A%A7%E9%81%93%E5%9D%AA%E6%9E%97%E7%AB%AF.jpg" target="_blank" rel="noopener">坪林觀音台望雪山隧道坪林端.jpg</a> — Outlookxp · CC BY 4.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3AMudan-CHO_YEN_CHIA-IMG_1449.jpg" target="_blank" rel="noopener">Mudan-CHO YEN CHIA-IMG 1449.jpg</a> — CHO YEN CHIA · CC BY-SA 4.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3A2023_Xuhai_Fishing_Port_S1.jpg" target="_blank" rel="noopener">2023 Xuhai Fishing Port S1.jpg</a> — Taiwankengo · CC BY-SA 4.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3AYuli_Noodles_in_a_bowl_close-up.jpg" target="_blank" rel="noopener">Yuli Noodles in a bowl close-up.jpg</a> — 芳蘭 徐芳蘭 · CC BY 2.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File%3AYushan_National_Park_%E7%8E%89%E5%B1%B1%E5%9C%8B%E5%AE%B6%E5%85%AC%E5%9C%92_-_panoramio.jpg" target="_blank" rel="noopener">Yushan National Park 玉山國家公園 - panoramio.jpg</a> — lienyuan lee · CC BY 3.0</li>
   </ul>
 </section>
 
@@ -560,80 +844,126 @@ nav{top:4px}
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
-const progressBar = document.getElementById('reading-progress');
-function updateReadingProgress(){
-  const scrollTop = window.scrollY || document.documentElement.scrollTop;
-  const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
-  progressBar.style.width = pct + '%';
-}
-window.addEventListener('scroll', updateReadingProgress, { passive:true });
-window.addEventListener('resize', updateReadingProgress);
-updateReadingProgress();
-
 const dayColors = {
   d1:'#2f6f54', d2:'#4479bd', d3:'#9a6fb0', d4:'#d47e34', d5:'#cb5c5c', d6:'#1f8d9b', d7:'#7f8b43'
 };
-const routes = {
-  d1:[['蘆洲',25.084,121.474],['宜蘭短停',24.746,121.756],['烏石港',24.867,121.835],['花蓮市',23.987,121.601]],
-  d2:[['花蓮市',23.987,121.601],['大農大富',23.653,121.420],['花蓮觀光糖廠',23.651,121.420],['玉里',23.336,121.313]],
-  d3:[['玉里住宿',23.336,121.313],['陶錫工藝（玉里）',23.336,121.314],['瓦拉米登山口',23.287,121.225],['玉里住宿',23.336,121.313]],
-  d4:[['玉里',23.336,121.313],['伯朗大道',23.119,121.218],['初鹿牧場',22.867,121.109],['台東市',22.758,121.145]],
-  d5:[['台東市',22.758,121.145],['多良短休',22.676,120.962],['旭海',22.196,120.882],['旭海大草原',22.173,120.885],['悠客馬場',22.083,120.859]],
-  d6:[['悠客馬場',22.083,120.859],['砂島展示館',21.928,120.844],['船帆石',21.932,120.848]],
-  d7:[['船帆石住宿',21.932,120.848],['龍磐公園',21.938,120.850],['船帆石住宿',21.932,120.848]]
+const ROUTES = {
+  d1:{km:186.1,min:225,wp:[["蘆洲出發", 25.0849, 121.4737], ["烏石港（頭城放風備選）", 24.8707, 121.8359], ["宜蘭市（早餐／提早午餐）", 24.7546, 121.758], ["蘇澳（蘇花起點）", 24.5962, 121.8537], ["南澳（短休候選）", 24.4633, 121.8011], ["清水斷崖觀景（匯德）", 24.2047, 121.6688], ["花蓮市住宿（車站周邊）", 23.9931, 121.6033]],polyline:"klbxCkjldVRW~ByCLOBCHIv@m@HEJGNGRKbA_@rBk@JCfA[`AYZGJCNMDk@XgCDUn@cEXcBF[Pq@Rq@\\iAR[dBmDDIVi@N]NYTi@n@kA^u@Pa@n@sAdB{Dt@aBnBeEXo@^s@f@eAb@aAzEcK`A_Ch@gA\\o@^i@HOh@kAd@cADUFO\\{@b@}@b@}@Zk@JUDMlBcDfBwCR[JOQMo@a@w@c@k@Uw@ScDw@gAWq@Yk@i@o@w@q@qAi@iBs@{CoAyFi@aDWaBcAaHa@iDg@gF]gESgDQmDMoDEcDC_EE{DBmFJyE?Q@e@BgADwANsDJaCZyELeBPaCh@gFv@kGTqADg@TyAvAiIv@sDn@sCnAgFvBqHxAkFn@}BjAeEdBeGHk@`@uA\\wA^wBP_BHuAB{AAeBGyAQ_DQsCMyC]cFKeAQwCKoCCiC@iEb@ow@Pe[DaCHaCTeCX}B^oBf@{BdCyJb@uB\\aCTqBPmCFsB@eBCgGEmLF{H@{AFgCPoEXiFXwDZcDZmCV}B^mC\\uBt@oEX{A`@mBdBaHl@wBnAeEf@eBtAqEfDuKPo@Tq@hBcGX_ArBgHhAaE`@cB`@oBJe@l@oDl@sEb@sEJwA@UVaHB}CEaFIiCCm@GoB_@kHq@iK?EAOkBmZWqDDgADiEAg@C_@Ei@?G?KCm@ASlC_@r@Sr@[d@Wd@_@vFoGh@m@j@i@bBqA|AwAXWPMLSDEl@kA|@sBHSzAcDHQFIJMVONGNENAN?\\?hADV@vADL@H?hCJR?fFPl@Cf@?XB|APN@^DL@L@lD\\PBT@PBfCTx@HJDBW@OBQPcBBIFIFE`@WRGHCDCLODODQ?GCUAS?QFQ@EZy@z@aCDO@CLYXy@JWBIFQTs@@CBIb@uAZ_A\\M`@MxBs@|@a@pAu@|AiAl@m@v@gAb@o@r@gA`AgBrAgCl@{@\\[f@Sf@Id@Et@?`ADlCL~BJ~@L`CX|AN~@L`APdARjAZhA\\bA\\lAh@fChAhAl@~@f@vB~AdCbCXXl@r@hApAz@nAx@`BZv@BZ?TERGPMRSNSFS@YCWKQOIQKQESAQCW?WB_@D[F_@v@_EdB}HhCkMPy@Nm@lB{Ip@aDdAuDv@{BZ}@Zy@h@uA`BqEt@uAz@aBbBqC|BwDnEqFrC}CrBcBvAuA`CiB|DgCpBqAvDoB|DqAnCeA^O^Mx@YjBm@fBe@~Be@dM_DdRyDdEiA`DcAnAe@pAm@|DeC|CiCpCqCrFoFhBiB`@c@vBsB`D{Cj@e@fAw@r@e@^Qz@[xAg@~@Y`B]dAOjBQbFi@tD_@tAMrCWfD]fI{@~Dc@xEe@nAQbAQdAW`Bg@rAi@hAk@l@_@b@Wt@k@f@a@hAcA`AiAZa@j@y@n@cAt@uAbBkEr@aBr@qAh@w@`@a@v@s@p@_@f@]rBaAfAa@~@c@dAe@dAa@tB}@`KeEd@Up@c@\\UbA{@x@w@b@o@Ze@X_@t@iAb@y@Rs@J}@Bk@A{@EkBWkKKeBIaC?sA?uAT}DJgAXaBX_Bd@eBhAgDh@qAz@aBv@uAfAaBdAuAz@_An@{@p@m@v@o@hAu@p@_@p@[tB_AtF}AlBo@b@OxE{A`Bq@pAy@`Au@hB{AvBwBpCuDpEsF|AeBnAeA`Ay@lAcA`CuAhCoA|BaAnBy@dAUjAW|AWjB[lMoAxE{@vBa@lBa@dCy@jDkAlD_B|ByAtCoBtFqE~@cAv@{@hAoAdAqAtE{HxA{Cf@mAp@cB~AmFl@gCjAoGl@_Fb@yEh@_Gb@aCFa@T_AT{@t@oBnGwMl@uAf@yAnCmKb@qAf@cAr@sA\\i@l@w@x@}@n@q@|AkAnAs@lBcAxIgEfIeEhDgBlAw@ZOXQdCaBz@s@bByAbAcAhAeArA}A|HwIvCwC|AgAfBkAfBgAvD}BjJkFpHeEpO_JlO_KvKyI~KeKhHyH|GeItM}QlPyUrIsL`S_YfMwQdJkL|HyInKaK|IcHhEcDdOwJ`TmMl`@aV~TsOnO}Mv\\}]jLkMrSuTpIgJfD_EtDoDtCuCvH{FzIaGrJsD|EoBvNaDxOiBbMCfELxAZvBh@lBd@z@Zh@RdBr@jChAjBn@lA\\|@Pz@NtBVt@BlAB~BAjCQtJ{AdBW`Hy@~DWnE[xGg@xBK|AE~D?nELd@J`@PZTZ\\Zl@Vr@Pr@HVN^Z^^Nh@@VCTEZS^a@d@q@Zw@Lm@Fi@Bo@Cy@Is@Mi@Sm@S]U[m@m@k@a@k@Yq@Uq@OiAGmA?{@?e@BeAJwCVmAJiMdAgCPqBLWBoAJcANsEp@wANMCKCGEKIMMGc@Gs@IaBAoAEcAA[Au@IiBGa@Q_ASm@Wi@Sa@Q[s@qAg@oAQm@Mg@[iBEW}@wFGa@mAcICKc@gBWs@Sk@a@y@oAuBuDcGgC_EeBmCOSeAiBaBmCc@cAYaAe@yAMc@Ww@Qo@k@kB{AoFs@aCa@yAe@cBgBeGM_@e@qAm@gAW[wAiAGCiA_Ak@g@k@k@o@{@kAqBa@[eCaEcCyDq@qAm@_B[aAyC_Io@iB[k@SWiB{AUOcBsAyAsAYUs@k@uAoAgB}AsBgBMKsCoB_DiB_Ak@aAi@c@WOQqC_BECg@[]QkAm@SOwBoAKIq@]qBgAIEg@W[Ou@Qq@Ks@Gi@?g@?iBJwAF_@CYKqBuAgAo@WQ]SKIaDuBOKQKyAaAkD_Ci@c@Y_@c@i@eB{CGMu@kAcDmFMYKOk@cAc@q@ACe@c@gAeAdB}BbAoAHIZ]TT`@\\Nh@I`@Wn@M`@AFENAFC^BT?PD^NTHFYx@KXCJGPGRHNrBhDbBpCnBfD`@h@V\\j@f@nChBlCfBJH`DrBl@`@VPr@d@pBrANH^PV@T?pAEZC`BGj@?f@B^BZFXF^J^Lb@PfEdCn@Z~@d@|Az@B@\\Rf@ZdAj@rAx@R@b@V`Ah@~@j@~ChBrCnBLJrBfBfB|AtAnAr@j@XTxArAbBrATNhBzARVZj@n@hBxC~HZ`Al@~Ap@pAbCxDdC`EJd@n@fAv@dAXb@^^b@`@^ZJHx@n@FDnAhAZ^`@t@j@zAPn@r@bCxBnHr@hC~AvF`@rAT|@JZ\\DfC^^Dt@LdAL\\FXBl@L`ANLDVH`Bl@HBVHdBd@nA\\xC|@fD`A^L|@VvAd@HB^Nf@P`A\\`A\\v@TbAThCn@fAXrBj@hA^b@NnAf@r@ZTFb@Nr@R~@RfAR|@PPBr@NvB`@r@Nz@Z`A\\pAf@d@Jh@Lv@NhBV~@L~@Rl@Ln@NVJ~@`@tAn@nAj@d@Rf@Vn@XFBdAb@vFdClBx@~BdA`Ab@xAn@fLbFjDzA|FdCnAh@hChA~@b@hAf@rF`CTLnD`BxItDPHfInDLFp@ZjD|ArAf@lGnBjBl@h@PdElAbElAhF`BxDjAdK~Cx@TdHvBjEpAfBh@xEzAlDfAv@TdDbAvJvCJBZFVDtAHp@DrBL~BLrBLbBJrBJhCNdMp@F@lIb@xFVdRv@zLb@bJVV?Z@hA?nBAbAA~@Db@D^D\\F~E`AnB^hKvBVFvNrCLBlOxCzK|Bb@J|Bd@`@JXHJB`Ab@t@n@r@t@`CdDrKhOd@n@p@bAR\\NZHZPjARdB@Pz@`HDR@RDVVdBFd@|AzLVlBX~BNjAJ`AJx@Fd@TvBh@nEF`@LZfClE{@r@{@r@a@Xm@d@uAfAWFSDuBjB_Az@YTc@\\u@l@g@l@O\\Sr@ALAFCHAHC^KtAAJ?JTF|ExANCpBl@pCv@`@JHWBIFEHATFj@RPPBBDL@F?DGJLDPPjN|DjDz@dCp@fAV`G~B~CjAp@b@f@Q|Ac@dBg@hBg@dAY`Bc@lDaAlCq@p@QHAHCZ?TGCIAEM[}@uESoAEUOiBIqAAsA@eCFqCDaA@_@BULgBTmCXgCj@uDn@gDt@}C`EiObF{QDSFUFQxByI\\wAVkAf@eCb@oCb@yC^_DLwATcCFeAH_CDiB@}@BoER?~CKR?j@?`AKZAlDI`CU|ASb@IlBa@zK_CtCo@fBc@hBi@vBq@jVeGpLoCzYgHhPoDvFoApFiAzIaBjJ{ApIiArHw@|N}@bLc@tIGf@?zPErWEv@AhPYlDQtDWvLkArGcAdHiAvGiAjw@iNtTcEt@QhCk@|Cy@~C_A~CiAjGiChIkErG_ErHyEhLmGvGkC|Bw@fA]nAYdE_AfEq@bD_@bCSpCOnCGbEC~DA~EFbFD`NFlLWfPgAxMgBhCc@hCc@pGiAfPqCd@Il@MvAWtAWtAWjDy@lDu@hBa@fBg@fBc@pBq@tJcDxCu@l@Mn@If@G|@Gx@Md@Mf@Q^Sd@[r@o@^e@R[P[Tm@Ni@Lo@Jm@Di@?s@Ak@Ec@Ge@Kg@Kc@Oc@Qa@cAaBu@oAGMUg@KWM_@g@}AQo@QkAGk@Eo@Ew@Aq@?g@?[@a@@e@De@Di@Hq@Ly@R{@T{@Pk@To@Xm@^q@`@o@t@aApCiDxB}CdB}B|@kArAcB`C_D~C_E^m@HML[l@}@`@m@j@{@p@aAvBaDtGsJ\\g@~AcChC{Dz@{Al@kBXkAPcADaABgA?qC?iAAuJ@eJEoAIu@E_@Mu@Mo@Sk@Wk@_@q@U]UYwAqAWUyDcDeFmE_LoJlHyKxBsCtJ_MtAeBnA{AvHuJhAyAr@}@\\Yb@[x@g@z@_@XIXE|@KdAG`q@iCbACfDIrBIxA?`B?lDEbB@V??NB~ABvBDlCBZAp@BbA@v@?LB|ADpB?N@|@BfBB~@D~B@FDxBDxA?PBx@FjCHrCBr@DhBBfAHtCD|A@LHxCBhA?LzAFJ?J@B?XB`@DT@ZuDFm@h@yFb@H~@HbA@`AGz@Uf@Qh@Wj@c@hAmA\\q@Vs@^eAd@kA`@m@\\c@z@w@~@k@f@Ur@W`AKz@Ir@A~@BPBv@JlK`C`CXfABv@?`GCbCFbDP`BRpEz@~@Xz@X`A\\tIhEfBd@jATdABp@?dACbAG~@UlA]~B{@jBs@xAa@RE~@Sx@MdAMfAI|@Gz@ClA?zBHjAX`BZ`APt@Rx@Xp@T~@`@jAr@jAt@`BlAtCfC`CdCnA|@n@h@xAz@hAj@nAd@`Bl@XJzD`BnDdA|Bf@vFfA|TtDz`AtOl`@rGbXlEbGrAvCx@b@N\\J|An@xEjBzCtAfFtC`HfFxAfAhJ~HbAt@hAz@pBbA|CfA~Ab@bAN`APrBNxADhBAlAIbBQ`BY~Bm@pAc@f@Qh@Ud@SxAu@h@]j@_@HEt@m@|@o@LJzBxARLNDP@TA`@I|@a@lDyAJGHKJKHSTq@FMHMLKPITIXGZEZEZKh@QRGNALAP?Z?NCJGFKDO@OAYEw@?S@UDSFQJOLKPGl@MXAR?PDNHPPRLZN\\JP?JAJGFKFSHc@FUHMJGLGPEP?TBT@f@DT@PAvCq@h@INAL@JDLDHLHRPh@FJFHLDP@NAJEJKn@u@PSLIJGNERAPBNBNFNHbAfAHHNDL@R@PGTKlAy@|@e@pAm@`EkBVOFMFM@O?MAOCOGMIKKIy@m@]QgAg@y@_@k@]KMIOEO?QDQHMHKf@e@RQLIJCLCNAP@XD\\FV@T?`AI~@Eb@C\\A\\?`@D^HZHXF^Fd@BX@RARENERCP?VFRFVF\\Bh@H`@BV@TAXANAL@NBLHJJJHLBN@P?RENCNAL@LDLDpAx@NNJJHFJFLBLAJAJCHEHIFKDQH_@DOHOJKb@YNMNMLIFEJALAHBLBrBd@LDL@L?P?P@N@JDJFHHDNBP?~@@RDLHNJLLLLHJDRBt@HP?RAbBUb@Ix@OLAH@J@DFFFj@|AHLJLXVLLJN`@v@FJBL@PANc@`DCT?R@RDPHNHJJFLDLDNFJFJHb@l@N\\NNLHNFJDRDPDTHNHb@ZhG`Grd@fe@LHNNTLRDdBNb@?RELIJOXU^URGP?PDNNLNd@j@JJL@JA|CWXATBRJLNRZ`ArAPRNFN@RCVGnA_@NKLS\\m@RSNANBNLHPBP@d@?\\?j@@NBNNh@NZFN@L?RETMn@Kp@C`A@TH\\JPTLb@Cx@I\\I^QXOv@Yx@KhAOj@EVGLM\\]j@o@b@i@Rg@f@{AJYP]LIPIRCRFl@Rr@Zv@h@tAbAX\\Vh@J|@PlAHdAHzAFd@J^FLNDN@f@Kn@K|@MxAKNDPFPNd@x@l@nAJVBRATKVQHOBQAQIMMI[Ci@Cm@Ga@OUOKSCQ?k@LgC`@q@NY@QGQQ_@w@c@eAOOUK]KY?UFYLa@b@_B`CuBxCWb@Sv@E\\?\\?VJtE@ZF^N\\T`@ZZ^TdB|@~AfATJb@N`A?~AEP@PDHDXTd@f@|@~@n@v@`@~@\\z@\\z@N`@JhAHd@Ph@HPNPj@^l@\\t@^dBt@ZNJNDN@XGf@G\\G`@IRWRyAx@c@f@Qb@EX@^b@hBN|@F^JXb@~@RNTH^Ab@E^?Z@z@Rp@Th@h@j@h@p@z@l@v@x@lAjA|B`@p@JTXj@T^^n@Vd@l@bAj@lAZx@X|@ZnA@DR`A@HxDXdBUB|@Jb@CTEd@K`AK?AMCIIGKAK@GHCH?Lm@L{A^mE~@l@`Dj@|CvAtHNVx@EEXDfBA|@El@Kh@UdAu@fCO|@Gp@Ex@?z@N|ATdAZz@xBhEZz@L`@V`Ah@xCZbBT|@Xz@Zp@d@z@dBbCjE~FjBrC`BvCl@hAZr@^x@Th@^tAT|@Nl@h@bBp@`B\\t@^t@l@~@h@r@j@n@x@p@~@j@tCvAx@`@lB|@t@\\t@Xt@XVDpCz@`Dp@lC`@hG~@pCd@rDhAbC|@tIhEv@^tDvAhFbBnJdBnAHvAV~ABpC?dBCpCM~E]nC_@tCUz@I`CSxQyBpEkAxDmA`FwBvFiDzEyDbIkIfJcJdIqGnI_FnIsDfGoBdJyBrJoAnF_@jEQjEAlMVf~@zD|}@nDdNv@bRhA`CTxHr@dH|@tXxEpH`BxFxApHpBnOrF`Bl@vHjCxI`E|H|DbJzEnN`JrMdJpNbKlPdLpChBxMnG~CnA`GvBpNxCpM~A~Lf@|R[~Hs@xNmBxJmAfEc@dE_@xIW~GHnDJhHv@lCd@hDz@~CdA~@d@vAn@lAp@hSxLfD~A~Bz@jCx@xEpAv@^f@`@h@j@\\l@Rf@Pp@Jt@Bp@?p@Ep@Ot@[~@sC`I_@xAa@bB[xAO~@Kv@Iv@MtAI`BCxAAxA@pABlAPjCThAVj@R^TDHNzA{@rReG`ASj@Aj@B|FtAh@Jj@NzBj@hA\\\\FNB^F^@`@InDmAvEwAvE{AnC{@`M}DpBo@xDeAv@Oh@CfO\\`@D\\DrCv@vGbBtA`@vBp@XJjCfAbNjGxB`A|BdAnB`AhHxDtBtArAx@lC|AnAh@~@Xp@TrA`@JD|@Zt@\\b@Rb@X`@XRNr@p@|@fAZf@^p@h@nAb@tAZjA\\xAvAvGjA|EfBvG~BtHrCfIpFxMbD`HdEdIfDxF|C~ElG|IxEbGxLrM~InI~FtErClB|DvBtFdCbF|AnFlA|Ep@tFd@tPhAtGn@lGhAdGbBf@Pd@P`Bn@~DjBD@TLxJvFrAl@xAj@bC~@bA^v@P\\JvBn@fBf@l@PhA^dA\\dA`@^Pf@R\\PZPZRXTn@j@d@f@l@v@|@tA`ClE\\j@Zf@Zb@X\\Z^f@b@l@f@n@f@x@l@rP~KzB~ArB~ArAfAbCzB~A`BjBpBxAlBrAbBlBlCvAzBxAbCdBdDlQx^d@|@f@|@n@|@j@t@r@t@x@r@t@h@r@`@z@b@x@^|@Zz@TpCj@bB\\VDj@Jn@HLBJDb@TTPTXb@t@f@r@d@Xz@VtAX|@XRHTHTPNPZ\\FHHJzQpVLPLLLJNLPRHJFLR`@LXHTFVLf@Hd@fAdIHXJTLVNRPPRR`A|@PPLPJRLXpDzJBFRj@HZBX@XAVCVG^GXCR?R?VBVDVHRJXpGnLFVDr@@fAEVIf@IRMLi@d@]Zm@f@KPERAN@NBRHLJJTDP@`@CLAPALAd@ENAH?HBHDHHHLDHFNJ\\DPL^DRD\\Fx@BZ?J??AHCFGFa@b@EFCFCLMbACTAR@NDRFRr@vBN\\PXPRRPRNNLPLVJzAh@~o@zRlBd@nB`@`BX`BTdBPrAJ~AJ|AHrAB~@?R@RBPDNDPHNJd@`@TPTJPHNBXDV@RDNBNHNHLJJNrCpEPXRTPLRJTHTBTBL?TCTGRKRKPOLOXe@TSLKLGPEHCH?H?H@H@RHxDvApCjA~@\\|Cv@ZLRJ\\\\nB|Bj@n@\\XXLTHXBv@?pA?^?vAM~DYT?V@f@D~ARbAHv@LnAd@rFdAn@Jz@ZvAh@rAXbC`@~Cb@fALzBb@TBr@NrATjBZbAT|Bh@bC`@RD|B\\lCf@bBZvAXb@JnCb@~AZ^Ft@NbB\\jI`BhEr@tB^~H~AzA`@d@J~@VdCv@fCp@xD`AzEpAbBd@lCr@d@H`@JlBh@rHrB`Bb@dA\\TDj@Ln@DlBBx@?rBJ`@BbAD\\?\\Fb@PZ\\NVRf@Fb@Fv@HfAXtFFtAHhBFt@Xn@RRXRTLXN|KXrc@|@p_@r@hD\\~Cz@fBv@rEjCt@b@RJDKx@{AZw@b@aA\\s@rAsCZq@rAqCj@oAz@gB^q@\\q@b@{@^c@z@s@~@u@x@k@jAq@n@YdA_@`AYrAW~@MlBK^?T?pBFbAJv@Lz@P|@R|@ZrAn@b@Td@XhAx@`A|@p@z@h@t@v@nAfArB~AxC|@`B|C|F~EdJpB|D^j@p@tAz@|ArAfCt@tA`B~CtBbEbB`DFJDHBFxF`KbCrEhBpDfAlCpAzC|ApD^z@~BpFjArCZr@pA|Cb@bApC|GzClHbBpD`AdCFPzAjEVl@lArCjArBHLt@x@|@~@h@b@b@\\dAp@bAn@~@b@j@ThA^pDh@zQnC~Dx@vDj@jHfAdG`AfARdBb@fDr@lFpAnHdB|Ct@zD|@dCn@t@NbJxBjDx@rAZvBf@XHdCl@pCp@l@HlGr@z@JhGh@rEZvD^z@H~F`@r@Fd@DF@xEb@bAJtHn@tALnHl@TBxBPdK~@vAJv@HvCVlCT|@Hd@B|CT~BRt@FfX`CrATd@AjAJhAJ`BPlCT~E^lCTrK`AdBNfALxBPjNfAzFf@|J~@XBhJv@bD\\fBNL@dGV~Cw@x@UdCg@~NgDn@OxIqBxCo@lAW~FkArAWnE}@`Ce@bB]dAUdAUv@Q\\IxBe@|D}@zGyAlAWt@ARAd@FL@fD\\z@TT?PAXGdBc@|@YnBk@|Ac@|C{@pGgBfF}AzCy@n@Od@Mf@IR?v@Ex@?v@DPBVB|@RzEfB|@\\tBv@b@NnAZdANdBZxC\\p@Fx@@`@FTJNNVf@nEdPr@rBb@bAb@r@x@bA~AtA@BvAjAj@f@jC~BpBvAp@j@JSlEyIZk@tI_QNYt@Xh@TxJvD~LvE~Al@l@b@nAb@jCe@|@MrCc@H~@BFBJBJHJHHFDlC|@bA^"},
+  d2:{km:103.3,min:129,wp:[["花蓮市", 23.9931, 121.6033], ["大農大富（遊客中心）", 23.6144, 121.416], ["花蓮觀光糖廠（光復）", 23.65743, 121.42101], ["瑞穗 北回歸線標誌（順路短停）", 23.46544, 121.35788], ["玉里住宿（車站周邊）", 23.33148, 121.31176]],polyline:"ecmqCiueeVjBp@P]h@}Al@sB?WWyBxDi@lDi@bG_ArDk@\\I|AUjAOn@Kd@GxB[vAOx@KjE]f@Up@k@ZUn@e@dAu@p@e@\\UhBmAf@_@j@e@f@]RMTQHGDCNMd@]tB{AbCgBr@g@NMvB}AROPMd@_@p@e@XSt@k@l@NlEXP@V?~DVvDVl@Hb@[XSpCsBf@_@HGb@[HGHG`@W|@m@fBsAP`@l@h@d@Z\\XHJNRJd@LbBHp@NZRV`Bv@z@h@j@b@XTdBxAzHpGXPVR|JrINLPNnFzEbBzATTfA|@l@`@fAj@vCdAhExAxAf@TJjEdB`MhEh@NnHlCvH|CPFNDrIpCtI`DzIdDzAh@v@XtErA~DvAhChA|Br@dFjB|ChAd@LtFxBz@Xn@NnAL\\@l@?lO_@|AElL[|FM`ACj@@b@Bn@Hh@Nf@NjAj@|A|@jSrLnCvA~CxAzBdAb@Xt@j@v@r@tAjB~A`CdApAtA~AxBbCtBrBdD`DvPpPfO~NdOvNxHrHbIxHdExD@@lClCbMzLdFzEfHhH^d@JNj@r@t@nA`A`CBFXx@rBpF@BdB~DdD`JfDfJ~DxKdBtEhGtPlAbDFNFNx@pBFFPNdAbAjN|MbE~DnAlAvF`GdF|EfBhA^P`LlDhBl@dK`DRFpC~@xAl@pEnC|LfIjDnB~H`F|CpB`DrBtH~EvFnDdAp@bSnMn\\fTnHxEHFtRbMdSlMvHdF|HbFxH~E~H`FvHdFbIfFvH|EDBjHvEJHHFrO~JtIlFfGhE|GdEzB`BlDzBvCvBhDvBn@`@xBxAhC`BlElCpIxFfIpFpIdFrIrFnH|EZ\\~AdBJV~@pBlAjF~BvKhKvf@|C`ObDrO^fBlBfJfAfFTfAN`AH|@BZ@X?j@ChBa@`KQtDWlFA`@QfDATGfBUrEIdBW`AE^vBxCjAtBjA`Cj@jAp@lAbAdBz@tAt@z@~@|@j@d@d@^pAx@r@\\dAd@fh@|TpB|@TLXJ`@PfDdAjBXzABbBElC[j@G~QaCvQaCtJkAhCOzBAbAAbEHnC^p@J|Cp@rEzAnC`AvP~FrJhDhDlAlExAzIdDRDxDz@jBb@fBTtBP~Gp@vK`AvHn@zAN`L`AjKx@fHn@hDX~@LvANjBT~B\\jDv@bAXhCr@jF`BxAh@bF|AzCbA`EjARHrAb@hA^j@Jj@Bp@@dAG`AObA[bAc@nCaB~BkAlBeAlAg@ZIf@K^Ez@Ez@?l@Fh@Hp@NrDpAhFzAdBj@zBr@NDxAd@pA`@tBp@hA\\l@Rv@XZLVNVNf@ZZXZ\\NPd@v@Xp@Tp@VvAFj@@XDf@PhBN`BJdAJ^DXTt@b@bAl@x@n@j@t@l@b@Tx@X|@ZvC~@ZJbIdCrC~@zBp@xJzCxEvAn@RRFfA\\h@RbAd@|AvAtBxBdEbEnAjAfBbBXX|@dAnBpB`BdB\\Xj@n@`AfAp@~@\\r@`@bAXt@\\tAx@zCLf@vAjGTdALZvAxFV~@Jf@d@nBJf@T|@`@bAJTP`@T\\r@v@vDjDjMfL|BnBn@n@vBjB|@t@hChB`Bp@^P`EjAdCd@`BTjBZxEj@bBTfATpAXpA`@|@\\NHjAt@lFdD|BjBz@z@Tb@Xf@d@z@T|@Jh@Lf@~@tGPz@Tt@Xn@`@f@h@b@p@p@t@h@`@Z|@h@rBjAhB`AdCrAlBjAnGlDlGpDpAt@hE~BvA`APJr@b@lAt@fCjApAj@rCr@fALf@@tADjCIxEUjELjC@nWcAnDu@jAKzAUl@[`@[d@k@`A}AXk@FMvAmCrAuBZe@l@aAbA}A^u@`@_AVu@N{@Hq@h@cFXcCT{BJo@Ng@`@u@d@s@h@e@l@a@|D{BpDoBjEeCfHsDfH_EzB{AdE_Cn@[x@Ob@AZ?^@T@b@F~L|B|Dr@nEx@rEx@ZFTDxAVjE|@hEv@dDj@jARrDn@rEx@`@Jf@Ll@ZjAp@~@j@b@TXJb@J`B\\nFfAj@DNDjLtBtCn@nDv@fCd@pEdAh@JnAJnPxCvCj@jGjAtEz@|E~@xLzBvZxFfAVx@ZjAt@XR^ZlAv@bA~@dW~\\pAdB`AdAn@j@v@f@pAr@xKfFbF|B`GtC|MlGHQ`FyLjBqEDKdLyXnNw\\tAqDi@{AoBqFmBkFq@mBzJ~Er@^fAl@Q`@IVqB|Eo@`BuApDoNv\\eLxXEJkBpEaFxLiEuBcFcCqEyB}FoCyFoCeCiAcCqAcCaBiAiAwBoCeEoFiGeIkCqDaCcD}DaDiBcA_AGgAWwZyFyL{B}E_AuE{@kGkAwCk@oPyCoAKi@KqEeAgCe@oDw@uCo@kLuBOEk@UiFeABa@Fa@`@oAv@X\\gA^cA\\cA??]bA_@bA]fAw@Ya@nAG`@C`@ELnFfAj@DNDjLtBtCn@nDv@fCd@pEdAh@JnAJnPxCvCj@jGjAtEz@|E~@xLzBvZxFfAVx@ZjAt@XR^ZlAv@bA~@dW~\\pAdB`AdAn@j@v@f@pAr@xKfFbF|B`GtC|MlGbBz@tAv@dAz@bA|@lOjPhCpChA`AnAz@bAl@bDjA~Bf@dCR~N\\r@?nAHxFp@hDbAx@ZdHrC~@^z@\\lAf@rBx@NFz@\\d@RtD|AdIdD~GjChHtCfCbA`@LzInBlC|@bBr@bIlEbB|@ZPnP~IjK~FpCtApAf@p@XrBx@dCJTBfADjACfDW~UiCvAM`BKfAC|AApg@bBf@@`i@zAlBDfENtIX`BL`Dp@rCbAnDnAhDnAbBh@dIpCbCt@rKfDb@JnE`AvB^tEt@xDXl@Fv@FXD|@JbBFdFVpCLzA@|AJpADbCBtCGtEBlGElFKxIGxGCdD@tAAnCMtFMfDIdBGbCYfAW~IyBzA_@VA\\CN?n@C~@@Z@fJv@|OrBf]lEnBT|AJxCNdFTrBNvDZPHFFXXTb@DHNX^p@\\b@DD`@h@f@d@n@b@rAn@jA`@~FjBzAb@tGvBlCx@jH|Bd@LtBl@`JpC~KdDnKjDrAb@~Af@fF~AfLjDxQxFhBj@~@Rn@RvKhDpPfFxDhA`GhBpA^~B~@jAf@rH|DrDpBdObIpB|@fB~@hAh@rCjAzHpD^RTLz@PXDj@B^?^Ah@Ez@M`@Gf@Et@@fDD`@Dr@JZAXILKDELQHY@SAWM]Y[UMECw@Ue@Qk@[m@c@w@o@aAu@u@k@]U_@SUUU]IUE]@c@F_@L_@N_@R]Z_@ZWf@Uf@Kj@CZDh@LZPZV`@b@d@b@l@^d@T`@Hb@Fb@BnBF`ABl@Jx@Tr@b@jAx@rAhAz@t@j@b@zDjDHMLSbAcBT]@IGKYOEG@Mp@gD`Cr@uAtGq@zCCTl@h@~BpBb@`@r@d@x@f@vBv@|B~@hBn@jBr@tCbApA`@h@NH@j@DbCPj@BxCNH?`FX~@Bj@BRBZ@nCNvBJ|AHH@pCLb@?`BInBGnAIn@Kp@Sd@STMVM`Ag@zAw@VM`Ac@TGLEv@Kb@E|@GN?vDSl@ErDSlAG~@Cr@Ab@B~@Rt@\\n@^p@b@XZPVNZF`@@`@C\\Gd@Sn@Wj@OTURQHYHY@[?UA[Ia@Sc@YWSQGWCW?YDQNOLS\\Of@_@`BOf@KZITMP[VYH]Fm@Bm@DUDSHMHMNGPEV@`@DVNZZ\\v@h@v@Zd@Jl@Bl@?d@Gr@Sj@Qh@Ip@Cx@LbAXPFb@F^@j@E\\Gl@Wt@a@`@]^k@h@cAR[PUNMNG`@OZIRAZ@d@B\\@XATGPGPQR[HWHa@Hq@DWPy@Ng@Vk@t@qARa@Pe@P_@N[Z_@^U\\OTG\\A`@Bd@Hp@LfA\\v@ZrAd@t@Xt@T`@Jp@LdAPVN\\Df@F`@FTFTFPHPHPLLLJJLLJLz@|APZJPNPLLRNPLVNPNJJPJj@Xn@Zr@\\`Bv@hAf@v@`@XL`@RnAj@b@Td@Xr@^f@Nh@LXDZLrAl@|BhAvB`AXLVNNH`@L\\FRDTFj@Lr@VDH~Av@r@Tv@TfBd@tBl@dCp@rA^n@NTHJBtCx@bGhBtCz@vC~@rFbBtBn@rIjC|DjAhEpAbAZ`D`AxC~@rBl@bBf@jHzBfErAfEnAvEtAxDjAtAd@xBp@JDrUpHtH`CbJtCtItCxXzIjLpDpGnBpGpB`Bh@jJxC~A`@lBPzCB^A~ABt@@~BDp@BpBDzDJjGRdBFrDFjEN`B?zBT|AXjDv@lD|@zA\\tPvDhKdCp@NhQdEl@NvKfCPBXHx@RvA\\LBNBtM~Ct@G\\DrAYlAYrC_ArA]dHuBl@Mz@Ub@KPAt@C\\?\\B^Dn@PrBj@`ErATH|DpAjBl@~KxD~CdA|CfAf@Lt@Pn@LzDp@nEv@pB^zB`@`BXnFbAj@Hl@Jz@Nd@Hf@BzANbBLjBRlBJfBL~@Fj@BF@AJ?NItAE\\E|@AL?FEl@El@Eh@G~@APANM|BGfAGdACT?LCdBJx@ThABd@Tr@@FBFNp@DPT~@DLJEB?bD}@NEBPRz@VjAC`ACh@nDTZB`AHtBPnANfAHd@FLArAHXBTBEh@AXAZj@D"},
+  d3:{km:54.5,min:65,wp:[["玉里住宿", 23.33148, 121.31176], ["陶錫工藝（觀音里 168-1 號，縣道193）", 23.4047, 121.3643], ["回玉里午睡", 23.33148, 121.31176], ["南安遊客中心", 23.30246, 121.25844], ["南安瀑布", 23.31208, 121.24758], ["瓦拉米步道登山口", 23.32896, 121.23533], ["回玉里", 23.33148, 121.31176]],polyline:"u|kmCcvlcVL?@[BYDg@EAUARgDJmBFu@m@uCe@{BDCFGDI@KAK?ACGGIICIAI@C@Km@UkAYoAWgAEY?UCy@E_BIuBKgE?OAQO?gADq@?e@@eBCeACk@CS?QAWAc@GoAMUAMC_@Cm@Es@E]Ca@CEAK?GAk@E_AIeBMoBMkBKcBO{AGg@Ce@K{@Mm@Kk@KmFcAcBYyB_@sBa@mEw@{Dy@o@Kq@Sk@OmAa@oAc@mA_@qAa@_LwDCAeBm@_Bg@eBk@SIyAk@_Bi@y@W{@So@Oc@G_@C]@s@@SDg@J{@To@NcHlBkA`@}Cv@oAZsAXUPu@FuM_DOCMCwA]y@SYIQCwKgCm@OiQeEq@OiKeCuPwD{A]mD}@kDw@}AY{BUaB?kEOsDGeBGkGS{DKqBEq@C_CEu@A_BCa@uAsByIiCmKmCmIm@wBqBkGGe@CiA@}@zDks@HiA`@_Bt@oBpGwQjAiDLe@H[HYq\\kD_P_BkBWm@GeMmB}Dk@i@QSKWW[u@y@eEw@wEOs@Qg@MQQMqCwAuGmDcGkDwDqBwAu@iKoFo@YUKUIIEOKcAi@aBy@{A_ADI@K?GAICQGQGQCQAK?K@MBQBQ?I?I_@yCGYGQKSIM[UDMHMJGJERAS@KDKFILELZTHLJRFPFX^xC?H?HCP?DCJAL?J@JBPFPFPBP@H?FAJEHzA~@`Bx@bAh@NJHDTHTJn@XhKnFvAt@vDpBbGjDtGlDpCvAPLLPPf@Nr@v@vEx@dEZt@VVRJh@P|Dj@dMlBl@FjBV~O~Ap\\jDIXIZMd@kAhDqGvQu@nBa@~AIhA{Djs@A|@BhAFd@pBjGl@vBlClIhClKrBxI`@tA~ABt@@~BDp@BpBDzDJjGRdBFrDFjEN`B?zBT|AXjDv@lD|@zA\\tPvDhKdCp@NhQdEl@NvKfCPBXHx@RvA\\LBNBtM~Ct@G\\DrAYlAYrC_ArA]dHuBl@Mz@Ub@KPAt@C\\?\\B^Dn@PrBj@`ErATH|DpAjBl@~KxD~CdA|CfAf@Lt@Pn@LzDp@nEv@pB^zB`@`BXnFbAj@Hl@Jz@Nd@Hf@BzANbBLjBRlBJfBL~@Fj@BF@AJ?NItAE\\E|@AL?FEl@El@Eh@G~@APANM|BGfAGdACT?LCdBJx@ThABd@Tr@@FBFNp@DPT~@DLJEB?bD}@NEBPRz@VjAC`ACh@nDTZB`AHtBPnANfAHd@FLArAHXBTBEh@AXAZj@DL?VBpAFpCPv@DR@ZBrAHzAH@}@ASH?p@BRATIRMVWDK\\k@jAoBnBgDx@wAr@iAHMHH`At@lAz@`@X|AhATL\\Rr@Zl@V|D`BbCbAhCfAz@`@v@ZpGpCrB~@\\PzErBJFr@\\vBlArAr@HF`GfDB@n@\\jAn@n@Xz@\\nDpAFB`GvBn@JpABpGJfCDV?fAB`BF`@T~EnDpF~DDDvE~EFFRTb@`@xCdDBDlCnCv@v@fApAd@r@X~@Hj@Bt@?\\FxBB~BLfF?lC?NEpCHnFJbE?DHtE?bDBn@Nz@T`@|AhBP\\z@rBJj@PnBBh@?`@GjB?XF~@JpAPtAT|Ad@|Ad@lAb@l@dDpETb@\\~@d@`Bl@hCTfADLv@fEbAtE\\~Ah@hCX~@tAbFj@rD~BbNpC`PJl@Hx@Bt@C\\iAlJi@pEGXIV]z@]j@m@bAUT]TgBd@KFMPGTCd@r@`RN`D?`@Cb@O~@Qd@Q`@Wj@s@v@o@\\m@RUHyCl@uJvBcAP{@BcDQyBQOAkNgBc@GqEM]D}@Pk@VyDzBe@\\UXOTMXgA|EQb@oAfCU`@UdAKbA?vA\\nIBXd@pCFn@H`BCbBc@jFGh@GPiA~B]`@{@d@i@TUByCJs@@w@?UCMEu@SoAOa@Uw@s@}Am@QMWYOc@YeDM_@]o@K[WkAIw@C]@]JgB?YIYOWYM_@EiB@i@Gg@Mi@KiCYa@ESMg@WWSk@y@IGUEWBMJCFKRU~A[hBWr@Yb@q@p@QLULgBVWBuAEM@MFQNuBrCUXSXYTOFc@?sB[yA_@}As@]CSBYJGPER@PDbAEh@Gj@}@pDEV?XDjAELSVaBlA_DnBu@j@_@P_@J_@?[EaA_@]AYHMJIT@VLr@f@~AB`@IPo@p@GPAVDRFLbA|@fBzBPXHZl@dCn@zAJP@P?NEPMNKFUBmAKOB]Lw@f@uA|@YTGJCL?\\\\nBD\\APQRSFkBIYBQNITARH|@@\\G`@o@fDKtBGNGHSNgA`@s@RmBVWNITEZ@TT|Ap@`EN^??O_@q@aEU}AAUD[HUVOlBWr@SfAa@ROFIFOJuBn@gDFa@A]I}@@SHUPOXCjBHRGPS@QE]]oB?]BMFKXUtA}@v@g@\\MNClAJTCJGLODQ?OAQKQo@{Am@eCI[QYgB{BcA}@GMES@WFQn@q@HQCa@g@_BMs@AWHULKXI\\@`A^ZD^?^K^Qt@k@~CoB`BmARWDMEkA?YDW|@qDFk@Di@EcAAQDSFQXKRC\\B|Ar@xA^rBZb@?NGXURYTYtBsCPOLGLAtADVCfBWTMPMp@q@Xc@Vs@ZiBT_BJSBGLKVCTDHFj@x@VRf@VRL`@DhCXh@Jf@Lh@FhBA^DXLNVHX?XKfBA\\B\\Hv@VjAJZ\\n@L^XdDNb@VXPL|Al@v@r@`@TnANbAXTBv@?r@AxCKTCh@Uz@e@\\a@hA_CFQFi@b@kFBcBIaBGo@e@qCCY]oI?wAJcATeATa@nAgCPc@fA}ELYNUTYd@]xD{Bj@W|@Q\\EpELb@FjNfBhCRbDPz@CbAQtJwBxCm@TIl@Sn@]r@w@Vk@Pa@Pe@N_ABc@?a@OaDs@aRBe@FULQJGfBe@\\UTUl@cA\\k@\\{@HWFYh@qEhAmJB]Cu@Iy@Km@qCaP_CcNk@sDuAcFY_Ai@iC]_BcAuEw@gEEMUgAm@iCe@aB]_AUc@eDqEc@m@e@mAe@}AU}AQuAKqAG_A?YFkB?a@Ci@QoBKk@{@sBQ]}AiBUa@O{@Co@?cDIuE?EKcEIoFDqC?O?mCMgFC_CGyB?]Cu@Ik@Y_Ae@s@gAqAw@w@mCoCCEyCeDc@a@SUGGwE_FEEqF_E_FoDa@UaBGgACW?gCEqGKqACo@KaGwBGCoDqA{@]o@YkAo@o@]CAaGgDIGsAs@wBmAs@]KG{EsB]QsB_AqGqCw@[{@a@iCgAcCcA}DaBm@Ws@[]SUM}AiAa@YmA{@aAu@IIILs@hAy@vAoBfDkAnB]j@EJWVSLUHS@q@CI?_AGYAyAMOAiAIYCyBQG?}AOEAUAWCG?Eh@AXAZj@D"},
+  d4:{km:100.6,min:144,wp:[["玉里", 23.33148, 121.31176], ["伯朗大道／金城武樹", 23.09735, 121.20444], ["池上市區早午餐（車站周邊）", 23.12621, 121.21965], ["初鹿牧場", 22.86357, 121.10927], ["黃記蔥油餅 海邊店", 22.74907, 121.15667], ["台東市住宿（新生路～博愛路）", 22.758, 121.145]],polyline:"u|kmCcvlcVL?VBpAFpCPv@DR@ZBrAHzAH@}@ASH?p@BRATIRMVWDK\\k@jAoBnBgDx@wAr@iAHMHH`At@lAz@`@X|AhATL\\Rr@Zl@V|D`BbCbAhCfAz@`@v@ZpGpCrB~@\\PzErBJFr@\\vBlArAr@HF`GfDB@n@\\jAn@n@Xz@\\nDpAFB`GvBn@JpABpGJfCDV?fAB`BF`@T~EnDpF~DDDvE~EFFRTb@`@w@|@FFLPxLnMZVxAl@td@`R|@PxBTpJfAtDb@zIfAbEf@RBnDd@~ARhAL~Df@zBZJDGVm@~AMr@pGbDr@\\`ClAz@d@dFlCpE~BdLdG`LxFzBzAZRXTv@f@v@j@t@f@xIdGnCjB^VVm@jDyH|@eCfRec@f@aAxC_HxBaFtKmWh@g@LMRGV@RDhA`@|Bz@t@HlAZp@GVBjB^bAZxAb@NLf@Tf@Vj@XtAx@n@Vd@Jd@HTDlEh@F?hC\\pCp@nD|@p@PdEbAzA@P?RAz@KpDo@zFaA^I|AW`AOxFaAr@Gn@GlECp@D|@PhClAVN~A|@j@`@zCtBdDbCzAnA~GhFhAb@f@P`ErAxAp@jCbCnAlAbA`ArApAbAv@jAx@JHn@VvAt@dE~AlBl@LHr@TNDxBz@tBbArBfAlAp@nJhF~UtM~BrAbT~LZNh@Xv@Rn@@h@CN?jGShBGl@Cl@CL?dBEr@@z@Pr@Vn@b@~BfB\\T`@XzEzDdAz@hBrAzAlAtDzCLHrCxBfIrGLJxBdBvAfABDxB`B~BfB|CbCzAnAlCrBPLl@b@j@\\n@^d@PTDZJrAb@xBr@|KlDx@VbA\\vBv@~JbDzBn@jBl@~B~@d@XtBvAfBpBpFhIXf@RZz@rAl@z@l@n@f@Tt@Vv@L|A`@zBbAfAj@fAh@`At@rB~BtCnCzBnBRVxAnAbAn@fBdA|AvAhBtBbCnCp@x@V`@r@nAFT^lBLhBA|@HbBBZJ|@NxAt@zGdBzOVpBHTHZNVNRJLPNb@Rh@Zp@\\pPtIlNnHbG~C~BlAhB~@bAf@TLhCtAdCpAt@^pAp@`Ad@d@Td@Th@Pn@Pr@Jp@Dh@Bf@AxAC~Ja@vFUhFUVAf@A`AEn@AT?x@?tCJnA@H@n@An@CXC~@IjAMbAIZ?\\AZ@j@Db@JVDr@Lb@HpE~@|A^x@RVJj@^~@z@bA~@p@d@d@Vj@TdATpAZvAVnB^v@Hz@An@Cl@Gt@M`@GZAd@Ct@?v@HjCf@dGtAxD`AxBf@r@PzBj@PDvCt@tCx@zBn@tA\\hAThAR`BT~Ft@J@jC`@`@DdD`@vAV|@Ph@LVHTJl@ZpAr@bAl@jAl@b@RLFpBp@nBr@hBr@dBn@^NxB|@`A^~@XHBVBD@b@F`BLLC\\DRBv@Jl@Ll@Lp@R|Al@h@PLDbDjAl@Tb@LbBh@RFhAZf@Ph@Nn@N`AP`@DZBtDXT@XDVDb@Tp@j@f@d@`BtAJHBB`@\\|BpBTTVTNNV^LZJb@@Nj@tDPbB^nCR|AFl@@N?ZGl@EXOb@Sv@i@hBiAbEMb@Md@Of@{@lC{@lDE\\jAtBnB|CjBxC|BrDrAvBnDzF~CdFZf@|BtDJP`@r@jBvCVVbEtClD`CxAbAdHvE~CtBdHhFj@`@hClBpJvGvBnAdFrDvE~CfCdBhKrHrA~@|CjBdD~BhAbA~@t@DP|@jAh@bAfBnDCRBVfApCvArCfAMfW_ClEc@d@Ge@yFSmBkAo@COoAcMI{@kBuQMmAQJe@Xq@pAc@dAS?gHkEy@[IAI@[H[H[DOD[NWRa@`@]j@yHeDaDuAmIoD}@_@a@QaFuBiGeCkAg@cBy@gFqBg@SaAc@wCkAgDsA}CqA{Am@eBw@u@YcBu@WKqCiAm@UcEeB_Ae@[Oe@]kCoBaDgCcAu@uAcAqAcAWSWOw@i@uAuAOSmB^{B`@oD{FsAwB}BsDkByCiBtAMSw@yAO_A??LI`A{@nB|CjBxC|BrDrAvBnDzF~CdFZf@|BtDJP`@r@jBvCVVbEtClD`CxAbAdHvE~CtBdHhFj@`@hClBpJvGvBnAdFrDvE~CfCdBhKrHrA~@|CjBdD~BhAbA~@t@DP|@jAh@bAfBnDlDfHdObZtItPnCnFxAzClCdF|BrEzA`Dd@`AtDfH|A`Dl@jAhCdFXd@`@x@P\\HNjB|DbC|EV`@V`@ZT\\Rf@Lb@Fl@?v@?j@?rECdAC^CjDC~AJbCHnFFrDBLArIDvDPdAPp@PtN~D`Dx@xDbAnBh@zA^~LlDvDfAxDbAJBjL`DtBj@NDz@VlGfBzDlAfAVxI`CxD`AtKtChD~@hElAfBf@nKxCjD~@d@Nn@PD@pCv@`Bd@~Ab@|Ab@nBj@jGdBtA^pA^VH~Ab@tA`@vBj@tBl@dAZPDfEjA|Ab@`Bd@vF~AfL`DfGbBd@J|Cz@|Cz@VHfBf@fJlCbEjAdFvA~F`Bf@Lv@Tf@LnA\\tVjH`XjHr@TfAVvOjEnA\\XHh@LdLbDvA^`JdCrCv@rCv@vAb@tCv@lF|AbEjAzA^jAZfLxCnEnAlBh@dH|BXDlEjArBn@lJlCRF~@Tj@Pt@T~Ab@zAb@FHd@JZHlQbFrBh@bG~AxA^XHvEtAxEpANFlBd@dAZ|Ab@hAXvA^fA\\|Bp@|C|@xGlB`D|@lCt@dD|@xGdB|DlAFBd@L`ItBt@`@rBh@bGzATFdBf@x@ThJrCj\\xIbIxBtSzF`GlBjCz@tBXdAd@pMrD`Cl@lCt@`D~@fAXzA\\bCr@`ALj@DtAE~BKxFUzAQXGh@G\\K\\e@PUb@g@lF}JLUd@{@tBuDpA}Bd@mAViAjAiFRk@Vw@`@cAl@sAfByDXk@lB}D`@o@t@mAbAmAx@u@dAw@jBgAbCqAdN{GpBu@bA]tCg@LCf@G|Ce@zGeAzAUlBe@bCs@bA]lBm@VIvGeBz@SJE^Cf@C\\@vANzC`A^Ll@Jl@Hr@BbK]fBCfB?l@Ax@D|A^hAZ|@^b@Pj@Rp@b@^Xp@d@jBxArDrDlLlLVTdAp@|BzArA|@nAj@hAd@rBr@^L`F|A|@j@fEbDn@Zn@RXJt@RdBZXH^Dz@?h@EZADA`@ChAIdCE\\AzAGjAAz@EpLk@vBMjAO|EeBlCcAxA_@`BStBMbDI~@Br@L|An@bAd@tAt@v@\\vAb@xAVjALpBH`M@|@B~@FpAZvAp@d@ZNJj@j@d@f@Xj@n@`BXbADf@Fx@AdASdGOxCa@hP?l@Ct@TdFTtE?t@U`EAr@EdCCxFExAKr@]bBU`ASz@O`@CFy@pA{DzF[b@cEfGi@t@_@v@Q`A_@vBuBdOg@bEgA`Io@jEEj@Cp@Et@c@`RGdAGhEs@bRC`@C^OpBGn@Ad@?d@Dr@FT?HhCfItChI~@dBX^RLl@Hx@B`AHxAFtDLlBFjCR`@B`@H|@PnUjE\\Hb@Ht@Lh@Bj@F\\EXEVKRIXOXSz@cA`AyAhAqAbE}F`@s@z@{Aj@}@T_@z@cBVmA^kAJi@?g@Cg@I_@[q@McAAe@OgF?y@GmAGaAUgAOs@E]C_@@_@@KLa@^m@tAkBh@q@x@eAf@m@Ze@\\_@RSVQZKTGT?RARDH@RJRJZf@d@~@p@hAh@v@VPh@Pv@N\\NZXVPfA~A`@v@L^Zl@`@VzBpANNHPH`@@VD`@J^LRRL`A\\jAd@h@\\r@h@f@`@z@x@hAbAb@^~@n@n@Zl@Pr@FjBE\\@t@At@@z@LjAVdBh@b@Rd@Xz@^d@P^J`@Hx@Jh@JB[Xi@Ra@Dk@Fe@B[K}@Aa@Fy@n@eBFQF_@Ca@Ea@Oc@[k@CGGUCg@GaAUeBEg@@YBQFQTYLONOJWFa@H_A@[?[BQNIJALBJBRLHJXf@NVRDRBl@EVI`@OXCb@C`AL\\B\\AXAN?JCFI@E?KCIMESAo@Eg@W{@k@cAi@UGUKYSGS?MZ{@JU?UKOOAoACaAEOEMGGOGa@@WL_ADYFOFKLAHFBP?RGTKf@A^FJJBPBv@DLG`@WbAo@^SfBe@VCLLBPELKFi@`@MLCVDRJNNHRBNARAfDg@d@KPKrB{CRU\\QVEbBKXE`@URD~FbBt@Nd@@zBAx@A`B?bAN`ADbAPfI`Bh@JRF}@{@gDgB}@iAcAmAoB{CkAgBoB_F}CnA??|CoAnB~EjAfBnBzCbAlA|@hAfDfB|@z@l@Ij@ItAUj@?v@P\\PRNZZPXh@pA^bAd@rBb@~@PRTTLFZFNB`@RRTJTFPP`@Td@b@z@\\`@ZZh@b@\\T`ANfATrATf@JPDLDNDRRHRBJBH@PANCZEXSjASbAMv@CV@^DRFb@PPXJz@RbCp@zFjArCf@^HRNLHBR?HCLAPITU^Uh@U`@Uf@e@d@[X]\\Qh@Mj@M^_@ZcBdAs@^q@ZUA_@CWIUCQ?SDw@T{@\\]BoFx@UDgDh@SDQDOBQHOPINGZQl@Ob@y@hCGNcAhDp@Ap@AhCG`ABlGF|@DbA@fABfB@tCD`DB^@vGFnFFN@T?H?t@Af@Aj@Ef@Iv@Qh@IdCw@bFyAhDkA`AS`AGj@?r@CpASpEJx@Aj@Aj@?fJF|BCnDGtB?v@?vA?rBA`BAT?VAjA?`UIbEBbAAj@?^@b@D~@RjCbAn@TZHbElArFrAnBf@lJbClAVxDjAt@Rr@PbEbAzCd@hRvCpAPtAJvAFlA@~CAfDEhB?THpCErA?R[RU^c@PWNU|AoCFKxByD\\c@VUh@S|A[xDk@RGzB_@xEw@hF}@jGgAfDi@nAUlAYh@WjAs@~AiAf@u@vGcKnAeBzI{MnH}KrB_D~AeC~FaJt@mAx@oAhDeFZc@bEiGt@kA`EcGhBiCnE{GzA}BtAqBp@eAt@gAr@eAt@iAr@gAr@eAt@mAr@gAn@aANWbAaBn@aAlAmBl@cA~@wAl@aAf@{@pB_DR[h@{@T[z@{A~AmCJOxAiC~@_Bp@eANSb@u@`BaBNMh@o@bBiBtD}D~@eARSxAqAbE{E`@e@`@c@x@}@xA{A\\_@xBeC|AcBvA{ALO|@cAdBkBd@g@TWpAwAfBoBZ[z@aAl@m@n@o@rBuBPQrCkCbAeAvBqBtAsA|CsCzC{CNMHI\\[nAiAbAeATWh@u@|@qApB}CjBuCdCsDtAwBFK`@g@^s@pAmCXi@zBqEvAqCr@uABEl@kAN]H{GlAqCnA{Af@s@r@_AfAqALOzAsBpBmCv@gAV]LOBE`ByBjBgCpBkCdCgD~@qAjA}AlAaBBC^e@d@o@|CvCrCvCNWdAoAPS`@i@r@b@h@XTJn@l@v@v@|@x@`BbBT^@Bz@lB\\`AFVV^\\`@f@f@jA~@sAZSDILWRiEjFW^c@a@eAaAO@KD]R_@d@gCdD}@hAkA|AaBtBiAzAg@n@wAhBuBnCW\\GFQRQTEFi@p@kB`CqA`Bc@h@kBpB_A~@kBlBmBrBoA?eB?AoD[??CAEEEGCG@EBCF??"},
+  d5:{km:158.2,min:214,wp:[["台東市", 22.758, 121.145], ["多良車站（短休）", 22.50754, 120.9589], ["大武（補給）", 22.35781, 120.9051], ["壽卡鐵馬驛站", 22.2452, 120.83571], ["旭海（午餐＋午睡）", 22.19489, 120.8874], ["旭海大草原", 22.20462, 120.88468], ["東源 哭泣湖（路過）", 22.2058, 120.85513], ["牡丹水庫（路過）", 22.14316, 120.78242], ["悠客馬場（車城鄉統埔路）", 22.07621, 120.7325]],polyline:"yy{iCeblbV?F@FDDD@FADCBE@EZ?@nD?~D@`@LXBFHTF\\AjAEtBC`ABPDRFNLTRf@BFRZLVv@|At@tAf@bANXt@tADH`@x@lArBBHh@hAnC`FHZ`Ai@t@c@\\Wb@[nAy@|DgCf@]~B{AROdAq@nA{@l@[nCwBzAsAp@g@PKhAs@lCwAt@i@rBkA|@i@pBmAjHoFTMp@a@dCeBhCgBzDiCf@]HPJT`BzDnCzG|BxFvBjF`C`GtAvC|G`Q|A|DzAxDjBpE~DzJXr@tDvJ`GhOhAtC~CjIhAxC~AbEdAzCh@nArAlDx@pBPd@`@dAt@lBN\\r@nBVl@p@bBJRPf@jB~EPd@N^bBjEXx@Vz@ZlANjAAj@Ch@OfA_@rAc@nAY|@gBjE[n@yCbH{@jB{ApDSd@Mj@Kb@CTCPE\\?`@@d@@b@Ff@BVHb@Nf@Rj@h@vAlBzEP^`JfUdNn^n@hBl@~APv@TvAHvA?hAQ`EQnEC`AA~@?r@@f@Jr@Lt@Ln@Pb@Rd@b@t@j@|@bCrDbCjDz@nAl@z@hGhJ~BjDvBbD~BfDzBfDnAlBvApBz@tAbCnDx@lAlAdBxAvB~CtE^j@zAzBrChERZRl@Jt@Dd@O`BUfBS`BMvACl@Ax@Aj@?LBVRrARt@rBpGd@tA~@nCh@bBPh@`@pADLrG`SdBxFtBbGb@`Av@xATf@n@bAr@bAt@fArBxBt@v@`BrA~AvAt@f@f@b@dFdE~@h@~@d@h@Xd@RzCnAtB|@nJ|DrH~Cj@TbBr@VL~CpAvDzAxF`CbA^tAx@z@TfBz@JHvB|@zBjA|CxAn@ZbBt@^Rl@VrB~@fEhBjA`@hB`A^L~@Th@Lr@LbC\\pEp@bC\\hG`AlC^nEn@nC\\`Dd@nAPl@\\ZPt@l@`EvDnBnBdAbAdAjAv@l@rBlBRPz@r@fBbBHFxB`CjBnBdBfBnAhAjCxCx@p@`Az@fCdCrBjBnAbAVVv@r@xD`Df@d@|@|@lB~B|@|@f@b@~@p@v@b@pB`A~BnAx@b@hAr@|@p@|AbAdBfAjCfB~@n@dAl@~BlArCnApCzAvAv@lAp@dAh@hB|@rAr@fDdBz@d@^Rp@\\nCzA`Al@hAz@v@n@|@l@v@b@x@b@`@N|Bt@pAb@~A`@jAXjBj@r@Th@XZJrBhAfAt@h@Z~@Xj@LRD`C`@dBZdAVj@TlAf@dBz@RFbAVj@Pv@PlAFtAL^B|AN`AHxALdANz@Z|DdBpAf@|@T~Bd@hHzAdB^hAXvB^d@Jz@VnAZbAPrANz@HzBNx@JfAPhARbDd@zF`A~B\\pBXxCh@vB\\dARdBd@vBz@bAb@~G|CZNfChA`@Jb@Jd@Db@BdB?dB?l@B^Bn@Ft@Hl@Nl@RzAr@p@^|At@hDfBvAp@x@b@bCfALJbAXfCJt@Hd@F`@JlAb@lBz@~@ZjGtC`@RlBv@vB~@pEnBpAj@`FvBfAd@bGnCdAt@VTZZj@|@\\n@jAjCbBvCdCnF~BzEz@bBV`@PVRRf@f@`DrC~@r@dAn@~A|@hBpAdCfB|B`BzCnBz@j@n@X\\H\\Fd@?hBEzTgBvAK~@I|@KnDo@d@GbIyAbASdAUh@InEq@z@Ar@Fp@PrAb@~CpAnChAhAd@fDpAjJdExInDl@V`Ab@fDtAvAl@h@V`Bx@RJFDzBbB|@v@jBpBx@dAl@`Ap@dA|@bBXdAP~AH`AHrAPlBJbATx@Pd@l@~@dAtArBdCTb@`@d@NLRNTJPH^JTDVBd@D~@F\\DTFTHZNVLpAv@^RZNp@Vh@Lf@N`OjDJBXFPFPJNJNNLNJTJZFZFZF\\F\\HVJVJRLNPPRLTHVHVDV@hBAh@?V@ZDXD~@Tt@TZHTDRDXBxBTd@HzGtAr@PZJJFNJLNJPJTFXF\\F^J^FNFLFJJJLLLHPFTHl@Jp@LjFz@p@HbAN`AN`BZhAXfB^p@L|@N^HZLVNVTPRl@t@RRNNPLPHPFRFTDT@P@b@Ab@Eh@C^AZ@XD`@H^LZNb@X^XVTTVTXjAlBNPNLNHPFRBR?RAREVMhAu@RKTMXITEVCT?R@RBTFPHTLRNn@h@TNTNTLTHXF^F~CZdCVj@Nh@P|@^~@d@d@P`@J`@Ff@DlFXv@Hr@Hl@Lf@Ld@Nb@Jf@Hh@BhADf@@b@F`@Fb@NdCfA\\H^D^?b@ChAKj@Gb@AV?XD`@Hb@NVLh@Vz@\\^Nd@Rn@R`@Lh@L`BZz~@|Nd@FNPLJ\\LpA`@zAd@b@Lj@XvB|Ap@^h@JdALpAZz@PVHv@b@|AhA^N~@\\hBd@dBl@dCx@jBh@bCv@x@Z~@ZdAPdDl@fDp@pDz@tAXrAZ~A^v@Nh@N\\NxHpD^TJJZZZRn@\\h@R@B?BA@ABC@E?[AWCu@[m@SOEA?C@A@???@@B\\V@D?D?BADE@G@I?MCw@[e@KMAEDA??DDDf@PZRh@b@\\H?B?DEBOCi@Mo@OWEC@CFgAi@[[iBy@hBx@ZZfAh@BGBAVDn@Nh@LNBDC?E?C]Ii@c@[Sg@QEE?E@?DEL@d@Jv@ZLBH?FADA@E?C?EAE]WAC?A@ABA@?NDl@Rt@ZVBZ@D?BA@C@A?CACi@So@][S[[KK_@Un@VdH`CzAf@fBb@j@Jl@Hn@Fj@BzADn@?n@CjAI~AK^@b@Bd@Fv@LpDl@pIjBr@Rt@Vx@ZtAf@j@VfAZrB`@l@Jt@NjAZtBf@l@N|AVz@VbAf@j@R`GbBbCv@d@Nj@PrEv@t@HbAF`CLfNl@d@D`@H^F^JjC|@pHjC|@XfAZ~DfAlD~@j@Jp@LrDf@^Fz@HhBPbADj@Hn@Hf@Lj@NrDhAv@R|@PdCf@r@Jv@FhAF`@FZDd@Hd@N`Ad@vAf@nBVpBXvCh@vB\\zDb@hBX|APfABv@Fd@F\\Nj@XXN\\LZFt@N|CXfCb@zCr@lB\\x@R`@Rb@`@Vf@VbAJvAJp@RzAd@bB`@`Ap@dAlAzAfAz@dAj@rE|BbAf@`F`Ct@Xh@JXFd@A|@Ob@W^]^m@vAuCzB_Ff@mA\\c@VU`@QXIXA^@fATfAJbFt@f@Nl@NtCnAPJhAh@z@d@pAl@fA\\fBh@pA`@xAf@jCdAzFrB`Bt@`A`@hA\\bALdAZtAl@rInCjIzBhA\\|FtATFn@NNDd@L|E|AbBh@`Cv@xA\\pATt@P`@Rl@f@l@d@^TFDVFd@F`@@dBAf@F`@Jp@\\n@^fAf@p@RtAXdC\\rAVVFHB`Ez@~GfBxCz@zFdBpAf@l@Xn@VTFpCj@lCl@`AThAZhBf@vBp@bBd@|Aj@VHb@Pp@b@h@^nAnAnBhBpAhA|ApAtA~@rAz@`Az@jA`Al@b@vAf@v@PPFh@JnBb@lHz@x@L`A\\rAj@xAl@fBz@jA`@\\LvBr@x@Xv@VpBv@bBf@~@`@t@TZH\\FrAPx@Ll@Ld@Pz@\\\\T^T`@Tp@FfAJj@Lv@X`DtAn@XfAf@XJf@Lh@AlCL~A@dADp@DzEdA|Bd@TFJBZNj@j@^b@VPb@Vr@HxAPv@Lh@Np@\\d@b@TVd@`@b@d@\\Vf@Nj@Jh@Hf@?\\F\\J\\TjA~@x@t@r@x@z@|@~@p@t@^|Ab@p@RbBr@lAZzAh@bBp@rAh@b@Z`CjAZVn@Zt@N^Lb@Rb@^f@h@h@b@dBdAv@d@dC~@x@Vv@LlARpC\\~BZlBVfAJr@DfAFfBHZ@|Gd@L@j@Fl@Dn@JnATpAXnDn@`Er@bARrCZbD\\dFb@pGn@h@FnDZz@LxDn@x@VfC~@tCr@~A\\xA\\p@RlA`@fAj@hCfAnBv@fAb@`Dt@`CRx@H`BJrBNF@vGb@n@LvANv@F^FZHVJTNNTv@fA^h@~A|BMHQNIHA?CHBNHLHHLPMQIIIMCOBIJIPOLIB@zBxCTTl@d@z@v@rApAv@r@nA~@v@b@hBj@TDLCDE`Aj@HDrAd@lEdAdDdAtCz@~Ab@|EdA|A^pA`@fAb@fDpArDxA`Br@r@\\jB|@z@h@~@l@tBvA|AjARRTVNVR\\l@|AfAnCDLj@xAnAhDLVPX`@^BB\\THFb@Td@RJ@\\BzBDnBFd@?j@Kn@Ud@Y|@s@`Aq@n@Uf@Md@CXAP?N@nABnADVBz@BbCNvBR~AVhHnAn@Nf@Tz@j@pAbAz@d@z@X`AJJ@xH@~NHjEH`AHtFTzBJjBJrBJtCPfDLvDL~CHvABp@@dED|KXvCLfCBbGXt@BfAFrBVrHzAfCh@rC^lALvAFhHZ~ARdBf@rAf@hA^h@Td@Jb@Fh@FvCHZ@hADlBDrGLhB?`ACvBKnA@|ABzD\\v@Fz@F^Fx@RTJ^V\\`@Rb@L\\Ft@@`@?L?v@@rC?xDArA?n@B^D`@Jp@f@~Ad@rAt@nCBHFVDPZxAJ~@BV@JBXDvA?zBKhCWfG?~DPzFNlBBXPpBh@zD`@bChAtHp@rE|@|EdAtFtArFhAjD~@vB|@vA~@pArAvAbAz@vA`A~Ax@zAj@~Ad@pAVxALrDXlCTjC\\bDz@bBp@pAv@pAz@rAlAbAjAjAtAbBpCtAtCpA`Dx@vCn@fD^`D^rEb@rHPjBXvA\\nAb@jAl@lAf@z@x@dAx@z@|@r@zHlFbA|@vAzArBnC|@zAvBnD`B|BdDhDnDlCdJxEdAf@lCzAxDrCdCbCfBvBhCxDr@`AFJRZtF`HvFpFdGtEnD|BvPbJtGtDrExClEdDdHrGnGjHvFfIzE|IzDhJfDtKtA`GzA|HlA`HrBrKbDzMnEtM~@`Cn@vAdAlBz@vA`BpBtAnAtAz@bBt@nBl@tAXf@FBYEGEW?[Je@Ri@Z}@RaAF]DYH{@Ds@Ag@@m@@u@Ae@E]MWOKSES@[@g@F]B_@A_@I_@Kg@WWSM]Ku@I]QW]Qw@Sm@MOQKa@IcAUa@QYQOWKe@EcBC[EOYSs@Ic@Es@Hc@Ve@Jq@@a@EYKa@U{@UcAWaA[m@Si@e@cAQUUc@Qa@C[AM@YG][}@GYCQAQ@OZeBBSAUo@gDAc@?oAEwAEc@CWMc@]u@i@w@KUWcBQa@a@m@]i@i@uAAAEKAU@]Bc@?IEiA?QBOx@uBDWA[IWWc@a@{@CQBUDOHYX}@Ta@Za@\\]jBeB`BuBfAcBb@w@HWD]CYMa@m@{@UU]OmAEo@I_A_@g@WYO[YO[Ko@Ky@?a@J]d@o@l@s@\\Uf@Q^?Z@X@RCVKNS?[G]kAuCWYcBaASUGS?_@DoBDUPONIt@Kt@Eb@Of@U\\[NYFk@Gm@W[SQg@_@YYKYGi@Gc@KWKOMOSISCWEMEMMEOCYAc@ASESWWeAo@AWAKAGEQMc@AUL[b@}@d@o@d@q@Ve@HMNSb@_@HKDK?QGOQ_@EWGeB?UDQLYl@{@JQBK@QCMOKSQ]a@IUGs@S}@C_@@I@WHWDMj@{@Xi@JKX_@b@_@~@_ANQJUHWBUBOA_@C]CW@SHe@@IDSDq@Bc@HSNQTSXUNYRg@FY?KEMKMWQMKQUq@cBQYMUGOAI@QHOFGPMZQPOLKPWRg@Ri@Ha@@[Am@AMGMKMKMWSUY[_@GMGSEiACSIa@EQ?OBQNQXUNUFY@_@E[GYGOOM_@WIOAMBMDQJ_@TeARcBFSTi@ZgAN[PU\\WPSFOBS?c@G]GQK[HYH[PWXWZMp@MpAOzBQPIDI@QCMGM}@aAIUAOBSH[FKFGPGd@GTG~@c@HK@I?OAIEKMSWOQMCECIAM@MHKJMZM^IVI\\QLGJ?JFFHVVv@b@n@h@TDPALIHIBMBUEOQc@CO?a@@[Ja@DIDIJIJCP?HBZHJ?JCHIJQPg@HMDGHAd@CR?LBFHFNLn@Jl@FNFJLHJDF?HAHGDKBW@SIYGSCS@SLk@AQEOSYUc@Yo@_@k@QUEIAG@IDONQHEDCd@GZE^MXKR?R@P?NGBCDEBGBORy@BQCSIOMMKCg@IQIKGMKEK?MDOHORSTUJOJWNi@Re@P[\\Ur@g@r@e@NMTK^MRAZ?TDPBN?N?RIHO@MAKEIW]GIKYOc@MWMO[YGIEIAQDKHI`@MlAS`@MTGLCP?V@N@L?ROV[RQHK@M?OGq@AO@MJ]Re@Ra@P[NQJENEPCP@XBTBL?PGFIBM?E@MEOUo@Me@@a@DYDWJ]PY^_@ZQl@Sr@Qf@E\\Cx@I`@Cl@HZHPDT@HANCLC^C`@Bl@Db@@X@XHZPLNNRTTRFTBr@Hp@B`@BTB^Jb@R\\Fb@?H@XFVDLHNRHFNFNFbAZHFDFDJD^N`@JNNDTAj@I`@Ah@@b@Ed@M^SJGDAF?F@D@NHHDH?JCHCHIR]Tm@NWFIHGRGtCo@pBa@RCN?T?b@JnAf@vAv@TTNNPTFTFRRP\\T\\Z^h@TTHDN?PENILELAJATBf@FZBPEXQXW`@YXGZ?XBHBP?RGTOTONKHCTGn@E`@ELELELIDK?MA[Co@Ac@?ODOJIJCN?HBLHRNJLBN@L?HAHCJI^IV?LBJDHFDJDvBj@n@Xt@XHBJ?LC`BWnA]`AS`@CV?PB~@Ln@NLFVLRPPR`@b@V\\\\h@HPBP@P@T@dBBp@D\\DHLHF@JBR?VA\\MNCDAD@F@JDb@Zp@\\VRLN@JATCb@Gp@Cp@A\\?b@Bj@Ht@Hd@DZANA`@@XBJDJJLNJVJLJDFNPTXNFf@F\\D\\Jv@PZDP@N@J?BDDDBJ?PCTEx@OtAGl@?V@LJNf@h@NRJPFRFZDPHLLHPDT?XAXGLGLOVk@LOFCFAF?HDFHBPDZ?VA`@M|@CZBZFHHFJ@TA`@UJCJ?LBLFNVPTPPJLD`@D`@Cb@GREN@F@JHTLPTZHNHRFZB\\Bl@DVLZBRERENINKTMPOH[FODIJEJGRCH??GNIz@UpBOtACX?PBPHX\\fABNFTHv@Ln@NVTVTPTLh@J\\L|@J^LPLNNnAvA^^FFj@p@RP^N`B^J@JBn@NdATTFJBXJ|Ap@NDX?r@GtCSP@J@H@PFPJVPjA|@^VXJRBD@f@?vCJpBLPDRFRPHPTj@Vj@HJFBJ@\\?jCU^GPGXMXQl@i@nAaAVMREX@l@@bBFzBFfAFr@?p@Ar@Gx@?\\?dCL~@Bp@IZI\\Q|@o@^YZMP?PBPFRLv@j@^NP@LAZGZGzBm@ZE`@?dAJjHrAfCb@pANZFx@VZPZa@Nc@FYBSG_@q@sCEYAS?UR{A\\uBHUr@iAHW@Q?YC_@c@qBCQ?SBMFOb@u@FSBOAQ[aBYqBYeAE_@AQAi@?SCMGIcByA_@WqAu@i@i@g@c@]USSKQI[AW@o@AKEMKOqAkBWg@Oq@Go@?g@C]GYCEM[[g@I[Ca@E}@Ju@Ag@Ie@Cc@IU?[@YA{@EiACe@IYKSQU_@WGO?QDMHKJGl@QJGJOF[DKbAqBJYFWD]@[AWGk@AS?e@Fw@H_@NYPORCP@PJLPTTdAbCb@~@Hb@Bn@Nx@BNJz@Fh@DXFJLFJ@JCJG@MCQIa@GSWm@MWCO?MB_@BQLo@BS@S@g@?{@@q@@WEKKKe@YIMEQ@ODQTYj@{@R[Jg@?e@Ic@M[OOWO[KY?m@Da@HqAp@K@O?KEGIAQCkACKMu@?MBKHMv@c@RMZUFOAMEKIIMCO?k@T[HOBO?u@Aa@@a@Hy@\\ODM?e@?QDQJuAx@KDOBO?eBSIA{@_@MEOAM@QDOFSBQCIIEKAK@QHKJGNAVCRAT@RHLHHJJJNJRFPBP?NG\\[P]LYBSCKKWMc@CSB[BUHYJMPCRDVLn@ZLDh@RTHF?DADChFyDJIJAJAJB`BpAJHf@PHBL?FEFGDK@KAMU_AEIQUGGo@[WYW]ISE[Q_CK}@EYMSe@g@IOES@ODIHIJALBRJf@Vl@`@J@T?PE|@[JIL[?g@Gm@@g@B]@]UkA[o@AY?]De@BGHMLATAV?RAJCNCLAL@h@RL@N?RGVAT?VBTJTNNTJh@B\\FTFJNFH@JAHGBOAKCM}@sBYe@GIKEOEQAu@BM@OAKEOKe@a@OEUAeADI?KCy@e@IAOBGDGHOl@Kl@ENa@dAKLQFYAQMOUCU?[Dg@@S?K?[EUGQK[IYGg@GMIKOGSESCiBYa@GWBODq@l@INCPAN?lAEVIPKFM@MCGGIWIg@Ei@Cg@@g@EQGMKKSM]UWUe@c@Y_@OMMAQ@KFGNQ`@OPMRQLYPg@J_@F[CWMQSQYKk@Oc@UUMIe@QOMAQBS@U?QCQEOGKIKMQEGMk@Ky@Y{BE[M]GMKMOMwAaAsAu@yBkAk@YWOKIGKOg@Qu@IWOYUYIMUk@K_@Gi@I{@MsCc@wIEw@Ii@Og@u@cBUs@Su@f@e@\\[z@e@ZMj@Mn@KLCx@I`AGVAtAEzBM@h@KJ}AhAYVOBS?E[Qo@S{@W@aAFy@HMBo@Jk@L[L{@d@]Zg@d@FRJ`@Tr@t@bBNf@Hh@Dv@b@vILrCHz@Fh@J^e@PGFa@x@i@|@CP@nAEdA@^DnAIt@GPKPOH_Ch@Q?w@CO@MBKDIJQZQ`@s@f@QNGJW|@e@tAMTQLQJ{Ah@YFM?KEMIIOWw@}@}Ae@g@c@]KOAIDMLGRCNLVn@PJTDFCHEBK?Sa@kASi@Qi@CU?MBWFWAMMi@Qg@UWOGMEMA_ACMEIKGSGo@AgA@m@@UEYO]e@a@YWIS?UNo@FO?MCKGGMEWA]AO@GDKJ]x@_@bAM`ADnA\\v@d@b@T^BTCJE@KD{@O]EOEKAG@_AXUAGCGGIMCOEo@GWEMGIKMSIo@WUQGOGW@SFSXa@^m@Zo@BU?SI[KQKIOCOBEFEDEHCHATEl@CXCHCHIPy@fAEJGXGPIHM@KGGKCQCk@ESKQgAoAMEQ@S@_@@KCOEOMm@u@Wa@U]KOGSAQ`@CG{BAa@a@BDpABjA@PFRJNT\\V`@l@t@NLNDJB^ARAPALDfAnAJPDRBj@BPFJJFLAHIFQFYDKx@gAHQBIBIBYDm@@UBIDIDEDGNCNBJHJPHZ?RCT[n@_@l@Y`@GRARFVFNTPn@VRHJLFHDLFVDn@BNHLFFFBT@~@YFAJ@ND\\Dz@NJEDABKCUU_@e@c@]w@EoALaA^cA\\y@JKFENA\\@V@LDFFBJ?LGNOn@?THRXVd@`@N\\DXATAl@@fAFn@FRHJLD~@BL@LDNFTVPf@Lh@@LGVCV?LBTPh@Rh@`@jA?RCJIDGBUEQKWo@OMSBMFEL@HJNb@\\d@f@|@|AVv@HNLHJDL?XGzAi@PKPMLUd@uAV}@FKPOr@g@Pa@P[HKJELCNAv@BP?~Bi@NIJQFQHu@EoAA_@DeAAoABQh@}@`@y@FGd@QTj@HLTXNXHVPt@Nf@FJJHVNj@XxBjArAt@vA`ANLJLFLL\\DZXzBJx@Lj@DFLPHJFJDNBP?PATCR@PNLd@PLHTTNb@Jj@PXPRVLZB^Gf@KXQPMLSNQPa@FOJGPAL@NLX^d@b@VT\\TRLJJFLDPAf@Bf@Dh@Hf@HVFFLBLAJGHQDW?mA@OBQHOp@m@NEVC`@FhBXRBRDNFHJFLFf@HXJZFPDT?Z?JAREf@?ZBTNTPLX@PGJM`@eADOJm@Nm@FIFENCH@x@d@JBH?dAET@NDd@`@NJJDN@LAt@CP@NDJDFHXd@|@rBBL@JCNIFK@IAOGGKGUC]Ki@OUUOUKWCU?W@SFO?MAi@SMAM@OBKBS@W?U@M@ILCFEd@?\\@XZn@TjAA\\C\\Af@Fl@?f@MZKH}@ZQDU?KAm@a@g@WSKMCK@IHEHANDRHNd@f@LRDXJ|@P~BDZHRV\\VXn@ZFFPTDHT~@@LAJEJGFGDM?ICg@QKIaBqAKCK@K@KHiFxDEBE@G?UIi@SMEo@[WMSEQBKLIXCTCZBRLb@JVBJCRMXQ\\]ZOFQ?QCSGOKKKIKMISIUAS@WBO@KFIJAP@JDJHHPBRCNGPELAN@LDz@^H@dBRN?NCJEtAy@PKPEd@?L?NEx@]`@I`@At@@N?NCZIj@UN?LBHHDJ@LGN[TSLw@b@ILCJ?LLt@BJBjA@PFHJDN?JApAq@`@Il@EX?ZJVNNNLZHb@?d@Kf@SZk@z@UXEPANDPHLd@XJJDJAVAp@?z@Af@ARCRMn@CPC^?LBNLVVl@FRH`@BPALKFKBKAMGGKEYGi@K{@COOy@Co@Ic@c@_AeAcCUUMQQKQASBQNOXI^Gv@?d@@RFj@@VAZE\\GVKXcApBEJGZKNKFm@PKFIJEL?PFN^VPTJRHXBd@DhA@z@AX?ZHTBb@Hd@@f@Kt@D|@B`@HZZf@LZBDFXB\\?f@Fn@Np@Vf@pAjBJNDL@JAn@@VHZJPRR\\Tf@b@h@h@pAt@^VbBxAFHBL?R@h@@PD^XdAXpBZ`B@PCNGRc@t@GNCL?RBPb@pBB^?XAPIVs@hAIT]tBSzA?T@RDXp@rCF^CRGXOb@[`@[Qy@W[GqAOgCc@kHsAeAKa@?[D{Bl@[F[FM@QA_@Ow@k@SMQGQCQ?[L_@X}@n@]P[Hq@H_ACeCM]?y@?s@Fq@@s@?gAG{BGcBGm@AYASDWLoA`Am@h@YPYLQF_@FkCT]?KAGCIKWk@Uk@IQSQSGQEqBMwCKg@?EASCYK_@WkA}@WQQKQGIAKAQAuCRs@FY?OE}Aq@YKKCUGeAUo@OKCKAaB_@_@OSQk@q@GG_@_@oAwAOOQM_@M}@K]Mi@KUMUQUWOWMo@Iw@GUCO]gAIYCQ?QBYNuATqBH{@FO??BIFSDKHKNEZGNILQJUHODODSCSM[EWCm@C]G[ISIOU[MQIUAKAGDOFSBc@FW?i@Ke@a@u@SSQO{@USOEODMFKVEbADJ??I?IICi@?h@?HB?H?HK?cAEWDGJELDNRNz@TPNRR`@t@Jd@?h@GVCb@GREN@F@JHTLPTZHNHRFZB\\Bl@DVLZBRERENINKTMPOH[FODEDCDEJGRCH??GNIz@UpBOtACX?PBPHX\\fABNFTHv@Ln@NVTVTPTLh@J\\L|@J^LPLNNnAvA^^FFj@p@RP^N`B^J@JBn@NdATTFJBXJ|Ap@NDX?r@GtCSP@J@H@PFPJVPjA|@^VXJRBD@f@?vCJpBLPDRFRPHPTj@Vj@HJFBJ@\\?jCU^GPGXMXQl@i@nAaAVMREX@l@@bBFzBFfAFr@?p@Ar@Gx@?\\?dCL~@Bp@IZI\\Q|@o@^YZMP?PBPFRLv@j@^NP@LAZGZGzBm@ZE`@?dAJjHrAfCb@pANZFx@VZPNb@r@~An@pAJJRRZTXNVPRLRXHPFVBh@@VBbADr@Dl@FTNh@Nn@Vv@PTPLPFVBb@BT?NCPGd@_@PONEPARFJFJHHPDV@l@?p@BNFRXh@J^Hx@?n@A\\Gb@HXFLFFLHXJ\\HNFj@Nd@Ff@B|@?RCf@M\\IPAP@NLLNVb@LRPLZTVNZH^HLFPLHNDT@j@EbAEx@Ef@?P?PDZj@zAZhANd@f@z@v@x@fAhAFHDL@JKl@Gd@Cb@BZDVLPTXbB~A\\\\pAlA`ClCDDJNBBb@h@|@lADZBTBLHNPTJLJHRJNDV?~AI^@RBPJVRf@b@VJl@T|@\\r@Xz@b@PPV^Rj@d@pAN`@DJPV\\h@~AbChApBJLLFHDn@KJAL?PBz@NfALx@FbAJ^LXRTPTTPJXFb@B|@AlAG~@KXKj@_@XINBNFXTZZ`@`@LRZh@JV@X@b@EXEXENILMPIREVA`@@^?p@@jABj@@`@@VDTVTXH~A`@fAP^@h@In@MZCr@BTC\\Gh@S^PRTXf@RLZHl@CdA@p@Ad@Eh@Kj@Kd@Gb@GPAX@TDNJN\\Np@Px@\\bEDn@D\\FVJPNLNDpAT^Jt@H\\@jA[`@G^@VLFJ@TGZC^?XDXJXJTTXf@t@jAhBf@v@\\n@Zh@JNTTz@h@RJZFp@Dh@?t@F^Hf@Pj@Vh@P\\HN?LEBA^[XKNAVDZNZTf@j@b@n@^n@f@v@b@p@v@jAZn@DJLb@F`@FZLh@DNLLTNJFf@`@XVX\\Zh@Tr@TjALf@BZCRMXI\\Kb@C\\DRFJHJJFLBVAn@Kn@Iv@MhAKzAWZEXBVFj@\\j@b@\\f@Hl@ArCBj@NRPPN\\BPIp@UvBIx@Ih@Ej@AnA?f@?ZEn@Kp@B`@\\fARLH@LBZ?f@G^Oh@[`@G~@QjBKb@DTFPRRf@\\x@L\\Vd@Xf@f@^dAv@h@|@l@tATv@Jj@Dr@Bd@JVRHZ?J?NABATBXLd@\\fAx@LXETGNWJQFKP?NFRNLRFR@p@Gr@Mz@Qh@CZDPDNJRNNLPDV@d@GHEHKTa@p@u@HGLCNDDDXHDJANMp@Qn@C\\?n@?r@A`@IZ[^UZKRAPFRRd@t@fB\\fA@VARIXYx@Id@@RDJLTJDZ@b@Ab@?d@AREREf@UrAm@PCTEPAn@Pb@Xv@d@|@n@r@^ZRn@\\PH`@VZ`@NXBNBNEPKPa@p@Q`@W\\EV?VJVLNZTd@ThAh@TRHN?h@?V@RDRLVVR^N`@Ar@Eb@EN?LFJL?RQZSPs@h@g@b@MLEXDRNZZf@v@z@fApAVZNXFd@@p@Mx@GjAC|@Lp@NXRT^Tb@LbATlAZvA`@nAp@VNNLNLHLFV?TC^IRGHGDI@I@UC]Ge@I_AKwAIcB@}@@_@Ac@?e@L]RYXKXMf@U|@G\\QXWPi@PSLGLAL?LDTLRRLV?TG`@Wl@k@h@s@j@{@Xa@\\_@RIVATDj@Zh@^d@Zb@Nf@HlARRDp@J`@N^XPLFHFFDJHPRn@Rl@f@|ATt@^x@^h@d@d@X\\JTDV?TEXS`@QXu@bAUHY@OEQKSa@U{AKiAIk@Mo@Qm@KUQQ[KUAW@M@_@X}@v@MRCNCJ?NDLLRr@~@f@n@`@f@z@dADTBRBR?P?NGp@G\\[~B[dBUx@CFYbA]|AIp@GdAMnBShA[bAMj@ET?^DX@LHX\\t@\\r@r@zAz@xBkCY]KWSk@k@QOk@m@YS[Ke@CQKMSDS`@g@x@gAp@yALy@Tq@d@_BGq@I]As@?YKKQ@MJOp@EROFUAg@IUBUHIPGp@Wr@[^_@Bm@G_@Ma@_@OQOMQ@iBd@E@w@COF[Ts@n@W^UZc@Z_ATm@Li@@m@EuA]_@Ba@HQJGh@SnBEVGNMFW@]GkA}@UCUJMLCVBV@l@CRMLS?[EQGy@kAUQOEU@YHMXGNOf@ONS?KICOCe@EYOY_@UcAi@OCU@SFe@X{ArAqA`AO?QCIAMIEG@OFUNo@Ea@Ga@G[i@m@KYIu@W{AS_@QOU?_@Ge@DcAjA]VWLq@A]@w@H}ALY?eAYsAYSKYQSYC]Aw@GQKMWGa@A]EQKG[?a@@a@Hi@BWQe@]c@]S_@e@MUWA[J]`@SZCN\\p@Rp@R|@Eb@Gn@?ZNd@DRAXSRQNO?OCYGS@i@PW@S@MDIPEVIb@IJWBOEMGi@_@KCK@k@PS?_@a@KGOCWKICGEa@o@QIM?KBKFOTk@jAGHIDOHEDIr@[zAC`ABd@Aj@q@fBCp@GRURaAJe@N]AUC[Q[SUk@Y_ASQIA_B?MCOOG]M_AIUSOw@sBu@wAy@gAGIKGMGMEuBOgCE[?g@NWNETKLMLEBBBJBd@DJFBJADKDcANbAOJE@ECKKGe@EKCCCDCLMJMDUVOf@OZ?fCDtBNLDLFJFFHx@fAt@vAv@rBRNHTL~@F\\NNLB~A?H@RPX~@Tj@ZRZPTB\\@d@O`AKTSFSBq@p@gB@k@Ce@BaAZ{AHs@DENIHEFIj@kANUJGJCL?PH`@n@FDHBVJNBJF^`@R?j@QJAJBh@^LFNDVCHKHc@DWHQLERAVAh@QRAXFNBN?PORS@YESOe@?[Fo@Dc@S}@Sq@]q@BOR[\\a@ZKV@LT^d@\\R\\b@??Pd@CVIh@A`@?`@FZPJ\\D`@@VFJLFP@v@B\\RXXPRJrAXdAXX?|AMv@I\\Ap@@VM\\WbAkAd@E^FT?PNR^VzAHt@JXh@l@FZF`@D`@On@GTANDFLHH@PBN?pAaAzAsAd@YRGTANBbAh@^TNXDXBd@BNJHR?NONg@FOLYXITANDTPx@jAPFZDR?LMBSAm@CWBWLMTKTBjA|@\\FVALGFODWRoBFi@PK`@I^CtA\\l@Dh@Al@M~@Ub@[T[V_@r@o@ZUNGv@BDAhBe@PANLNP`@^^Ll@F^CZ_@Vs@Fq@HQTITCf@HT@NGDSNq@LKPAJJ?X@r@H\\Fp@e@~AUp@Mx@q@xAy@fAa@f@ERLRPJd@BZJXRj@l@PNj@j@VR\\JjCXxAtDPVZ^PTDDX`@n@n@v@l@ZPhAz@vAbAxArAZ\\lApAvA~AX\\fAfBt@tAfAlBt@nA\\Zf@\\`@Tb@X^Zj@r@\\d@Vd@Pf@F\\@d@Ed@EZGp@AV@TBZPn@Tx@@DLf@\\z@V\\NPdBbBRRVXPNLH\\RTHXFh@NbFn@bBN`AAF?fBWdBWXGd@Qn@a@ZS\\Q^Mj@MZEZCZ?^FTJVL\\\\NXJZH\\@l@@rCBn@Ft@P~@Pp@L`@HRNRb@f@`B|A\\d@T`@NTVP\\T\\Tf@XRLNBJ@H?H?JCp@Ql@Mp@EV?r@B`CVb@@V?n@IPERCZGfAIFAr@M^Mb@Qh@_@bAy@HKRULWPYN]f@m@b@YbCw@TEh@EtFKvDEhBCnAApA?p@Dh@VTRP`@HXBX@TC\\Gn@Ib@@f@BVBRHf@d@tA`@bB\\fAH\\Jr@DtB?r@BvA@ZHbFDjEFl@F\\f@hBh@bANTVb@JLNVV^`@j@z@jAJNj@z@b@j@r@p@VRvBxAd@^ZTj@Zh@Xv@h@LHNIdCcAnDqA~AQfAHdI|BpCfA`DfBnBvArA`Bv@fAvAnD`@rBb@tCVfBDd@?tAC|Ae@xDx@j@v@|@n@n@x@d@fAZtAFdAJtA^jAb@h@j@n@z@b@dAVpAf@dBJv@MfD@l@`@fCr@pLt@|KRt@P\\f@j@l@h@p@`@l@TjB@rDY|Jz@t@Jl@XrDbChBjAtEzC"},
+  d6:{km:30.8,min:42,wp:[["悠客馬場（車城）", 22.07621, 120.7325], ["恆春古城南門（路過）", 22.00087, 120.7448], ["砂島貝殼砂展示館", 21.91312, 120.84763], ["草分木 B&B 船帆石店", 21.93208, 120.82492]],polyline:"czveCul{_V|LfI^Ph@NtDj@~@LPDRHNP`@v@Lf@Tp@X`ALf@DXD|@DhA?l@@F~Ay@t@YpAq@tEoCJGx@EJ?L@|BH^B^ClAYjAQh@^LHd@ZrEh@|@h@|E|Cz@T`@?jEoA\\IzBy@zDsA|HqCbCaAxJkDrAw@^SdAg@RINE|@IFA|CUrAKB?LEHITSb@]fAu@jA}@p@o@LOh@w@Pc@t@LPB`@BL@x@@tC?J@jA?bAGrAWnBk@jAWd@G`Eg@rAc@lDgAvBw@~IwCjFgBlGqBtIuCnDiAjAe@NGbA_@`@KZCn@KPCJNLINKRK^MzAg@^IzAe@nBi@`Be@`FyAXKpEmAp@Qj@Op@Q|Bs@pC{@t@SfBk@dBk@xAc@zAc@~@]fBk@XIVIlKaDb@MHE|@]~@Yp@QnCc@PCLCTC\\Ct@Kb@GjAOp@Kb@IlAKf@CvBM~BCF?~BInCK~DO`EErCMn@LD_@NG~AGTA^AdAEfCKxCIjAEP?`@?X@XBtARn@JzDj@nARF@N@PDD?jARx@HbANNBzCd@dANh@DfDb@vAqAn@q@FIRQZAJ?z@CjDOpAGVEXIRGr@]d@]r@k@HGDGj@_@TS`@_@FAD?F@hA\\pAXxAZ?D?@?H@FBDDDHDH@H?HEFGDId@LlAV|AVb@HXDR@H?F@VARAXEXIb@Mz@SpCy@RGr@S|@]`Bc@`Cu@xBk@hBg@`Cw@JEXKJC~CaANEf@O|@YdB_@n@U\\CH@H@JDRHl@e@n@_@ZQ`@QTG^MdCw@p@S|@WrEuAPGbCs@pBo@zDgAxBu@jA]v@Wz@[fA[rFyATIPGbCs@HEtGoBHCtFaBz@W|@YtE{AnA_@dDcApBk@xC_ApAa@lBm@LCpBo@zFiBlC_A^KjAc@^KTIr@Yd@MPKd@OxAg@fDiA`Bg@xAg@DCx@Yh@S\\UtAw@dCiB|AgA~IiGx@q@nAaApA_Bn@aAf@iAj@_Br@eCH[FURe@\\g@j@u@z@cAb@{@Ne@Nk@?KFSTaAPw@V{@\\q@NUZ_@JK\\Wl@e@nA_AbBeAvA{@dA{@n@c@tAmAd@_@JKv@s@f@q@~AiCJSNUZ_@VYXUh@O\\MtA]dA[|@Yz@g@b@c@Zk@Ts@No@TgAXyAL]Zw@j@aA\\s@h@uA^oAPw@Fk@JkBDu@FeABs@Dk@Fm@DSN_@R_@X[z@}@XU`@Ud@SVI`@Oh@Qj@QdAa@p@[p@e@h@i@X]`@g@`@q@^o@Zg@l@y@lAoAfAiAn@s@Xc@FOLa@Ji@De@Ag@Ea@Ki@K[Qa@i@gAOc@K_@CY?_@@q@D]RiANcALeABe@Cy@IcAe@uCOoAK{@E_AAu@?w@BoAH}ALsBDi@Bk@XyFBSHgBLgB@g@AqAC]KsAK{AC]Eo@Es@Cu@Hm@Lg@t@eB@CL[b@cARa@Rg@@EHUDY@Y?A@yA?I@}@Da@FWVe@\\e@\\a@PSz@aAh@u@`@q@nBaDhAoBf@s@^y@XaALi@Le@R{@f@mBJc@\\qANe@BIBCVk@LQT_@`@i@^q@b@i@^g@d@_@jBgAtCcBt@_@p@Yl@Wn@Wr@]j@Wl@g@bByBrAgBr@kAZu@nAoDVeAJm@@e@AYEq@QeAYsBOoAGuADsE?aGB_B[oE[uDCcA@sA^oDTqBFc@Lu@Pw@DIP]FKd@]v@]`Bo@\\QlAo@rBmAz@k@pDyBr@c@t@g@b@_@pCgDd@]ZYxBmBd@e@X]~B_E~@iBl@aAh@{@x@aAx@}@~AaBdCsCrA{ApAqAnB}Bt@}@r@iA|AqCn@y@\\]VSj@WvAa@jHqBrAWr@MxB_@hAQf@S`@WrAsA|BuB|BeBlA_Ah@m@h@}@z@gBZkAt@aEj@yBl@qBr@uBL_ALaBFoDBqBFeEBm@Ju@Lm@^kBVq@h@aAV]\\Yn@]\\O`@Kb@Gv@Gh@G|@IxCYbQ_BtAMlAOf@Gh@Q`@UdCmBzCcCdAcAV]N[Te@FMl@uAZi@R_@@IK@QXS`@c@~@c@~@CFCFk@`Am@j@wC|BeA|@eAx@m@`@i@Py@NyCVmGl@aBNqEb@iAJwALeCTw@JSF[H]P[P[VWXWXWd@Sl@W|@YtAMl@E\\Ip@?zAAfCCpCMvBIxAO|@Op@_@fAm@rBk@~Bi@pCWlAQ`@{@fBS^c@p@WV{D|C}@r@eBdB{@t@c@Xc@Pu@LgDl@s@LuAXgJjCu@Zm@l@qAhB{@bBy@lA{@fAeBlBy@z@QPgF|FoCtC}@dAi@v@w@vAk@fA_CzD[h@i@f@eCxByB|BmAvAc@^[R"},
+  d7:{km:15.0,min:25,wp:[["草分木 B&B 船帆石店", 21.93208, 120.82492], ["鵝鑾鼻公園（路過／備選）", 21.9042, 120.8508], ["龍磐公園", 21.9278, 120.847], ["回船帆石住宿", 21.93208, 120.82492]],polyline:"_rzdC}qm`VYTFHt@g@b@_@pCgDd@]ZYxBmBd@e@X]~B_E~@iBl@aAh@{@x@aAx@}@~AaBdCsCrA{ApAqAnB}Bt@}@r@iA|AqCn@y@\\]VSj@WvAa@jHqBrAWr@MxB_@hAQf@S`@WrAsA|BuB|BeBlA_Ah@m@h@}@z@gBZkAt@aEj@yBl@qBr@uBL_ALaBFoDBqBFeEBm@Ju@Lm@^kBVq@h@aAV]\\Yn@]\\O`@Kb@Gv@GfBQxCYbQ_BtAMlAOf@Gh@Q`@UdCmBzCcCdAcAV]N[Te@FMl@uAZi@\\VvB|AR?HEHIF]}BeBORQQOMK@QXS`@c@~@c@~@CFCFk@`Am@j@wC|BeA|@eAx@m@`@i@Py@NyCVmGl@aBNqEb@iAJwALeCTw@JQu@CQFQHSh@i@FKAMEQMm@Io@MyAA_ABkAH_@Rs@Le@Bm@Is@Yk@c@y@c@aAk@aAKe@CU@w@E]MYa@WmAa@_@YWQq@a@o@Jg@FuBPK@}@HWHQJy@n@_ChAm@NE@}MPWBg@@k@Hk@LuCr@KBaD|@]Nc@Zs@n@MNET?Rf@bDBP?NCNu@~BERCt@CPKRc@j@mBzBmAbBm@~@q@`A_AnAML]RiPrFsDrANn@?FABYLq@Vo@T[w@nAe@x@YrDsAnHeCxFmB\\SLM~@oAp@aAl@_AlAcBlB{Bb@k@JSBQBu@DSt@_CBO?OCQg@cD?SDULOr@o@b@[\\O`D}@JCtCs@j@Mj@If@AVC|MQDAl@O~BiAx@o@PKVI|@IJAtBQf@Gn@Kp@`@VP^XlA`@`@VLXD\\Av@BTJd@j@`Ab@`Ab@x@Xj@Hr@Cl@Md@Sr@I^CjA@~@LxAHn@Ll@DP@LGJi@h@IRGPBPPt@SF[H]P[P[VWXWXWd@Sl@W|@YtAMl@E\\Ip@?zAAfCCpCMvBIxAO|@Op@_@fAm@rBk@~Bi@pCWlAQ`@{@fBS^c@p@WV{D|C}@r@eBdB{@t@c@Xc@Pu@LgDl@s@LuAXgJjCu@Zm@l@qAhB{@bBy@lA{@fAeBlBy@z@QPgF|FoCtC}@dAi@v@w@vAk@fA_CzD[h@i@f@eCxByB|BmAvAc@^[R"}
 };
-
-function buildMap(id, routeKey){
-  const data = routes[routeKey];
-  const color = dayColors[routeKey];
-  const map = L.map(id, {scrollWheelZoom:false, preferCanvas:true});
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 18,
-    attribution: '&copy; OpenStreetMap contributors'
-  }).addTo(map);
-  const latlngs = data.map(p => [p[1], p[2]]);
-  L.polyline(latlngs, {color, weight:5, opacity:.85}).addTo(map);
-  data.forEach((p, idx) => {
-    const marker = L.circleMarker([p[1], p[2]], {
-      radius: 7, color:'#fff', weight:2, fillColor:color, fillOpacity:1
-    }).addTo(map);
-    marker.bindPopup(`<strong>${idx+1}. ${p[0]}</strong>`);
-  });
-  map.fitBounds(latlngs, {padding:[18,18]});
-  return map;
+// ===== 路線地圖：真實道路幾何（OSRM/OpenStreetMap 路網，出發前抓取，編碼為 polyline）=====
+function decodePolyline(str){
+  var idx=0,lat=0,lng=0,out=[];
+  while(idx<str.length){
+    var b,shift=0,result=0;
+    do{b=str.charCodeAt(idx++)-63;result|=(b&0x1f)<<shift;shift+=5;}while(b>=0x20);
+    lat+=(result&1)?~(result>>1):(result>>1);
+    shift=0;result=0;
+    do{b=str.charCodeAt(idx++)-63;result|=(b&0x1f)<<shift;shift+=5;}while(b>=0x20);
+    lng+=(result&1)?~(result>>1):(result>>1);
+    out.push([lat/1e5,lng/1e5]);
+  }
+  return out;
 }
-
-function buildOverviewMap(){
-  const map = L.map('map-overview', {scrollWheelZoom:false, preferCanvas:true});
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom:18,
-    attribution: '&copy; OpenStreetMap contributors'
-  }).addTo(map);
-  const bounds = [];
-  Object.entries(routes).forEach(([key, data]) => {
-    const color = dayColors[key];
-    const latlngs = data.map(p => [p[1], p[2]]);
-    L.polyline(latlngs, {color, weight:4, opacity:.82}).addTo(map);
-    data.forEach((p, idx) => {
-      const isFirst = idx === 0;
-      const isLast = idx === data.length - 1;
-      const marker = L.circleMarker([p[1], p[2]], {
-        radius: isFirst || isLast ? 6 : 5,
-        color:'#fff', weight:1.5, fillColor:color, fillOpacity:.95
-      }).addTo(map);
-      marker.bindPopup(`<strong>${key.toUpperCase()} · ${p[0]}</strong>`);
-      bounds.push([p[1], p[2]]);
-    });
-  });
-  map.fitBounds(bounds, {padding:[24,24]});
+var TILE='https://tile.openstreetmap.org/{z}/{x}/{y}.png';
+var ATTR='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> 貢獻者 · 路線：OSRM';
+function mkMap(id){
+  var el=document.getElementById(id); if(!el) return null;
+  var m=L.map(id,{scrollWheelZoom:false,preferCanvas:true});
+  L.tileLayer(TILE,{attribution:ATTR,maxZoom:19}).addTo(m);
+  return m;
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-  buildOverviewMap();
-  ['d1','d2','d3','d4','d5','d6','d7'].forEach(key => buildMap(`map-${key}`, key));
+function drawDay(m,key,opts){
+  opts=opts||{};
+  var d=ROUTES[key], color=dayColors[key];
+  var geom=decodePolyline(d.polyline);
+  var line=L.polyline(geom,{color:color,weight:opts.weight||5,opacity:opts.opacity||.85}).addTo(m);
+  d.wp.forEach(function(p,i){
+    var isEnd=(i===0||i===d.wp.length-1);
+    var mk=L.circleMarker([p[1],p[2]],{radius:isEnd?8:6,color:'#fff',weight:2,fillColor:color,fillOpacity:1}).addTo(m);
+    var small=window.matchMedia&&window.matchMedia('(max-width:720px)').matches;
+    if(opts.labels&&!small){ mk.bindTooltip((i+1)+'. '+p[0],{permanent:true,direction:i%2?'bottom':'top',className:'wp-label',offset:[0,i%2?6:-6]}); }
+    else if(opts.labels){ mk.bindPopup('<strong>'+(i+1)+'. '+p[0]+'</strong>'); }
+    else { mk.bindTooltip(key.toUpperCase()+' · '+p[0],{direction:'top',className:'wp-label',offset:[0,-6]}); }
+  });
+  return line;
+}
+document.addEventListener('DOMContentLoaded',function(){
+  if(typeof L==='undefined') return;
+  var ov=mkMap('map-overview');
+  if(ov){
+    var b=null;
+    Object.keys(ROUTES).forEach(function(k){ var ln=drawDay(ov,k,{weight:4,opacity:.82}); b=b?b.extend(ln.getBounds()):ln.getBounds(); });
+    if(b) ov.fitBounds(b,{padding:[24,24]});
+  }
+  Object.keys(ROUTES).forEach(function(k){
+    var m=mkMap('map-'+k); if(!m) return;
+    var ln=drawDay(m,k,{labels:true});
+    m.fitBounds(ln.getBounds(),{padding:[28,28]});
+  });
 });
 </script>
-
+<!-- ===== 捲動進度條 + scrollspy 高亮（移植自沖繩／福岡頁） ===== -->
+<script>
+(function(){
+  var toc=document.getElementById('toc');
+  var fill=document.getElementById('progressFill');
+  var navbar=document.getElementById('navbar');
+  var sidedock=document.getElementById('sidedock');
+  var sideFill=document.getElementById('sideFill');
+  if(!toc||!fill||!navbar) return;
+  var links=Array.prototype.slice.call(toc.querySelectorAll('a'));
+  var sideLinks=sidedock?Array.prototype.slice.call(sidedock.querySelectorAll('a')):[];
+  var sections=links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));});
+  var ticking=false;
+  function update(){
+    ticking=false;
+    var doc=document.documentElement;
+    var max=doc.scrollHeight-doc.clientHeight;
+    var pct=max>0?(doc.scrollTop/max)*100:0;
+    pct=Math.min(100,Math.max(0,pct));
+    fill.style.width=pct+'%';
+    if(sideFill) sideFill.style.width=pct+'%';
+    // 判定目前主題：navbar 顯示時用其下緣，桌機隱藏 navbar 時 fallback 90
+    var nbB=navbar.getBoundingClientRect().bottom;
+    var line=(nbB>0?nbB:90)+8;
+    var idx=0;
+    for(var i=0;i<sections.length;i++){
+      var s=sections[i]; if(!s)continue;
+      if(s.getBoundingClientRect().top<=line) idx=i;
+    }
+    // 接近頁尾時直接點亮最後一項
+    if(doc.scrollTop+doc.clientHeight>=doc.scrollHeight-4) idx=links.length-1;
+    links.forEach(function(a,i){
+      if(i===idx){
+        if(!a.classList.contains('active')){
+          a.classList.add('active');
+          var ar=a.getBoundingClientRect(), tr=toc.getBoundingClientRect();
+          if(ar.left<tr.left||ar.right>tr.right){ toc.scrollLeft+=ar.left-tr.left-tr.width/2+ar.width/2; }
+        }
+      } else a.classList.remove('active');
+    });
+    sideLinks.forEach(function(a,i){
+      if(i===idx){
+        if(!a.classList.contains('active')){
+          a.classList.add('active');
+          var ar=a.getBoundingClientRect(), sr=sidedock.getBoundingClientRect();
+          if(ar.top<sr.top||ar.bottom>sr.bottom){ sidedock.scrollTop+=ar.top-sr.top-sr.height/2+ar.height/2; }
+        }
+      } else a.classList.remove('active');
+    });
+  }
+  function onScroll(){ if(!ticking){ ticking=true; requestAnimationFrame(update);} }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  links.concat(sideLinks).forEach(function(a){a.addEventListener('click',function(){setTimeout(update,400);});});
+  update();
+})();
+</script>
 </body>
 </html>

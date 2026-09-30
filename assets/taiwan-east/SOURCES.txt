@@ -1,0 +1,476 @@
+Taiwan east coast family trip page — image sources (Wikimedia Commons, CC / public domain)
+Representative real-scene photos of each spot, NOT taken on this trip. Downscaled to ≤1000px (longest side).
+
+batongguan-plaque-01.jpg
+  file: File:Batongguan Traversing Trail Commenmorative Plaque 八通關越道開鑿紀念碑 - panoramio.jpg
+  license: CC BY 3.0
+  author: lienyuan lee
+  source: https://commons.wikimedia.org/wiki/File%3ABatongguan_Traversing_Trail_Commenmorative_Plaque_%E5%85%AB%E9%80%9A%E9%97%9C%E8%B6%8A%E9%81%93%E9%96%8B%E9%91%BF%E7%B4%80%E5%BF%B5%E7%A2%91_-_panoramio.jpg
+
+beibin-park-01.jpg
+  file: File:Hualien Pacific Landscape Park.jpg
+  license: CC BY-SA 4.0
+  author: NHC
+  source: https://commons.wikimedia.org/wiki/File%3AHualien_Pacific_Landscape_Park.jpg
+
+brown-ave-01.jpg
+  file: File:Mr. Brown Avenue through golden rice fields towards mountains.jpg
+  license: CC BY 2.0
+  author: Joel Sow
+  source: https://commons.wikimedia.org/wiki/File%3AMr._Brown_Avenue_through_golden_rice_fields_towards_mountains.jpg
+
+brown-ave-04-aerial.jpg
+  file: File:阡陌騎跡‧花東山海行伯朗大道01 (cropped).jpg
+  license: CC BY 4.0
+  author: 觀光局資訊室
+  source: https://commons.wikimedia.org/wiki/File%3A%E9%98%A1%E9%99%8C%E9%A8%8E%E8%B7%A1%E2%80%A7%E8%8A%B1%E6%9D%B1%E5%B1%B1%E6%B5%B7%E8%A1%8C%E4%BC%AF%E6%9C%97%E5%A4%A7%E9%81%9301_%28cropped%29.jpg
+
+chishang-bento-01.jpg
+  file: File:A Chihshang Boxed Meal by the Chuan Mei Hang Restaurant at Chihshang, Taitung 20190816 01.jpg
+  license: CC BY 2.0
+  author: Ken Marshall
+  source: https://commons.wikimedia.org/wiki/File%3AA_Chihshang_Boxed_Meal_by_the_Chuan_Mei_Hang_Restaurant_at_Chihshang%2C_Taitung_20190816_01.jpg
+
+chishang-rice-02.jpg
+  file: File:Chishang1.jpg
+  license: CC0
+  author: lumoplank
+  source: https://commons.wikimedia.org/wiki/File%3AChishang1.jpg
+
+chulu-ranch-01.jpg
+  file: File:Chu Lu Ranch 2009.04.11.JPG
+  license: Public domain
+  author: ECTaiwan2010
+  source: https://commons.wikimedia.org/wiki/File%3AChu_Lu_Ranch_2009.04.11.JPG
+
+chulu-ranch-02.jpg
+  file: File:台湾卑南初鹿牧场.jpg
+  license: CC BY 4.0
+  author: 焱岚
+  source: https://commons.wikimedia.org/wiki/File%3A%E5%8F%B0%E6%B9%BE%E5%8D%91%E5%8D%97%E5%88%9D%E9%B9%BF%E7%89%A7%E5%9C%BA.jpg
+
+danongdafu-road-04.jpg
+  file: File:Road through Danongdafu Forest Park.jpg
+  license: CC BY 2.0
+  author: Ken Marshall
+  source: https://commons.wikimedia.org/wiki/File%3ARoad_through_Danongdafu_Forest_Park.jpg
+
+danongdafu-road-tree-01.jpg
+  file: File:Road with a tree in Guangfu.jpg
+  license: CC BY 2.0
+  author: billy1125
+  source: https://commons.wikimedia.org/wiki/File%3ARoad_with_a_tree_in_Guangfu.jpg
+
+dapo-pond-01.jpg
+  file: File:A corner of Dapo Pond.jpg
+  license: CC BY 2.0
+  author: billy1125
+  source: https://commons.wikimedia.org/wiki/File%3AA_corner_of_Dapo_Pond.jpg
+
+dongdamen-03.jpg
+  file: File:Hualien City11.jpg
+  license: CC BY-SA 4.0
+  author: Peter in s
+  source: https://commons.wikimedia.org/wiki/File%3AHualien_City11.jpg
+
+dongyuan-03.jpg
+  file: File:View of pond in the Dongyuan Wetland.jpg
+  license: CC BY-SA 2.0
+  author: 中岑 范姜
+  source: https://commons.wikimedia.org/wiki/File%3AView_of_pond_in_the_Dongyuan_Wetland.jpg
+
+duoliang-01.jpg
+  file: File:Overlooking the ocean at Duoliang Train Station.jpg
+  license: CC BY-SA 2.0
+  author: 明章 徐
+  source: https://commons.wikimedia.org/wiki/File%3AOverlooking_the_ocean_at_Duoliang_Train_Station.jpg
+
+duoliang-04.jpg
+  file: File:Platforms at Duoliang Station under sunny sky on 22 June 2014.jpg
+  license: CC BY 2.0
+  author: JianEn Yu
+  source: https://commons.wikimedia.org/wiki/File%3APlatforms_at_Duoliang_Station_under_sunny_sky_on_22_June_2014.jpg
+
+eluanbi-01.jpg
+  file: File:Eluanbi Lighthouse 20240918-1.jpg
+  license: CC BY-SA 4.0
+  author: Suicasmo
+  source: https://commons.wikimedia.org/wiki/File%3AEluanbi_Lighthouse_20240918-1.jpg
+
+fengchuisha-01.jpg
+  file: File:风吹砂 - Sand Dune - 2012.02 - panoramio.jpg
+  license: CC BY 3.0
+  author: rheins
+  source: https://commons.wikimedia.org/wiki/File%3A%E9%A3%8E%E5%90%B9%E7%A0%82_-_Sand_Dune_-_2012.02_-_panoramio.jpg
+
+fengchuisha-03.jpg
+  file: File:Hengchun-CHO YEN CHIA-IMG 1620.jpg
+  license: CC BY-SA 4.0
+  author: CHO YEN CHIA
+  source: https://commons.wikimedia.org/wiki/File%3AHengchun-CHO_YEN_CHIA-IMG_1620.jpg
+
+grassland-04.jpg
+  file: File:2023 Syuhai Grassland Recreation Area S6.jpg
+  license: CC BY 4.0
+  author: Taiwankengo
+  source: https://commons.wikimedia.org/wiki/File%3A2023_Syuhai_Grassland_Recreation_Area_S6.jpg
+
+grassland-05.jpg
+  file: File:2023 Syuhai Grassland Recreation Area S1.jpg
+  license: CC BY 4.0
+  author: Taiwankengo
+  source: https://commons.wikimedia.org/wiki/File%3A2023_Syuhai_Grassland_Recreation_Area_S1.jpg
+
+guanyinbi-04.jpg
+  file: File:Alangyi Ancient Trial.jpg
+  license: CC BY-SA 4.0
+  author: Ecosi
+  source: https://commons.wikimedia.org/wiki/File%3AAlangyi_Ancient_Trial.jpg
+
+guishan-island-05.jpg
+  file: File:Guishan Island.jpg
+  license: CC BY-SA 3.0
+  author: 阿爾特斯
+  source: https://commons.wikimedia.org/wiki/File%3AGuishan_Island.jpg
+
+heaven-road-02.jpg
+  file: File:Tourists riding quadricycles in Chishang Heaven Road.jpg
+  license: CC BY-SA 2.0
+  author: 大頭家族
+  source: https://commons.wikimedia.org/wiki/File%3ATourists_riding_quadricycles_in_Chishang_Heaven_Road.jpg
+
+hengchun-south-01.jpg
+  file: File:恆春古城-南門.jpg
+  license: CC BY-SA 4.0
+  author: WEI, WAN-CHEN（魏琬臻）
+  source: https://commons.wikimedia.org/wiki/File%3A%E6%81%86%E6%98%A5%E5%8F%A4%E5%9F%8E-%E5%8D%97%E9%96%80.jpg
+
+hualien-harbor-06.jpg
+  file: File:Hualien harbour in the evening.jpg
+  license: CC BY 2.0
+  author: Ken Marshall from Absecon, New Jersey, USA
+  source: https://commons.wikimedia.org/wiki/File%3AHualien_harbour_in_the_evening.jpg
+
+kaneshiro-tree-01.jpg
+  file: File:金城武樹 (14545001530).jpg
+  license: CC BY 2.0
+  author: JianEn Yu
+  source: https://commons.wikimedia.org/wiki/File%3A%E9%87%91%E5%9F%8E%E6%AD%A6%E6%A8%B9_%2814545001530%29.jpg
+
+kecheng-01.jpg
+  file: File:Kecheng Bridge in the green landscape of Yuli Township.jpg
+  license: CC BY-SA 2.0
+  author: 大頭家族
+  source: https://commons.wikimedia.org/wiki/File%3AKecheng_Bridge_in_the_green_landscape_of_Yuli_Township.jpg
+
+kecheng-04.jpg
+  file: File:仲夏寶島號 Summer Formosa, 玉里客城鐵橋 (20240810) (53922778024).jpg
+  license: CC BY-SA 2.0
+  author: Takeshi Aida from Hong Kong, Hong Kong
+  source: https://commons.wikimedia.org/wiki/File%3A%E4%BB%B2%E5%A4%8F%E5%AF%B6%E5%B3%B6%E8%99%9F_Summer_Formosa%2C_%E7%8E%89%E9%87%8C%E5%AE%A2%E5%9F%8E%E9%90%B5%E6%A9%8B_%2820240810%29_%2853922778024%29.jpg
+
+lakulaku-01.jpg
+  file: File:Laku Laku River 拉庫垃庫溪 - panoramio.jpg
+  license: CC BY 3.0
+  author: lienyuan lee
+  source: https://commons.wikimedia.org/wiki/File%3ALaku_Laku_River_%E6%8B%89%E5%BA%AB%E5%9E%83%E5%BA%AB%E6%BA%AA_-_panoramio.jpg
+
+lanyang-plain-04.jpg
+  file: File:蘭陽平原 Lanyang Plain - panoramio (2).jpg
+  license: CC BY 3.0
+  author: lienyuan lee
+  source: https://commons.wikimedia.org/wiki/File%3A%E8%98%AD%E9%99%BD%E5%B9%B3%E5%8E%9F_Lanyang_Plain_-_panoramio_%282%29.jpg
+
+longpan-02.jpg
+  file: File:墾丁國家公園龍磐公園.jpg
+  license: CC BY-SA 4.0
+  author: Joyechen
+  source: https://commons.wikimedia.org/wiki/File%3A%E5%A2%BE%E4%B8%81%E5%9C%8B%E5%AE%B6%E5%85%AC%E5%9C%92%E9%BE%8D%E7%A3%90%E5%85%AC%E5%9C%92.jpg
+
+longpan-03.jpg
+  file: File:龍磐公園.jpg
+  license: CC BY-SA 4.0
+  author: A0925173679
+  source: https://commons.wikimedia.org/wiki/File%3A%E9%BE%8D%E7%A3%90%E5%85%AC%E5%9C%92.jpg
+
+longpan-highway-08.jpg
+  file: File:Straight highway near Longpan Park in Kenting National Park.jpg
+  license: CC BY 2.0
+  author: Jackly
+  source: https://commons.wikimedia.org/wiki/File%3AStraight_highway_near_Longpan_Park_in_Kenting_National_Park.jpg
+
+longpan-morning-01.jpg
+  file: File:Long Pan Park in the Morning.jpg
+  license: CC BY-SA 3.0
+  author: Jnlin
+  source: https://commons.wikimedia.org/wiki/File%3ALong_Pan_Park_in_the_Morning.jpg
+
+mudan-04.jpg
+  file: File:Mudan Dam under cloudy sunny sky.jpg
+  license: CC BY-SA 2.0
+  author: 晨星 飛鳥
+  source: https://commons.wikimedia.org/wiki/File%3AMudan_Dam_under_cloudy_sunny_sky.jpg
+
+nanan-vc-04.jpg
+  file: File:Nanan Visitor Center 南安遊客中心 - panoramio (2).jpg
+  license: CC BY 3.0
+  author: lienyuan lee
+  source: https://commons.wikimedia.org/wiki/File%3ANanan_Visitor_Center_%E5%8D%97%E5%AE%89%E9%81%8A%E5%AE%A2%E4%B8%AD%E5%BF%83_-_panoramio_%282%29.jpg
+
+nanan-vc-08.jpg
+  file: File:Na'an Visitor Center (29)戶外景緻.jpg
+  license: CC BY-SA 4.0
+  author: 舟集 Toadboat
+  source: https://commons.wikimedia.org/wiki/File%3ANa%27an_Visitor_Center_%2829%29%E6%88%B6%E5%A4%96%E6%99%AF%E7%B7%BB.jpg
+
+nanan-waterfall-05.jpg
+  file: File:Nan'an Waterfall with crystal clear water.jpg
+  license: CC BY 2.0
+  author: Ken Marshall
+  source: https://commons.wikimedia.org/wiki/File%3ANan%27an_Waterfall_with_crystal_clear_water.jpg
+
+nanan-waterfall-06.jpg
+  file: File:花蓮南安瀑布.jpg
+  license: CC BY-SA 4.0
+  author: Matt8830
+  source: https://commons.wikimedia.org/wiki/File%3A%E8%8A%B1%E8%93%AE%E5%8D%97%E5%AE%89%E7%80%91%E5%B8%83.jpg
+
+nanao-station-02.jpg
+  file: File:南澳車站-1.JPG
+  license: CC BY-SA 3.0
+  author: Small28
+  source: https://commons.wikimedia.org/wiki/File%3A%E5%8D%97%E6%BE%B3%E8%BB%8A%E7%AB%99-1.JPG
+
+nanhui-02.jpg
+  file: File:南迴公路 South-Link Highway - panoramio (1).jpg
+  license: CC BY 3.0
+  author: lienyuan lee
+  source: https://commons.wikimedia.org/wiki/File%3A%E5%8D%97%E8%BF%B4%E5%85%AC%E8%B7%AF_South-Link_Highway_-_panoramio_%281%29.jpg
+
+pipa-lake-02.jpg
+  file: File:琵琶湖 Pipa Lake - panoramio.jpg
+  license: CC BY 3.0
+  author: lienyuan lee
+  source: https://commons.wikimedia.org/wiki/File%3A%E7%90%B5%E7%90%B6%E6%B9%96_Pipa_Lake_-_panoramio.jpg
+
+qingshui-cliff-03.jpg
+  file: File:Taroko National Park Qingshui Cliff (Huaiwun).jpg
+  license: CC BY-SA 4.0
+  author: Huaiwun
+  source: https://commons.wikimedia.org/wiki/File%3ATaroko_National_Park_Qingshui_Cliff_%28Huaiwun%29.jpg
+
+qingshui-cliff-04.jpg
+  file: File:Chingshui Cliff shoreline.jpg
+  license: CC BY 2.0
+  author: 白士 李
+  source: https://commons.wikimedia.org/wiki/File%3AChingshui_Cliff_shoreline.jpg
+
+road199-04.jpg
+  file: File:台199线零公里 - Start of Country Road 199 - 2012.02 - panoramio.jpg
+  license: CC BY 3.0
+  author: rheins
+  source: https://commons.wikimedia.org/wiki/File%3A%E5%8F%B0199%E7%BA%BF%E9%9B%B6%E5%85%AC%E9%87%8C_-_Start_of_Country_Road_199_-_2012.02_-_panoramio.jpg
+
+sailrock-01.jpg
+  file: File:Kenting Hengchun-Township Taiwan Sail-Rock-01.jpg
+  license: CC BY-SA 3.0
+  author: CEphoto, Uwe Aranas
+  source: https://commons.wikimedia.org/wiki/File%3AKenting_Hengchun-Township_Taiwan_Sail-Rock-01.jpg
+
+sailrock-03.jpg
+  file: File:Kenting National Park Of Chuanfan Rock.jpg
+  license: CC BY-SA 4.0
+  author: Joyechen
+  source: https://commons.wikimedia.org/wiki/File%3AKenting_National_Park_Of_Chuanfan_Rock.jpg
+
+sailrock-05.jpg
+  file: File:Kenting National Park Chuanfan Rock-Chen Chieh Wei-01.jpg
+  license: CC BY-SA 4.0
+  author: Chenchiehwei
+  source: https://commons.wikimedia.org/wiki/File%3AKenting_National_Park_Chuanfan_Rock-Chen_Chieh_Wei-01.jpg
+
+sailrock-beach-02.jpg
+  file: File:Chuanfan Rock Beach WEI, WAN-CHEN.jpg
+  license: CC BY-SA 4.0
+  author: WEI, WAN-CHEN
+  source: https://commons.wikimedia.org/wiki/File%3AChuanfan_Rock_Beach_WEI%2C_WAN-CHEN.jpg
+
+sailrock-beach-03.jpg
+  file: File:Kenting National Park（WEI, WAN-CHEN）－ 船帆石海灘遙望貓鼻頭.jpg
+  license: CC BY-SA 4.0
+  author: WEI, WAN-CHEN（魏琬臻）
+  source: https://commons.wikimedia.org/wiki/File%3AKenting_National_Park%EF%BC%88WEI%2C_WAN-CHEN%EF%BC%89%EF%BC%8D_%E8%88%B9%E5%B8%86%E7%9F%B3%E6%B5%B7%E7%81%98%E9%81%99%E6%9C%9B%E8%B2%93%E9%BC%BB%E9%A0%AD.jpg
+
+sailrock-reef-03.jpg
+  file: File:Chuanfan Rock（WEI, WAN-CHEN）－船帆石潔淨的珊瑚礁水域環境.jpg
+  license: CC BY-SA 4.0
+  author: WEI, WAN-CHEN（魏琬臻）
+  source: https://commons.wikimedia.org/wiki/File%3AChuanfan_Rock%EF%BC%88WEI%2C_WAN-CHEN%EF%BC%89%EF%BC%8D%E8%88%B9%E5%B8%86%E7%9F%B3%E6%BD%94%E6%B7%A8%E7%9A%84%E7%8F%8A%E7%91%9A%E7%A4%81%E6%B0%B4%E5%9F%9F%E7%92%B0%E5%A2%83.jpg
+
+shadao-pano-01.jpg
+  file: File:Panorama of Shadao bay in Kenting 01.jpg
+  license: CC BY-SA 4.0
+  author: Tbatb
+  source: https://commons.wikimedia.org/wiki/File%3APanorama_of_Shadao_bay_in_Kenting_01.jpg
+
+shadao-reserve.jpg
+  file: File:Hengchun-CHO YEN CHIA-IMG 1663.jpg
+  license: CC BY-SA 4.0
+  author: CHO YEN CHIA
+  source: https://commons.wikimedia.org/wiki/File%3AHengchun-CHO_YEN_CHIA-IMG_1663.jpg
+
+shanfeng-bridge-01.jpg
+  file: File:山風一號吊橋 20170226.jpg
+  license: CC BY-SA 4.0
+  author: Thunder24678
+  source: https://commons.wikimedia.org/wiki/File%3A%E5%B1%B1%E9%A2%A8%E4%B8%80%E8%99%9F%E5%90%8A%E6%A9%8B_20170226.jpg
+
+shanfeng-bridge-03.jpg
+  file: File:Shanfeng Suspension Bridge.jpg
+  license: CC BY 2.0
+  author: Ken Marshall
+  source: https://commons.wikimedia.org/wiki/File%3AShanfeng_Suspension_Bridge.jpg
+
+shouka-01.jpg
+  file: File:23-壽卡鐵馬驛站 (28896705953).jpg
+  license: CC BY 2.0
+  author: Sinchen.Lin
+  source: https://commons.wikimedia.org/wiki/File%3A23-%E5%A3%BD%E5%8D%A1%E9%90%B5%E9%A6%AC%E9%A9%9B%E7%AB%99_%2828896705953%29.jpg
+
+southpoint-03.jpg
+  file: File:Hengchun-Township Taiwan Southernmost-Point-of-Taiwan-01.jpg
+  license: CC BY-SA 3.0
+  author: CEphoto, Uwe Aranas
+  source: https://commons.wikimedia.org/wiki/File%3AHengchun-Township_Taiwan_Southernmost-Point-of-Taiwan-01.jpg
+
+sugar-06.jpg
+  file: File:花蓮糖廠.jpg
+  license: CC BY-SA 3.0
+  author: P1340
+  source: https://commons.wikimedia.org/wiki/File%3A%E8%8A%B1%E8%93%AE%E7%B3%96%E5%BB%A0.jpg
+
+sugar-deputy-04.jpg
+  file: File:Deputy Factory Manager's Quarters (1934), Hualien Sugar Factory, Guangfu Township, Hualien County (Taiwan).jpg
+  license: CC BY-SA 4.0
+  author: Mk2010
+  source: https://commons.wikimedia.org/wiki/File%3ADeputy_Factory_Manager%27s_Quarters_%281934%29%2C_Hualien_Sugar_Factory%2C_Guangfu_Township%2C_Hualien_County_%28Taiwan%29.jpg
+
+sugar-train-07.jpg
+  file: File:Taiwan 2009 GuangFu Sugar Factory Historical Train Exhibition FRD 6170.jpg
+  license: CC BY-SA 3.0
+  author: Fred Hsu (Wikipedia:User:Fred Hsu on en.wikipedia)
+  source: https://commons.wikimedia.org/wiki/File%3ATaiwan_2009_GuangFu_Sugar_Factory_Historical_Train_Exhibition_FRD_6170.jpg
+
+suhua-highway-08.jpg
+  file: File:Suhua Highway through Taroko National Park.jpg
+  license: CC BY-SA 2.0
+  author: 大頭家族
+  source: https://commons.wikimedia.org/wiki/File%3ASuhua_Highway_through_Taroko_National_Park.jpg
+
+sunrise-eluanbi-03.jpg
+  file: File:Eluanbi Sunrise WEI, WAN-CHEN.jpg
+  license: CC BY-SA 4.0
+  author: WEI, WAN-CHEN
+  source: https://commons.wikimedia.org/wiki/File%3AEluanbi_Sunrise_WEI%2C_WAN-CHEN.jpg
+
+sunrise-kenting-01.jpg
+  file: File:Sunrise Kenting National Park-ID9286.jpg
+  license: CC BY-SA 4.0
+  author: Xavier Berlioux
+  source: https://commons.wikimedia.org/wiki/File%3ASunrise_Kenting_National_Park-ID9286.jpg
+
+taitung-seaside-01-paposogan.jpg
+  file: File:Paposogan in Seaside Park 海濱公園國際地標 - panoramio.jpg
+  license: CC BY 3.0
+  author: lienyuan lee
+  source: https://commons.wikimedia.org/wiki/File%3APaposogan_in_Seaside_Park_%E6%B5%B7%E6%BF%B1%E5%85%AC%E5%9C%92%E5%9C%8B%E9%9A%9B%E5%9C%B0%E6%A8%99_-_panoramio.jpg
+
+tiehua-04-lanterns.jpg
+  file: File:Lanterns in Taitung Railway Art Village.jpg
+  license: CC BY 2.0
+  author: WEi WEi
+  source: https://commons.wikimedia.org/wiki/File%3ALanterns_in_Taitung_Railway_Art_Village.jpg
+
+tropic-02.jpg
+  file: File:Ruisui Tropic of Cancer Marker 20150228a.jpg
+  license: CC BY-SA 2.0
+  author: Wei-Te Wong from Taipei City, Taiwan, Republic of China
+  source: https://commons.wikimedia.org/wiki/File%3ARuisui_Tropic_of_Cancer_Marker_20150228a.jpg
+
+valley-xiuguluan-04.jpg
+  file: File:Xiuguluan River and the East Rift Valley, looking southwest from the kilometer 4 on Hualien Township Road 64 in the morning on 6 September 2014.jpg
+  license: CC BY 2.0
+  author: CHUAN MING LIANG
+  source: https://commons.wikimedia.org/wiki/File%3AXiuguluan_River_and_the_East_Rift_Valley%2C_looking_southwest_from_the_kilometer_4_on_Hualien_Township_Road_64_in_the_morning_on_6_September_2014.jpg
+
+valley-yuli-rice-06.jpg
+  file: File:Landscape of rice paddy field in Yuli.jpg
+  license: CC BY 2.0
+  author: billy1125
+  source: https://commons.wikimedia.org/wiki/File%3ALandscape_of_rice_paddy_field_in_Yuli.jpg
+
+walami-trail-01.jpg
+  file: File:幽靜的瓦拉米步道 - panoramio.jpg
+  license: CC BY-SA 3.0
+  author: chienhaw
+  source: https://commons.wikimedia.org/wiki/File%3A%E5%B9%BD%E9%9D%9C%E7%9A%84%E7%93%A6%E6%8B%89%E7%B1%B3%E6%AD%A5%E9%81%93_-_panoramio.jpg
+
+walami-trail-02.jpg
+  file: File:Walami Trail 瓦拉米步道 - panoramio.jpg
+  license: CC BY 3.0
+  author: lienyuan lee
+  source: https://commons.wikimedia.org/wiki/File%3AWalami_Trail_%E7%93%A6%E6%8B%89%E7%B1%B3%E6%AD%A5%E9%81%93_-_panoramio.jpg
+
+walami-trailhead-02.jpg
+  file: File:Terminal Point of the Paved Road 行車終點 - panoramio.jpg
+  license: CC BY 3.0
+  author: lienyuan lee
+  source: https://commons.wikimedia.org/wiki/File%3ATerminal_Point_of_the_Paved_Road_%E8%A1%8C%E8%BB%8A%E7%B5%82%E9%BB%9E_-_panoramio.jpg
+
+wushi-harbor-01.jpg
+  file: File:Wushi Harbor and Waiao Beach.jpg
+  license: CC BY-SA 4.0
+  author: Yu tptw
+  source: https://commons.wikimedia.org/wiki/File%3AWushi_Harbor_and_Waiao_Beach.jpg
+
+wushi-harbor-05.jpg
+  file: File:2022 Wushi Harbor N3.jpg
+  license: CC BY-SA 4.0
+  author: Taiwankengo
+  source: https://commons.wikimedia.org/wiki/File%3A2022_Wushi_Harbor_N3.jpg
+
+xiangjiao-bay-01.jpg
+  file: File:Siangjiao Bay Ecological Reserve（WEI, WAN-CHEN）－香蕉灣生態保護區-1.jpg
+  license: CC BY-SA 4.0
+  author: WEI, WAN-CHEN（魏琬臻）
+  source: https://commons.wikimedia.org/wiki/File%3ASiangjiao_Bay_Ecological_Reserve%EF%BC%88WEI%2C_WAN-CHEN%EF%BC%89%EF%BC%8D%E9%A6%99%E8%95%89%E7%81%A3%E7%94%9F%E6%85%8B%E4%BF%9D%E8%AD%B7%E5%8D%80-1.jpg
+
+xueshan-tunnel-pinglin-01.jpg
+  file: File:坪林觀音台望雪山隧道坪林端.jpg
+  license: CC BY 4.0
+  author: Outlookxp
+  source: https://commons.wikimedia.org/wiki/File%3A%E5%9D%AA%E6%9E%97%E8%A7%80%E9%9F%B3%E5%8F%B0%E6%9C%9B%E9%9B%AA%E5%B1%B1%E9%9A%A7%E9%81%93%E5%9D%AA%E6%9E%97%E7%AB%AF.jpg
+
+xuhai-coast-01.jpg
+  file: File:Mudan-CHO YEN CHIA-IMG 1449.jpg
+  license: CC BY-SA 4.0
+  author: CHO YEN CHIA
+  source: https://commons.wikimedia.org/wiki/File%3AMudan-CHO_YEN_CHIA-IMG_1449.jpg
+
+xuhai-port-03.jpg
+  file: File:2023 Xuhai Fishing Port S1.jpg
+  license: CC BY-SA 4.0
+  author: Taiwankengo
+  source: https://commons.wikimedia.org/wiki/File%3A2023_Xuhai_Fishing_Port_S1.jpg
+
+yuli-noodle-01.jpg
+  file: File:Yuli Noodles in a bowl close-up.jpg
+  license: CC BY 2.0
+  author: 芳蘭 徐芳蘭
+  source: https://commons.wikimedia.org/wiki/File%3AYuli_Noodles_in_a_bowl_close-up.jpg
+
+yushan-np-01.jpg
+  file: File:Yushan National Park 玉山國家公園 - panoramio.jpg
+  license: CC BY 3.0
+  author: lienyuan lee
+  source: https://commons.wikimedia.org/wiki/File%3AYushan_National_Park_%E7%8E%89%E5%B1%B1%E5%9C%8B%E5%AE%B6%E5%85%AC%E5%9C%92_-_panoramio.jpg
