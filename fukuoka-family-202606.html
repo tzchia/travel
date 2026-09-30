@@ -596,9 +596,9 @@
 <script>
 (function(){
   if(typeof L==='undefined') return;
-  var TILE='https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png';
-  var TILE_LBL='https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
-  var ATTR='&copy; OpenStreetMap &copy; CARTO';
+  var TILE='https://tile.openstreetmap.org/{z}/{x}/{y}.png';
+  var TILE_LBL='https://tile.openstreetmap.org/{z}/{x}/{y}.png';
+  var ATTR='&copy; OpenStreetMap contributors';
   function mk(id, labels){
     var el=document.getElementById(id); if(!el) return null;
     var m=L.map(id,{scrollWheelZoom:false,zoomControl:true,attributionControl:true});

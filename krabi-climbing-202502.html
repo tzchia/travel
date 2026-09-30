@@ -634,8 +634,8 @@
   // ---- 地圖（公開知名灘區，非個別 crag 精確座標）----
   (function(){
     var map = L.map('map', { scrollWheelZoom:false }).setView([8.0095, 98.8375], 14);
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; OpenStreetMap &copy; CARTO',
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors',
       subdomains: 'abcd', maxZoom: 19
     }).addTo(map);
 
