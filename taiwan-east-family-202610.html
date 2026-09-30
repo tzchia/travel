@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="googlebot" content="noindex, nofollow">
+<title>2026 東部親子悠遊｜10/3–10/9</title>
+<meta name="description" content="2026/10/3–10/9 兩大一小（1.5歲）台灣東部自駕：蘆洲、宜蘭、花蓮、玉里、池上、台東、旭海、悠客馬場、墾丁船帆石。午睡優先、單段車程不超過3小時。">
+<style>
+:root{
+  --bg:#f5f7f4;--card:#fff;--ink:#243127;--muted:#67736a;--line:#dde5df;
+  --accent:#2f6f54;--accent-deep:#214e3b;--accent2:#eaf4ee;
+  --drive:#eef2f6;--nap:#edf4ff;--meal:#fff7e7;--warn:#fff2e2;--danger:#fff0ef;
+  --gold:#d59a3a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;line-height:1.65;-webkit-text-size-adjust:100%}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+#reading-progress{position:fixed;left:0;top:0;width:100%;height:4px;z-index:9999;pointer-events:none;background:linear-gradient(90deg,#7cc89b,#2f6f54,#d59a3a);transform:scaleX(0);transform-origin:left center;will-change:transform;box-shadow:0 1px 5px rgba(47,111,84,.2)}
+.hero{background:linear-gradient(135deg,#294f3b,#45785d);color:white;padding:42px 20px 34px}
+.hero .wrap{max-width:980px;margin:auto}
+.back{display:inline-block;color:#e6f4eb;font-size:.88rem;margin-bottom:11px}
+.kicker{font-size:.88rem;letter-spacing:.08em;opacity:.82}
+h1{margin:.25rem 0 .55rem;font-size:clamp(1.8rem,5vw,3rem);line-height:1.18}
+.hero p{margin:.4rem 0;max-width:790px;color:#edf5ef}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.badge{padding:6px 10px;border:1px solid rgba(255,255,255,.3);border-radius:999px;background:rgba(255,255,255,.11);font-size:.9rem}
+nav{position:sticky;top:4px;z-index:20;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);overflow-x:auto;white-space:nowrap}
+nav .wrap{max-width:980px;margin:auto;padding:9px 14px;display:flex;gap:8px}
+nav a{display:inline-block;padding:7px 11px;border-radius:999px;color:#365443;background:#f3f7f4;font-size:.9rem}
+main{max-width:980px;margin:auto;padding:22px 16px 54px}
+.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}
+.metric{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.metric b{display:block;font-size:1.3rem}
+.metric span{font-size:.82rem;color:var(--muted)}
+.callout{border-left:5px solid var(--gold);background:var(--warn);padding:13px 15px;border-radius:10px;margin:16px 0}
+.day{background:var(--card);border:1px solid var(--line);border-radius:18px;margin:17px 0;overflow:hidden;box-shadow:0 4px 16px rgba(34,55,42,.04);scroll-margin-top:72px}
+.dayhead{padding:17px 18px 14px;border-bottom:1px solid var(--line);background:#fbfcfb}
+.dayhead h2{margin:0;font-size:1.35rem}
+.dayhead .route{color:var(--muted);font-size:.94rem;margin-top:4px}
+.daymeta{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.pill{font-size:.82rem;background:var(--accent2);padding:5px 9px;border-radius:999px}
+.timeline{padding:8px 18px 16px}
+.row{display:grid;grid-template-columns:108px 1fr;gap:12px;padding:10px 0;border-bottom:1px dashed #e5e9e5}
+.row:last-child{border-bottom:0}
+.time{font-weight:700;color:#345844}
+.event b{display:block;margin-bottom:2px}
+.note{font-size:.88rem;color:var(--muted)}
+.tag{display:inline-block;font-size:.76rem;border-radius:7px;padding:2px 6px;margin-left:5px;vertical-align:1px}
+.drive{background:var(--drive)} .nap{background:var(--nap)} .meal{background:var(--meal)} .warn{background:var(--warn)}
+.mapbtn{display:inline-block;margin-top:6px;padding:5px 9px;border:1px solid #c8d8ce;border-radius:8px;background:white;font-size:.84rem}
+.attn{margin:4px 18px 18px;padding:12px 14px;border-radius:12px;background:#faf7f0;border:1px solid #eadfca}
+.attn strong{display:block;margin-bottom:4px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.box{background:white;border:1px solid var(--line);border-radius:15px;padding:15px}
+.box h3{margin:.1rem 0 .6rem}
+ul{padding-left:1.2rem;margin:.45rem 0} li{margin:.22rem 0}
+.hotel-table{width:100%;border-collapse:collapse;font-size:.92rem;background:white;border-radius:12px;overflow:hidden}
+.hotel-table th,.hotel-table td{padding:10px 11px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}
+.hotel-table th{background:#f2f6f3}
+.source{font-size:.84rem;color:var(--muted)}
+.footer{margin-top:28px;color:var(--muted);font-size:.83rem;border-top:1px solid var(--line);padding-top:18px}
+@media(max-width:720px){
+  .summary{grid-template-columns:1fr 1fr}.two{grid-template-columns:1fr}.row{grid-template-columns:84px 1fr;gap:9px}
+  .timeline{padding-left:13px;padding-right:13px}.attn{margin-left:13px;margin-right:13px}.hero{padding-top:34px}
+}
+@media print{
+  #reading-progress,nav{display:none!important}body{background:white}.hero{background:white;color:#111;padding:10px 0;border-bottom:2px solid #333}
+  .hero p,.hero .kicker,.back{color:#333}.badge{border:1px solid #aaa;background:white;color:#111}
+  main{max-width:none;padding:10px}.day{box-shadow:none;break-inside:avoid}a{color:#111}
+}
+</style>
+</head>
+<body>
+<div id="reading-progress" aria-hidden="true"></div>
+<header class="hero">
+  <div class="wrap">
+    <a class="back" href="./index.html">← 回到旅遊筆記首頁</a>
+    <div class="kicker">兩大一小（1.5 歲）｜自駕｜2026</div>
+    <h1>10/3–10/9 台灣東部親子悠遊</h1>
+    <p>蘆洲 → 宜蘭 → 花蓮 → 玉里 → 池上 → 台東 → 旭海 → 悠客馬場 → 墾丁船帆石。核心原則：不趕場、12:00–14:00 午睡優先、正常路況單段不超過 3 小時、每日累計不超過 4.5 小時。</p>
+    <div class="badges">
+      <span class="badge">😴 午睡目標 12:00–14:00</span>
+      <span class="badge">🏺 10/5 陶錫 10:00–12:00</span>
+      <span class="badge">🌊 10/7 旭海附近午餐</span>
+      <span class="badge">🐚 10/8 船帆石附近免費景點</span>
+    </div>
+  </div>
+</header>
+
+<nav><div class="wrap">
+  <a href="#overview">總覽</a><a href="#d1">D1</a><a href="#d2">D2</a><a href="#d3">D3</a><a href="#d4">D4</a><a href="#d5">D5</a><a href="#d6">D6</a><a href="#d7">D7</a><a href="#stay">住宿</a><a href="#checklist">注意事項</a>
+</div></nav>
+
+<main>
+<section id="overview">
+  <div class="summary">
+    <div class="metric"><b>7 天</b><span>10/3 六 ～ 10/9 五</span></div>
+    <div class="metric"><b>12–14</b><span>每日午睡優先窗</span></div>
+    <div class="metric"><b>≤ 3h</b><span>單次長距離駕駛目標</span></div>
+    <div class="metric"><b>≤ 4.5h</b><span>每日累計駕駛目標</span></div>
+  </div>
+  <div class="callout"><b>午睡策略：</b>12:00–14:00 視為核心休息窗，不要求每天精準睡滿兩小時。D1、D2、D4、D6 優先利用車程睡；D3 玉里連住兩晚，可直接回原房間午睡；D5 刻意把午餐和 199 甲彎路錯開。</div>
+</section>
+
+<section class="day" id="d1">
+  <div class="dayhead">
+    <h2>D1｜10/3（六）蘆洲 → 宜蘭 → 花蓮</h2>
+    <div class="route">週六國五南下：提早離開蘆洲，午睡放在蘇花移動段。</div>
+    <div class="daymeta"><span class="pill">住宿：花蓮市</span><span class="pill">預估駕駛 3.5–4.2h</span><span class="pill">不排大景點</span></div>
+  </div>
+  <div class="timeline">
+    <div class="row"><div class="time">06:00</div><div class="event"><b>蘆洲出發 <span class="tag drive">開車</span></b><div class="note">週六國五往宜蘭容易累積車流，寧可提早到宜蘭休息。</div></div></div>
+    <div class="row"><div class="time">07:30–10:40</div><div class="event"><b>宜蘭早餐＋放風</b><div class="note">不塞正式景點，讓孩子活動、換尿布、補給。</div></div></div>
+    <div class="row"><div class="time">10:50–11:45</div><div class="event"><b>宜蘭提早午餐 <span class="tag meal">用餐</span></b></div></div>
+    <div class="row"><div class="time">12:00–14:00</div><div class="event"><b>往花蓮移動＋車上午睡 <span class="tag nap">午睡</span> <span class="tag drive">開車</span></b><div class="note">孩子若睡得穩，不必刻意叫醒；駕駛需要休息仍以安全為先。</div></div></div>
+    <div class="row"><div class="time">14:00–15:20</div><div class="event"><b>蘇花沿線短休 → 花蓮</b><div class="note">依導航與孩子狀態決定是否在南澳／和平短停。</div></div></div>
+    <div class="row"><div class="time">15:30 後</div><div class="event"><b>Check-in、花蓮市區散步、晚餐</b></div></div>
+  </div>
+  <div class="attn"><strong>注意</strong>這天最大的變數是國五與蘇花車況，不安排需要準時報到的午後活動。出發前 30 分鐘再次看導航。</div>
+</section>
+
+<section class="day" id="d2">
+  <div class="dayhead">
+    <h2>D2｜10/4（日）花蓮 → 大農大富 → 花蓮觀光糖廠 → 玉里</h2>
+    <div class="route">用森林＋糖廠取代瑞穗牧場，避免和後面的初鹿、悠客馬場重複。</div>
+    <div class="daymeta"><span class="pill">住宿：玉里（連住 2 晚）</span><span class="pill">預估駕駛 2.1–2.4h</span></div>
+  </div>
+  <div class="timeline">
+    <div class="row"><div class="time">08:30</div><div class="event"><b>花蓮出發 <span class="tag drive">開車</span></b></div></div>
+    <div class="row"><div class="time">09:40–10:50</div><div class="event"><b>大農大富平地森林園區</b><div class="note">平坦、適合推車和幼兒放電，不用追求走完整個園區。</div><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=%E5%A4%A7%E8%BE%B2%E5%A4%A7%E5%AF%8C%E5%B9%B3%E5%9C%B0%E6%A3%AE%E6%9E%97%E5%9C%92%E5%8D%80" target="_blank" rel="noopener">開啟地圖</a></div></div>
+    <div class="row"><div class="time">11:05–11:50</div><div class="event"><b>花蓮觀光糖廠：早午餐＋吃冰 <span class="tag meal">用餐</span></b></div></div>
+    <div class="row"><div class="time">12:00–13:15</div><div class="event"><b>光復 → 玉里，車上午睡 <span class="tag nap">午睡</span> <span class="tag drive">開車</span></b></div></div>
+    <div class="row"><div class="time">13:15–14:00</div><div class="event"><b>午睡延續緩衝</b><div class="note">若仍在睡，以推車或安靜空間延續；醒了就不硬睡。</div></div></div>
+    <div class="row"><div class="time">14:00 後</div><div class="event"><b>玉里 Check-in、補給、早點吃晚餐</b></div></div>
+  </div>
+  <div class="attn"><strong>注意</strong>這天目標是舒服抵達玉里，不再追加瑞穗牧場。玉里連住兩晚可大幅降低整理幼兒用品的負擔。</div>
+</section>
+
+<section class="day" id="d3">
+  <div class="dayhead">
+    <h2>D3｜10/5（一）陶錫工藝 10:00–12:00 → 午睡 → 瓦拉米前段</h2>
+    <div class="route">利用玉里連住：陶錫結束直接回房午睡，再走午後短版瓦拉米。</div>
+    <div class="daymeta"><span class="pill">住宿：玉里</span><span class="pill">預估駕駛 1.2–1.6h</span><span class="pill">陶錫須預約</span></div>
+  </div>
+  <div class="timeline">
+    <div class="row"><div class="time">08:00–09:20</div><div class="event"><b>早餐＋準備登山背架</b><div class="note">約 09:20 給孩子小點心，避免體驗結束時餓過頭。</div></div></div>
+    <div class="row"><div class="time">09:30</div><div class="event"><b>玉里出發 → 陶錫工藝 <span class="tag drive">開車</span></b></div></div>
+    <div class="row"><div class="time">10:00–12:00</div><div class="event"><b>陶錫工藝體驗</b></div></div>
+    <div class="row"><div class="time">12:00–12:25</div><div class="event"><b>回玉里住宿</b><div class="note">成人午餐建議先買外帶；孩子可先吃方便快速的午餐。</div></div></div>
+    <div class="row"><div class="time">12:25–13:50</div><div class="event"><b>房內午睡 <span class="tag nap">午睡</span></b><div class="note">這是全程最值得守住的午睡日。</div></div></div>
+    <div class="row"><div class="time">14:00–14:35</div><div class="event"><b>玉里 → 南安／瓦拉米登山口 <span class="tag drive">開車</span></b></div></div>
+    <div class="row"><div class="time">14:40–16:40</div><div class="event"><b>瓦拉米親子短版</b><div class="note">登山口 → 山風吊橋／瀑布方向 → 原路回。山風瀑布是「最多」，不是「一定要到」。15:40 尚未抵達就折返。</div><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=%E7%93%A6%E6%8B%89%E7%B1%B3%E6%AD%A5%E9%81%93%E7%99%BB%E5%B1%B1%E5%8F%A3" target="_blank" rel="noopener">開啟地圖</a></div></div>
+    <div class="row"><div class="time">17:10 後</div><div class="event"><b>回玉里洗澡、晚餐</b></div></div>
+  </div>
+  <div class="attn"><strong>重要安全線</strong>10 月午後山區天色變暗快。下雨、步道濕滑、孩子狀態不好，就只走吊橋附近或取消；16:40 前回到登山口。</div>
+</section>
+
+<section class="day" id="d4">
+  <div class="dayhead">
+    <h2>D4｜10/6（二）玉里 → 池上 → 初鹿牧場 → 台東</h2>
+    <div class="route">池上排早上，午睡放在池上到初鹿的移動段。</div>
+    <div class="daymeta"><span class="pill">住宿：台東市</span><span class="pill">預估駕駛 2.1–2.5h</span></div>
+  </div>
+  <div class="timeline">
+    <div class="row"><div class="time">08:15</div><div class="event"><b>玉里退房出發 <span class="tag drive">開車</span></b></div></div>
+    <div class="row"><div class="time">09:00–10:45</div><div class="event"><b>池上伯朗大道＋天堂路</b><div class="note">帶幼兒以有遮陽、兒童座椅的四輪電動車最省力。</div></div></div>
+    <div class="row"><div class="time">10:50–11:40</div><div class="event"><b>池上早午餐 <span class="tag meal">用餐</span></b></div></div>
+    <div class="row"><div class="time">11:50–13:05</div><div class="event"><b>池上 → 初鹿，車上午睡 <span class="tag nap">午睡</span> <span class="tag drive">開車</span></b></div></div>
+    <div class="row"><div class="time">13:05–13:40</div><div class="event"><b>午睡緩衝</b><div class="note">若還在睡，以推車延續，不急著開始牧場活動。</div></div></div>
+    <div class="row"><div class="time">13:40–15:40</div><div class="event"><b>初鹿牧場</b></div></div>
+    <div class="row"><div class="time">16:10–16:50</div><div class="event"><b>黃記蔥油餅海邊店</b><div class="note">當下午點心，攤販可能提早售完。</div></div></div>
+    <div class="row"><div class="time">17:10 後</div><div class="event"><b>台東 Check-in、晚餐</b></div></div>
+  </div>
+  <div class="attn"><strong>注意</strong>初鹿牧場傍晚前活動會陸續收尾，15:40 左右離開最從容。</div>
+</section>
+
+<section class="day" id="d5">
+  <div class="dayhead">
+    <h2>D5｜10/7（三）台東 → 南迴 → 旭海 → 大草原 → 悠客馬場</h2>
+    <div class="route">避免吃完飯立刻上山路：先到旭海、提早午餐、休息午睡，再進草原，最後才走 199 甲。</div>
+    <div class="daymeta"><span class="pill">住宿：悠客馬場</span><span class="pill">預估駕駛 4.0–4.4h</span><span class="pill">全程最長移動日</span></div>
+  </div>
+  <div class="timeline">
+    <div class="row"><div class="time">07:30</div><div class="event"><b>台東出發 <span class="tag drive">開車</span></b></div></div>
+    <div class="row"><div class="time">08:45–09:10</div><div class="event"><b>多良沿線看海／短休</b><div class="note">只當作中途休息點，若南迴車況不理想可直接取消。</div></div></div>
+    <div class="row"><div class="time">09:10–10:50</div><div class="event"><b>南迴 → 壽卡 → 旭海 <span class="tag drive">開車</span></b></div></div>
+    <div class="row"><div class="time">10:50–11:40</div><div class="event"><b>旭海附近提早午餐 <span class="tag meal">用餐</span></b><div class="note">旭海餐飲選擇少，前一天先電話確認並準備幼兒備用食物。</div></div></div>
+    <div class="row"><div class="time">11:45–13:30</div><div class="event"><b>旭海休息＋午睡 <span class="tag nap">午睡</span></b><div class="note">刻意不在餐後馬上走 199 甲彎路。</div></div></div>
+    <div class="row"><div class="time">13:40–14:50</div><div class="event"><b>旭海大草原</b><div class="note">以觀景和短散步為主，不追完整長路線。</div></div></div>
+    <div class="row"><div class="time">15:00–16:25</div><div class="event"><b>旭海 → 199甲 → 牡丹 → 悠客馬場 <span class="tag drive">開車</span></b><div class="note">距午餐已超過 3 小時，可大幅降低餐後山路不適。</div></div></div>
+    <div class="row"><div class="time">16:30 後</div><div class="event"><b>Check-in、看馬、休息、晚餐</b></div></div>
+  </div>
+  <div class="attn"><strong>注意</strong>10/7 是全程唯一接近 4.5 小時駕駛上限的一天。前一晚務必再看台 9、199／199甲施工與天候公告。</div>
+</section>
+
+<section class="day" id="d6">
+  <div class="dayhead">
+    <h2>D6｜10/8（四）悠客馬場 → 砂島 → 船帆石</h2>
+    <div class="route">取消海生館，下午只排船帆石附近、免門票、不繞路的景點。</div>
+    <div class="daymeta"><span class="pill">住宿：草分木 B&amp;B 船帆石店</span><span class="pill">預估駕駛 1.3–1.7h</span><span class="pill">下午景點免費</span></div>
+  </div>
+  <div class="timeline">
+    <div class="row"><div class="time">08:00–08:50</div><div class="event"><b>早餐、整理行李</b></div></div>
+    <div class="row"><div class="time">09:00–11:00</div><div class="event"><b>悠客馬場活動</b><div class="note">大人如要正式騎乘先預約；1.5 歲幼兒以看馬、摸馬、餵馬為主。</div></div></div>
+    <div class="row"><div class="time">11:00–11:45</div><div class="event"><b>提早午餐 <span class="tag meal">用餐</span></b></div></div>
+    <div class="row"><div class="time">12:00–13:20</div><div class="event"><b>往墾丁東側移動＋車上午睡 <span class="tag nap">午睡</span> <span class="tag drive">開車</span></b></div></div>
+    <div class="row"><div class="time">13:20–14:00</div><div class="event"><b>午睡延續緩衝</b><div class="note">如果還在睡，先在陰涼處延續，不急著進館。</div></div></div>
+    <div class="row"><div class="time">14:00–14:40</div><div class="event"><b>砂島貝殼砂展示館 <span class="tag">免費</span></b><div class="note">小型室內展示、適合短停；保護沙灘本身不要任意進入。</div><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=%E7%A0%82%E5%B3%B6%E8%B2%9D%E6%AE%BC%E7%A0%82%E5%B1%95%E7%A4%BA%E9%A4%A8" target="_blank" rel="noopener">開啟地圖</a></div></div>
+    <div class="row"><div class="time">14:40–14:50</div><div class="event"><b>砂島 → 船帆石 <span class="tag drive">開車</span></b></div></div>
+    <div class="row"><div class="time">15:00</div><div class="event"><b>草分木 B&amp;B 船帆石店 Check-in</b></div></div>
+    <div class="row"><div class="time">16:00–17:10</div><div class="event"><b>船帆石海灘散步 <span class="tag">免費</span></b><div class="note">不再安排長距離移動，讓孩子在海邊放電。</div></div></div>
+    <div class="row"><div class="time">17:30 後</div><div class="event"><b>晚餐、休息</b></div></div>
+  </div>
+  <div class="attn"><strong>注意</strong>砂島以展示館與觀景區為主；真正要碰沙、玩水留到船帆石。海況不好時只散步、不下水。</div>
+</section>
+
+<section class="day" id="d7">
+  <div class="dayhead">
+    <h2>D7｜10/9（五）船帆石慢遊日</h2>
+    <div class="route">國慶連假首日：少移動、早出早回，把塞車風險降到最低。</div>
+    <div class="daymeta"><span class="pill">重點：低里程</span><span class="pill">午睡回住宿最好</span></div>
+  </div>
+  <div class="timeline">
+    <div class="row"><div class="time">07:30–08:30</div><div class="event"><b>早餐</b></div></div>
+    <div class="row"><div class="time">08:40–09:20</div><div class="event"><b>船帆石／海邊晨間散步</b></div></div>
+    <div class="row"><div class="time">09:30–10:20</div><div class="event"><b>龍磐公園 <span class="tag">免費</span></b><div class="note">風大且有開放邊坡，1.5 歲幼兒務必牽抱。</div></div></div>
+    <div class="row"><div class="time">10:30–11:30</div><div class="event"><b>回船帆石方向＋早午餐</b></div></div>
+    <div class="row"><div class="time">12:00–14:00</div><div class="event"><b>回住宿午睡 <span class="tag nap">午睡</span></b></div></div>
+    <div class="row"><div class="time">14:30 後</div><div class="event"><b>依下一段住宿／返程方向決定</b><div class="note">若 10/9 當天直接回蘆洲，就無法維持「全天累計駕駛 ≤ 4.5 小時」。</div></div></div>
+  </div>
+  <div class="attn"><strong>注意</strong>連假首日避免把下午行程綁在準時預約上，保留彈性比多塞一個景點重要。</div>
+</section>
+
+<section id="stay" style="scroll-margin-top:72px">
+  <h2>住宿區域建議</h2>
+  <table class="hotel-table">
+    <tr><th>日期</th><th>建議區域</th><th>理由</th></tr>
+    <tr><td>10/3 花蓮</td><td>花蓮車站～國聯一路～中山路北段</td><td>平價選擇多、餐飲與超商密集；比東大門最核心區更容易找到附停車住宿。</td></tr>
+    <tr><td>10/4、10/5 玉里</td><td>玉里車站～中山路二段～民權街</td><td>連住兩晚；外食方便，D3 陶錫後能直接回原房午睡。</td></tr>
+    <tr><td>10/6 台東</td><td>新生路～博愛路～南京路</td><td>兼顧外食、停車和海濱公園距離。</td></tr>
+    <tr><td>10/7</td><td>悠客馬場</td><td>已指定。</td></tr>
+    <tr><td>10/8</td><td>草分木 B&amp;B 船帆石店</td><td>已指定；下午縮在砂島、船帆石周邊。</td></tr>
+  </table>
+</section>
+
+<section id="checklist" style="margin-top:24px;scroll-margin-top:72px">
+  <h2>全程注意事項</h2>
+  <div class="two">
+    <div class="box"><h3>👶 幼兒節奏</h3><ul>
+      <li>午睡目標 12:00–14:00，但不要為了湊兩小時增加繞路。</li>
+      <li>D3 玉里連住兩晚，務必善用原房午睡。</li>
+      <li>瓦拉米、龍磐不讓 1.5 歲幼兒自行亂走；瓦拉米建議登山背架。</li>
+      <li>車上準備幼兒備用食物、水、尿布、薄外套。</li>
+    </ul></div>
+    <div class="box"><h3>🚗 行車</h3><ul>
+      <li>D1 週六、D7 國慶連假首日，出發前 30 分鐘再看即時導航。</li>
+      <li>D5 接近 4.5 小時上限；南迴若壅塞就取消多良短停。</li>
+      <li>10/7 午餐已移至旭海，餐後保留長休息再走 199甲。</li>
+      <li>山區遇豪雨、坍方或管制，以當日公告優先。</li>
+    </ul></div>
+    <div class="box"><h3>🥾 戶外安全</h3><ul>
+      <li>瓦拉米 15:40 未到瀑布就折返，16:40 前回登山口。</li>
+      <li>午後雷雨、泥濘、蜂蛇活動異常，瓦拉米直接縮短或取消。</li>
+      <li>旭海大草原風強日曬高，幼兒帽子、防曬與補水要完整。</li>
+      <li>船帆石下水前先看浪況；砂島保護沙灘不任意進入。</li>
+    </ul></div>
+    <div class="box"><h3>📞 出發前確認</h3><ul>
+      <li>陶錫工藝：再次確認 10/5 10:00–12:00 預約。</li>
+      <li>悠客馬場：若大人正式騎乘，先確認 10/8 上午時段。</li>
+      <li>10/6 初鹿、10/7 旭海、瓦拉米於前一天再查公告。</li>
+      <li>旭海午餐選擇少，前一晚先確認營業。</li>
+    </ul></div>
+  </div>
+</section>
+
+<section style="margin-top:24px">
+  <h2>官方資訊捷徑</h2>
+  <ul class="source">
+    <li><a href="https://recreation.forest.gov.tw/Forest/FP?typ=2&typ_id=08001" target="_blank" rel="noopener">大農大富平地森林園區</a></li>
+    <li><a href="https://www.taisugar.com.tw/Chinese/Attractions_detail.aspx?n=10048&s=645" target="_blank" rel="noopener">花蓮觀光糖廠</a></li>
+    <li><a href="https://www.ysnp.gov.tw/RecreationArea/e7d3a77b-854f-4fc0-aeb0-24278b0a9678?ID=c0e30500-8374-4eaf-b624-0f8b03166798&Tab=4" target="_blank" rel="noopener">玉山國家公園－瓦拉米步道</a></li>
+    <li><a href="https://home.chuluranch.com.tw/" target="_blank" rel="noopener">初鹿牧場</a></li>
+    <li><a href="https://www.ktnp.gov.tw/News_Content2.aspx?n=5C28A0E32DF925F9&s=5537A1659B4EDB60&sms=C88B5251F308CE96" target="_blank" rel="noopener">砂島貝殼砂展示館</a></li>
+  </ul>
+</section>
+
+<div class="footer">
+  行車時間為規劃用正常路況估值，不是即時導航結果。2026/09/30 整理。<br>
+  <a href="./index.html">← 回到子家旅遊筆記</a>
+</div>
+</main>
+
+<script>
+(function(){
+  const bar=document.getElementById('reading-progress');
+  let ticking=false;
+  function update(){
+    const doc=document.documentElement;
+    const max=doc.scrollHeight-window.innerHeight;
+    const ratio=max>0?Math.min(1,Math.max(0,window.scrollY/max)):0;
+    bar.style.transform='scaleX('+ratio+')';
+    ticking=false;
+  }
+  function requestUpdate(){
+    if(!ticking){
+      window.requestAnimationFrame(update);
+      ticking=true;
+    }
+  }
+  window.addEventListener('scroll',requestUpdate,{passive:true});
+  window.addEventListener('resize',requestUpdate);
+  update();
+})();
+</script>
+</body>
+</html>
