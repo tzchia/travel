@@ -178,6 +178,30 @@ section[id]{scroll-margin-top:86px}
 @media (max-width:900px){.craft-grid{grid-template-columns:1fr}}
 @media (max-width:720px){.craft{padding-left:13px;padding-right:13px}.craft-table{font-size:.82rem}.craft-table td,.craft-table th{padding:7px 8px}}
 @media print{.craft-grid{grid-template-columns:1fr 1fr}}
+/* ===== 國旅補助住宿建議 ===== */
+.stay-block{margin-top:18px}
+.stay-block .craft-grid{margin:12px 0}
+.night-table td:nth-child(2){white-space:nowrap;font-weight:800}
+.night-table .ok{color:#2f6f54}.night-table .no{color:#b5530a}
+.stay-table{font-size:.9rem}
+.stay-table td:first-child{min-width:150px}
+.stay-table .rk{display:inline-block;width:22px;height:22px;border-radius:50%;background:#294f3b;color:#fff;font-size:.78rem;font-weight:800;text-align:center;line-height:22px;margin-right:6px}
+.stay-table .sub{display:block;font-size:.8rem;color:var(--muted);margin-top:3px}
+.badge-ok{display:inline-block;padding:2px 8px;border-radius:999px;background:#eaf4ee;color:#2f6f54;font-size:.78rem;font-weight:700}
+.badge-q{display:inline-block;padding:2px 8px;border-radius:999px;background:#fff2e2;color:#b5530a;font-size:.78rem;font-weight:700}
+@media (max-width:720px){
+  .stay-table thead,.stay-table tr:first-child{display:none}
+  .stay-table,.stay-table tbody,.stay-table tr,.stay-table td{display:block;width:100%}
+  .stay-table tr{border:1px solid var(--line);border-radius:12px;margin:10px 0;padding:6px 0;background:#fff}
+  .stay-table td{border:0;padding:5px 12px;font-size:.86rem}
+  .stay-table td[data-l]::before{content:attr(data-l);display:block;font-size:.74rem;font-weight:800;color:var(--muted);letter-spacing:.04em}
+  .night-table tr:first-child{display:none}
+  .night-table,.night-table tbody,.night-table tr,.night-table td{display:block;width:100%}
+  .night-table tr{border-bottom:1px solid var(--line);padding:6px 0}
+  .night-table td{border:0;padding:2px 10px;font-size:.86rem}
+  .night-table td:first-child{font-weight:800}
+  .night-table td:nth-child(2){white-space:normal}
+}
 </style>
 </head>
 <body>
@@ -200,7 +224,7 @@ section[id]{scroll-margin-top:86px}
 <div class="navbar" id="navbar">
   <div class="progressbar"><i id="progressFill"></i></div>
   <div class="toc" id="toc">
-    <a href="#overview">總覽</a><a href="#highlights">景點圖片</a><a href="#tripmap">總路線圖</a><a href="#d1">D1 蘇花</a><a href="#d2">D2 縱谷</a><a href="#d3">D3 陶錫・瓦拉米</a><a href="#d4">D4 池上</a><a href="#d5">D5 南迴</a><a href="#d6">D6 船帆石</a><a href="#d7">D7 龍磐</a><a href="#stay">住宿</a><a href="#checklist">注意事項</a><a href="#sources">來源</a>
+    <a href="#overview">總覽</a><a href="#highlights">景點圖片</a><a href="#tripmap">總路線圖</a><a href="#d1">D1 蘇花</a><a href="#d2">D2 縱谷</a><a href="#d3">D3 陶錫・瓦拉米</a><a href="#d4">D4 池上</a><a href="#d5">D5 南迴</a><a href="#d6">D6 船帆石</a><a href="#d7">D7 龍磐</a><a href="#stay">住宿・補助</a><a href="#checklist">注意事項</a><a href="#sources">來源</a>
   </div>
 </div>
 
@@ -217,7 +241,7 @@ section[id]{scroll-margin-top:86px}
   <a href="#d5"><span class="sd-dot"></span>D5 南迴 → 旭海</a>
   <a href="#d6"><span class="sd-dot"></span>D6 馬場 → 船帆石</a>
   <a href="#d7"><span class="sd-dot"></span>D7 龍磐慢遊</a>
-  <a href="#stay"><span class="sd-dot"></span>住宿區域</a>
+  <a href="#stay"><span class="sd-dot"></span>住宿區域・國旅補助</a>
   <a href="#checklist"><span class="sd-dot"></span>注意事項</a>
   <a href="#sources"><span class="sd-dot"></span>來源與授權</a>
 </nav>
@@ -697,6 +721,67 @@ section[id]{scroll-margin-top:86px}
     <tr><td>10/7</td><td>悠客馬場（悠客馬術渡假村）</td><td>已指定。屏東縣車城鄉統埔路 23-1 號（近四重溪），D5 從牡丹水庫下來約 20 分鐘；D6 往砂島／船帆石約 45 分鐘。</td></tr>
     <tr><td>10/8</td><td>草分木 B&amp;B 船帆石店</td><td>已指定（恆春鎮船帆路 606 號，船帆石對面）；下午行程特別縮在砂島、船帆石周邊。</td></tr>
   </table>
+
+  <div class="stay-block" id="subsidy">
+    <div class="section-title" style="margin-top:8px"><h2>國旅補助怎麼用＋住宿推薦</h2><div class="subtle">2026/9/30 查核；評價與價格為查詢當時的網路資料，訂房前請再確認。</div></div>
+    <div class="craft-grid">
+      <div class="info-panel craft-status">
+        <h3>補助規則（觀光署 Q&amp;A 逐條查證）</h3>
+        <ul>
+          <li><b>觀光署「115 年平日住宿獎助」</b>：9/1–11/30 入住，只有<b>週日～週四</b>入住夜可用（10/9–10/11 國慶連假不適用）。第 1 晚最多折 800、<b>連續</b>第 2 晚最多折 1,200；兩晚可住不同旅宿，但日期要連續。每人（身分證）限用一次；<b>每房每晚只能折一次</b>，所以兩位大人同房時要把兩人的資格排在不同晚。</li><li>只能<b>直接向參與業者</b>訂房（官網／電話／LINE）或觀光署核定的國內平台（如易遊網）；<b>Booking、Agoda 訂的不能用</b>。入住時登錄者本人出示身分證或健保卡<b>正本</b>，旅宿後台登錄後結帳現場折抵；退房拿全額發票／收據。</li><li>登錄：到觀光署「活動登錄」上傳證件正面、填基本資料，入住前或當天完成即可（已無末碼分流，兩人可用同一支手機）。預算用罄會提前 2 週公告，10 月中後留意。</li><li><b>花蓮縣「花蓮永續 × 留客加碼」</b>：非 U 字頭身分證、<b>同一旅宿連住 2 晚且兩晚都是平日</b> → 兩晚合計最高 2,000（第 3 晚起每晚 500）；官方 Q&amp;A 明寫可與觀光署獎助併用，同晚合計不得超過房價。要先在 hualienlongstay.com.tw 申請資格；同樣不適用第三方平台。9/25 報導第一階段經費已用逾 8 成，出發前再看公告。</li><li>台東「一遊未盡・加碼第 3 晚」要第 3 晚仍住台東，你們 10/7 在車城 → 用不到。屏東沒有散客住宿補助。</li>
+        </ul>
+        <div class="quick-links"><a href="https://taiwantravel.tad.gov.tw/web_page/SubsidyApply.jsp" target="_blank" rel="noopener">觀光署 活動登錄</a><a href="https://taiwantravel.tad.gov.tw/web_page/Subsidyindustry.jsp" target="_blank" rel="noopener">參與業者查詢</a><a href="https://taiwantravel.tad.gov.tw/web_page/Subsidyquestion.jsp" target="_blank" rel="noopener">官方 Q&amp;A</a><a href="https://www.hualienlongstay.com.tw/customer_apply_page" target="_blank" rel="noopener">花蓮加碼 申請資格</a><a href="https://www.hualienlongstay.com.tw/hotel" target="_blank" rel="noopener">花蓮加碼 參與旅宿</a><a href="https://tttravel.tw/self/rule.php" target="_blank" rel="noopener">台東一遊未盡</a></div>
+      </div>
+      <div class="info-panel">
+        <h3>你們 6 晚各能拿什麼</h3>
+        <table class="hotel-table night-table">
+          <tr><th>晚</th><th>可用</th><th>說明</th></tr>
+          <tr><td>10/3（六）花蓮市</td><td class="no">✗ 無</td><td>週六不是平日；花蓮加碼也要求前兩晚是平日。</td></tr>
+      <tr><td>10/4（日）玉里</td><td class="ok">✓ 第 1 晚 800 ＋ 花蓮加碼</td><td>大人 A 登錄；同一旅宿連住兩晚。</td></tr>
+      <tr><td>10/5（一）玉里</td><td class="ok">✓ 第 2 晚 1,200 ＋ 花蓮加碼</td><td>兩晚觀光署合計 2,000、花蓮加碼合計最高 2,000。</td></tr>
+      <tr><td>10/6（二）台東市</td><td class="ok">✓ 第 1 晚 800</td><td>大人 B 登錄（每房每晚只能折一次，A 的資格已用在玉里）。</td></tr>
+      <tr><td>10/7（三）悠客馬場</td><td class="no">✗ 無</td><td>車城鄉 34 家參與名單裡沒有悠客馬場。</td></tr>
+      <tr><td>10/8（四）草分木</td><td class="no">△ 問民宿</td><td>日期可用（連假 10/9 才開始），但名單查無「草分木」；就算有參加也只能當大人 B 的第 1 晚，與 10/6 擇一。</td></tr>
+        </table>
+        <p style="margin-top:8px"><b>建議分配：</b>大人 A：玉里連住 2 晚（觀光署 800＋1,200、花蓮加碼最高 2,000）；大人 B：台東市 1 晚（800）。合計最高約 <b>4,800 元</b>（每晚折抵不超過房價）；若有人 9/8 前登錄過且抽中生日券再 +1,200。訂玉里只挑「觀光署名單」與「花蓮加碼名單」都在的旅宿，電話／LINE 直訂時直接說要用這兩項補助。</p>
+      </div>
+    </div>
+    
+  <h3 style="margin:22px 0 6px">10/3（六）花蓮市・5 選（本晚無補助，純看評價與親子）</h3>
+  <p class="subtle" style="margin:0 0 8px">頁面建議區：花蓮車站～國聯一路，或東大門步行圈。價格為 Booking 10/3 兩大一小查得的週六價，直訂價請電洽。</p>
+  <table class="hotel-table stay-table">
+    <tr><th>旅宿</th><th>評價</th><th>價位／晚</th><th>國旅補助</th><th>親子・停車</th><th>為什麼選它</th></tr>
+      <tr><td><span class="rk">1</span><b><a href="https://www.pinkcorner.com.tw/" target="_blank" rel="noopener">品悅文旅</a></b><span class="sub">旅館・南京街 155 號（東大門步行可達）・03-834-2166</span></td><td data-l="評價">Google 5.0（3,517）・Booking 9.0（479）</td><td data-l="價位／晚">週六 2,600–3,900</td><td data-l="國旅補助"><span class="badge-ok">確認參加（中央＋花蓮加碼）</span><span class="sub">10/3 週六本晚不適用</span></td><td data-l="親子・停車">嬰兒床（清潔費 200／日）、床圍、消毒鍋、澡盆可預約；0–6 歲免費；免費平面停車；早餐為在地店家券</td><td data-l="為什麼選它">全花蓮市評價最高、幼兒設備最齊、走路到夜市；三者最平衡。<span class="sub">標準雙人房偏小，建議豪華雙人或二～三人房；早餐非館內。</span></td></tr>
+      <tr><td><span class="rk">2</span><b><a href="https://www.kindness-hotel.com.tw/hotels/hualien/hualien-main-station" target="_blank" rel="noopener">康橋商旅 花蓮站前館</a></b><span class="sub">旅館・國聯五路 101 號（車站 5 分）・03-835-9333</span></td><td data-l="評價">Google 4.6（6,464）・Booking 9.2（3,301）</td><td data-l="價位／晚">週六約 4,100 含自助早餐</td><td data-l="國旅補助"><span class="badge-q">確認參加（中央）；花蓮加碼未參加</span><span class="sub">本晚不適用</span></td><td data-l="親子・停車">免費嬰兒床、澡盆、消毒鍋（需先告知）；館內停車先到先停；中西式自助早餐</td><td data-l="為什麼選它">站前評論最多、Booking 最高分的穩妥連鎖，親子備品免費。<span class="sub">到東大門要開車約 3 km。</span></td></tr>
+      <tr><td><span class="rk">3</span><b><a href="https://www.champderoseshotel.com.tw/" target="_blank" rel="noopener">玫瑰香榭飯店</a></b><span class="sub">旅館・國聯一路 93 號（車站 3 分）・03-833-0099</span></td><td data-l="評價">Google 4.8（436）・Booking 9.3（505，地點 9.7）</td><td data-l="價位／晚">週六家庭房約 3,300 含早</td><td data-l="國旅補助"><span class="badge-ok">確認參加（中央＋花蓮加碼）</span><span class="sub">本晚不適用</span></td><td data-l="親子・停車">家庭房兩張雙人床 8.5 坪；消毒鍋、澡盆、床圍、幼兒推車可應要求；停車場步行 2 分需預約</td><td data-l="為什麼選它">正落在建議區國聯一路，Booking 地點分數全市最高、家庭房含早最划算。<span class="sub">評論數較少；Booking 10/3 可訂性顯示不一致，請電洽；早餐四選一非自助。</span></td></tr>
+      <tr><td><span class="rk">4</span><b><a href="https://hualien.lakeshore.com.tw/" target="_blank" rel="noopener">煙波大飯店 花蓮館</a></b><span class="sub">旅館・中美路 142 號（美崙）・03-822-2666</span></td><td data-l="評價">Google 4.5（14,373）・Booking 8.8（2,008）</td><td data-l="價位／晚">週六家庭房約 5,700–5,900</td><td data-l="國旅補助"><span class="badge-ok">確認參加（中央＋花蓮加碼）</span><span class="sub">本晚不適用</span></td><td data-l="親子・停車">官網明載嬰兒床、床圍、澡盆（需預約）；兒童遊戲室；附設停車；自助早午餐</td><td data-l="為什麼選它">最「親子度假」的市區選擇，評論量全市最多。<span class="sub">到夜市要開車；Booking 名稱搜尋 10/3 顯示無房，請官網／電話確認。</span></td></tr>
+      <tr><td><span class="rk">5</span><b><a href="https://hualien.hiyeshotel.com.tw/" target="_blank" rel="noopener">勤天大飯店 花蓮館</a></b><span class="sub">旅館・國聯五路 151 號（車站 7 分）・03-832-6888</span></td><td data-l="評價">Google 4.7（1,315）・Booking 8.7（2,275）</td><td data-l="價位／晚">週六雙床含早約 3,900；親子主題房牌價 9,100+10%</td><td data-l="國旅補助"><span class="badge-ok">確認參加（中央＋花蓮加碼）</span><span class="sub">本晚不適用</span></td><td data-l="親子・停車">海洋／森林親子主題房（14 坪、浴缸）；自助早餐、24H 洗衣；嬰兒床與停車細節請電洽</td><td data-l="為什麼選它">站前 Google 最高分，有專屬親子房。<span class="sub">Booking 8.7 略低；親子房牌價高。</span></td></tr>
+  </table>
+
+  <h3 style="margin:22px 0 6px">10/4–10/5 玉里・5 選（連住 2 晚，補助主戰場）</h3>
+  <p class="subtle" style="margin:0 0 8px">五家都已在觀光署「玉里鎮 67 家」名單逐一查到；花蓮加碼名單另有 65 家，訂前請再對一次。價格為 Booking 10/4–10/6 兩晚查得，補助必須直訂（LINE／電話）。</p>
+  <table class="hotel-table stay-table">
+    <tr><th>旅宿</th><th>評價</th><th>價位／晚</th><th>國旅補助</th><th>親子・停車</th><th>為什麼選它</th></tr>
+      <tr><td><span class="rk">1</span><b><a href="https://donghaohotel.tw/" target="_blank" rel="noopener">玉里東好民宿</a></b><span class="sub">民宿（合法 2675 號）・仁愛路一段 199 號（市區主幹道）・LINE 0963-753-898</span></td><td data-l="評價">Google 4.8（240）・Booking 9.4（235）</td><td data-l="價位／晚">四人房 2 晚約 5,960（約 3,000／晚）</td><td data-l="國旅補助"><span class="badge-q">確認參加（中央）；花蓮加碼未確認</span><span class="sub">名單：東好民宿 0937-976-733</span></td><td data-l="親子・停車">全鎮唯一官網明載<b>有電梯</b>；四人套房兩張加大床可同睡；無嬰兒床；停車、早餐請電詢</td><td data-l="為什麼選它">玉里評價量最大且分數最高，抱小孩上下樓最省力，午睡、外食都在市區。<span class="sub">主幹道可要求內側房；早餐與隔音未核。</span></td></tr>
+      <tr><td><span class="rk">2</span><b><a href="https://xiaoniaosanbu.articulation.website/" target="_blank" rel="noopener">小鳥散步民宿</a></b><span class="sub">民宿・仁愛路二段 223-2 號（市區北緣，開車 5 分）・LINE @birdwalk・0971-024-662</span></td><td data-l="評價">Google 5.0（314）・Booking 9.3（142）</td><td data-l="價位／晚">加大雙床房 2 晚約 5,880（直訂另有折扣）</td><td data-l="國旅補助"><span class="badge-q">確認參加（中央）；花蓮加碼未確認</span><span class="sub">業者在名單上白紙黑字：須 LINE 直訂才可用補助，Booking／Agoda 不行</span></td><td data-l="親子・停車">木果家庭房＝兒童矮床＋加大床；每房獨立冷氣、專屬車庫、大陽台；無嬰兒床、不含早</td><td data-l="為什麼選它">玉里 Google 最高分；家庭房＋獨立冷氣＋車庫最符合「安靜午睡＋停車」。<span class="sub">外食需開車 2 km。</span></td></tr>
+      <tr><td><span class="rk">3</span><b><a href="https://www.booking.com/hotel/tw/shi-yu-ke-zhan-min-su-yu-li-zhen.zh-tw.html" target="_blank" rel="noopener">時雨民宿 Bliss Inn</a></b><span class="sub">民宿・城西一街 98 號（車站西側 1.3 km）・0960-369-434</span></td><td data-l="評價">Google 4.7（125）・Booking 9.1（229）</td><td data-l="價位／晚">套房附陽台 2 晚約 5,560</td><td data-l="國旅補助"><span class="badge-q">確認參加（中央）；花蓮加碼未確認</span><span class="sub">名單加碼欄：依 115 年國旅補助辦理</span></td><td data-l="親子・停車">套房附陽台為獨立套房、加大床；無嬰兒床；停車、早餐請電詢</td><td data-l="為什麼選它">評價量大且穩定，離市區近，獨立套房適合中午回房。<span class="sub">同館有青旅式 6 人房，請指定「套房附陽台」。</span></td></tr>
+      <tr><td><span class="rk">4</span><b><a href="http://a0966786897.hualien-travel.com.tw/index.html" target="_blank" rel="noopener">後山拾光民宿</a></b><span class="sub">民宿（合法 2392 號）・城東四街 7 號（車站東側，步行到民權街）・0966-786-897</span></td><td data-l="評價">Google 4.8（288）・Booking 未上架</td><td data-l="價位／晚">官網未列價，電洽</td><td data-l="國旅補助"><span class="badge-q">確認參加（中央）；花蓮加碼未確認</span><span class="sub">名單加碼欄：平日補助住宿仍<b>提供早餐</b></span></td><td data-l="親子・停車">雙人／四人套房、冷氣；有停車；嬰兒床、隔音請電詢</td><td data-l="為什麼選它">最符合頁面建議區（步行外食），且明載補助入住仍附早餐。<span class="sub">101 為雅房請避開；302 在 3 樓無電梯資訊，抱小孩選 2 樓。</span></td></tr>
+      <tr><td><span class="rk">5</span><b><a href="https://www.bearbest.com.tw/" target="_blank" rel="noopener">熊讚民宿</a></b><span class="sub">民宿（合法 2818 號）・忠孝路 89 號（市區東南住宅區，開車數分）・03-888-6282</span></td><td data-l="評價">Google 5.0（83）・Booking 9.3（26）</td><td data-l="價位／晚">四人房 2 晚約 5,600–6,200</td><td data-l="國旅補助"><span class="badge-q">確認參加（中央）；花蓮加碼未確認</span><span class="sub">名單加碼：每房贈小禮＋DIY 體驗券</span></td><td data-l="親子・停車">1 樓雙人套房免爬樓；3 樓四人房官網稱隔音良好；庭院、自助洗衣；無嬰兒床</td><td data-l="為什麼選它">零負評、五間套房規模小、安靜。<span class="sub">評論樣本較小；無電梯。</span></td></tr>
+  </table>
+
+  <h3 style="margin:22px 0 6px">10/6（二）台東市・5 選（大人 B 用第 1 晚 800）</h3>
+  <p class="subtle" style="margin:0 0 8px">五家都以觀光署系統逐一查到「臺東市」參與；價格為 Booking 10/6 兩大一小查得，補助要直訂或走易遊網等核定平台。</p>
+  <table class="hotel-table stay-table">
+    <tr><th>旅宿</th><th>評價</th><th>價位／晚</th><th>國旅補助</th><th>親子・停車</th><th>為什麼選它</th></tr>
+      <tr><td><span class="rk">1</span><b><a href="https://www.rice-hotel.com/" target="_blank" rel="noopener">禾風新棧度假飯店</a></b><span class="sub">旅館（150 號）・新興路 29 號（近車站，離鐵花村車程 12–15 分）・089-229-968</span></td><td data-l="評價">Google 4.6（3,760）・Booking 9.1（1,526）</td><td data-l="價位／晚">雙人／四人 3,300–4,900 含早；家庭房 6,160</td><td data-l="國旅補助"><span class="badge-ok">確認參加（中央）＋業者加碼平日 9 折</span><span class="sub">加碼含早餐＋迎賓飲料吧＋晚點心</span></td><td data-l="親子・停車">台東市最完整親子設施：親子房（溜滑梯）、童樂園、氣墊城堡、無邊際泳池；免費嬰兒床（0–2 歲）；免費停車</td><td data-l="為什麼選它">評價雙高且是唯一親子度假型飯店，價位稍高無妨的首選。<span class="sub">晚上外食要開車。</span></td></tr>
+      <tr><td><span class="rk">2</span><b><a href="https://tiintinn-river.mydirectstay.com/tw/index.html" target="_blank" rel="noopener">門廷若室 河堤左岸館</a></b><span class="sub">民宿（1248 號）・開封街 818 巷 2 號（鐵花村 1.6 km，開車 5 分）・0928-688-089</span></td><td data-l="評價">Google 4.8（1,313）・Booking 9.0（313）</td><td data-l="價位／晚">四人房 1,800–2,349 含手作早餐</td><td data-l="國旅補助"><span class="badge-ok">確認參加（中央）</span><span class="sub"></span></td><td data-l="親子・停車">有電梯、一樓兒童遊戲區、玩具箱；超大停車場；無嬰兒床（雙人床同睡）</td><td data-l="為什麼選它">評價高、有電梯與遊戲區、含早，CP 值最高。<span class="sub">寵物友善房在一樓，過敏留意。</span></td></tr>
+      <tr><td><span class="rk">3</span><b><a href="https://www.kindness-hotel.com.tw/hotels/taitung" target="_blank" rel="noopener">康橋商旅 台東館</a></b><span class="sub">旅館（010 號）・中興路一段 209 巷 16 號（森林公園旁，鐵花村 1.8 km）・089-229-226</span></td><td data-l="評價">Google 4.5（4,491）・Booking 8.9（2,407）</td><td data-l="價位／晚">雙人 2,550–3,600 含早；四人 5,300–5,500</td><td data-l="國旅補助"><span class="badge-ok">確認參加（中央）</span><span class="sub">易遊網（核定平台）雙人約 2,556 含早</span></td><td data-l="親子・停車">免費嬰兒床（0–2 歲）；館內免費停車；早餐評價高；電梯大樓</td><td data-l="為什麼選它">最省心的安全牌，走核定平台訂也能折。<span class="sub">步行鐵花村 20 分，晚上建議開車。</span></td></tr>
+      <tr><td><span class="rk">4</span><b><a href="https://19inn.vercel.app/" target="_blank" rel="noopener">靜巷 19 號民宿</a></b><span class="sub">民宿（1901 號）・正氣北路 166 巷 19 號（鐵花村 1.25 km）・0912-646-160・LINE @16619inn</span></td><td data-l="評價">Google 4.9（138）・Booking 9.5（206）</td><td data-l="價位／晚">四人房 2,600–2,800（含 1 車位）</td><td data-l="國旅補助"><span class="badge-ok">確認參加（中央）</span><span class="sub"></span></td><td data-l="親子・停車">每房專屬車位、安靜巷內；四人房兩張雙人床；無嬰兒床、不提供早餐</td><td data-l="為什麼選它">幾近滿分、安靜，最適合要讓幼兒早睡。<span class="sub">無早餐（周邊早餐店多）。</span></td></tr>
+      <tr><td><span class="rk">5</span><b><a href="http://n15bnb.com" target="_blank" rel="noopener">15 電梯民宿</a></b><span class="sub">民宿（1635 號）・中興路三段 275 巷 36 弄 13 號（往台 9 線南下方向，市區車程 10 分）・089-237-379</span></td><td data-l="評價">Google 5.0（1,189）・Booking 9.8（135）</td><td data-l="價位／晚">四人 1,680／家庭房 1,980</td><td data-l="國旅補助"><span class="badge-ok">確認參加（中央）</span><span class="sub"></span></td><td data-l="親子・停車">有電梯、家庭房、停車方便；無嬰兒床；僅收現金</td><td data-l="為什麼選它">全台東評分最高，隔天南下順路。<span class="sub">不在建議帶、外食需開車；同巷多家民宿請認明「15 民宿」。</span></td></tr>
+  </table>
+
+    <p class="source">2026/9/30 由 7 位研究／查證 agent 逐家核對：觀光署參與名單以旅宿名稱逐筆查詢、Google Maps 與 Booking.com 分數當日重讀、官網親子與停車資訊 WebFetch 重讀；Agoda 未查。未替你們登錄、訂房或送出任何表單。花蓮市另有藍天麗池（Google 4.5／5,174，兩項補助皆參加）可作第 6 順位；玉里備選：京彤民宿（車站前，Booking 9.5）、逗點親子民宿（有嬰兒床、最省）；台東備選：有時回家（Google 4.9／Booking 9.8，但無早餐無停車資料）。</p>
+  </div>
 </section>
 
 <section id="checklist" style="margin-top:24px">
