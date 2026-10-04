@@ -247,6 +247,18 @@ nanhui-02.jpg
   author: lienyuan lee
   source: https://commons.wikimedia.org/wiki/File%3A%E5%8D%97%E8%BF%B4%E5%85%AC%E8%B7%AF_South-Link_Highway_-_panoramio_%281%29.jpg
 
+peinan-park.jpg
+  file: File:Peinan Site Park, Taitung City, Taitung County (Taiwan).jpg
+  license: CC BY-SA 4.0
+  author: Mk2010
+  source: https://commons.wikimedia.org/wiki/File%3APeinan_Site_Park%2C_Taitung_City%2C_Taitung_County_%28Taiwan%29.jpg
+
+peinan-pillar.jpg
+  file: File:卑南遺址公園月形石柱.jpg
+  license: CC BY 4.0
+  author: Outlookxp
+  source: https://commons.wikimedia.org/wiki/File%3A%E5%8D%91%E5%8D%97%E9%81%BA%E5%9D%80%E5%85%AC%E5%9C%92%E6%9C%88%E5%BD%A2%E7%9F%B3%E6%9F%B1.jpg
+
 pipa-lake-02.jpg
   file: File:琵琶湖 Pipa Lake - panoramio.jpg
   license: CC BY 3.0
