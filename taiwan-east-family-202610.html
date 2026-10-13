@@ -202,6 +202,29 @@ section[id]{scroll-margin-top:86px}
   .night-table td:first-child{font-weight:800}
   .night-table td:nth-child(2){white-space:normal}
 }
+/* ===== 繪本 ===== */
+.book{margin-top:18px;background:#fffaf0;border:1px solid #efe2c6;border-radius:18px;padding:18px;box-shadow:0 4px 16px rgba(80,60,20,.05)}
+.book .section-title h2{font-size:1.45rem}
+.book-intro{color:#6f6250;font-size:.92rem;margin:0 0 14px}
+.book-pages{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.book-page{margin:0;background:#fff;border:1px solid #efe2c6;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;scroll-margin-top:70px}
+.book-page svg{display:block;width:100%;height:auto;aspect-ratio:4/3;background:#fdf6e6}
+.book-page figcaption{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.book-page .stamp{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:.8rem;color:#8a6d3b;font-weight:700}
+.book-page .stamp b{background:#f6e7c4;color:#6b4d16;border-radius:999px;padding:2px 9px}
+.book-page .story{font-family:"Iansui","Noto Serif TC","Songti TC","PMingLiU",serif;font-size:1.02rem;line-height:1.85;color:#3b3226;margin:0}
+.book-page .note{font-size:.76rem;color:#9a8b74;margin-top:auto}
+.book-page .note a{color:#8a6d3b}
+.book-page:last-child{grid-column:1/-1}
+.book-page:last-child svg{aspect-ratio:4/3;max-height:420px;object-fit:contain}
+@media (max-width:720px){.book-pages{grid-template-columns:1fr}.book{padding:14px}}
+.actual{margin:0;padding:12px 18px;background:#fffaf0;border-bottom:1px solid #efe2c6;font-size:.92rem}
+.actual b.tag{display:inline-block;background:#d59a3a;color:#fff;border-radius:999px;padding:1px 9px;margin-right:6px;font-size:.8rem}
+.actual ol{margin:6px 0 2px;padding-left:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+.actual li a{display:inline-flex;gap:6px;background:#fff;border:1px solid #efe2c6;border-radius:999px;padding:3px 10px;color:#5b4a2c}
+.actual li a:hover{background:#f6e7c4;text-decoration:none}
+.actual li time{font-weight:800;color:#8a6d3b}
+.actual .miss{color:#9a8b74;font-size:.82rem;margin-top:4px}
 </style>
 </head>
 <body>
@@ -224,7 +247,7 @@ section[id]{scroll-margin-top:86px}
 <div class="navbar" id="navbar">
   <div class="progressbar"><i id="progressFill"></i></div>
   <div class="toc" id="toc">
-    <a href="#overview">總覽</a><a href="#highlights">景點圖片</a><a href="#tripmap">總路線圖</a><a href="#d1">D1 蘇花</a><a href="#d2">D2 縱谷</a><a href="#d3">D3 陶錫・瓦拉米</a><a href="#d4">D4 池上</a><a href="#d5">D5 南迴</a><a href="#d6">D6 船帆石</a><a href="#d7">D7 龍磐</a><a href="#stay">住宿・補助</a><a href="#checklist">注意事項</a><a href="#sources">來源</a>
+    <a href="#overview">總覽</a><a href="#storybook">📖 繪本</a><a href="#highlights">景點圖片</a><a href="#tripmap">總路線圖</a><a href="#d1">D1 蘇花</a><a href="#d2">D2 縱谷</a><a href="#d3">D3 陶錫・瓦拉米</a><a href="#d4">D4 池上</a><a href="#d5">D5 南迴</a><a href="#d6">D6 船帆石</a><a href="#d7">D7 龍磐</a><a href="#stay">住宿・補助</a><a href="#checklist">注意事項</a><a href="#sources">來源</a>
   </div>
 </div>
 
@@ -232,6 +255,7 @@ section[id]{scroll-margin-top:86px}
   <div class="sd-head">本頁導覽</div>
   <div class="sd-prog"><i id="sideFill"></i></div>
   <a href="#overview"><span class="sd-dot"></span>總覽</a>
+  <a href="#storybook"><span class="sd-dot"></span>📖 繪本（實際足跡）</a>
   <a href="#highlights"><span class="sd-dot"></span>景點圖片精選</a>
   <a href="#tripmap"><span class="sd-dot"></span>全程總路線圖</a>
   <a href="#d1"><span class="sd-dot"></span>D1 蘆洲 → 花蓮</a>
@@ -257,6 +281,1270 @@ section[id]{scroll-margin-top:86px}
     <b>先看這一點：</b>「12:00–14:00」視為孩子的核心午睡窗，不要求每天精準睡滿兩小時。D1、D4 主要靠車上睡；D3 因玉里連住兩晚，可回原住宿午睡，是全程最穩定的一天；D5 刻意把午餐與山路錯開。
   </div>
 </section>
+<!-- BOOK:BEGIN -->
+<section id="storybook" class="book">
+<div class="section-title"><h2>📖 繪本｜小旅人的東部旅行</h2></div>
+<p class="book-intro">依 10/3–10/7 實拍 20 張照片的拍攝時間與內容重畫成卡通（照片沒有 GPS，地點由畫面＋網路資料比對；不確定的在頁腳註明）。原始照片不上傳到網站。</p>
+<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+  <!-- 小旅人 toddler head: 100x100 box, face centre (50,55) -->
+  <symbol id="sb-kid" viewBox="0 0 100 100">
+    <ellipse cx="50" cy="58" rx="34" ry="32" fill="#f6d2b4"/>
+    <ellipse cx="17" cy="60" rx="6" ry="8" fill="#f0c3a1"/><ellipse cx="83" cy="60" rx="6" ry="8" fill="#f0c3a1"/>
+    <path d="M18 50 Q20 22 50 22 Q80 22 82 50 Q74 36 62 38 Q56 30 50 36 Q42 30 36 38 Q26 36 18 50Z" fill="#1d1d24"/>
+    <path d="M44 24 L40 8 L50 20 L54 4 L58 21 L68 10 L62 26Z" fill="#1d1d24"/>
+    <circle cx="38" cy="58" r="4.6" fill="#1d1d24"/><circle cx="62" cy="58" r="4.6" fill="#1d1d24"/>
+    <circle cx="39.6" cy="56.4" r="1.6" fill="#fff"/><circle cx="63.6" cy="56.4" r="1.6" fill="#fff"/>
+    <ellipse cx="28" cy="70" rx="6" ry="3.6" fill="#f3a3a0" opacity=".75"/><ellipse cx="72" cy="70" rx="6" ry="3.6" fill="#f3a3a0" opacity=".75"/>
+    <path d="M42 72 Q50 81 58 72 Q50 76 42 72Z" fill="#b8423f"/>
+  </symbol>
+  <symbol id="sb-kid-sleep" viewBox="0 0 100 100">
+    <ellipse cx="50" cy="58" rx="34" ry="32" fill="#f6d2b4"/>
+    <ellipse cx="17" cy="60" rx="6" ry="8" fill="#f0c3a1"/><ellipse cx="83" cy="60" rx="6" ry="8" fill="#f0c3a1"/>
+    <path d="M18 50 Q20 22 50 22 Q80 22 82 50 Q74 36 62 38 Q56 30 50 36 Q42 30 36 38 Q26 36 18 50Z" fill="#1d1d24"/>
+    <path d="M44 24 L40 8 L50 20 L54 4 L58 21 L68 10 L62 26Z" fill="#1d1d24"/>
+    <path d="M32 59 Q38 64 44 59" stroke="#1d1d24" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <path d="M56 59 Q62 64 68 59" stroke="#1d1d24" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="28" cy="70" rx="6" ry="3.6" fill="#f3a3a0" opacity=".75"/><ellipse cx="72" cy="70" rx="6" ry="3.6" fill="#f3a3a0" opacity=".75"/>
+    <ellipse cx="50" cy="75" rx="3.4" ry="2.4" fill="#b8423f"/>
+  </symbol>
+  <!-- 大人 A: short black pixie with side fringe, thin wire glasses, big grin -->
+  <symbol id="sb-a" viewBox="0 0 100 100">
+    <rect x="40" y="80" width="20" height="16" fill="#efc09c"/>
+    <ellipse cx="50" cy="54" rx="29" ry="34" fill="#f2c7a5"/>
+    <ellipse cx="21" cy="56" rx="5" ry="8" fill="#e9b893"/><ellipse cx="79" cy="56" rx="5" ry="8" fill="#e9b893"/>
+    <path d="M19 52 Q16 16 50 14 Q84 14 81 48 Q78 34 70 30 Q58 38 36 34 Q28 40 24 56Z" fill="#17171d"/>
+    <path d="M36 34 Q48 44 66 30 Q60 26 50 26Z" fill="#17171d"/>
+    <circle cx="38" cy="52" r="9" fill="none" stroke="#5b5f68" stroke-width="2"/><circle cx="62" cy="52" r="9" fill="none" stroke="#5b5f68" stroke-width="2"/>
+    <path d="M47 52 L53 52" stroke="#5b5f68" stroke-width="2"/>
+    <path d="M33 53 Q38 49 43 53" stroke="#1d1d24" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <path d="M57 53 Q62 49 67 53" stroke="#1d1d24" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <circle cx="68" cy="68" r="1.6" fill="#4a3a33"/>
+    <path d="M36 67 Q50 86 64 67Z" fill="#fff" stroke="#9c3b36" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M38 69 Q50 72 62 69" stroke="#9c3b36" stroke-width="1" fill="none"/>
+  </symbol>
+  <!-- 大人 B: buzz cut, rectangular dark-metal glasses, wide laugh -->
+  <symbol id="sb-b" viewBox="0 0 100 100">
+    <rect x="39" y="80" width="22" height="16" fill="#e7b48f"/>
+    <ellipse cx="50" cy="54" rx="30" ry="34" fill="#efbf9b"/>
+    <ellipse cx="20" cy="56" rx="5" ry="8" fill="#e4ad87"/><ellipse cx="80" cy="56" rx="5" ry="8" fill="#e4ad87"/>
+    <path d="M20 46 Q20 18 50 17 Q80 18 80 46 Q74 30 50 29 Q26 30 20 46Z" fill="#26262c"/>
+    <rect x="27" y="45" width="19" height="13" rx="3" fill="none" stroke="#3e3f46" stroke-width="2.2"/>
+    <rect x="54" y="45" width="19" height="13" rx="3" fill="none" stroke="#3e3f46" stroke-width="2.2"/>
+    <path d="M46 50 L54 50" stroke="#3e3f46" stroke-width="2.2"/>
+    <path d="M31 52 Q36.5 48 42 52" stroke="#1d1d24" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <path d="M58 52 Q63.5 48 69 52" stroke="#1d1d24" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <path d="M34 66 Q50 90 66 66Z" fill="#7a2a2a"/>
+    <path d="M36 67 Q50 71 64 67 L63 69 Q50 72 37 69Z" fill="#fff"/>
+    <ellipse cx="50" cy="80" rx="7" ry="3.4" fill="#e46b6b"/>
+  </symbol>
+</defs>
+</svg>
+<div class="book-pages">
+<figure class="book-page" id="sb01">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-label="和平台泥DAKA園區：太陽能和平花前，孩子坐在大人肩上指著花">
+<defs>
+<linearGradient id="sb01-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5fb0ea"/><stop offset="1" stop-color="#bfe3f7"/></linearGradient>
+<linearGradient id="sb01-mt" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5fa85a"/><stop offset="1" stop-color="#3f8a4a"/></linearGradient>
+<g id="sb01-fl"><g fill="#2f3646" stroke="#59627a" stroke-width="1.2" stroke-linejoin="round"><path d="M0 0 L-8.5 -36 Q0 -42 8.5 -36Z" transform="rotate(0)"/><path d="M0 0 L-8.5 -36 Q0 -42 8.5 -36Z" transform="rotate(30)"/><path d="M0 0 L-8.5 -36 Q0 -42 8.5 -36Z" transform="rotate(60)"/><path d="M0 0 L-8.5 -36 Q0 -42 8.5 -36Z" transform="rotate(90)"/><path d="M0 0 L-8.5 -36 Q0 -42 8.5 -36Z" transform="rotate(120)"/><path d="M0 0 L-8.5 -36 Q0 -42 8.5 -36Z" transform="rotate(150)"/><path d="M0 0 L-8.5 -36 Q0 -42 8.5 -36Z" transform="rotate(180)"/><path d="M0 0 L-8.5 -36 Q0 -42 8.5 -36Z" transform="rotate(210)"/><path d="M0 0 L-8.5 -36 Q0 -42 8.5 -36Z" transform="rotate(240)"/><path d="M0 0 L-8.5 -36 Q0 -42 8.5 -36Z" transform="rotate(270)"/><path d="M0 0 L-8.5 -36 Q0 -42 8.5 -36Z" transform="rotate(300)"/><path d="M0 0 L-8.5 -36 Q0 -42 8.5 -36Z" transform="rotate(330)"/></g><g stroke="#4a5368" stroke-width=".8"><path d="M0 -6 L0 -37" transform="rotate(15)"/><path d="M0 -6 L0 -37" transform="rotate(45)"/><path d="M0 -6 L0 -37" transform="rotate(75)"/><path d="M0 -6 L0 -37" transform="rotate(105)"/><path d="M0 -6 L0 -37" transform="rotate(135)"/><path d="M0 -6 L0 -37" transform="rotate(165)"/><path d="M0 -6 L0 -37" transform="rotate(195)"/><path d="M0 -6 L0 -37" transform="rotate(225)"/><path d="M0 -6 L0 -37" transform="rotate(255)"/><path d="M0 -6 L0 -37" transform="rotate(285)"/><path d="M0 -6 L0 -37" transform="rotate(315)"/><path d="M0 -6 L0 -37" transform="rotate(345)"/></g><circle r="6" fill="#d9dde3" stroke="#8a919c"/></g>
+</defs>
+<rect width="480" height="360" fill="url(#sb01-sky)"/>
+<circle cx="440" cy="40" r="22" fill="#fff6c9" opacity=".9"/>
+<g fill="#fff"><path d="M70 52 q6-20 26-14 q8-16 28-6 q20-4 22 14 q14 4 6 16 h-80 q-14-2-2-10z"/><path d="M360 104 q4-14 20-10 q8-12 24-4 q16-2 16 12 q12 4 4 14 h-60 q-12-2-4-12z"/></g>
+<path d="M330 205 Q400 120 440 128 Q470 130 480 150 V215Z" fill="#8fb9a6"/>
+<path d="M0 30 Q30 22 60 44 Q120 80 200 116 Q300 150 360 180 Q420 205 480 214 V240 H0Z" fill="url(#sb01-mt)"/>
+<g fill="#79c06b" opacity=".55"><circle cx="40" cy="110" r="14"/><circle cx="110" cy="130" r="16"/><circle cx="170" cy="150" r="13"/><circle cx="230" cy="160" r="15"/><circle cx="70" cy="160" r="12"/><circle cx="300" cy="180" r="12"/><circle cx="140" cy="185" r="14"/></g>
+<g fill="#2f7a3e" opacity=".5"><circle cx="20" cy="140" r="10"/><circle cx="95" cy="88" r="9"/><circle cx="30" cy="70" r="10"/><circle cx="200" cy="135" r="8"/><circle cx="260" cy="175" r="10"/><circle cx="360" cy="196" r="9"/></g>
+<g fill="#3e8f4a"><circle cx="300" cy="212" r="16"/><circle cx="325" cy="206" r="18"/><circle cx="355" cy="210" r="15"/><circle cx="440" cy="214" r="16"/><circle cx="465" cy="208" r="14"/></g>
+<rect y="226" width="480" height="134" fill="#9a9ea5"/>
+<rect y="226" width="480" height="8" fill="#b9bcc1"/>
+<g transform="translate(14 0)">
+<path d="M0 168 L48 140 L104 168Z" fill="#c8453c"/>
+<g stroke="#c8453c" stroke-width="2"><path d="M14 160 L58 146"/><path d="M28 153 L72 152"/><path d="M40 147 L88 160"/></g>
+<rect x="6" y="168" width="92" height="58" fill="#c8453c"/>
+<rect x="11" y="174" width="82" height="48" fill="#cfe9f2"/>
+<g stroke="#c8453c" stroke-width="2.5"><path d="M31 174 V222 M52 174 V222 M73 174 V222 M11 196 H93"/></g>
+<path d="M14 178 L26 190" stroke="#fff" stroke-width="2" opacity=".7"/>
+</g>
+<ellipse cx="225" cy="226" rx="120" ry="15" fill="#6fb35d"/>
+<g fill="#4c9a4c"><circle cx="130" cy="222" r="9"/><circle cx="175" cy="218" r="10"/><circle cx="270" cy="219" r="10"/><circle cx="318" cy="224" r="8"/></g>
+<g fill="#f2a6b8"><circle cx="150" cy="224" r="3"/><circle cx="200" cy="226" r="3"/><circle cx="246" cy="223" r="3"/><circle cx="296" cy="226" r="3"/></g>
+<g fill="#f6d36b"><circle cx="160" cy="228" r="2.5"/><circle cx="228" cy="229" r="2.5"/><circle cx="280" cy="229" r="2.5"/></g>
+<path d="M152 150 L155.45 222" stroke="#3a3f4a" stroke-width="4.7"/><use href="#sb01-fl" transform="translate(152 150) scale(1.15)"/><path d="M232 178 L234.25 222" stroke="#3a3f4a" stroke-width="3.4"/><use href="#sb01-fl" transform="translate(232 178) scale(0.75)"/><path d="M283 158 L285.85 222" stroke="#3a3f4a" stroke-width="4.0"/><use href="#sb01-fl" transform="translate(283 158) scale(0.95)"/>
+<path d="M0 244 H480" stroke="#3d3d3d" stroke-width="7" stroke-dasharray="14 14"/>
+<path d="M14 244 H480" stroke="#f3c623" stroke-width="7" stroke-dasharray="14 14"/>
+<g fill="#6d7179" opacity=".25"><circle cx="40" cy="300" r="3"/><circle cx="200" cy="320" r="2.5"/><circle cx="150" cy="350" r="3"/><circle cx="270" cy="345" r="2.5"/></g>
+<g>
+<path d="M392 268 Q400 240 440 234 L480 232 V338 H384 Q372 334 374 312 Q376 284 392 268Z" fill="#eef0f2" stroke="#b6bbc2" stroke-width="2"/>
+<path d="M412 262 Q424 244 448 240 L480 238 V264Z" fill="#45525e"/>
+<circle cx="420" cy="334" r="22" fill="#2b2d33"/><circle cx="420" cy="334" r="10" fill="#9aa1aa"/>
+<rect x="380" y="290" width="16" height="7" rx="3" fill="#ffe9a6"/>
+<path d="M452 280 h16" stroke="#9aa1aa" stroke-width="3" stroke-linecap="round"/>
+</g>
+<g>
+<path d="M68 360 V328 Q68 296 100 292 Q132 296 132 328 V360Z" fill="#26386b"/>
+<path d="M78 300 Q60 270 52 238" stroke="#26386b" stroke-width="13" stroke-linecap="round" fill="none"/>
+<path d="M122 300 Q140 270 148 238" stroke="#26386b" stroke-width="13" stroke-linecap="round" fill="none"/>
+<circle cx="51" cy="232" r="7" fill="#f2c7a5"/><circle cx="149" cy="232" r="7" fill="#f2c7a5"/>
+<path d="M88 296 L100 306 L112 296" stroke="#fff" stroke-width="3" fill="none"/>
+<use href="#sb-a" x="64" y="222" width="72" height="72"/>
+</g>
+<g>
+<path d="M290 360 V326 Q290 290 330 286 Q370 290 370 326 V360Z" fill="#5aa86a"/>
+<path d="M302 300 Q284 266 300 240" stroke="#5aa86a" stroke-width="14" stroke-linecap="round" fill="none"/>
+<path d="M358 300 Q376 266 360 240" stroke="#5aa86a" stroke-width="14" stroke-linecap="round" fill="none"/>
+<use href="#sb-b" x="292" y="212" width="76" height="76"/>
+<path d="M314 222 Q312 196 330 194 Q348 196 346 222Z" fill="#fff" stroke="#dfe3e8" stroke-width="1.5"/>
+<path d="M343 204 Q356 202 360 216" stroke="#fff" stroke-width="8" stroke-linecap="round" fill="none"/>
+<path d="M318 206 L306 194" stroke="#fff" stroke-width="9" stroke-linecap="round"/>
+<path d="M306 194 L292 180" stroke="#f6d2b4" stroke-width="6.5" stroke-linecap="round"/>
+<circle cx="290" cy="178" r="4.8" fill="#f6d2b4"/><path d="M288 176 L281 168" stroke="#f6d2b4" stroke-width="3.2" stroke-linecap="round"/>
+<ellipse cx="330" cy="222" rx="22" ry="8" fill="#6aa7d8"/>
+<path d="M314 224 Q306 232 305 244" stroke="#f6d2b4" stroke-width="9" stroke-linecap="round" fill="none"/>
+<path d="M346 224 Q354 232 355 244" stroke="#f6d2b4" stroke-width="9" stroke-linecap="round" fill="none"/>
+<ellipse cx="303" cy="249" rx="5" ry="6" fill="#f08a6b"/><ellipse cx="357" cy="249" rx="5" ry="6" fill="#f08a6b"/>
+<circle cx="301" cy="238" r="6.5" fill="#efbf9b"/><circle cx="359" cy="238" r="6.5" fill="#efbf9b"/>
+<use href="#sb-kid" x="301" y="140" width="58" height="58"/>
+</g>
+</svg>
+<figcaption><div class="stamp"><b>01</b><span>10/3（六） 08:07</span><span>・台泥DAKA園區（蘇花改・和平）</span></div><p class="story">天才剛亮，車子就鑽出長長的蘇花改隧道。「哇——向日葵！」三朵黑色的大花轉向太陽，原來是會追著太陽跑的太陽能和平花。小旅人伸長手指：花蓮，我們來囉！</p><div class="note"><a href="#d1">看 D1 行程 →</a></div></figcaption></figure>
+<figure class="book-page" id="sb02">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-label="花蓮松園別館：常春藤圍繞的大窗口前，大人抱著孩子一起向前伸手大笑">
+<defs>
+<linearGradient id="sb02-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4fa3e6"/><stop offset="1" stop-color="#bfe2f6"/></linearGradient>
+<clipPath id="sb02-win"><rect x="140" y="28" width="260" height="234"/></clipPath>
+</defs>
+<rect width="480" height="360" fill="#8d8a86"/>
+<g fill="#7d7a76" opacity=".7"><circle cx="40" cy="40" r="20"/><circle cx="450" cy="80" r="26"/><circle cx="430" cy="300" r="30"/><circle cx="60" cy="250" r="18"/></g>
+<g fill="#a3a09b" opacity=".5"><circle cx="70" cy="70" r="3"/><circle cx="440" cy="160" r="3"/><circle cx="420" cy="230" r="2"/><circle cx="30" cy="120" r="2.5"/><circle cx="460" cy="340" r="3"/></g>
+<rect x="130" y="18" width="280" height="244" fill="#6e6b67"/>
+<g clip-path="url(#sb02-win)">
+<rect x="140" y="28" width="260" height="234" fill="url(#sb02-sky)"/>
+<g fill="#fff"><path d="M170 120 q4-22 26-18 q10-18 32-8 q22-2 22 18 q14 6 4 20 h-80 q-14-4-4-12z"/><path d="M320 80 q6-12 20-8 q10-10 22 0 q10 2 8 12 h-46z" opacity=".85"/></g>
+<rect x="140" y="215" width="260" height="50" fill="#9bbf6a"/>
+<g fill="#c47a4e" opacity=".6"><circle cx="170" cy="225" r="16"/><circle cx="196" cy="236" r="14"/></g>
+<path d="M205 262 Q199 210 209 170 Q215 150 235 140" stroke="#7a5236" stroke-width="5.0" fill="none" stroke-linecap="round"/><ellipse cx="235" cy="136" rx="34" ry="11" fill="#2f7d4a"/><ellipse cx="232" cy="133" rx="24" ry="7" fill="#4d9e5c"/><ellipse cx="201" cy="166" rx="30" ry="10" fill="#2f7d4a"/><ellipse cx="198" cy="163" rx="21" ry="6" fill="#4d9e5c"/><ellipse cx="221" cy="196" rx="36" ry="12" fill="#2f7d4a"/><ellipse cx="218" cy="193" rx="25" ry="7" fill="#4d9e5c"/><ellipse cx="191" cy="228" rx="26" ry="8" fill="#2f7d4a"/><ellipse cx="188" cy="225" rx="18" ry="5" fill="#4d9e5c"/><path d="M330 262 Q336 180 326 140 Q320 120 300 110" stroke="#7a5236" stroke-width="5.8" fill="none" stroke-linecap="round"/><ellipse cx="300" cy="106" rx="39" ry="13" fill="#2f7d4a"/><ellipse cx="297" cy="103" rx="27" ry="8" fill="#4d9e5c"/><ellipse cx="334" cy="136" rx="34" ry="11" fill="#2f7d4a"/><ellipse cx="331" cy="133" rx="24" ry="7" fill="#4d9e5c"/><ellipse cx="314" cy="166" rx="41" ry="13" fill="#2f7d4a"/><ellipse cx="311" cy="163" rx="29" ry="8" fill="#4d9e5c"/><ellipse cx="344" cy="198" rx="30" ry="10" fill="#2f7d4a"/><ellipse cx="341" cy="195" rx="21" ry="6" fill="#4d9e5c"/><path d="M270 262 Q264 245 274 205 Q280 185 300 175" stroke="#7a5236" stroke-width="3.8" fill="none" stroke-linecap="round"/><ellipse cx="300" cy="171" rx="26" ry="8" fill="#2f7d4a"/><ellipse cx="297" cy="168" rx="18" ry="5" fill="#4d9e5c"/><ellipse cx="266" cy="201" rx="22" ry="7" fill="#2f7d4a"/><ellipse cx="263" cy="198" rx="16" ry="4" fill="#4d9e5c"/><ellipse cx="286" cy="231" rx="27" ry="9" fill="#2f7d4a"/><ellipse cx="283" cy="228" rx="19" ry="5" fill="#4d9e5c"/><ellipse cx="256" cy="263" rx="20" ry="6" fill="#2f7d4a"/><ellipse cx="253" cy="260" rx="14" ry="4" fill="#4d9e5c"/>
+<g fill="#6aaf4c"><circle cx="160" cy="250" r="14"/><circle cx="380" cy="246" r="16"/><circle cx="350" cy="256" r="12"/></g>
+</g>
+<path d="M140 28 C150 70 136 140 146 200 M400 28 C392 90 406 150 396 230 M140 32 C220 42 300 28 400 34" stroke="#5b4636" stroke-width="2" fill="none"/>
+<ellipse cx="133" cy="26" rx="9.5" ry="5.4" fill="#3c7f34" transform="rotate(-16 133 26)"/><ellipse cx="144" cy="24" rx="9.4" ry="6.2" fill="#4f9a3c" transform="rotate(48 144 24)"/><ellipse cx="152" cy="31" rx="9.0" ry="7.4" fill="#8ccf5e" transform="rotate(1 152 31)"/><ellipse cx="157" cy="34" rx="8.2" ry="5.4" fill="#3c7f34" transform="rotate(34 157 34)"/><ellipse cx="166" cy="32" rx="8.1" ry="7.1" fill="#6db84c" transform="rotate(6 166 32)"/><ellipse cx="176" cy="24" rx="7.1" ry="7.4" fill="#3c7f34" transform="rotate(-42 176 24)"/><ellipse cx="187" cy="42" rx="9.8" ry="7.3" fill="#3c7f34" transform="rotate(22 187 42)"/><ellipse cx="194" cy="27" rx="10.5" ry="6.7" fill="#3c7f34" transform="rotate(6 194 27)"/><ellipse cx="207" cy="45" rx="8.5" ry="5.4" fill="#6db84c" transform="rotate(8 207 45)"/><ellipse cx="216" cy="32" rx="9.2" ry="6.3" fill="#6db84c" transform="rotate(18 216 32)"/><ellipse cx="228" cy="23" rx="10.2" ry="7.5" fill="#6db84c" transform="rotate(43 228 23)"/><ellipse cx="236" cy="29" rx="8.0" ry="6.0" fill="#6db84c" transform="rotate(-35 236 29)"/><ellipse cx="239" cy="25" rx="9.1" ry="5.9" fill="#4f9a3c" transform="rotate(-57 239 25)"/><ellipse cx="249" cy="42" rx="10.2" ry="6.2" fill="#6db84c" transform="rotate(28 249 42)"/><ellipse cx="257" cy="36" rx="9.4" ry="5.9" fill="#3c7f34" transform="rotate(-14 257 36)"/><ellipse cx="270" cy="31" rx="7.3" ry="5.3" fill="#8ccf5e" transform="rotate(-35 270 31)"/><ellipse cx="278" cy="24" rx="8.4" ry="6.2" fill="#4f9a3c" transform="rotate(1 278 24)"/><ellipse cx="283" cy="27" rx="10.6" ry="5.9" fill="#4f9a3c" transform="rotate(46 283 27)"/><ellipse cx="297" cy="32" rx="9.6" ry="7.3" fill="#6db84c" transform="rotate(1 297 32)"/><ellipse cx="304" cy="36" rx="10.6" ry="6.1" fill="#3c7f34" transform="rotate(-49 304 36)"/><ellipse cx="314" cy="29" rx="10.2" ry="7.4" fill="#8ccf5e" transform="rotate(-1 314 29)"/><ellipse cx="325" cy="39" rx="8.6" ry="7.4" fill="#6db84c" transform="rotate(-39 325 39)"/><ellipse cx="330" cy="36" rx="11.0" ry="5.1" fill="#8ccf5e" transform="rotate(43 330 36)"/><ellipse cx="341" cy="43" rx="9.6" ry="6.5" fill="#8ccf5e" transform="rotate(24 341 43)"/><ellipse cx="352" cy="29" rx="10.7" ry="5.4" fill="#6db84c" transform="rotate(-58 352 29)"/><ellipse cx="363" cy="25" rx="7.1" ry="7.4" fill="#4f9a3c" transform="rotate(7 363 25)"/><ellipse cx="367" cy="40" rx="10.0" ry="5.3" fill="#6db84c" transform="rotate(45 367 40)"/><ellipse cx="374" cy="34" rx="10.5" ry="5.1" fill="#6db84c" transform="rotate(-23 374 34)"/><ellipse cx="382" cy="38" rx="9.0" ry="6.9" fill="#3c7f34" transform="rotate(-27 382 38)"/><ellipse cx="397" cy="36" rx="9.2" ry="7.1" fill="#4f9a3c" transform="rotate(56 397 36)"/><ellipse cx="407" cy="30" rx="10.0" ry="7.2" fill="#8ccf5e" transform="rotate(45 407 30)"/><ellipse cx="208" cy="64" rx="10.7" ry="6.3" fill="#6db84c" transform="rotate(7 208 64)"/><ellipse cx="240" cy="61" rx="9.0" ry="7.2" fill="#6db84c" transform="rotate(17 240 61)"/><ellipse cx="256" cy="61" rx="7.0" ry="7.0" fill="#6db84c" transform="rotate(-42 256 61)"/><ellipse cx="320" cy="54" rx="8.9" ry="6.8" fill="#4f9a3c" transform="rotate(-19 320 54)"/><ellipse cx="352" cy="56" rx="9.7" ry="6.3" fill="#8ccf5e" transform="rotate(40 352 56)"/><ellipse cx="368" cy="49" rx="10.1" ry="7.2" fill="#4f9a3c" transform="rotate(-29 368 49)"/><ellipse cx="384" cy="63" rx="7.8" ry="5.1" fill="#4f9a3c" transform="rotate(4 384 63)"/><ellipse cx="137" cy="28" rx="8.8" ry="5.1" fill="#4f9a3c" transform="rotate(-4 137 28)"/><ellipse cx="391" cy="28" rx="8.3" ry="7.4" fill="#6db84c" transform="rotate(28 391 28)"/><ellipse cx="142" cy="37" rx="8.1" ry="6.3" fill="#8ccf5e" transform="rotate(4 142 37)"/><ellipse cx="403" cy="37" rx="10.8" ry="6.7" fill="#3c7f34" transform="rotate(58 403 37)"/><ellipse cx="136" cy="46" rx="9.2" ry="7.4" fill="#8ccf5e" transform="rotate(-43 136 46)"/><ellipse cx="395" cy="46" rx="8.7" ry="6.0" fill="#3c7f34" transform="rotate(-51 395 46)"/><ellipse cx="145" cy="55" rx="9.7" ry="6.1" fill="#6db84c" transform="rotate(25 145 55)"/><ellipse cx="404" cy="55" rx="8.2" ry="5.3" fill="#6db84c" transform="rotate(60 404 55)"/><ellipse cx="150" cy="64" rx="9.9" ry="6.7" fill="#6db84c" transform="rotate(-28 150 64)"/><ellipse cx="403" cy="64" rx="10.5" ry="7.4" fill="#6db84c" transform="rotate(35 403 64)"/><ellipse cx="140" cy="73" rx="10.8" ry="6.0" fill="#8ccf5e" transform="rotate(-40 140 73)"/><ellipse cx="394" cy="73" rx="11.0" ry="7.1" fill="#6db84c" transform="rotate(30 394 73)"/><ellipse cx="141" cy="82" rx="8.7" ry="6.3" fill="#3c7f34" transform="rotate(-7 141 82)"/><ellipse cx="404" cy="82" rx="7.8" ry="5.8" fill="#3c7f34" transform="rotate(-58 404 82)"/><ellipse cx="153" cy="91" rx="8.4" ry="6.1" fill="#4f9a3c" transform="rotate(-11 153 91)"/><ellipse cx="389" cy="91" rx="8.3" ry="6.6" fill="#4f9a3c" transform="rotate(-46 389 91)"/><ellipse cx="138" cy="100" rx="10.9" ry="7.0" fill="#4f9a3c" transform="rotate(-50 138 100)"/><ellipse cx="391" cy="100" rx="8.1" ry="5.1" fill="#6db84c" transform="rotate(-26 391 100)"/><ellipse cx="139" cy="109" rx="10.0" ry="7.0" fill="#3c7f34" transform="rotate(-9 139 109)"/><ellipse cx="396" cy="109" rx="7.6" ry="7.3" fill="#8ccf5e" transform="rotate(29 396 109)"/><ellipse cx="146" cy="118" rx="8.3" ry="5.7" fill="#6db84c" transform="rotate(-6 146 118)"/><ellipse cx="391" cy="118" rx="10.6" ry="5.7" fill="#4f9a3c" transform="rotate(21 391 118)"/><ellipse cx="134" cy="127" rx="7.4" ry="5.7" fill="#6db84c" transform="rotate(-52 134 127)"/><ellipse cx="394" cy="127" rx="8.1" ry="5.3" fill="#4f9a3c" transform="rotate(-17 394 127)"/><ellipse cx="141" cy="136" rx="11.0" ry="6.0" fill="#3c7f34" transform="rotate(19 141 136)"/><ellipse cx="397" cy="136" rx="7.5" ry="6.3" fill="#6db84c" transform="rotate(60 397 136)"/><ellipse cx="153" cy="145" rx="7.4" ry="5.4" fill="#4f9a3c" transform="rotate(-37 153 145)"/><ellipse cx="400" cy="145" rx="7.8" ry="5.8" fill="#3c7f34" transform="rotate(7 400 145)"/><ellipse cx="144" cy="154" rx="10.0" ry="5.7" fill="#6db84c" transform="rotate(-26 144 154)"/><ellipse cx="398" cy="154" rx="8.4" ry="5.0" fill="#3c7f34" transform="rotate(-56 398 154)"/><ellipse cx="148" cy="163" rx="7.1" ry="6.8" fill="#6db84c" transform="rotate(5 148 163)"/><ellipse cx="387" cy="163" rx="8.9" ry="7.3" fill="#4f9a3c" transform="rotate(24 387 163)"/><ellipse cx="152" cy="172" rx="10.3" ry="6.1" fill="#8ccf5e" transform="rotate(9 152 172)"/><ellipse cx="402" cy="172" rx="10.3" ry="6.0" fill="#3c7f34" transform="rotate(28 402 172)"/><ellipse cx="151" cy="181" rx="7.9" ry="5.6" fill="#6db84c" transform="rotate(46 151 181)"/><ellipse cx="402" cy="181" rx="10.5" ry="6.8" fill="#6db84c" transform="rotate(-9 402 181)"/><ellipse cx="142" cy="190" rx="11.0" ry="7.5" fill="#6db84c" transform="rotate(-59 142 190)"/><ellipse cx="394" cy="190" rx="7.3" ry="6.9" fill="#3c7f34" transform="rotate(-5 394 190)"/><ellipse cx="136" cy="199" rx="7.7" ry="5.2" fill="#8ccf5e" transform="rotate(51 136 199)"/><ellipse cx="399" cy="199" rx="9.0" ry="7.4" fill="#6db84c" transform="rotate(28 399 199)"/><ellipse cx="391" cy="190" rx="8.2" ry="6.1" fill="#6db84c" transform="rotate(-26 391 190)"/><ellipse cx="393" cy="204" rx="8.8" ry="5.7" fill="#3c7f34" transform="rotate(10 393 204)"/><ellipse cx="391" cy="218" rx="8.3" ry="5.1" fill="#3c7f34" transform="rotate(-33 391 218)"/><ellipse cx="392" cy="232" rx="8.4" ry="5.0" fill="#8ccf5e" transform="rotate(-50 392 232)"/><ellipse cx="396" cy="246" rx="8.9" ry="6.3" fill="#6db84c" transform="rotate(-29 396 246)"/><ellipse cx="404" cy="260" rx="9.0" ry="5.0" fill="#3c7f34" transform="rotate(44 404 260)"/>
+<rect x="136" y="250" width="268" height="22" fill="#a7a49f"/>
+<rect x="136" y="250" width="268" height="4" fill="#bdbab5"/>
+<g>
+<path d="M0 78 L118 104 L118 360 L0 360Z" fill="#f4f6f5" stroke="#d4d9d7" stroke-width="2"/>
+<path d="M10 100 L104 118 L104 210 L10 200Z" fill="#6f7b78"/>
+<path d="M10 214 L104 222 L104 300 L10 300Z" fill="#6f7b78"/>
+<path d="M18 110 L40 140 M22 222 L42 250" stroke="#fff" stroke-width="3" opacity=".35"/>
+<rect x="96" y="312" width="16" height="5" rx="2" fill="#aeb4b8"/><circle cx="104" cy="300" r="4" fill="#aeb4b8"/>
+</g>
+<g>
+<path d="M230 360 V290 Q232 248 300 242 Q368 248 372 290 V360Z" fill="#1f2125"/>
+<path d="M238 270 Q250 248 284 244 L276 290 Q250 292 238 270Z" fill="#f4f4f2"/>
+<path d="M362 266 Q352 248 318 244 L326 292 Q354 292 362 266Z" fill="#f4f4f2"/>
+<path d="M352 280 Q400 286 426 300" stroke="#f2c7a5" stroke-width="20" stroke-linecap="round" fill="none"/>
+<g fill="#f2c7a5"><ellipse cx="436" cy="306" rx="29" ry="26"/>
+<g stroke="#f2c7a5" stroke-width="11" stroke-linecap="round"><path d="M430 292 L416 262 M442 288 L440 254 M452 292 L462 260 M460 302 L476 284 M422 312 L400 322"/></g></g>
+<path d="M432 300 q8 6 16 2" stroke="#d9a07c" stroke-width="2" fill="none"/>
+<use href="#sb-a" x="246" y="140" width="112" height="112"/>
+<path d="M190 360 Q172 300 196 268 Q216 252 240 262 Q262 276 260 320 L262 360Z" fill="#fbfbf8" stroke="#dcdcd6" stroke-width="1.5"/>
+<path d="M232 300 Q262 304 282 290" stroke="#f2c7a5" stroke-width="15" stroke-linecap="round" fill="none"/>
+<path d="M206 286 Q190 296 180 306" stroke="#fbfbf8" stroke-width="18" stroke-linecap="round" fill="none"/>
+<path d="M180 306 L160 318" stroke="#f6d2b4" stroke-width="13" stroke-linecap="round"/>
+<g fill="#f6d2b4" stroke="#f6d2b4" stroke-linecap="round"><circle cx="150" cy="322" r="14" stroke="none"/>
+<path d="M140 316 L126 304 M137 322 L120 318 M139 329 L124 334 M146 334 L140 348 M152 310 L150 294" stroke-width="7"/></g>
+<path d="M146 324 q5 4 10 1" stroke="#d9a07c" stroke-width="1.5" fill="none"/>
+<use href="#sb-kid" x="166" y="176" width="96" height="96"/>
+</g>
+</svg>
+<figcaption><div class="stamp"><b>02</b><span>10/3（六） 11:55</span><span>・松園別館（花蓮市美崙山）</span></div><p class="story">老房子的牆好厚好厚，爬牆虎把窗戶圍成一個綠色相框。窗外的松樹比房子還高。小旅人學大人把手伸出去——好像可以抓到一朵雲。</p><div class="note">窗景比對 Commons 照片，判定為主樓二樓迴廊・<a href="#d1">看 D1 行程 →</a></div></figcaption></figure>
+<figure class="book-page" id="sb03">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-label="花蓮冰果室：一大碗水果牛奶冰，孩子伸出小手想抓">
+<defs>
+<filter id="sb03-blur"><feGaussianBlur stdDeviation="2.2"/></filter>
+<radialGradient id="sb03-ice" cx=".45" cy=".35" r=".7"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e9e3d2"/></radialGradient>
+</defs>
+<rect width="480" height="360" fill="#c99a63"/>
+<g filter="url(#sb03-blur)">
+<g stroke="#a97a48" stroke-width="3"><path d="M0 40 H480 M0 90 H480 M0 140 H480 M0 190 H480"/></g>
+<rect x="20" y="60" width="90" height="70" rx="4" fill="#e9f2f6" opacity=".7"/>
+<rect x="130" y="60" width="70" height="70" rx="4" fill="#e9f2f6" opacity=".6"/>
+<rect x="0" y="150" width="200" height="12" fill="#f3d23b"/>
+<g fill="#7c7f86"><rect x="40" y="186" width="4" height="40"/><rect x="100" y="186" width="4" height="40"/><rect x="150" y="186" width="4" height="40"/></g>
+<ellipse cx="44" cy="186" rx="28" ry="9" fill="#f6d83a"/><ellipse cx="44" cy="183" rx="28" ry="8" fill="#ffe352"/>
+<ellipse cx="150" cy="190" rx="26" ry="8" fill="#f6d83a"/><ellipse cx="150" cy="187" rx="26" ry="7" fill="#ffe352"/>
+<g fill="#6d6058" opacity=".35"><circle cx="70" cy="110" r="12"/><rect x="58" y="120" width="24" height="40" rx="10"/></g>
+</g>
+<g>
+<path d="M300 230 V130 Q304 92 380 88 Q460 92 480 122 V230Z" fill="#26272b"/>
+<path d="M300 140 Q306 96 360 90 L344 140Z" fill="#f2f0eb"/>
+<path d="M420 92 Q466 98 480 122 V162 L440 142Z" fill="#f2f0eb"/>
+<use href="#sb-a" x="344" y="6" width="88" height="88"/>
+<path d="M240 230 Q236 150 286 132 Q328 128 340 160 Q346 200 342 230Z" fill="#fbfbf7" stroke="#dcdbd4" stroke-width="1.5"/>
+<path d="M258 150 Q220 146 180 136" stroke="#fbfbf7" stroke-width="15" stroke-linecap="round" fill="none"/>
+<path d="M182 136 L160 130" stroke="#f6d2b4" stroke-width="11" stroke-linecap="round"/>
+<g fill="#f6d2b4" transform="translate(6 -34)"><ellipse cx="146" cy="164" rx="11" ry="9"/>
+<g stroke="#f6d2b4" stroke-width="5" stroke-linecap="round"><path d="M140 160 L128 152 M138 165 L125 163 M140 170 L128 175 M145 172 L140 182 M150 156 L147 145"/></g></g>
+<path d="M392 176 Q330 196 268 186" stroke="#f2c7a5" stroke-width="17" stroke-linecap="round" fill="none"/>
+<circle cx="266" cy="185" r="10" fill="#f2c7a5"/>
+<use href="#sb-kid" x="246" y="50" width="88" height="88"/>
+<ellipse cx="290" cy="121" rx="5.5" ry="4.5" fill="#b8423f"/>
+<g stroke="#e8a33d" stroke-width="2.6" stroke-linecap="round"><path d="M126 110 l-7 -7 M138 104 l-2 -10 M118 122 l-10 -2"/></g>
+</g>
+<path d="M0 222 H480 V360 H0Z" fill="#ffd93d"/>
+<path d="M0 222 H480 V230 H0Z" fill="#ffe56e"/>
+<g transform="translate(244 350) scale(.86) translate(-244 -346)">
+<ellipse cx="244" cy="346" rx="160" ry="12" fill="#d9a92a" opacity=".55"/>
+<path d="M100 256 Q104 160 245 136 Q386 160 392 256Z" fill="url(#sb03-ice)"/>
+<g transform="translate(178 176) rotate(-8) scale(1)"><rect x="-21" y="-19" width="42" height="38" rx="7" fill="#f77f86"/><rect x="-16" y="-15" width="18" height="10" rx="4" fill="#ffadb0" opacity=".8"/></g><g transform="translate(312 168) rotate(26) scale(1.05)"><path d="M-26 6 Q0 -30 26 6 Q0 12 -26 6Z" fill="#fff1d6" stroke="#f0d8b0" stroke-width="1"/><path d="M-26 6 Q0 -30 26 6 Q0 -20 -26 6Z" fill="#d93a48"/><path d="M-14 -6 Q0 -14 12 -7" stroke="#f08a8f" stroke-width="2" fill="none"/></g><g transform="translate(150 214) rotate(-14) scale(1)"><rect x="-21" y="-19" width="42" height="38" rx="7" fill="#f77f86"/><rect x="-16" y="-15" width="18" height="10" rx="4" fill="#ffadb0" opacity=".8"/></g><g transform="translate(206 206) rotate(-30) scale(1)"><path d="M-26 6 Q0 -30 26 6 Q0 12 -26 6Z" fill="#fff1d6" stroke="#f0d8b0" stroke-width="1"/><path d="M-26 6 Q0 -30 26 6 Q0 -20 -26 6Z" fill="#d93a48"/><path d="M-14 -6 Q0 -14 12 -7" stroke="#f08a8f" stroke-width="2" fill="none"/></g><g transform="translate(296 206) rotate(6) scale(1)"><rect x="-21" y="-19" width="42" height="38" rx="7" fill="#f77f86"/><rect x="-16" y="-15" width="18" height="10" rx="4" fill="#ffadb0" opacity=".8"/></g><g transform="translate(352 206) rotate(-55) scale(0.85)"><ellipse rx="30" ry="15" fill="#fbf2c8" stroke="#eadf9e" stroke-width="1.5"/><g fill="#b9a76a"><circle cx="-6" cy="0" r="1.4"/><circle cx="4" cy="-2" r="1.4"/><circle cx="2" cy="4" r="1.4"/></g></g>
+<g transform="translate(258 186) rotate(10) scale(0.9)"><path d="M-26 6 Q0 -30 26 6 Q0 12 -26 6Z" fill="#fff1d6" stroke="#f0d8b0" stroke-width="1"/><path d="M-26 6 Q0 -30 26 6 Q0 -20 -26 6Z" fill="#d93a48"/><path d="M-14 -6 Q0 -14 12 -7" stroke="#f08a8f" stroke-width="2" fill="none"/></g><g transform="translate(124 246) rotate(-10) scale(1.15)"><rect x="-20" y="-18" width="40" height="36" rx="8" fill="#c2186b"/><rect x="-20" y="-18" width="40" height="8" rx="4" fill="#e04a94" opacity=".7"/><g fill="#2a1020"><circle cx="-7" cy="1" r="1.3"/><circle cx="-4" cy="2" r="1.3"/><circle cx="4" cy="-10" r="1.3"/><circle cx="-14" cy="8" r="1.3"/><circle cx="-7" cy="-6" r="1.3"/><circle cx="14" cy="-1" r="1.3"/><circle cx="9" cy="-1" r="1.3"/><circle cx="4" cy="-8" r="1.3"/><circle cx="4" cy="9" r="1.3"/></g></g><g transform="translate(244 244) rotate(-4) scale(1.35)"><ellipse rx="30" ry="15" fill="#fbf2c8" stroke="#eadf9e" stroke-width="1.5"/><g fill="#b9a76a"><circle cx="-6" cy="0" r="1.4"/><circle cx="4" cy="-2" r="1.4"/><circle cx="2" cy="4" r="1.4"/></g></g><g transform="translate(364 244) rotate(14) scale(1.15)"><rect x="-20" y="-18" width="40" height="36" rx="8" fill="#c2186b"/><rect x="-20" y="-18" width="40" height="8" rx="4" fill="#e04a94" opacity=".7"/><g fill="#2a1020"><circle cx="1" cy="6" r="1.3"/><circle cx="5" cy="-10" r="1.3"/><circle cx="7" cy="2" r="1.3"/><circle cx="-6" cy="-11" r="1.3"/><circle cx="10" cy="-1" r="1.3"/><circle cx="6" cy="9" r="1.3"/><circle cx="6" cy="10" r="1.3"/><circle cx="-3" cy="7" r="1.3"/><circle cx="-2" cy="10" r="1.3"/></g></g><g transform="translate(190 248) rotate(8) scale(0.8)"><rect x="-21" y="-19" width="42" height="38" rx="7" fill="#f77f86"/><rect x="-16" y="-15" width="18" height="10" rx="4" fill="#ffadb0" opacity=".8"/></g>
+<circle cx="245" cy="142" r="36" fill="#fff9e6"/>
+<path d="M216 132 Q236 118 262 116" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" opacity=".9"/>
+<path d="M210 150 Q230 166 248 160 Q268 166 281 150 L280 174 Q276 182 272 172 Q264 180 256 170 L252 194 Q246 202 244 186 L238 172 Q230 184 222 170 Q216 178 213 166Z" fill="#fff4cf"/>
+<path d="M164 200 q4 14 0 22 M330 224 q4 10 1 18 M212 228 q3 10 0 16" stroke="#fff4cf" stroke-width="5" stroke-linecap="round" fill="none"/>
+<path d="M92 270 Q100 262 110 270 Q120 262 130 270 Q140 262 150 270 Q160 262 170 270 Q180 262 190 270 Q200 262 210 270 Q220 262 230 270 Q240 262 250 270 Q260 262 270 270 Q280 262 290 270 Q300 262 310 270 Q320 262 330 270 Q340 262 350 270 Q360 262 370 270 Q380 262 390 270 Q396 264 398 272 Q384 340 300 346 H188 Q104 340 92 272Z" fill="#f3fafc" opacity=".8" stroke="#b5d6e0" stroke-width="2"/>
+<path d="M110 290 Q140 330 200 336" stroke="#fff" stroke-width="5" stroke-linecap="round" fill="none" opacity=".8"/>
+<path d="M366 286 q6 18 -4 34" stroke="#fff" stroke-width="3" fill="none" opacity=".7" stroke-linecap="round"/>
+</g>
+</svg>
+<figcaption><div class="stamp"><b>03</b><span>10/3（六） 14:58</span><span>・花蓮的冰果室</span></div><p class="story">黃色的桌子上來了一座水果山：蘋果、西瓜、香蕉、紅龍果，最上面還戴著一顆香草冰淇淋帽子。小手已經先出發了——等一下，先分大人一口嘛！</p><div class="note">店名未能確認・<a href="#d1">看 D1 行程 →</a></div></figcaption></figure>
+<figure class="book-page" id="sb04">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-label="撒固兒瀑布前的全家自拍">
+<defs>
+<linearGradient id="sb04-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cfe8d2"/><stop offset="1" stop-color="#9fcfa4"/></linearGradient>
+<linearGradient id="sb04-fall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#d9f1fb"/></linearGradient>
+</defs>
+<rect width="480" height="360" fill="url(#sb04-sky)"/>
+<path d="M0 0H480V120Q430 140 400 110Q370 70 330 90Q290 60 250 90Q200 70 160 100Q110 80 70 110Q30 100 0 130Z" fill="#7dbb83"/>
+<g fill="#5fa46a">
+<circle cx="40" cy="40" r="38"/><circle cx="110" cy="20" r="34"/><circle cx="180" cy="50" r="40"/><circle cx="430" cy="30" r="40"/><circle cx="470" cy="90" r="34"/><circle cx="20" cy="120" r="34"/>
+</g>
+<path d="M250 0H400Q390 60 405 130L425 270H185L205 170Q230 120 240 60Z" fill="#5b5865"/>
+<path d="M250 0H300Q280 40 270 30Q258 50 245 40Z M360 0H400Q395 40 400 70Q385 50 378 30Q368 20 360 0Z" fill="#5fa46a"/>
+<path d="M250 90Q258 140 240 200M375 90Q390 150 400 230M280 60Q270 90 285 130" stroke="#46434f" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M175 210Q160 170 190 150Q230 160 225 220Z" fill="#c9c3b4"/>
+<path d="M340 10Q350 14 346 34Q336 100 324 160Q312 210 300 252L272 254Q290 200 304 150Q318 90 330 14Z" fill="url(#sb04-fall)"/>
+<path d="M336 40Q326 100 314 150M340 70Q330 130 318 190M312 160Q300 200 288 244" stroke="#bfe6f5" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+<ellipse cx="270" cy="262" rx="140" ry="26" fill="#9fd6dd"/>
+<ellipse cx="280" cy="255" rx="40" ry="7" fill="#e6f7fa"/>
+<path d="M190 268Q210 264 230 268M300 274Q320 270 340 274" stroke="#ffffff" stroke-width="2" fill="none" stroke-linecap="round"/>
+<g fill="#4e9a5c">
+<path d="M0 140Q40 120 70 150Q60 190 20 200Q0 190 0 170Z"/>
+<path d="M60 170Q100 150 130 175Q120 215 85 222Q60 210 60 190Z" fill="#3f8a4f"/>
+<path d="M140 120Q170 100 195 125Q188 160 160 165Q140 155 140 135Z"/>
+<path d="M410 140Q450 120 480 150V210Q440 210 420 190Q405 165 410 140Z"/>
+<path d="M420 210Q450 195 480 215V260Q445 255 430 240Z" fill="#3f8a4f"/>
+</g>
+<g stroke="#2f7a41" stroke-width="2" fill="none"><path d="M35 140V195M95 175V218M168 125V160M445 150V205"/></g>
+<g stroke="#3d8b4c" stroke-width="3" fill="none" stroke-linecap="round">
+<path d="M380 290Q400 240 440 220M395 260l-10-8M405 248l-8-10M415 238l-6-12M392 262l14-2M402 250l14-2"/>
+<path d="M130 260Q120 220 140 190M128 240l-12-6M128 225l-12-8M131 212l-10-10M129 240l10-8M130 225l10-10"/>
+</g>
+<g fill="#ffffff" opacity=".7"><circle cx="262" cy="246" r="5"/><circle cx="296" cy="244" r="4"/><circle cx="278" cy="240" r="3"/></g>
+<path d="M-10 360V320Q0 285 50 280Q100 285 120 310L130 360Z" fill="#9aa1aa"/>
+<path d="M35 282L50 305L66 282" fill="#7d848e"/>
+<path d="M85 288Q95 320 92 360" stroke="#7d848e" stroke-width="3" fill="none"/>
+<use href="#sb-a" x="-6" y="150" width="136" height="136"/>
+<path d="M350 360V320Q360 290 410 284Q460 290 480 300V360Z" fill="#8f8a85"/>
+<path d="M392 286Q410 300 428 286" stroke="#7a7570" stroke-width="3" fill="none"/>
+<path d="M455 292Q462 330 458 360" stroke="#2c3a6b" stroke-width="12" fill="none"/>
+<use href="#sb-b" x="344" y="148" width="138" height="138"/>
+<path d="M160 360V320Q166 292 215 290Q262 292 268 320V360Z" fill="#f7d53f"/>
+<path d="M195 292Q215 306 235 292" stroke="#2c3a6b" stroke-width="4" fill="none"/>
+<use href="#sb-kid" x="158" y="186" width="114" height="114"/>
+<path d="M172 312Q150 300 128 304" stroke="#f6d2b4" stroke-width="13" fill="none" stroke-linecap="round"/>
+<ellipse cx="170" cy="312" rx="14" ry="12" fill="#f7d53f"/>
+<ellipse cx="122" cy="304" rx="12" ry="10" fill="#f6d2b4"/>
+<path d="M114 298l-4-6M120 296l-2-7M126 296l1-7" stroke="#f6d2b4" stroke-width="4" stroke-linecap="round"/>
+</svg>
+<figcaption><div class="stamp"><b>04</b><span>10/4（日） 10:37</span><span>・撒固兒瀑布（花蓮市郊）</span></div><p class="story">第二天早上，沿著溪走十分鐘，就聽見嘩啦嘩啦。細細的瀑布從黑色岩壁上滑下來，像一條白色的溜滑梯。三個人擠在一起，喀嚓！</p><div class="note">原定「留給 D2 早上」的備案，實際有去・<a href="#d2">看 D2 行程 →</a></div></figcaption></figure>
+<figure class="book-page" id="sb05">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-label="大農大富平地森林筆直步道上的全家大笑自拍">
+<defs>
+<linearGradient id="sb05-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef3e4"/><stop offset="1" stop-color="#cfe2bd"/></linearGradient>
+<clipPath id="sb05-a"><path d="M330 360V300Q350 268 395 266Q450 270 480 290V360Z"/></clipPath>
+</defs>
+<rect width="480" height="360" fill="url(#sb05-sky)"/>
+<path d="M0 0H480V90Q400 70 340 100Q300 80 250 108Q200 80 150 100Q80 70 0 90Z" fill="#b9d49a"/>
+<path d="M0 150Q120 120 250 118Q380 120 480 150V360H0Z" fill="#b59d86"/>
+<path d="M0 150Q120 122 245 119L180 160Q90 168 0 190Z" fill="#8fc46e"/>
+<path d="M480 150Q380 122 255 119L320 160Q400 166 480 186Z" fill="#8fc46e"/>
+<g fill="#7bb75a"><ellipse cx="40" cy="170" rx="30" ry="8"/><ellipse cx="120" cy="152" rx="26" ry="6"/><ellipse cx="420" cy="166" rx="34" ry="8"/><ellipse cx="350" cy="148" rx="24" ry="5"/></g>
+<g stroke="#6aa94c" stroke-width="2" fill="none" stroke-linecap="round"><path d="M20 182q10-14 26-16M30 180q6-10 4-20M150 160q10-12 24-12M400 172q12-14 28-14M440 176q4-12 0-20M330 156q10-10 22-10"/></g>
+<path d="M246 118H254L330 360H150Z" fill="#5b5a5e"/>
+<path d="M246 118L156 360M254 118L324 360" stroke="#ffffff" stroke-width="3"/>
+<g fill="#c99b62"><path d="M220 230l6 2-4 4z"/><path d="M268 200l6 1-3 5z"/><path d="M240 280l7 3-5 4z"/><path d="M280 300l7 1-4 5z"/><path d="M200 320l7 2-5 4z"/><path d="M252 170l5 1-3 3z"/></g>
+<g fill="#9c7a5b"><path d="M60 230l8 3-5 5z"/><path d="M110 260l8 2-6 5z"/><path d="M380 220l8 3-6 4z"/><path d="M430 260l8 2-5 5z"/><path d="M100 200l7 2-5 4z"/></g>
+<g fill="#ddd8cc" stroke="#a9a397" stroke-width="1">
+<rect x="236" y="40" width="3" height="80"/><rect x="261" y="40" width="3" height="80"/>
+<rect x="226" y="30" width="4" height="96"/><rect x="270" y="30" width="4" height="96"/>
+<rect x="212" y="20" width="5" height="114"/><rect x="283" y="20" width="5" height="114"/>
+<rect x="192" y="0" width="7" height="146"/><rect x="301" y="0" width="7" height="146"/>
+<rect x="162" y="0" width="9" height="166"/><rect x="329" y="0" width="9" height="166"/>
+<rect x="118" y="0" width="12" height="196"/><rect x="370" y="0" width="12" height="196"/>
+<rect x="60" y="0" width="16" height="240"/><rect x="424" y="0" width="16" height="240"/>
+<rect x="140" y="0" width="7" height="160"/><rect x="352" y="0" width="7" height="160"/>
+<rect x="88" y="0" width="9" height="185"/><rect x="398" y="0" width="9" height="185"/>
+<rect x="14" y="0" width="20" height="270"/><rect x="460" y="0" width="16" height="250"/>
+</g>
+<g fill="#8f897d"><rect x="64" y="60" width="6" height="3"/><rect x="66" y="140" width="7" height="3"/><rect x="428" y="90" width="7" height="3"/><rect x="18" y="110" width="9" height="4"/><rect x="122" y="80" width="5" height="3"/><rect x="374" y="130" width="6" height="3"/><rect x="164" y="50" width="4" height="2"/><rect x="332" y="100" width="4" height="2"/></g>
+<g fill="#9cc47c" opacity=".9"><circle cx="40" cy="20" r="22"/><circle cx="110" cy="10" r="18"/><circle cx="440" cy="18" r="22"/><circle cx="370" cy="8" r="16"/><circle cx="200" cy="6" r="14"/><circle cx="300" cy="8" r="14"/></g>
+<path d="M-10 360V300Q10 268 75 264Q140 268 170 300L176 360Z" fill="#9ea3a8"/>
+<path d="M20 280Q40 300 36 360M130 284Q140 320 140 360" stroke="#c2c6ca" stroke-width="8" fill="none" stroke-linecap="round"/>
+<path d="M50 266L74 286L98 266" fill="#7f7a76"/>
+<use href="#sb-b" x="-4" y="126" width="152" height="152"/>
+<path d="M330 360V300Q350 268 395 266Q450 270 480 290V360Z" fill="#6f7f76"/>
+<g clip-path="url(#sb05-a)" stroke="#55635b" stroke-width="3"><path d="M330 280L480 300M330 296L480 316M330 312L480 332M330 328L480 348M330 344L480 364"/></g>
+<path d="M378 268Q396 278 414 268" stroke="#55635b" stroke-width="5" fill="none"/>
+<use href="#sb-a" x="322" y="118" width="148" height="148"/>
+<path d="M150 360V330Q160 298 220 296Q285 298 300 330V360Z" fill="#f7d53f"/>
+<path d="M190 300Q220 316 252 300" stroke="#2c3a6b" stroke-width="4" fill="none"/>
+<use href="#sb-kid-sleep" x="156" y="186" width="130" height="130"/>
+<path d="M207 278Q221 300 235 278Z" fill="#b8423f"/>
+<ellipse cx="221" cy="290" rx="5" ry="3" fill="#e46b6b"/>
+<path d="M150 340Q160 312 176 312" stroke="#9ea3a8" stroke-width="16" fill="none" stroke-linecap="round"/>
+<ellipse cx="182" cy="312" rx="11" ry="9" fill="#efbf9b"/>
+<path d="M334 336Q300 330 280 318" stroke="#6f7f76" stroke-width="16" fill="none" stroke-linecap="round"/>
+<ellipse cx="272" cy="316" rx="11" ry="9" fill="#f2c7a5"/>
+<g stroke="#e8a838" stroke-width="2.5" stroke-linecap="round"><path d="M150 210l-12-8M146 226l-14 0M296 212l12-8M300 228l14 0"/></g>
+</svg>
+<figcaption><div class="stamp"><b>05</b><span>10/4（日） 14:34</span><span>・大農大富平地森林園區（光復）</span></div><p class="story">樹好直、路也好直，一直延伸到看不見的地方。大人說這裡以前是甘蔗田，現在變成一整片森林。不知道誰先笑的，結果三個人笑到停不下來。</p><div class="note">原排上午，實際改到午睡後的下午・<a href="#d2">看 D2 行程 →</a></div></figcaption></figure>
+<figure class="book-page" id="sb06">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-label="玉里民宿的晚餐：長長大理石餐桌與玩筷子的小旅人">
+<defs>
+<radialGradient id="sb06-glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff6c8" stop-opacity=".9"/><stop offset="1" stop-color="#fff6c8" stop-opacity="0"/></radialGradient>
+<clipPath id="sb06-in"><circle cx="412" cy="294" r="50"/></clipPath>
+</defs>
+<rect width="480" height="360" fill="#c9d8ea"/>
+<path d="M0 0H480L360 70H120Z" fill="#f4f4f2"/>
+<path d="M0 0L120 70V232L0 300Z" fill="#bccde2"/>
+<path d="M480 0L360 70V232L480 330Z" fill="#b5c7de"/>
+<rect x="120" y="70" width="240" height="162" fill="#d3e0ef"/>
+<path d="M0 300L120 232H360L480 330V360H0Z" fill="#e2d6c6"/>
+<g stroke="#cdbfac" stroke-width="1.5"><path d="M0 330L480 340M30 290L400 296M80 260L370 262M150 240L360 242"/><path d="M200 232L150 360M280 232L300 360M240 262L230 300M330 296L360 340M100 296L70 340"/></g>
+<rect x="134" y="140" width="52" height="34" fill="#e9eef3" stroke="#ffffff" stroke-width="3"/>
+<rect x="250" y="104" width="46" height="13" rx="3" fill="#ffffff" stroke="#c4ccd6"/>
+<path d="M282 182H340V196H282Z" fill="#2a2d36"/><path d="M286 196V226M336 196V226" stroke="#2a2d36" stroke-width="3"/>
+<path d="M326 172q-4 4 0 10h6q4-6 0-10z" fill="#7d9a86"/>
+<path d="M372 78L404 62V198L372 196Z" fill="#c7a24a"/>
+<path d="M375 83L401 70V194L375 192Z" fill="#4f6f8e"/>
+<path d="M380 160Q390 150 398 164V192H378Z" fill="#e0b85a"/>
+<circle cx="388" cy="120" r="10" fill="#7a9c86"/>
+<path d="M412 58L452 38V220L412 204Z" fill="#c7a24a"/>
+<path d="M416 64L448 46V214L416 200Z" fill="#3e5a78"/>
+<path d="M418 150Q440 130 446 160Q440 190 418 196Z" fill="#e7bf55"/>
+<g fill="#d8a640"><path d="M426 140l2-12 3 0 1 4 6 0 1-4 3 0-1 12-2 0 0 10-2 0-1-6-6 0-1 6-2 0z"/><path d="M428 128l-3-6M440 128l3-6" stroke="#d8a640" stroke-width="1.5"/></g>
+<path d="M432 116V78" stroke="#5a3d2a" stroke-width="3"/>
+<circle cx="432" cy="72" r="14" fill="#f0c24e"/><circle cx="442" cy="82" r="9" fill="#e7a93c"/><circle cx="424" cy="82" r="8" fill="#f4d061"/>
+<g fill="#f2c95a"><path d="M420 176l6 2-5 3z"/><path d="M432 186l6 2-5 3z"/><path d="M438 170l6 2-5 3z"/></g>
+<path d="M210 0V40M270 0V40" stroke="#b8952f" stroke-width="1"/>
+<path d="M200 40L280 34" stroke="#c7a24a" stroke-width="4" stroke-linecap="round"/>
+<circle cx="240" cy="44" r="40" fill="url(#sb06-glow)"/>
+<g fill="#ffffff" stroke="#e8d38a" stroke-width="1.5"><circle cx="206" cy="48" r="8"/><circle cx="222" cy="40" r="7"/><circle cx="240" cy="52" r="8"/><circle cx="258" cy="44" r="7"/><circle cx="274" cy="52" r="8"/><circle cx="250" cy="62" r="7"/></g>
+<g fill="#fff6c8"><circle cx="206" cy="48" r="3"/><circle cx="240" cy="52" r="3"/><circle cx="274" cy="52" r="3"/></g>
+<path d="M116 236Q112 196 136 176Q166 162 190 182L176 236Z" fill="#2f3a5c"/>
+<path d="M150 186Q170 200 192 216" stroke="#2f3a5c" stroke-width="13" fill="none" stroke-linecap="round"/>
+<use href="#sb-a" x="136" y="104" width="84" height="84" transform="rotate(14 178 146)"/>
+<path d="M166 196Q166 168 200 168Q232 168 232 196V232H166Z" fill="#f2b6c4"/>
+<path d="M182 212Q184 196 200 194Q218 196 220 212V228H182Z" fill="#fbf6ea"/>
+<path d="M190 200Q200 206 210 200" stroke="#9ac9a0" stroke-width="3" fill="none"/>
+<use href="#sb-kid" x="166" y="134" width="68" height="68"/>
+<path d="M150 210Q190 232 224 230" stroke="#2f3a5c" stroke-width="12" fill="none" stroke-linecap="round"/>
+<ellipse cx="228" cy="230" rx="7" ry="5" fill="#f2c7a5"/>
+<ellipse cx="192" cy="217" rx="5" ry="4" fill="#f6d2b4"/>
+<path d="M190 216L176 196M194 216L184 194" stroke="#8a5a34" stroke-width="2" stroke-linecap="round"/>
+<path d="M152 236L304 226L228 334L-10 304Z" fill="#23242b"/>
+<path d="M-10 304L228 334V342L-10 312Z" fill="#14151a"/>
+<path d="M228 334L304 226V232L228 342Z" fill="#14151a"/>
+<g stroke="#e8e8ee" stroke-width="2" fill="none" stroke-linecap="round" opacity=".85">
+<path d="M20 296Q60 290 90 300M60 280Q110 270 150 286M120 304Q160 300 200 312M180 252Q220 246 260 252M150 268Q190 262 230 270M230 290Q250 286 270 290M40 310Q80 312 120 318"/>
+<path d="M100 286l14-6M190 300l10-8M240 240l12-4" stroke-width="3"/>
+</g>
+<path d="M14 312V360M210 342V360M296 236V286" stroke="#c7a24a" stroke-width="8"/>
+<rect x="216" y="248" width="20" height="8" rx="2" fill="#c7a24a"/>
+<circle cx="226" cy="252" r="3" fill="#ffb347"/>
+<path d="M214 238Q214 226 226 226Q238 226 238 238V246H214Z" fill="#e6a46a" opacity=".85" stroke="#ffffff" stroke-width="1.5"/>
+<path d="M238 232Q246 232 244 240" stroke="#ffffff" stroke-width="2" fill="none"/>
+<rect x="262" y="226" width="30" height="8" rx="2" fill="#1a1a1f"/>
+<path d="M264 226V214H290V226Z" fill="#c9ccd2"/><path d="M262 214H292" stroke="#9aa0a8" stroke-width="2"/>
+<path d="M270 208q-3-5 0-9M278 206q-3-5 0-9M286 208q-3-5 0-9" stroke="#ffffff" stroke-width="2" fill="none" stroke-linecap="round"/>
+<g fill="#d4b483"><path d="M120 264L156 262L150 276L114 278Z"/><path d="M40 286L80 284L72 298L32 300Z"/></g>
+<path d="M250 312L292 316L290 324L248 320Z" fill="#2a2d36"/>
+<path d="M262 272Q282 268 296 276L292 306Q276 300 258 302Z" fill="#3b3e47"/>
+<path d="M252 320L248 354M288 324L292 354M292 306L292 318" stroke="#2a2d36" stroke-width="4"/>
+<circle cx="412" cy="294" r="54" fill="#ffffff"/>
+<g clip-path="url(#sb06-in)">
+<rect x="350" y="230" width="130" height="130" fill="#dcecf6"/>
+<rect x="372" y="250" width="80" height="94" rx="8" fill="#ffffff" stroke="#b9c3cf" stroke-width="2"/>
+<rect x="380" y="256" width="24" height="7" rx="2" fill="#e3e7ec"/><circle cx="430" cy="260" r="5" fill="#c9ced6"/>
+<circle cx="412" cy="304" r="27" fill="#3b4250"/>
+<circle cx="412" cy="304" r="21" fill="#8fd0ee"/>
+<path d="M393 306Q412 296 431 306V312Q412 326 393 312Z" fill="#f7d53f"/>
+<path d="M398 296Q406 290 414 296" stroke="#ffffff" stroke-width="2" fill="none"/>
+</g>
+<g fill="#ffffff" stroke="#8fd0ee" stroke-width="1.5"><circle cx="372" cy="250" r="7"/><circle cx="360" cy="268" r="5"/><circle cx="452" cy="250" r="6"/><circle cx="462" cy="270" r="4"/><circle cx="384" cy="236" r="4"/></g>
+<circle cx="412" cy="294" r="54" fill="none" stroke="#c7a24a" stroke-width="3"/>
+<rect x="374" y="340" width="76" height="18" rx="9" fill="#c7a24a"/>
+<text x="412" y="353" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">17:43 洗衣</text>
+</svg>
+<figcaption><div class="stamp"><b>06</b><span>10/4（日） 17:43–18:02</span><span>・玉里・小牧山秋與晚餐</span></div><p class="story">到了玉里的家——要住兩個晚上喔！先把衣服丟進洗衣機轉圈圈，再到長長的大理石桌吃晚餐。小旅人坐在粉紅色寶寶椅上，拿筷子當鼓棒，咚咚咚。</p><div class="note">洗衣在小牧山秋；晚餐空間是否同一處未確認・<a href="#d2">看 D2 行程 →</a></div></figcaption></figure>
+<figure class="book-page" id="sb07">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-label="南安瀑布前的三人自拍，寶寶鼓著臉頰">
+<defs>
+<linearGradient id="sb07-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cfeaf2"/><stop offset="1" stop-color="#e9f6e2"/></linearGradient>
+<linearGradient id="sb07-fall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e3f4fa"/></linearGradient>
+<linearGradient id="sb07-pool" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9fe0dc"/><stop offset="1" stop-color="#5fc4c4"/></linearGradient>
+</defs>
+<rect width="480" height="360" fill="url(#sb07-sky)"/>
+<path d="M150 0 L360 0 L380 230 L130 230Z" fill="#a9aba6"/>
+<path d="M190 30 L215 120 M300 40 L320 150 M175 140 L200 210 M330 160 L350 220" stroke="#8f918c" stroke-width="5" stroke-linecap="round"/>
+<g fill="#8cc66b">
+<circle cx="20" cy="30" r="50"/><circle cx="95" cy="15" r="45"/><circle cx="160" cy="70" r="40"/><circle cx="60" cy="110" r="55"/><circle cx="140" cy="140" r="38"/><circle cx="200" cy="10" r="30"/>
+<circle cx="350" cy="20" r="40"/><circle cx="420" cy="30" r="55"/><circle cx="470" cy="110" r="50"/><circle cx="380" cy="120" r="45"/><circle cx="340" cy="190" r="34"/><circle cx="430" cy="190" r="45"/>
+</g>
+<g fill="#b3dc8a"><circle cx="40" cy="70" r="22"/><circle cx="110" cy="45" r="18"/><circle cx="400" cy="70" r="24"/><circle cx="455" cy="160" r="20"/><circle cx="160" cy="110" r="14"/></g>
+<g fill="#6aa75a"><circle cx="100" cy="160" r="30"/><circle cx="385" cy="175" r="26"/><circle cx="295" cy="10" r="14"/></g>
+<path d="M254 0 L264 0 Q268 120 276 222 L242 222 Q250 120 254 0Z" fill="url(#sb07-fall)"/>
+<path d="M258 10 L257 200 M264 30 L268 210" stroke="#cdeaf2" stroke-width="2"/>
+<ellipse cx="259" cy="226" rx="30" ry="7" fill="#fff" opacity=".85"/><circle cx="240" cy="220" r="7" fill="#fff" opacity=".7"/><circle cx="278" cy="220" r="7" fill="#fff" opacity=".7"/>
+<path d="M180 230 Q300 222 480 236 L480 360 L180 360Z" fill="url(#sb07-pool)"/>
+<path d="M300 262 q12 -4 24 0 M360 280 q12 -4 24 0 M420 300 q10 -4 20 0" stroke="#e6fbf8" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+<g fill="#c9c6bb" stroke="#a29e92" stroke-width="2">
+<rect x="372" y="196" width="46" height="24" rx="10"/><rect x="420" y="192" width="60" height="26" rx="10"/>
+<rect x="356" y="220" width="40" height="22" rx="10"/><rect x="398" y="220" width="50" height="22" rx="10"/><rect x="450" y="219" width="34" height="22" rx="10"/>
+<rect x="380" y="243" width="44" height="20" rx="9"/><rect x="426" y="243" width="56" height="20" rx="9"/>
+</g>
+<g fill="#cfccc0"><ellipse cx="220" cy="232" rx="30" ry="12"/><ellipse cx="300" cy="230" rx="26" ry="10"/></g>
+<path d="M0 150 Q40 128 110 150 Q190 180 228 260 Q236 300 220 360 L0 360Z" fill="#c2bfb3"/>
+<path d="M20 160 Q90 150 150 190" stroke="#d9d6cb" stroke-width="10" fill="none" stroke-linecap="round"/>
+<g fill="#aeaa9d"><circle cx="60" cy="200" r="5"/><circle cx="120" cy="230" r="4"/><circle cx="170" cy="250" r="6"/><circle cx="40" cy="250" r="4"/></g>
+<path d="M-10 360 L-10 300 Q10 270 80 268 Q150 270 176 300 L180 360Z" fill="#3c5684"/>
+<path d="M52 270 Q80 290 108 270" stroke="#2f466e" stroke-width="5" fill="none"/>
+<path d="M126 300 L140 360" stroke="#c84a4a" stroke-width="8"/>
+<use href="#sb-b" x="28" y="178" width="104" height="104"/>
+<path d="M300 360 L300 300 Q320 272 370 270 Q430 272 450 300 L456 360Z" fill="#3c5684"/>
+<path d="M350 272 Q372 290 394 272" stroke="#2f466e" stroke-width="5" fill="none"/>
+<path d="M310 290 L330 360 M432 285 L420 360" stroke="#24345a" stroke-width="12" stroke-linecap="round"/>
+<g fill="#e9b04a"><circle cx="326" cy="320" r="2"/><circle cx="425" cy="318" r="2"/><circle cx="328" cy="342" r="2"/></g>
+<use href="#sb-a" x="324" y="186" width="96" height="96"/>
+<path d="M168 360 L170 322 Q190 300 228 300 Q268 300 286 322 L288 360Z" fill="#253a66"/>
+<path d="M208 302 Q228 314 248 302" stroke="#1b2c50" stroke-width="4" fill="none"/>
+<ellipse cx="226" cy="358" rx="16" ry="6" fill="#7cd36b"/>
+<path d="M268 336 Q280 326 292 334 Q286 346 272 346Z" fill="#f2c7a5"/>
+<g transform="translate(180 218) scale(0.96)">
+<ellipse cx="24" cy="70" rx="13" ry="12" fill="#f6d2b4"/><ellipse cx="76" cy="70" rx="13" ry="12" fill="#f6d2b4"/>
+<use href="#sb-kid" width="100" height="100"/>
+<ellipse cx="24" cy="71" rx="11" ry="10" fill="#f6d2b4"/><ellipse cx="76" cy="71" rx="11" ry="10" fill="#f6d2b4"/>
+<ellipse cx="50" cy="75" rx="11" ry="7" fill="#f6d2b4"/>
+<ellipse cx="26" cy="72" rx="7" ry="4.5" fill="#f3a3a0" opacity=".8"/><ellipse cx="74" cy="72" rx="7" ry="4.5" fill="#f3a3a0" opacity=".8"/>
+<path d="M45 77 Q47.5 75 50 77 Q52.5 75 55 77" stroke="#9c3b36" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+<path d="M33 49 L43 49 M57 49 L67 49" stroke="#1d1d24" stroke-width="2" stroke-linecap="round"/>
+<path d="M8 66 l-6 -3 M7 73 l-7 0 M7 80 l-6 3 M92 66 l6 -3 M93 73 l7 0 M93 80 l6 3" stroke="#d98a7a" stroke-width="2" stroke-linecap="round"/>
+</g>
+</svg>
+<figcaption><div class="stamp"><b>07</b><span>10/5（一） 09:03</span><span>・南安瀑布（卓溪・玉山國家公園）</span></div><p class="story">今天換個順序：一早先進山。好高好高的瀑布從天上掉下來，水潭是藍綠色的。小旅人鼓起臉頰，很認真地研究：水到底是從哪裡來的？</p><div class="note">原排下午，實際移到早上・<a href="#d3">看 D3 行程 →</a></div></figcaption></figure>
+<figure class="book-page" id="sb08">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-label="陶錫工藝課，寶寶穿著超大號圍裙被抱著">
+<defs>
+<linearGradient id="sb08-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bfe3f3"/><stop offset="1" stop-color="#eaf6f4"/></linearGradient>
+</defs>
+<rect width="480" height="360" fill="url(#sb08-sky)"/>
+<path d="M0 150 Q60 100 120 135 Q180 90 250 130 Q320 95 390 128 Q440 105 480 125 L480 190 L0 190Z" fill="#8fb7a0"/>
+<path d="M0 170 Q80 140 160 165 Q260 135 360 162 Q420 148 480 160 L480 200 L0 200Z" fill="#7aa98a"/>
+<rect y="185" width="480" height="70" fill="#a9db6b"/>
+<path d="M0 200 H480 M0 218 H480 M0 238 H480" stroke="#c4ea8c" stroke-width="3"/>
+<path d="M0 252 H480" stroke="#8a7d68" stroke-width="3"/>
+<g stroke="#b9a983" stroke-width="2"><path d="M20 236 V256 M40 236 V256 M60 236 V256 M80 236 V256 M100 236 V256 M400 236 V256 M420 236 V256 M440 236 V256 M460 236 V256"/></g>
+<g fill="#5f9c58"><circle cx="70" cy="190" r="34"/><circle cx="110" cy="200" r="26"/><circle cx="420" cy="185" r="30"/><circle cx="460" cy="200" r="26"/></g>
+<g fill="#78b46a"><circle cx="60" cy="178" r="16"/><circle cx="430" cy="172" r="14"/></g>
+<path d="M0 255 H480 V360 H0Z" fill="#c9cbc8"/>
+<path d="M-10 0 H490 V70 Q400 58 240 66 Q80 58 -10 72Z" fill="#f6f4ef"/>
+<path d="M-10 72 Q80 58 240 66 Q400 58 490 70" stroke="#d8d4ca" stroke-width="4" fill="none"/>
+<path d="M0 30 L120 66 L240 20 L360 66 L480 30 M120 66 L120 0 M360 66 L360 0" stroke="#3a3a40" stroke-width="3" fill="none"/>
+<path d="M110 66 V300 M372 66 V260" stroke="#3a3a40" stroke-width="4"/>
+<path d="M-10 238 H150 L160 330 H-10Z" fill="#fbfaf4"/>
+<path d="M-10 238 H150 L154 250 H-10Z" fill="#ebe8dc"/>
+<path d="M140 330 V360" stroke="#2c2c30" stroke-width="5"/>
+<path d="M4 228 L76 226 L80 240 L0 242Z" fill="#c9a98a"/><ellipse cx="40" cy="226" rx="20" ry="11" fill="#c99a7b"/><ellipse cx="34" cy="221" rx="7" ry="3" fill="#dcb497"/>
+<path d="M92 230 L140 229 L142 238 L90 239Z" fill="#c9a98a"/><ellipse cx="116" cy="227" rx="12" ry="7" fill="#c99a7b"/>
+<path d="M380 250 H490 V300 H372Z" fill="#fbfaf4"/>
+<path d="M380 300 V350 M470 300 V360" stroke="#2c2c30" stroke-width="5"/>
+<path d="M410 236 Q440 230 476 238 L478 252 L408 252Z" fill="#c79a62"/>
+<rect x="384" y="232" width="26" height="20" rx="3" fill="#6ab0d6"/><path d="M384 238 H410 M384 244 H410" stroke="#e05a6a" stroke-width="3"/>
+<path d="M262 330 L258 262 H298 L300 332Z M306 332 L304 262 H340 L338 330Z" fill="#f2c7a5"/>
+<path d="M254 220 Q252 262 256 272 H344 Q348 250 344 220Z" fill="#2a2d36"/>
+<rect x="262" y="330" width="14" height="10" fill="#4a4e5a"/><rect x="314" y="330" width="14" height="10" fill="#4a4e5a"/>
+<path d="M250 348 Q252 334 268 336 Q284 338 288 350 Z" fill="#9cf04a" stroke="#4e7a1e" stroke-width="2"/>
+<path d="M302 350 Q304 334 320 336 Q336 338 340 350 Z" fill="#9cf04a" stroke="#4e7a1e" stroke-width="2"/>
+<path d="M250 348 H288 V352 H250Z M302 350 H340 V354 H302Z" fill="#f5a64a"/>
+<path d="M258 130 Q298 118 340 130 L352 175 L338 180 L344 226 H254 L258 180 L244 176Z" fill="#647a92"/>
+<path d="M286 130 L298 150 L312 130" fill="#f2c7a5"/>
+<path d="M318 150 l14 -6 l2 22 l-12 6Z" fill="#c9443d"/>
+<use href="#sb-a" x="262" y="56" width="76" height="76"/>
+<path d="M222 170 Q232 150 262 150 Q284 152 288 176 L284 214 Q260 222 230 212Z" fill="#2c3352"/>
+<g transform="translate(206 92) scale(0.66)"><use href="#sb-kid" width="100" height="100"/>
+<path d="M33 48 L43 47 M57 47 L67 48" stroke="#1d1d24" stroke-width="2" stroke-linecap="round"/></g>
+<path d="M226 160 Q214 150 212 136" stroke="#2c3352" stroke-width="12" stroke-linecap="round" fill="none"/>
+<circle cx="211" cy="132" r="7" fill="#f6d2b4"/>
+<path d="M236 214 Q250 230 272 222 L268 238 Q246 240 232 228Z" fill="#7c8492"/>
+<path d="M282 236 Q296 236 300 248 Q290 254 280 250Z" fill="#7c8492"/><ellipse cx="302" cy="250" rx="9" ry="6" fill="#e9534a"/>
+<path d="M238 160 Q250 154 262 160 L268 196 Q292 204 294 214 Q300 280 294 344 L236 350 Q208 330 208 270 Q210 216 220 206 Q232 200 236 196Z" fill="#c9965a"/>
+<path d="M238 160 Q250 154 262 160" stroke="#8a5e34" stroke-width="3" fill="none"/>
+<path d="M240 160 Q240 152 236 148 M262 160 Q262 152 268 148" stroke="#8a5e34" stroke-width="3" fill="none"/>
+<path d="M220 206 L196 214 M294 214 L318 222" stroke="#8a5e34" stroke-width="3"/>
+<path d="M226 258 Q246 256 262 258 L262 292 Q244 296 226 292Z" fill="#b8854a"/>
+<path d="M214 338 L236 350 L294 344" stroke="#a87840" stroke-width="2" fill="none"/>
+<text x="276" y="250" font-family="sans-serif" font-size="9" fill="#fff8ec" writing-mode="tb" letter-spacing="1">陶錫工藝</text>
+<path d="M344 186 Q340 228 300 234 L232 232" stroke="#f2c7a5" stroke-width="14" stroke-linecap="round" fill="none"/>
+<path d="M340 168 Q350 186 344 200" stroke="#647a92" stroke-width="16" stroke-linecap="round" fill="none"/>
+<rect x="300" y="226" width="12" height="16" rx="3" fill="#e8e8ea" stroke="#777" stroke-width="1.5"/>
+</svg>
+<figcaption><div class="stamp"><b>08</b><span>10/5（一） 10:15</span><span>・陶錫工藝（玉里觀音里）</span></div><p class="story">稻田旁的白色帳篷下，桌上放著一團一團軟軟的陶土。工作室借給小旅人一件圍裙——哎呀，太大了，整個人都被包起來，變成一顆會走路的牛皮紙袋！</p><div class="note">照片圍裙印有「陶錫工藝」・<a href="#d3">看 D3 行程 →</a></div></figcaption></figure>
+<figure class="book-page" id="sb09">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-label="八仙洞靈岩洞巨大岩壁下的仰角自拍">
+<defs>
+<linearGradient id="sb09-cave" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2a30"/><stop offset="1" stop-color="#16161b"/></linearGradient>
+</defs>
+<rect width="480" height="360" fill="#5e6068"/><path d="M0 0 H70 Q30 20 0 40Z" fill="#dfe9ee"/>
+<path d="M-10 60 Q120 20 210 50 Q140 160 120 360 L-10 360Z" fill="#6f7178"/>
+<path d="M490 40 Q360 20 270 50 Q350 170 370 360 L490 360Z" fill="#6c6e74"/>
+<path d="M60 360 Q90 160 200 50 Q170 50 140 70 Q40 200 20 360Z" fill="#a39d90"/>
+<path d="M420 360 Q400 170 285 52 Q320 54 350 80 Q450 200 470 360Z" fill="#9c968a"/>
+<path d="M110 360 Q130 170 215 56 L232 62 Q160 180 160 360Z" fill="#7d7a73"/>
+<path d="M370 360 Q350 180 268 58 L252 62 Q320 190 320 360Z" fill="#85827a"/>
+<path d="M30 300 Q60 170 170 70 M450 300 Q420 170 320 72 M90 330 Q110 200 190 90 M400 330 Q380 200 300 92" stroke="#c9c3b5" stroke-width="3" fill="none" opacity=".7"/>
+<path d="M0 120 Q70 90 140 110 M480 110 Q420 85 350 105" stroke="#4d4f56" stroke-width="6" fill="none"/>
+<path d="M240 40 Q262 70 272 140 Q300 230 316 300 L170 300 Q190 220 214 140 Q222 70 240 40Z" fill="url(#sb09-cave)"/>
+<path d="M250 140 Q268 200 280 290 M226 160 Q216 220 210 290" stroke="#3c3c44" stroke-width="5" fill="none"/>
+<g fill="#5f8f4a"><circle cx="218" cy="170" r="10"/><circle cx="208" cy="180" r="8"/><circle cx="270" cy="180" r="9"/><circle cx="280" cy="188" r="7"/></g>
+<g fill="#6d9e56"><circle cx="150" cy="292" r="26"/><circle cx="190" cy="280" r="24"/><circle cx="232" cy="276" r="26"/><circle cx="276" cy="282" r="24"/><circle cx="316" cy="292" r="24"/></g>
+<circle cx="226" cy="246" r="34" fill="#7aae5e"/><circle cx="196" cy="256" r="22" fill="#6d9e56"/><circle cx="258" cy="258" r="22" fill="#6d9e56"/><g fill="#8dbf6c"><circle cx="186" cy="270" r="9"/><circle cx="236" cy="264" r="10"/><circle cx="282" cy="272" r="9"/></g>
+<text x="78" y="130" font-family="sans-serif" font-size="22" font-weight="bold" fill="#f4f1ea" writing-mode="tb" letter-spacing="4">靈岩洞</text>
+<g fill="#5c8f4c"><circle cx="20" cy="70" r="22"/><circle cx="50" cy="60" r="18"/><circle cx="170" cy="30" r="20"/><circle cx="200" cy="20" r="16"/>
+<circle cx="440" cy="40" r="34"/><circle cx="470" cy="90" r="30"/><circle cx="420" cy="160" r="30"/><circle cx="460" cy="180" r="34"/><circle cx="380" cy="200" r="26"/><circle cx="350" cy="230" r="22"/><circle cx="30" cy="230" r="26"/><circle cx="10" cy="270" r="22"/></g>
+<g fill="#7fb062"><circle cx="430" cy="30" r="14"/><circle cx="415" cy="150" r="12"/><circle cx="455" cy="170" r="14"/><circle cx="375" cy="194" r="10"/><circle cx="24" cy="222" r="10"/></g>
+<path d="M300 360 Q320 310 370 306 Q440 304 480 330 L480 360Z" fill="#647a92"/>
+<use href="#sb-a" x="294" y="206" width="120" height="120"/>
+<path d="M-10 360 Q10 340 60 336 Q120 338 160 360Z" fill="#3c5684"/>
+<use href="#sb-b" x="-6" y="214" width="156" height="156"/>
+<path d="M150 360 Q170 340 230 338 Q290 340 310 360Z" fill="#253a66"/>
+<path d="M300 336 Q330 312 350 330 Q336 350 312 352Z" fill="#647a92"/>
+<g transform="translate(150 222) scale(1.5)">
+<use href="#sb-kid" width="100" height="100"/>
+<ellipse cx="50" cy="75" rx="11" ry="7" fill="#f6d2b4"/>
+<path d="M45 78 Q50 75.5 55 78" stroke="#9c3b36" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+<path d="M32 48 Q38 48 44 51 M68 48 Q62 48 56 51" stroke="#1d1d24" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+<path d="M48 44 L49 48 M52 44 L51 48" stroke="#d9a888" stroke-width="1.4" stroke-linecap="round"/>
+</g>
+</svg>
+<figcaption><div class="stamp"><b>09</b><span>10/5（一） 16:44</span><span>・八仙洞・靈岩洞（台東長濱）</span></div><p class="story">午睡醒來，翻過玉長公路去看海邊的大山洞。岩壁上一層一層像蛋糕，洞口好高好高。石頭上刻著三個字「靈岩洞」，小旅人皺著眉頭：這麼大的洞，裡面住的是誰？</p><div class="note">照片岩壁刻字「靈岩洞」，原計畫外的新增景點・<a href="#d3">看 D3 行程 →</a></div></figcaption></figure>
+<figure class="book-page" id="sb10">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-label="玉里南洋小館晚餐，小旅人坐在白色餐椅上好奇地看著一大碗湯麵">
+<defs>
+<radialGradient id="sb10-glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff6c8" stop-opacity=".9"/><stop offset="1" stop-color="#fff6c8" stop-opacity="0"/></radialGradient>
+<linearGradient id="sb10-neon" x1="0" x2="1"><stop offset="0" stop-color="#ff5c9a"/><stop offset=".5" stop-color="#b65cff"/><stop offset="1" stop-color="#4f7bff"/></linearGradient>
+<clipPath id="sb10-broth"><ellipse cx="290" cy="268" rx="96" ry="40"/></clipPath>
+</defs>
+<rect width="480" height="360" fill="#f1c95f"/>
+<rect x="0" y="0" width="480" height="40" fill="#e9bd4f"/>
+<rect x="18" y="20" width="96" height="30" rx="6" fill="#fbf7ee"/><rect x="24" y="40" width="84" height="4" rx="2" fill="#ddd6c6"/>
+<rect x="300" y="88" width="180" height="110" fill="#6e4d8c"/>
+<g fill="none" stroke="#c9a9e0" stroke-width="2" opacity=".85">
+<circle cx="340" cy="120" r="14"/><circle cx="390" cy="120" r="14"/><circle cx="440" cy="120" r="14"/>
+<circle cx="365" cy="160" r="12"/><circle cx="415" cy="160" r="12"/><circle cx="465" cy="160" r="12"/>
+<path d="M300 96 H480 M300 190 H480"/>
+</g>
+<g fill="#f2d57e" opacity=".9"><circle cx="340" cy="120" r="4"/><circle cx="390" cy="120" r="4"/><circle cx="440" cy="120" r="4"/><circle cx="365" cy="160" r="3"/><circle cx="415" cy="160" r="3"/><circle cx="465" cy="160" r="3"/></g>
+<rect x="296" y="196" width="184" height="34" fill="#4a3560"/>
+<rect x="306" y="200" width="160" height="8" rx="4" fill="url(#sb10-neon)"/>
+<rect x="296" y="196" width="184" height="30" fill="url(#sb10-neon)" opacity=".25"/>
+<g opacity=".55" fill="#7c4a5a"><ellipse cx="350" cy="190" rx="10" ry="12"/><path d="M336 230 Q338 200 350 200 Q362 200 364 230Z"/><ellipse cx="430" cy="180" rx="10" ry="12"/><path d="M416 230 Q418 192 430 192 Q442 192 444 230Z"/></g>
+<g stroke="#7a6a50" stroke-width="1.5"><path d="M190 0 V40"/><path d="M240 0 V70"/><path d="M285 0 V30"/><path d="M150 0 V60"/></g>
+<circle cx="190" cy="56" r="34" fill="url(#sb10-glow)"/><circle cx="240" cy="88" r="38" fill="url(#sb10-glow)"/><circle cx="285" cy="48" r="30" fill="url(#sb10-glow)"/><circle cx="150" cy="76" r="30" fill="url(#sb10-glow)"/>
+<ellipse cx="190" cy="56" rx="14" ry="18" fill="#7fd6c4" stroke="#fff" stroke-width="2"/>
+<ellipse cx="240" cy="88" rx="16" ry="20" fill="#f5b04e" stroke="#fff" stroke-width="2"/>
+<ellipse cx="285" cy="48" rx="13" ry="17" fill="#f08bb0" stroke="#fff" stroke-width="2"/>
+<ellipse cx="150" cy="76" rx="12" ry="16" fill="#8fb8f0" stroke="#fff" stroke-width="2"/>
+<g fill="#fff" opacity=".7"><ellipse cx="185" cy="50" rx="3" ry="6"/><ellipse cx="234" cy="81" rx="3.5" ry="7"/><ellipse cx="280" cy="42" rx="3" ry="6"/><ellipse cx="146" cy="70" rx="3" ry="5"/></g>
+<g transform="translate(0 -22)">
+<path d="M16 150 Q16 112 70 110 Q124 112 124 150 L124 300 L16 300Z" fill="#fbfbfb" stroke="#d9d6d0" stroke-width="2"/>
+<path d="M40 300 Q38 210 80 204 Q122 210 120 300Z" fill="#2f3550"/>
+<use href="#sb-kid" x="32" y="122" width="96" height="96"/>
+<g fill="#fff"><ellipse cx="68.5" cy="177.7" rx="6" ry="5.4"/><ellipse cx="91.5" cy="177.7" rx="6" ry="5.4"/></g>
+<g fill="#1d1d24"><circle cx="71.8" cy="179" r="4"/><circle cx="94.8" cy="179" r="4"/></g>
+<g fill="#fff"><circle cx="73" cy="177.6" r="1.3"/><circle cx="96" cy="177.6" r="1.3"/></g>
+<g stroke="#1d1d24" stroke-width="2" stroke-linecap="round" fill="none"><path d="M62 171 Q68 168 74 170"/><path d="M85 170 Q91 168 98 171"/></g>
+<ellipse cx="91" cy="164.5" rx="5" ry="2.8" fill="#f27c8c" opacity=".9"/>
+<text x="138" y="140" font-family="sans-serif" font-size="18" font-weight="bold" fill="#c0563a">?</text>
+</g>
+<rect x="0" y="222" width="480" height="138" fill="#8a5a3c"/><rect x="0" y="222" width="480" height="6" fill="#a8744f"/>
+<path d="M40 226 L480 220 L480 360 L24 360Z" fill="#9b2f34"/>
+<g fill="none" stroke-width="2.4" stroke-linecap="round">
+<path d="M150 240 q10 -10 20 0 t20 0" stroke="#e9b44c"/><path d="M420 232 q10 -10 20 0 t20 0" stroke="#5fb08a"/>
+<path d="M140 300 q8 -12 18 -2" stroke="#5fb08a"/><path d="M60 300 q8 -12 18 -2" stroke="#e9b44c"/><path d="M90 336 q10 -10 20 0" stroke="#6aa2d8"/><path d="M200 232 q6 -8 14 -2" stroke="#6aa2d8"/>
+<path d="M370 236 q8 -10 18 -2" stroke="#e9b44c"/><path d="M160 340 q10 -10 20 0" stroke="#e9b44c"/>
+</g>
+<g fill="#f0c56b" opacity=".85"><circle cx="230" cy="236" r="3"/><circle cx="455" cy="250" r="3"/><circle cx="135" cy="270" r="3"/><circle cx="350" cy="232" r="2.5"/></g>
+<path d="M200 296 L470 284 L476 360 L196 360Z" fill="#fbf5ee"/>
+<path d="M200 300 L470 288" stroke="#a5543f" stroke-width="3" stroke-dasharray="6 4"/>
+<text x="350" y="342" font-family="sans-serif" font-size="26" font-style="italic" fill="#a5543f" transform="rotate(-3 350 342)">Welcome</text>
+<path d="M96 226 Q112 222 124 236" stroke="#2f3550" stroke-width="15" fill="none" stroke-linecap="round"/><ellipse cx="130" cy="240" rx="10" ry="8" fill="#f6d2b4"/>
+<path d="M64 226 Q52 232 50 244" stroke="#2f3550" stroke-width="15" fill="none" stroke-linecap="round"/><ellipse cx="50" cy="248" rx="9" ry="7.5" fill="#f6d2b4"/>
+<ellipse cx="180" cy="236" rx="30" ry="10" fill="#fff"/>
+<path d="M150 236 Q152 262 180 262 Q208 262 210 236Z" fill="#f4f1ea" stroke="#ddd8cc"/>
+<ellipse cx="180" cy="237" rx="26" ry="7.5" fill="#d9c98f"/>
+<path d="M166 236 q6 -4 10 1 q5 4 10 -1 M172 240 q5 2 12 -1" stroke="#2f5a3a" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+<ellipse cx="290" cy="288" rx="122" ry="44" fill="#5d4637" opacity=".25"/>
+<path d="M168 268 Q172 330 290 334 Q408 330 412 268Z" fill="#eef0f2" stroke="#c9ced6" stroke-width="2"/>
+<ellipse cx="290" cy="266" rx="122" ry="48" fill="#f3f4f6" stroke="#c9ced6" stroke-width="2"/>
+<ellipse cx="290" cy="266" rx="110" ry="43" fill="none" stroke="#a9b6c8" stroke-width="5" stroke-dasharray="2 3" opacity=".6"/>
+<ellipse cx="290" cy="268" rx="96" ry="40" fill="#c9a96b"/>
+<g clip-path="url(#sb10-broth)">
+<g fill="none" stroke="#f7ecc8" stroke-width="5" stroke-linecap="round">
+<path d="M206 262 q14 -18 28 0 t28 0 t28 0 t28 0 t28 0 t28 0"/>
+<path d="M200 280 q14 16 28 0 t28 0 t28 0 t28 0 t28 0 t28 0"/>
+<path d="M230 248 q12 12 24 0 t24 0 t24 0 t24 0"/>
+<path d="M236 296 q12 -12 24 0 t24 0 t24 0 t24 0"/>
+</g>
+<rect x="216" y="242" width="40" height="30" rx="3" fill="#ece3cc" stroke="#cbbf9e" transform="rotate(-10 236 257)"/>
+<circle cx="322" cy="248" r="14" fill="#a68b6e"/><circle cx="346" cy="266" r="13" fill="#b0967a"/>
+<circle cx="318" cy="244" r="4" fill="#c8b296"/><circle cx="342" cy="262" r="4" fill="#c8b296"/>
+<path d="M300 276 Q316 262 340 274 Q356 286 340 298 Q314 304 300 292Z" fill="#7a4d36"/>
+<path d="M310 280 q10 -4 22 2" stroke="#a46d50" stroke-width="3" fill="none"/>
+<path d="M232 292 Q262 270 300 256 Q290 280 252 298Z" fill="#3e8a4a"/>
+<path d="M244 290 Q276 272 300 256 Q282 266 262 286Z" fill="#a8d88a"/>
+<path d="M220 278 Q240 262 262 262 Q248 278 228 286Z" fill="#2f7040"/>
+</g>
+<path d="M276 258 q4 -12 0 -22 M296 254 q-4 -12 2 -24 M316 256 q4 -10 0 -20" stroke="#fff" stroke-width="2.5" fill="none" opacity=".7" stroke-linecap="round"/>
+<path d="M404 232 L460 230 L456 258 L410 260Z" fill="#fbfbfb" stroke="#ddd" stroke-width="1.5"/>
+<ellipse cx="432" cy="244" rx="18" ry="8" fill="#3b1e14"/>
+<g fill="#e5352f"><circle cx="425" cy="242" r="2.6"/><circle cx="436" cy="246" r="2.6"/><circle cx="440" cy="240" r="2.2"/></g>
+<circle cx="430" cy="248" r="1.4" fill="#f4e2a0"/>
+<path d="M448 270 L462 358 M458 268 L474 356" stroke="#b07a44" stroke-width="4" stroke-linecap="round"/>
+<path d="M448 270 L451 288 M458 268 L461 286" stroke="#7a4f2a" stroke-width="4" stroke-linecap="round"/>
+</svg>
+<figcaption><div class="stamp"><b>10</b><span>10/5（一） 18:36–18:46</span><span>・玉里・星馬風味小館（晚餐）</span></div><p class="story">回到玉里吃晚餐，桌墊上印著花花的蠟染圖案，大碗湯麵裡有肉丸、牛肋和青江菜。小旅人額頭上有一個小小的紅印子——那是今天勇敢探險的勳章。</p><div class="note">推測為星馬茶餐廳（光復路），未確認・<a href="#d3">看 D3 行程 →</a></div></figcaption></figure>
+<figure class="book-page" id="sb11">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-label="池上小店門口，小旅人提著兩個綠色紙袋得意地走出門，大人扶著蝴蝶門把">
+<defs>
+<linearGradient id="sb11-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cfeaf7"/><stop offset="1" stop-color="#eef7fb"/></linearGradient>
+<clipPath id="sb11-door"><rect x="176" y="24" width="160" height="262"/><rect x="346" y="32" width="134" height="164"/></clipPath>
+</defs>
+<rect width="480" height="360" fill="#f8f6f1"/>
+<rect x="0" y="0" width="480" height="18" fill="#efece4"/>
+<g clip-path="url(#sb11-door)">
+<rect x="176" y="24" width="304" height="262" fill="url(#sb11-sky)"/>
+<rect x="176" y="24" width="60" height="100" fill="#8fd39a"/>
+<g stroke="#6cbf7c" stroke-width="1.5"><path d="M176 44 H236 M176 64 H236 M176 84 H236 M176 104 H236 M196 24 V124 M216 24 V124"/></g>
+<rect x="244" y="24" width="236" height="104" fill="#e4e2dc"/><rect x="380" y="40" width="40" height="22" fill="#cfd6dc"/><rect x="430" y="40" width="40" height="22" fill="#cfd6dc"/><rect x="440" y="76" width="34" height="52" fill="#e9e5da" stroke="#c9c2b0"/><circle cx="452" cy="122" r="7" fill="#7cc06f"/><circle cx="466" cy="124" r="6" fill="#5aa35a"/>
+<rect x="254" y="34" width="34" height="22" fill="#cfd6dc"/><rect x="296" y="34" width="34" height="22" fill="#cfd6dc"/>
+<rect x="300" y="78" width="40" height="50" fill="#7fa6c9"/>
+<g stroke="#6e94b8"><path d="M300 86 H340 M300 94 H340 M300 102 H340 M300 110 H340 M300 118 H340"/></g>
+<circle cx="196" cy="118" r="22" fill="#79b86a"/><circle cx="226" cy="112" r="20" fill="#8cc878"/><circle cx="250" cy="122" r="16" fill="#6aa95c"/>
+<rect x="176" y="130" width="304" height="12" fill="#e6e4de"/>
+<rect x="176" y="142" width="304" height="60" fill="#8d9096"/>
+<path d="M176 156 H480" stroke="#f3cd3a" stroke-width="3"/>
+<path d="M190 182 H230 M260 182 H300 M330 182 H370 M400 182 H440" stroke="#fff" stroke-width="2.5"/>
+<rect x="176" y="202" width="304" height="84" fill="#c9c7c1"/>
+<g stroke="#b5b3ad"><path d="M176 222 H336 M176 244 H336 M176 266 H336"/></g>
+<g fill="none" stroke="#3a3f47" stroke-width="3">
+<circle cx="214" cy="196" r="17"/><circle cx="256" cy="196" r="17"/>
+<path d="M214 196 L230 172 L250 172 L256 196 M230 172 L236 196 L250 172 M248 164 L252 172 M226 166 L234 166"/>
+</g>
+<path d="M244 162 L256 160" stroke="#8a5a3c" stroke-width="4" stroke-linecap="round"/>
+<g transform="translate(70 -14)">
+<path d="M276 196 Q276 166 296 160 L318 158 Q334 160 336 180 L336 196Z" fill="#8fc7d6"/>
+<path d="M296 160 L300 132 L312 130" stroke="#5c636d" stroke-width="5" fill="none" stroke-linecap="round"/>
+<rect x="306" y="150" width="30" height="10" rx="4" fill="#3a3f47"/>
+<circle cx="288" cy="200" r="12" fill="#2b2f36"/><circle cx="326" cy="200" r="12" fill="#2b2f36"/>
+<circle cx="288" cy="200" r="5" fill="#9aa1aa"/><circle cx="326" cy="200" r="5" fill="#9aa1aa"/>
+</g>
+<path d="M182 236 L200 236 L197 256 L185 256Z" fill="#d98a5c"/><circle cx="191" cy="228" r="13" fill="#5aa35a"/>
+<path d="M204 244 L218 244 L216 260 L206 260Z" fill="#fff"/><circle cx="211" cy="236" r="11" fill="#7cc06f"/>
+<path d="M224 240 L240 240 L237 258 L227 258Z" fill="#d98a5c"/><circle cx="232" cy="232" r="11" fill="#4f944f"/>
+<g fill="#fff"><circle cx="186" cy="224" r="2"/><circle cx="196" cy="230" r="2"/><circle cx="210" cy="232" r="2"/></g>
+<rect x="196" y="268" width="130" height="18" fill="#b7814e"/>
+</g>
+<rect x="170" y="18" width="8" height="270" fill="#d9a86a"/>
+<rect x="334" y="18" width="12" height="270" fill="#d9a86a"/>
+<rect x="170" y="16" width="176" height="10" fill="#d9a86a"/>
+<path d="M346 26 H480 V200 H346Z" fill="#fff" opacity=".25"/>
+<rect x="346" y="26" width="134" height="6" fill="#d9a86a"/>
+<path d="M0 286 H480 V360 H0Z" fill="#dcdcd8"/>
+<g stroke="#c6c6c1" stroke-width="1.5"><path d="M0 312 H480 M0 340 H480 M60 286 L30 360 M160 286 L150 360 M260 286 L270 360 M360 286 L390 360 M450 286 L480 330"/></g>
+<path d="M176 22 L150 34 L150 318 L176 290Z" fill="#e7b77a"/>
+<path d="M172 32 L156 40 L156 306 L172 286Z" fill="#eaf4f8" opacity=".85"/>
+<g transform="translate(162 150)">
+<path d="M0 -26 Q-22 -34 -24 -12 Q-24 0 -8 0 Q-24 4 -22 22 Q-18 36 0 24Z" fill="#8a5a36"/>
+<path d="M0 -26 Q20 -34 22 -12 Q22 0 8 0 Q22 4 20 22 Q16 36 0 24Z" fill="#9c6840"/>
+<ellipse cx="0" cy="0" rx="4" ry="30" fill="#6f4529"/>
+<circle cx="0" cy="-32" r="5" fill="#9c6840"/>
+<path d="M-14 -16 Q-10 -8 -4 -6 M14 -16 Q10 -8 4 -6" stroke="#6f4529" stroke-width="1.5" fill="none"/>
+</g>
+<rect x="346" y="196" width="134" height="12" fill="#fbfaf7" stroke="#e2dfd8"/>
+<rect x="352" y="208" width="128" height="110" fill="#fbfaf7" stroke="#e2dfd8"/>
+<path d="M352 318 L480 318 L480 330 L352 326Z" fill="#e8e6e1"/>
+<rect x="452" y="182" width="16" height="14" rx="3" fill="#c79a62"/>
+<path d="M362 240 L398 226 L400 282 L364 292Z" fill="#ffffff" stroke="#c9d6dd" stroke-width="2"/>
+<text x="381" y="266" font-family="sans-serif" font-size="13" font-weight="bold" fill="#3a2a22" text-anchor="middle" transform="rotate(-12 381 262)">謝謝</text>
+<ellipse cx="442" cy="270" rx="34" ry="10" fill="#4a4a4f"/>
+<g><path d="M412 266 Q412 244 426 244 Q440 244 440 266Z" fill="#8c2c4a"/><path d="M418 246 Q426 238 434 246" stroke="#d1a64a" stroke-width="2" fill="none"/>
+<path d="M440 262 Q440 240 456 240 Q472 240 472 262Z" fill="#b28fb5"/><path d="M447 242 Q456 234 465 242" stroke="#d1a64a" stroke-width="2" fill="none"/></g>
+<g stroke="#fff" stroke-width="1" opacity=".35"><path d="M416 256 H436 M444 252 H468"/></g>
+<g>
+<ellipse cx="258" cy="332" rx="34" ry="5" fill="#000" opacity=".1"/>
+<path d="M238 296 L236 322 L250 322 L254 298Z" fill="#f4f1ec"/><path d="M262 298 L266 322 L280 322 L276 296Z" fill="#f4f1ec"/>
+<g fill="#e2655b"><circle cx="242" cy="304" r="1.6"/><circle cx="248" cy="314" r="1.6"/><circle cx="270" cy="306" r="1.6"/><circle cx="274" cy="316" r="1.6"/><circle cx="244" cy="296" r="1.4"/></g>
+<path d="M232 322 H252 V332 H230Z" fill="#2c3e8c"/><path d="M264 322 H284 L286 332 H264Z" fill="#2c3e8c"/>
+<path d="M230 330 H252 M264 330 H286" stroke="#fff" stroke-width="2"/>
+<path d="M206 262 L230 262 L232 312 L204 312Z" fill="#1f4a33"/><path d="M212 262 Q218 248 224 262" stroke="#173826" stroke-width="2" fill="none"/>
+<path d="M286 262 L310 262 L312 312 L284 312Z" fill="#1f4a33"/><path d="M292 262 Q298 248 304 262" stroke="#173826" stroke-width="2" fill="none"/>
+<path d="M206 262 L212 312 M310 262 L304 312" stroke="#2d6346" stroke-width="2"/>
+<path d="M232 302 Q228 252 258 244 Q288 252 284 302Z" fill="#f79a2a"/>
+<path d="M234 258 Q222 262 220 258" stroke="#f79a2a" stroke-width="12" stroke-linecap="round"/>
+<path d="M282 258 Q294 262 296 258" stroke="#f79a2a" stroke-width="12" stroke-linecap="round"/>
+<circle cx="218" cy="258" r="6" fill="#f2c7a5"/><circle cx="298" cy="258" r="6" fill="#f2c7a5"/>
+<path d="M240 250 Q258 286 276 250 Q258 258 240 250Z" fill="#ef8a1c"/>
+<circle cx="244" cy="262" r="7" fill="#ef8a1c"/><circle cx="272" cy="262" r="7" fill="#ef8a1c"/>
+<circle cx="244" cy="262" r="3.5" fill="#f9b25a"/><circle cx="272" cy="262" r="3.5" fill="#f9b25a"/>
+<ellipse cx="226" cy="218" rx="5" ry="7" fill="#f0c3a1"/><ellipse cx="290" cy="218" rx="5" ry="7" fill="#f0c3a1"/>
+<ellipse cx="258" cy="240" rx="16" ry="8" fill="#f6d2b4"/>
+<ellipse cx="258" cy="214" rx="32" ry="30" fill="#1d1d24"/>
+<path d="M252 188 L248 172 L258 184 L262 168 L266 185 L276 174 L270 190Z" fill="#1d1d24"/>
+<path d="M240 200 Q254 192 268 198" stroke="#3a3a46" stroke-width="2" fill="none"/>
+</g>
+<g>
+<path d="M60 286 L58 320 L76 320 L80 286Z" fill="#efbf9b"/><path d="M98 286 L104 320 L122 320 L116 286Z" fill="#efbf9b"/>
+<path d="M46 318 Q66 312 82 318 L84 330 Q62 334 44 328Z" fill="#e8e03a" stroke="#f08a2e" stroke-width="2"/>
+<path d="M98 318 Q114 312 132 318 L134 330 Q114 334 96 328Z" fill="#e8e03a" stroke="#f08a2e" stroke-width="2"/>
+<path d="M68 318 L66 322 M110 318 L112 322" stroke="#c7bf20" stroke-width="2"/>
+<path d="M52 214 L124 214 L122 290 L94 290 L88 252 L82 290 L54 290Z" fill="#202228"/>
+<path d="M120 270 L126 288" stroke="#4a4d56" stroke-width="2"/>
+<path d="M48 222 Q42 150 60 118 Q88 106 116 118 Q134 150 128 222Z" fill="#4f86d6"/>
+<path d="M52 120 Q86 104 120 120 L112 130 Q86 120 60 130Z" fill="#3e72c0"/>
+<path d="M114 124 Q136 140 146 148" stroke="#4f86d6" stroke-width="18" stroke-linecap="round" fill="none"/>
+<path d="M140 146 Q150 154 150 150" stroke="#efbf9b" stroke-width="13" stroke-linecap="round"/>
+<circle cx="156" cy="152" r="8" fill="#efbf9b"/>
+<rect x="140" y="140" width="6" height="12" rx="2" fill="#e8e8ea" transform="rotate(-40 143 146)"/>
+<path d="M54 130 Q40 166 44 196" stroke="#4f86d6" stroke-width="18" stroke-linecap="round" fill="none"/>
+<path d="M44 196 Q48 226 62 236" stroke="#efbf9b" stroke-width="12" stroke-linecap="round" fill="none"/>
+<ellipse cx="66" cy="238" rx="9" ry="7" fill="#efbf9b"/>
+<use href="#sb-a" x="44" y="30" width="86" height="86"/>
+</g>
+</svg>
+<figcaption><div class="stamp"><b>11</b><span>10/6（二） 11:34</span><span>・池上街上的手作小店</span></div><p class="story">池上小店的門把是一隻木頭蝴蝶。小旅人一手一個紙袋，搖搖擺擺地走出門：「我來提！」立牌上寫著兩個大大的字——謝謝。</p><div class="note">店名未能確認・<a href="#d4">看 D4 行程 →</a></div></figcaption></figure>
+<figure class="book-page" id="sb12">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-label="初鹿牧場，大人閉著眼睛大口舔著放了圓餅乾的牛奶霜淇淋，小旅人從推車探頭">
+<defs>
+<linearGradient id="sb12-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e3f3f6"/><stop offset="1" stop-color="#f6fbf3"/></linearGradient>
+<pattern id="sb12-waffle" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="7" height="7" fill="#e9b46a"/><path d="M0 0 H7 M0 0 V7" stroke="#c98e45" stroke-width="1.4"/></pattern>
+</defs>
+<rect width="480" height="360" fill="url(#sb12-sky)"/>
+<path d="M0 170 Q120 150 240 162 Q360 150 480 160 V210 H0Z" fill="#a9d68a"/>
+<path d="M0 186 Q140 174 300 182 Q400 176 480 184 V214 H0Z" fill="#93c977"/>
+<rect x="296" y="128" width="78" height="46" fill="#a8744f"/>
+<path d="M290 130 L335 106 L380 130Z" fill="#d6453d"/>
+<rect x="312" y="144" width="14" height="30" fill="#7a4f33"/><rect x="340" y="142" width="22" height="16" fill="#cfe8ef"/>
+<ellipse cx="404" cy="178" rx="34" ry="8" fill="#f2c94c"/><ellipse cx="404" cy="176" rx="30" ry="6" fill="#9fd3e6"/>
+<rect x="398" y="150" width="12" height="26" fill="#e8d9c2"/><ellipse cx="404" cy="150" rx="14" ry="5" fill="#e8d9c2"/>
+<path d="M404 146 Q392 136 388 150 M404 146 Q416 136 420 150" stroke="#9fd3e6" stroke-width="2.5" fill="none"/>
+<g fill="#f08a3c"><path d="M262 176 l4 -12 l4 12z"/><path d="M276 176 l4 -12 l4 12z"/></g>
+<rect x="30" y="80" width="18" height="110" fill="#9a8a72"/>
+<circle cx="40" cy="70" r="46" fill="#7fbf6a"/><circle cx="2" cy="92" r="32" fill="#6fae5c"/><circle cx="84" cy="88" r="30" fill="#8ccb74"/>
+<rect x="430" y="70" width="20" height="120" fill="#9a8a72"/>
+<circle cx="442" cy="66" r="48" fill="#7fbf6a"/><circle cx="478" cy="90" r="30" fill="#6fae5c"/><circle cx="400" cy="92" r="28" fill="#8ccb74"/>
+<circle cx="220" cy="128" r="30" fill="#8ccb74"/><rect x="216" y="140" width="8" height="40" fill="#9a8a72"/>
+<path d="M220 214 L480 196 L480 360 L250 360Z" fill="#e6cfa6"/>
+<g stroke="#cdb185" stroke-width="2"><path d="M236 240 L480 222 M244 270 L480 252 M250 300 L480 284 M256 332 L480 318"/></g>
+<path d="M0 214 H230 L250 360 H0Z" fill="#c9c3b8"/>
+<g stroke="#b3ac9f" stroke-width="1.5"><path d="M0 240 H234 M0 270 H238 M0 300 H242 M0 330 H246 M40 214 V360 M100 214 V360 M160 214 V360 M70 240 V270 M130 240 V270 M190 240 V270 M70 300 V330 M130 300 V330"/></g>
+<path d="M0 0 H480 V34 L0 62Z" fill="#7d8188"/>
+<g stroke="#9ba0a7" stroke-width="3"><path d="M60 0 V58 M140 0 V53 M220 0 V48 M300 0 V43 M380 0 V38 M460 0 V33"/></g>
+<path d="M0 62 L480 34" stroke="#5f636a" stroke-width="5"/>
+<rect x="264" y="44" width="9" height="210" fill="#d63a33"/>
+<rect x="262" y="250" width="13" height="8" fill="#a82a25"/>
+<g>
+<path d="M332 178 Q316 236 336 300 L452 300 Q470 240 460 196Z" fill="#2f5a8c"/>
+<path d="M328 186 Q338 132 400 130 Q456 132 466 190 Q430 176 400 176 Q366 176 328 186Z" fill="#5a6c7e"/>
+<path d="M332 182 Q400 166 464 186" stroke="#3aa4c9" stroke-width="5" fill="none"/>
+<use href="#sb-kid" x="364" y="176" width="66" height="66"/>
+<path d="M340 226 Q400 214 456 228 L452 262 Q400 252 344 262Z" fill="#244a75"/>
+<g fill="#e05a5a"><circle cx="360" cy="240" r="2"/><circle cx="384" cy="236" r="2"/><circle cx="408" cy="236" r="2"/><circle cx="432" cy="240" r="2"/></g>
+<path d="M314 196 Q320 160 360 150" stroke="#b5654a" stroke-width="7" fill="none" stroke-linecap="round"/>
+<path d="M338 300 L326 336 M450 300 L462 336 M346 300 L380 330 M440 300 L410 330" stroke="#a6abb3" stroke-width="4"/>
+<circle cx="326" cy="338" r="10" fill="#2d2f35"/><circle cx="462" cy="338" r="10" fill="#2d2f35"/>
+<circle cx="380" cy="334" r="8" fill="#2d2f35"/><circle cx="410" cy="334" r="8" fill="#2d2f35"/>
+<path d="M342 290 H446 V304 H342Z" fill="#6fc5df"/>
+</g>
+<text x="440" y="164" font-family="sans-serif" font-size="16" font-weight="bold" fill="#e0794a">!</text>
+<path d="M16 360 Q14 262 70 236 Q150 210 230 236 Q284 262 282 360Z" fill="#4f86d6"/>
+<path d="M110 222 Q150 246 196 222" stroke="#3e72c0" stroke-width="8" fill="none" stroke-linecap="round"/>
+<g transform="translate(58 58) rotate(-15 75 75) scale(1.5)">
+<use href="#sb-a" x="0" y="0" width="100" height="100"/>
+<path d="M46 70 Q60 66 72 70 Q76 76 70 80 Q58 82 50 77Z" fill="#ef7f8f" stroke="#c4505f" stroke-width="1"/>
+<path d="M56 72 Q62 74 68 73" stroke="#c4505f" stroke-width="0.8" fill="none"/>
+</g>
+<g transform="translate(-12 -4)">
+<path d="M178 196 L216 196 L198 268Z" fill="url(#sb12-waffle)" stroke="#c98e45" stroke-width="1.5"/>
+<path d="M172 198 Q166 176 184 170 Q170 156 190 148 Q184 132 202 126 Q214 136 208 148 Q226 156 214 170 Q230 180 220 198Z" fill="#fffbef" stroke="#e8dcbc" stroke-width="2"/>
+<path d="M180 170 Q198 176 212 168 M188 148 Q200 154 208 146" stroke="#e8dcbc" stroke-width="2" fill="none"/>
+<circle cx="226" cy="168" r="21" fill="#f6c63c" stroke="#e0a823" stroke-width="2"/>
+<g fill="#d99a1e"><circle cx="218" cy="160" r="1.6"/><circle cx="226" cy="160" r="1.6"/><circle cx="234" cy="160" r="1.6"/><circle cx="218" cy="168" r="1.6"/><circle cx="226" cy="168" r="1.6"/><circle cx="234" cy="168" r="1.6"/><circle cx="218" cy="176" r="1.6"/><circle cx="226" cy="176" r="1.6"/><circle cx="234" cy="176" r="1.6"/></g>
+</g>
+<path d="M250 310 Q226 276 196 262" stroke="#f2c7a5" stroke-width="18" stroke-linecap="round" fill="none"/>
+<path d="M262 330 Q252 314 244 304" stroke="#4f86d6" stroke-width="28" stroke-linecap="round" fill="none"/>
+<ellipse cx="186" cy="252" rx="13" ry="16" fill="#f2c7a5"/>
+<path d="M176 244 Q186 240 196 244 M176 252 Q186 248 196 252" stroke="#d9a986" stroke-width="1.5" fill="none"/>
+<path d="M262 330 Q284 296 298 272" stroke="#f2c7a5" stroke-width="16" stroke-linecap="round" fill="none"/>
+<rect x="276" y="300" width="18" height="10" rx="3" fill="#e4e4e6" transform="rotate(-58 285 305)"/>
+<g fill="#f2c7a5"><ellipse cx="302" cy="262" rx="12" ry="14"/><rect x="292" y="238" width="6" height="18" rx="3" transform="rotate(-14 295 247)"/><rect x="300" y="236" width="6" height="18" rx="3"/><rect x="308" y="238" width="6" height="18" rx="3" transform="rotate(14 311 247)"/><rect x="314" y="250" width="6" height="16" rx="3" transform="rotate(40 317 258)"/></g>
+<g stroke="#f6a6b2" stroke-width="3" stroke-linecap="round"><path d="M136 66 L130 52"/><path d="M118 78 L106 68"/><path d="M156 62 L158 48"/></g>
+</svg>
+<figcaption><div class="stamp"><b>12</b><span>10/6（二） 13:39</span><span>・初鹿牧場</span></div><p class="story">牛奶霜淇淋上面插了一片圓圓的餅乾。大人閉上眼睛，大大地舔了一口——嗯～是牧場的味道！推車在旁邊排隊，等下一個吃冰的人。</p><div class="note"><a href="#d4">看 D4 行程 →</a></div></figcaption></figure>
+<figure class="book-page" id="sb13">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-label="大人在初鹿牧場舉起親手彩繪、穿卑南族服飾的小牛撲滿，另一手拿手機參考照片">
+<defs>
+<linearGradient id="sb13-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a9d3ee"/><stop offset="1" stop-color="#cfe8f6"/></linearGradient>
+</defs>
+<rect width="480" height="360" fill="url(#sb13-sky)"/>
+<rect width="480" height="22" fill="#f4f4f0"/>
+<path d="M0 22H480M120 0V22M260 0V22M400 0V22" stroke="#d9d9d2" stroke-width="2"/>
+<g fill="#fff" opacity=".95">
+<ellipse cx="88" cy="96" rx="34" ry="13"/><ellipse cx="108" cy="88" rx="20" ry="13"/><ellipse cx="70" cy="91" rx="16" ry="10"/>
+<ellipse cx="420" cy="60" rx="30" ry="12"/><ellipse cx="438" cy="52" rx="18" ry="12"/>
+<ellipse cx="330" cy="120" rx="22" ry="9"/>
+</g>
+<path d="M30 175 Q70 120 100 140 Q130 108 165 150 Q200 120 230 175Z" fill="#3a8a68"/>
+<path d="M260 175 Q320 80 370 110 Q410 70 480 120 V175Z" fill="#2f7a5c"/>
+<path d="M70 140 l10 8M140 130 l8 10M360 110 l12 6M420 95 l8 10" stroke="#5aaa86" stroke-width="3" stroke-linecap="round"/>
+<rect y="172" width="480" height="188" fill="#63c08a"/>
+<rect y="172" width="480" height="5" fill="#57b07c"/>
+<rect x="0" y="40" width="34" height="190" fill="#f1f3f0"/>
+<rect x="4" y="48" width="24" height="170" fill="#b9dcef"/>
+<path d="M16 48V218" stroke="#e6e8e4" stroke-width="3"/>
+<rect x="0" y="318" width="480" height="42" fill="#c99a62"/>
+<path d="M0 318H480" stroke="#b5844e" stroke-width="3"/>
+<path d="M176 360 L180 206 Q184 170 212 160 L268 160 Q296 170 300 206 L304 360Z" fill="#5f93d8"/>
+<path d="M218 160 Q240 178 262 160" fill="none" stroke="#4d7fc2" stroke-width="5"/>
+<path d="M196 176 Q166 186 150 214" stroke="#4f84cc" stroke-width="30" fill="none" stroke-linecap="round"/>
+<path d="M284 176 Q314 186 330 214" stroke="#4f84cc" stroke-width="30" fill="none" stroke-linecap="round"/>
+<path d="M150 216 Q134 244 122 268" stroke="#f2c7a5" stroke-width="20" fill="none" stroke-linecap="round"/>
+<path d="M330 216 Q352 250 366 290" stroke="#f2c7a5" stroke-width="20" fill="none" stroke-linecap="round"/>
+<use href="#sb-a" x="180" y="40" width="120" height="120"/>
+<g transform="translate(14 8) scale(.86)">
+<rect x="70" y="236" width="72" height="54" rx="20" fill="#f2c230"/><path d="M70 256 Q70 238 88 236 L98 268 L72 268Z M142 256 Q142 238 124 236 L114 268 L140 268Z" fill="#d9383a"/>
+<path d="M74 262 h20 M118 262 h20" stroke="#f3d34a" stroke-width="2" stroke-dasharray="3 3"/>
+<rect x="74" y="266" width="64" height="26" rx="10" fill="#4a86d6"/>
+<path d="M106 268 V292" stroke="#2c5aa0" stroke-width="2"/>
+<g fill="#fff"><circle cx="84" cy="250" r="5"/><circle cx="128" cy="250" r="5"/><circle cx="106" cy="256" r="3.5" fill="#f58fb0"/></g>
+<g fill="#f2b33d"><circle cx="84" cy="250" r="2"/><circle cx="128" cy="250" r="2"/></g>
+<ellipse cx="56" cy="196" rx="14" ry="9" fill="#fff" transform="rotate(-20 56 196)"/>
+<ellipse cx="56" cy="196" rx="8" ry="5" fill="#2a2a2a" transform="rotate(-20 56 196)"/>
+<ellipse cx="152" cy="196" rx="14" ry="9" fill="#fff" transform="rotate(20 152 196)"/>
+<ellipse cx="152" cy="196" rx="8" ry="5" fill="#2a2a2a" transform="rotate(20 152 196)"/>
+<path d="M80 172 Q76 156 86 154 Q92 160 90 172Z M128 172 Q132 156 122 154 Q116 160 118 172Z" fill="#fbf6ea" stroke="#d8cfba"/>
+<ellipse cx="104" cy="212" rx="46" ry="44" fill="#f2c230"/>
+<path d="M72 196 l8 3 M70 204 l9 2 M136 196 l-8 3 M138 204 l-9 2" stroke="#2a2a2a" stroke-width="2" stroke-linecap="round"/>
+<ellipse cx="104" cy="236" rx="38" ry="22" fill="#fbf6ea"/>
+<circle cx="88" cy="210" r="4" fill="#1d1d24"/><circle cx="120" cy="210" r="4" fill="#1d1d24"/>
+<circle cx="89" cy="209" r="1.3" fill="#fff"/><circle cx="121" cy="209" r="1.3" fill="#fff"/>
+<path d="M80 198 q8-4 14 0 M114 198 q6-4 14 0" stroke="#1d1d24" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+<circle cx="82" cy="236" r="4" fill="#e65a5a" opacity=".85"/><circle cx="126" cy="236" r="4" fill="#e65a5a" opacity=".85"/>
+<path d="M94 238 Q104 248 114 238" stroke="#1d1d24" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+<g fill="#e05a8a"><circle cx="92" cy="170" r="4"/><circle cx="116" cy="170" r="4"/></g>
+<g fill="#f7e05a"><circle cx="104" cy="167" r="4"/></g>
+</g>
+<ellipse cx="104" cy="272" rx="30" ry="10" fill="#f2c7a5"/>
+<path d="M132 268 q8-6 4-16" stroke="#f2c7a5" stroke-width="9" fill="none" stroke-linecap="round"/>
+<g transform="rotate(6 380 220)">
+<rect x="338" y="150" width="84" height="146" rx="12" fill="#e9d9b8"/>
+<rect x="342" y="154" width="76" height="138" rx="9" fill="#2a2a30"/>
+<rect x="346" y="160" width="68" height="126" rx="6" fill="#f7f3ec"/>
+<rect x="346" y="168" width="68" height="100" fill="#b58c62"/>
+<path d="M346 180 H414 M346 192 H414" stroke="#8e6a46" stroke-width="2"/>
+<path d="M374 188 h12 v8 h-12Z" fill="#f2c7a5"/>
+<g><circle cx="372" cy="186" r="4" fill="#e8436b"/><circle cx="378" cy="182" r="4" fill="#f6c43a"/><circle cx="384" cy="182" r="4" fill="#7cc35a"/><circle cx="390" cy="186" r="4" fill="#e8436b"/><circle cx="381" cy="178" r="3" fill="#fff"/></g>
+<circle cx="380" cy="194" r="7" fill="#e3b48d"/>
+<path d="M362 206 q18-8 36 0 v58 h-36Z" fill="#5d8fd6"/>
+<path d="M368 206 h24 v42 h-24Z" fill="#d93a3a"/>
+<path d="M368 214 l6 6 6-6 6 6 6-6 M368 226 l6 6 6-6 6 6 6-6 M368 238 l6 6 6-6 6 6 6-6" stroke="#f6e3a0" stroke-width="1.6" fill="none"/>
+<path d="M366 248 h28 v20 h-28Z" fill="#c83030"/>
+<path d="M368 250 v16 M374 250 v16 M380 250 v16 M386 250 v16 M392 250 v16" stroke="#f6e3a0" stroke-width="1.2"/>
+<text x="380" y="280" font-family="sans-serif" font-size="8" fill="#555" text-anchor="middle">卑南族服飾</text>
+</g>
+<ellipse cx="372" cy="300" rx="22" ry="11" fill="#f2c7a5"/>
+<path d="M346 296 q-8-14 -2-26" stroke="#f2c7a5" stroke-width="9" fill="none" stroke-linecap="round"/>
+<path d="M352 310 q18 6 36-2" stroke="#fbfbfb" stroke-width="4" fill="none"/>
+</svg>
+<figcaption><div class="stamp"><b>13</b><span>10/6（二） 14:51</span><span>・初鹿牧場 DIY 彩繪動物撲滿</span></div><p class="story">白白的小牛撲滿，要畫成什麼樣子呢？手機查了卑南族的盛裝：紅色的背心、藍色的褲子、還有花。於是，全世界第一隻穿卑南族衣服的小黃牛誕生了！</p><div class="note">官網 DIY 項目「彩繪動物撲滿」・<a href="#d4">看 D4 行程 →</a></div></figcaption></figure>
+<figure class="book-page" id="sb14">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-label="台東民宿白色房間，牆上畫著大樹，小孩在床上開心舉手，大人放下行李">
+<defs>
+<radialGradient id="sb14-glow" cx=".5" cy=".2" r=".7"><stop offset="0" stop-color="#fff8e6"/><stop offset="1" stop-color="#f3efe6"/></radialGradient>
+</defs>
+<rect width="480" height="360" fill="url(#sb14-glow)"/>
+<path d="M0 0H480V62H0Z" fill="#fbf6ea"/>
+<path d="M40 8 H440 L410 58 H70Z" fill="#9c7a55"/>
+<path d="M90 18 H390 L372 46 H108Z" fill="#fffaf0"/>
+<path d="M70 58 H410 L404 64 H76Z" fill="#c9a578"/>
+<path d="M100 0 V8 M380 0 V8" stroke="#888" stroke-width="1"/>
+<circle cx="72" cy="30" r="6" fill="#fffbe0" stroke="#e8e0c8" stroke-width="2"/>
+<circle cx="408" cy="30" r="6" fill="#fffbe0" stroke="#e8e0c8" stroke-width="2"/>
+<path d="M66 36 L40 120 L104 120Z M414 36 L380 120 L444 120Z" fill="#fff6c8" opacity=".35"/>
+<path d="M0 64 H480" stroke="#e6dfd0" stroke-width="2"/>
+<rect y="262" width="480" height="98" fill="#a07a56"/>
+<path d="M0 280 H480 M0 302 H480 M0 328 H480 M60 262 V280 M180 280 V302 M90 302 V328 M260 262 V280 M330 302 V328 M30 328 V360 M200 328 V360" stroke="#8a6646" stroke-width="2"/>
+<rect x="96" y="96" width="78" height="96" fill="#fff" stroke="#ddd" stroke-width="3"/>
+<rect x="102" y="110" width="66" height="76" fill="#cfe1ee"/>
+<path d="M135 110 V186" stroke="#fff" stroke-width="4"/>
+<rect x="92" y="88" width="86" height="34" rx="3" fill="#b3ad98"/>
+<rect x="92" y="118" width="86" height="4" fill="#9a9480"/>
+<path d="M40 110 V210 M40 130 l10-6 M40 160 l-10-6 M40 190 l10-6" stroke="#c9a578" stroke-width="4" stroke-linecap="round"/>
+<rect x="190" y="122" width="34" height="26" fill="#fff" stroke="#8a6646" stroke-width="3"/>
+<path d="M196 140 l4-8 4 8 4-8 4 8 4-8" stroke="#e45a5a" stroke-width="2" fill="none"/>
+<rect x="206" y="160" width="26" height="22" fill="#fff" stroke="#8a6646" stroke-width="3"/>
+<circle cx="214" cy="170" r="3" fill="#7cc35a"/><circle cx="224" cy="172" r="3" fill="#f6c43a"/>
+<path d="M188 104 l3 7 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z" fill="#c8c8d8"/>
+<path d="M238 140 l2 5 5 1-4 3 1 5-4-2-4 2 1-5-4-3 5-1Z" fill="#e8c24a"/>
+<path d="M190 188 l3 7 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z" fill="#c8c8d8"/>
+<rect x="262" y="196" width="218" height="26" fill="#7cc35a"/>
+<path d="M262 216 Q370 210 480 218 V222 H262Z" fill="#6b4a33"/>
+<path d="M356 214 Q362 170 352 128 L364 128 Q372 170 372 214Z" fill="#6b4a33"/>
+<path d="M360 150 L330 132 M364 140 L396 122" stroke="#6b4a33" stroke-width="5" stroke-linecap="round"/>
+<g fill="#5fae3e">
+<ellipse cx="364" cy="108" rx="70" ry="34"/><ellipse cx="310" cy="118" rx="34" ry="22"/><ellipse cx="420" cy="112" rx="38" ry="24"/>
+</g>
+<g fill="#86c94a"><ellipse cx="350" cy="94" rx="40" ry="18"/><ellipse cx="410" cy="100" rx="22" ry="12"/><ellipse cx="300" cy="110" rx="16" ry="10"/></g>
+<g fill="#d6d84a" opacity=".8"><circle cx="440" cy="98" r="8"/><circle cx="380" cy="86" r="6"/><circle cx="318" cy="102" r="5"/></g>
+<g fill="#4a4a4a"><ellipse cx="330" cy="212" rx="7" ry="5"/><ellipse cx="346" cy="213" rx="5" ry="4"/><ellipse cx="410" cy="212" rx="7" ry="5"/></g>
+<rect x="232" y="222" width="248" height="22" fill="#a68a6c"/>
+<rect x="232" y="222" width="248" height="4" fill="#bfa384"/>
+<path d="M232 244 H480 V320 H210Z" fill="#fff"/>
+<path d="M210 320 H480 V336 H210Z" fill="#e6e2da"/>
+<path d="M236 260 Q300 268 360 258 M226 296 Q330 306 470 292" stroke="#ebe7df" stroke-width="3" fill="none"/>
+<rect x="250" y="226" width="62" height="30" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+<rect x="404" y="226" width="62" height="30" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+<rect x="420" y="232" width="40" height="40" rx="8" fill="#f2e2c4" transform="rotate(10 440 252)"/>
+<circle cx="441" cy="250" r="11" fill="#d97a4a"/><circle cx="441" cy="246" r="6" fill="#f6d2b4"/><ellipse cx="441" cy="262" rx="9" ry="4" fill="#6aa84f"/>
+<rect x="250" y="300" width="44" height="16" rx="5" fill="#fafafa" stroke="#e0dcd2"/>
+<path d="M326 268 Q340 244 354 268" fill="#f6d2b4"/>
+<path d="M322 236 Q306 220 300 198" stroke="#ffcf5a" stroke-width="13" stroke-linecap="round" fill="none"/>
+<path d="M372 236 Q388 220 394 198" stroke="#ffcf5a" stroke-width="13" stroke-linecap="round" fill="none"/>
+<circle cx="299" cy="194" r="7" fill="#f6d2b4"/><circle cx="395" cy="194" r="7" fill="#f6d2b4"/>
+<path d="M322 236 Q347 222 372 236 L376 280 H318Z" fill="#ffcf5a"/>
+<path d="M318 278 Q300 290 312 300 H382 Q394 290 376 278Z" fill="#7aa6d8"/>
+<ellipse cx="308" cy="300" rx="10" ry="6" fill="#f6d2b4"/><ellipse cx="386" cy="300" rx="10" ry="6" fill="#f6d2b4"/>
+<use href="#sb-kid" x="312" y="168" width="70" height="70"/>
+<path d="M290 182 l-8-6 M286 194 h-10 M404 182 l8-6 M408 194 h10" stroke="#e8a23a" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M70 360 L74 250 Q78 226 104 220 H136 Q162 226 166 250 L170 360Z" fill="#6f9f7a"/>
+<path d="M112 220 Q120 230 128 220" stroke="#5a8a66" stroke-width="4" fill="none"/>
+<path d="M162 240 Q178 270 170 300" stroke="#6f9f7a" stroke-width="20" stroke-linecap="round" fill="none"/>
+<path d="M78 240 Q64 270 70 296" stroke="#6f9f7a" stroke-width="20" stroke-linecap="round" fill="none"/>
+<circle cx="170" cy="306" r="9" fill="#efbf9b"/><circle cx="70" cy="302" r="9" fill="#efbf9b"/>
+<use href="#sb-b" x="78" y="140" width="84" height="84"/>
+<path d="M146 314 h36 a10 10 0 0 1 10 10 v24 h-56 v-24 a10 10 0 0 1 10-10Z" fill="#e2785a"/>
+<path d="M154 314 q10-14 20 0" stroke="#c45e42" stroke-width="4" fill="none"/>
+<rect x="34" y="296" width="44" height="54" rx="12" fill="#3f6fa8"/>
+<rect x="42" y="318" width="28" height="20" rx="5" fill="#355e92"/>
+<path d="M60 296 V286" stroke="#355e92" stroke-width="4"/>
+<g transform="translate(28 18)">
+<ellipse cx="200" cy="300" rx="26" ry="9" fill="#d8b97f"/>
+<path d="M176 300 V312 Q200 324 224 312 V300" fill="#c9a66a"/>
+<path d="M180 306 Q200 314 220 306" stroke="#b08e54" stroke-width="2" fill="none"/>
+<path d="M186 318 l-3 22 M214 318 l3 22" stroke="#c9a578" stroke-width="5" stroke-linecap="round"/>
+<rect x="186" y="286" width="28" height="8" fill="#3d5aa0" transform="rotate(-6 200 290)"/>
+</g>
+</svg>
+<figcaption><div class="stamp"><b>14</b><span>10/6（二） 17:14</span><span>・台東市的民宿</span></div><p class="story">今天的房間牆上長了一棵大樹，綠綠的草地上還有幾顆小石頭。小旅人在白白的床上跳啊跳，像一隻停在樹下的小鳥。</p><div class="note">推測為頁面首選「門廷若室 河堤左岸館」，未確認・<a href="#d4">看 D4 行程 →</a></div></figcaption></figure>
+<figure class="book-page" id="sb15">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-label="早晨小孩在白色床上熟睡，旁邊打開的粉紅素描本畫著睡著的寶寶">
+<defs>
+<radialGradient id="sb15-sun" cx=".85" cy=".05" r=".9"><stop offset="0" stop-color="#fff3cf"/><stop offset=".6" stop-color="#fbf8f2"/><stop offset="1" stop-color="#f1eee8"/></radialGradient>
+<clipPath id="sb15-body"><path d="M258 172 Q300 150 352 164 Q376 200 362 262 L268 268 Q246 220 258 172Z"/></clipPath>
+</defs>
+<rect width="480" height="360" fill="url(#sb15-sun)"/>
+<path d="M0 0 H70 L0 30Z" fill="#c9a578"/>
+<path d="M-10 40 Q60 10 120 60 L150 220 Q90 250 10 220Z" fill="#fff" stroke="#e8e4dc" stroke-width="2"/>
+<path d="M40 10 Q130 -10 200 30 Q230 100 230 180 Q160 200 110 190 Q90 100 40 10Z" fill="#e9dccb"/>
+<path d="M240 -10 Q380 -20 480 10 V110 Q400 130 300 100 Q250 60 240 -10Z" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+<path d="M300 40 Q360 60 430 50" stroke="#ece8e0" stroke-width="3" fill="none"/>
+<path d="M258 172 Q300 150 352 164 Q376 200 362 262 L268 268 Q246 220 258 172Z" fill="#fbfaf2"/>
+<g clip-path="url(#sb15-body)" stroke-width="4"><path d="M240 176 H380 M240 204 H380 M240 232 H380 M240 260 H380" stroke="#3b62b0"/><path d="M240 190 H380 M240 218 H380 M240 246 H380" stroke="#6db04a"/></g>
+<path d="M258 172 Q300 150 352 164 Q376 200 362 262 L268 268 Q246 220 258 172Z" fill="none" stroke="#d9d3c4" stroke-width="2"/>
+<path d="M266 198 Q246 210 236 212" stroke="#e2ddd0" stroke-width="25" stroke-linecap="round" fill="none"/><path d="M266 198 Q246 210 236 212" stroke="#fbfaf2" stroke-width="21" stroke-linecap="round" fill="none"/>
+<path d="M248 204 v16" stroke="#3b62b0" stroke-width="3"/>
+<ellipse cx="226" cy="213" rx="12" ry="9" fill="#f6d2b4"/>
+<path d="M218 209 q-3 4 0 8 M223 207 q-3 5 0 11" stroke="#e3b08e" stroke-width="1.5" fill="none"/>
+<path d="M266 196 Q250 180 268 162" stroke="#d9d3c4" stroke-width="20" stroke-linecap="round" fill="none"/>
+<path d="M266 196 Q250 180 268 162" stroke="#fbfaf2" stroke-width="16" stroke-linecap="round" fill="none"/>
+<path d="M254 180 h12" stroke="#3b62b0" stroke-width="3"/>
+<use href="#sb-kid-sleep" x="230" y="54" width="120" height="120" transform="rotate(-12 290 114)"/>
+<ellipse cx="277" cy="152" rx="9" ry="10" fill="#f6d2b4" stroke="#e8bf9c" stroke-width="1" transform="rotate(-20 277 152)"/>
+<path d="M272 146 q4 2 8 0 M271 152 q4 2 9 0" stroke="#e3b08e" stroke-width="1.3" fill="none"/>
+<path d="M330 200 Q400 180 490 190 V370 H230 Q240 300 280 262 Q300 240 330 200Z" fill="#fff" stroke="#e8e4dc" stroke-width="2"/>
+<path d="M300 300 Q360 280 420 300 M360 240 Q400 230 460 250 M270 340 Q330 330 380 350" stroke="#ece8df" stroke-width="3" fill="none"/>
+<g font-family="sans-serif" font-weight="bold" fill="#8fb4dc">
+<text x="352" y="70" font-size="22">Z</text><text x="376" y="50" font-size="17">z</text><text x="394" y="34" font-size="13">z</text>
+</g>
+<g transform="translate(-2 36) scale(.88) rotate(-4 120 280)">
+<rect x="0" y="196" width="230" height="166" rx="6" fill="#f2b9c8"/>
+<rect x="16" y="204" width="200" height="146" rx="8" fill="#fffdf8" stroke="#eadfd8"/>
+<path d="M80 204 V350" stroke="#e5dcd2" stroke-width="1.5"/>
+<g fill="none" stroke="#b5b5bb" stroke-width="3"><circle cx="80" cy="222" r="5"/><circle cx="80" cy="238" r="5"/><circle cx="80" cy="254" r="5"/><circle cx="80" cy="302" r="5"/><circle cx="80" cy="318" r="5"/><circle cx="80" cy="334" r="5"/></g>
+<g fill="none" stroke="#2e3f8f" stroke-width="1.3" stroke-linecap="round">
+<circle cx="140" cy="236" r="16"/>
+<path d="M128 224 l-2-6 M134 221 l0-6 M141 220 l2-6 M148 222 l4-5"/>
+<path d="M131 238 q4 3 8 0 M144 238 q4 3 8 0 M139 247 q2 1 4 0"/>
+<path d="M150 252 Q172 248 182 262 L178 290 L140 290 Q132 270 138 254"/>
+<path d="M142 262 H178 M140 272 H180 M140 282 H179"/>
+<path d="M140 258 Q122 266 116 278"/>
+<path d="M120 300 Q170 270 205 262"/>
+</g>
+<g font-family="sans-serif" fill="#2e3f8f">
+<text x="92" y="306" font-size="11">讓一歲寶寶</text>
+<text x="92" y="321" font-size="11">也能睡好覺</text>
+<text x="92" y="336" font-size="11">的地方♡</text>
+<text x="160" y="344" font-size="8">2026.10.07</text>
+</g>
+</g>
+</svg>
+<figcaption><div class="stamp"><b>15</b><span>10/7（三） 08:10</span><span>・台東・早晨</span></div><p class="story">天亮了，小旅人還在呼呼大睡，手指頭放在嘴巴旁邊。有人悄悄在粉紅色的本子上畫下這一幕，寫著：「讓一歲寶寶也能睡好覺的地方♡」。</p><div class="note"><a href="#d5">看 D5 行程 →</a></div></figcaption></figure>
+<figure class="book-page" id="sb16">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-label="壽卡驛站：寶寶站在木椅上牽著大人的手，旁邊是黃綠色單車立牌和大木框">
+<defs>
+<linearGradient id="sb16-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7fb6e8"/><stop offset="1" stop-color="#cfe6f7"/></linearGradient>
+<g id="sb16-fern"><path d="M0 0 Q-34 -22 -46 -50 Q-20 -36 0 0Z"/><path d="M0 0 Q-14 -40 -8 -66 Q8 -36 0 0Z"/><path d="M0 0 Q18 -40 34 -58 Q30 -26 0 0Z"/><path d="M0 0 Q36 -14 54 -30 Q40 -2 0 0Z"/><path d="M0 0 Q-40 -4 -56 -18 Q-30 -26 0 0Z"/></g>
+</defs>
+<rect width="480" height="360" fill="url(#sb16-sky)"/>
+<g fill="#fff"><ellipse cx="90" cy="60" rx="80" ry="34"/><ellipse cx="160" cy="44" rx="60" ry="32"/><ellipse cx="40" cy="92" rx="60" ry="26"/><ellipse cx="200" cy="80" rx="52" ry="24"/><ellipse cx="380" cy="56" rx="60" ry="24"/><ellipse cx="430" cy="36" rx="42" ry="22"/><ellipse cx="350" cy="88" rx="44" ry="18"/></g>
+<g fill="#4f8d4a"><circle cx="210" cy="112" r="24"/><circle cx="232" cy="96" r="20"/><circle cx="252" cy="114" r="20"/><circle cx="455" cy="104" r="34"/><circle cx="480" cy="86" r="30"/></g>
+<rect x="0" y="168" width="480" height="96" fill="#3b2f27"/>
+<g fill="#4a3a2e"><rect x="6" y="170" width="6" height="94"/><rect x="26" y="170" width="6" height="94"/><rect x="46" y="170" width="6" height="94"/><rect x="66" y="170" width="6" height="94"/><rect x="86" y="170" width="6" height="94"/><rect x="106" y="170" width="6" height="94"/><rect x="126" y="170" width="6" height="94"/><rect x="146" y="170" width="6" height="94"/><rect x="166" y="170" width="6" height="94"/><rect x="186" y="170" width="6" height="94"/><rect x="206" y="170" width="6" height="94"/><rect x="226" y="170" width="6" height="94"/><rect x="246" y="170" width="6" height="94"/><rect x="266" y="170" width="6" height="94"/><rect x="286" y="170" width="6" height="94"/><rect x="306" y="170" width="6" height="94"/><rect x="326" y="170" width="6" height="94"/><rect x="346" y="170" width="6" height="94"/><rect x="366" y="170" width="6" height="94"/><rect x="386" y="170" width="6" height="94"/><rect x="406" y="170" width="6" height="94"/><rect x="426" y="170" width="6" height="94"/><rect x="446" y="170" width="6" height="94"/><rect x="466" y="170" width="6" height="94"/></g>
+<g fill="#2f6f3a"><use href="#sb16-fern" x="30" y="236"/><use href="#sb16-fern" x="120" y="226"/><use href="#sb16-fern" x="300" y="228"/><use href="#sb16-fern" x="440" y="232"/></g>
+<g fill="#6cbf4a"><use href="#sb16-fern" x="70" y="250"/><use href="#sb16-fern" x="170" y="246"/><use href="#sb16-fern" x="250" y="250"/><use href="#sb16-fern" x="380" y="246"/><use href="#sb16-fern" x="470" y="256"/></g>
+<rect x="0" y="262" width="480" height="98" fill="#d9cbb4"/>
+<g stroke="#c4b49a" stroke-width="1.5"><path d="M0 280 H480 M0 302 H480 M0 328 H480 M40 262 V280 M120 262 V280 M200 262 V280 M300 262 V280 M400 262 V280 M80 280 V302 M170 280 V302 M260 280 V302 M360 280 V302 M440 280 V302 M30 302 V328 M140 302 V328 M250 302 V328 M350 302 V328 M460 302 V328 M90 328 V360 M210 328 V360 M330 328 V360 M420 328 V360"/></g>
+<rect x="18" y="160" width="12" height="110" fill="#4b3526"/><rect x="452" y="160" width="12" height="110" fill="#4b3526"/>
+<rect x="0" y="126" width="480" height="40" fill="#3f4448"/>
+<g fill="#5a3f2c"><path d="M10 120 h14 l26 52 h-14z"/><path d="M62 120 h14 l22 52 h-14z"/><path d="M114 120 h14 l18 52 h-14z"/><path d="M166 120 h14 l14 52 h-14z"/><path d="M218 120 h14 l10 52 h-14z"/><path d="M270 120 h14 l6 52 h-14z"/><path d="M322 120 h14 l2 52 h-14z"/><path d="M374 120 h14 l-2 52 h-14z"/><path d="M426 120 h14 l-6 52 h-14z"/></g>
+<rect x="0" y="146" width="480" height="11" fill="#6b4a33"/><rect x="0" y="166" width="480" height="10" fill="#5a3f2c"/>
+<path d="M0 126 L480 126 L480 118 L470 108 L462 118 L450 106 L440 117 L428 104 L418 116 L404 106 L394 116 L380 104 L370 116 L356 106 L346 117 L332 104 L322 116 L308 106 L296 117 L284 104 L274 116 L260 106 L250 117 L236 104 L226 116 L212 106 L200 117 L188 104 L178 116 L164 106 L152 117 L140 104 L130 116 L116 106 L104 117 L92 104 L82 116 L68 106 L56 117 L44 104 L34 116 L20 106 L10 117 L0 108Z" fill="#c9a66b"/>
+<rect x="0" y="120" width="480" height="7" fill="#a88452"/>
+<rect x="100" y="250" width="150" height="10" rx="3" fill="#8fc1bd"/><rect x="110" y="260" width="12" height="44" fill="#5e4130"/><rect x="226" y="260" width="12" height="44" fill="#5e4130"/><rect x="104" y="258" width="142" height="5" fill="#6d4c37"/>
+<rect x="183" y="226" width="9" height="24" rx="4" fill="#f6d2b4"/><rect x="196" y="226" width="9" height="24" rx="4" fill="#f6d2b4"/>
+<ellipse cx="186" cy="251" rx="8" ry="4" fill="#2c3550"/><ellipse cx="201" cy="251" rx="8" ry="4" fill="#2c3550"/>
+<path d="M176 204 Q194 196 212 204 L214 226 Q194 234 174 226Z" fill="#f4f1e6"/>
+<g stroke="#8fb2a0" stroke-width="2.4"><path d="M175 210 H213 M174 217 H214 M174 224 H214"/></g>
+<path d="M180 228 Q194 234 208 228 L206 234 Q194 238 182 234Z" fill="#fff"/>
+<path d="M210 208 Q222 222 230 236" stroke="#f6d2b4" stroke-width="7" stroke-linecap="round" fill="none"/>
+<path d="M178 208 Q168 218 170 228" stroke="#f6d2b4" stroke-width="7" stroke-linecap="round" fill="none"/>
+<use href="#sb-kid" x="160" y="146" width="68" height="68"/>
+<rect x="246" y="296" width="12" height="40" rx="5" fill="#efc09c"/><rect x="268" y="296" width="12" height="40" rx="5" fill="#efc09c"/>
+<ellipse cx="250" cy="337" rx="10" ry="4" fill="#d6e04a"/><ellipse cx="276" cy="337" rx="10" ry="4" fill="#d6e04a"/>
+<path d="M240 268 H286 L288 304 H264 L262 296 L260 304 H238Z" fill="#1f2229"/>
+<path d="M240 226 Q263 216 286 226 L290 272 H236Z" fill="#2f5fd0"/>
+<path d="M242 232 Q228 236 230 240" stroke="#2f5fd0" stroke-width="10" stroke-linecap="round" fill="none"/>
+<path d="M234 238 L230 240" stroke="#efc09c" stroke-width="8" stroke-linecap="round"/>
+<path d="M286 230 Q300 212 292 196" stroke="#2f5fd0" stroke-width="10" stroke-linecap="round" fill="none"/>
+<path d="M294 210 Q298 198 292 190" stroke="#efc09c" stroke-width="8" stroke-linecap="round" fill="none"/>
+<circle cx="228" cy="239" r="6" fill="#efc09c"/>
+<use href="#sb-a" x="224" y="150" width="80" height="80"/>
+<g transform="rotate(-7 180 241)">
+<rect x="40" y="150" width="280" height="182" fill="none" stroke="#5a3a26" stroke-width="11"/>
+<rect x="40" y="150" width="280" height="182" fill="none" stroke="#7a5236" stroke-width="3"/>
+<rect x="30" y="146" width="30" height="190" rx="3" fill="#5a3a26"/><rect x="34" y="150" width="3" height="182" fill="#7a5236"/>
+<g fill="#ffd34d" font-family="sans-serif" font-size="20" font-weight="bold" text-anchor="middle"><text x="46" y="196">壽</text><text x="46" y="222">卡</text><text x="46" y="248">驛</text><text x="46" y="274">站</text></g>
+</g>
+<path d="M330 344 L346 168 L368 160 L364 228 L398 166 L438 150 L434 176 L414 186 L372 290 L366 344Z" fill="#a9c13a" stroke="#7d9223" stroke-width="2"/>
+<rect x="340" y="318" width="70" height="10" fill="#a9c13a"/><rect x="398" y="300" width="12" height="44" fill="#a9c13a"/>
+<g><rect x="350" y="184" width="10" height="8" fill="#e85d8c"/><rect x="348" y="200" width="14" height="7" fill="#fff"/><circle cx="356" cy="218" r="4" fill="#3d6bd8"/><circle cx="352" cy="236" r="4" fill="#f4f4f4"/><rect x="348" y="250" width="12" height="7" fill="#f6d96b"/><circle cx="410" cy="174" r="4" fill="#fff"/><rect x="420" y="160" width="9" height="7" fill="#bfe3f5"/><circle cx="402" cy="186" r="3.4" fill="#e8a63d"/></g>
+<g fill="none" stroke="#e5322b" stroke-linecap="round" stroke-linejoin="round"><circle cx="350" cy="284" r="24" stroke-width="6"/><circle cx="424" cy="306" r="24" stroke-width="6"/>
+<path d="M350 284 L366 252 M424 306 L400 262 L388 300 L424 306 M388 300 L366 262 L400 262" stroke-width="6"/>
+<path d="M402 258 L388 222 M388 222 L364 252 M402 258 L378 278 L390 300" stroke-width="12"/></g>
+<g fill="#e5322b"><circle cx="378" cy="207" r="12"/><path d="M364 204 Q378 186 394 204Z"/><path d="M358 250 h14 v6 h-14z"/><ellipse cx="394" cy="262" rx="12" ry="5"/></g>
+<path d="M386 222 Q396 236 392 252" stroke="#3a3a46" stroke-width="2.5" fill="none"/>
+<circle cx="396" cy="240" r="4" fill="#fff"/><circle cx="378" cy="232" r="3.4" fill="#3d6bd8"/><circle cx="350" cy="284" r="4" fill="#e5322b"/><circle cx="424" cy="306" r="4" fill="#e5322b"/>
+</svg>
+<figcaption><div class="stamp"><b>16</b><span>10/7（三） 12:24</span><span>・壽卡驛站（南迴・199 縣道）</span></div><p class="story">這裡是騎腳踏車的人最愛停的地方，紅色的鐵馬騎士貼滿了貼紙。小旅人站上大大的木頭椅子，牽著大人的手：「我比你高了！」</p><div class="note"><a href="#d5">看 D5 行程 →</a></div></figcaption></figure>
+<figure class="book-page" id="sb17">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-label="從森林山頂眺望九棚旭海海岸：碧藍太平洋、白浪沙灘與綠色山丘，一家三口在觀景台看風景">
+<defs>
+<linearGradient id="sb17-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3f78c4"/><stop offset=".75" stop-color="#86b6e4"/><stop offset="1" stop-color="#d4e6f4"/></linearGradient>
+<linearGradient id="sb17-sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a8fb4"/><stop offset=".35" stop-color="#2aa5b5"/><stop offset="1" stop-color="#74d0c6"/></linearGradient>
+</defs>
+<rect width="480" height="360" fill="url(#sb17-sky)"/>
+<g fill="#fff" opacity=".9"><path d="M290 96 Q330 76 400 80 Q430 74 452 70 Q426 88 394 92 Q340 102 290 96Z"/><ellipse cx="262" cy="124" rx="22" ry="8"/><ellipse cx="80" cy="116" rx="20" ry="8"/><ellipse cx="136" cy="124" rx="10" ry="5"/><ellipse cx="370" cy="124" rx="12" ry="5"/></g>
+<g fill="#f3f7fb"><ellipse cx="40" cy="164" rx="60" ry="14"/><ellipse cx="110" cy="156" rx="44" ry="14"/><ellipse cx="132" cy="148" rx="16" ry="12"/><ellipse cx="190" cy="162" rx="54" ry="13"/><ellipse cx="260" cy="160" rx="48" ry="14"/><ellipse cx="252" cy="150" rx="18" ry="9"/><ellipse cx="340" cy="164" rx="60" ry="14"/><ellipse cx="410" cy="152" rx="52" ry="16"/><ellipse cx="462" cy="162" rx="40" ry="12"/><ellipse cx="455" cy="144" rx="14" ry="9"/></g>
+<rect x="0" y="172" width="480" height="140" fill="url(#sb17-sea)"/>
+<path d="M0 172 H480" stroke="#7fa8c6" stroke-width="2"/>
+<g stroke="#a8e0e3" stroke-width="1.6" stroke-linecap="round" opacity=".85"><path d="M30 190 h14 M100 198 h18 M60 214 h12 M160 192 h12 M200 210 h16 M130 226 h10 M30 236 h14 M180 236 h12"/></g>
+<path d="M292 173 Q330 168 360 166 Q420 160 480 162 L480 200 L330 200Z" fill="#a3bccb"/>
+<path d="M318 188 Q350 176 380 180 Q420 170 480 174 L480 230 L318 230Z" fill="#86a98f"/>
+<path d="M330 186 Q290 214 262 256 Q248 276 238 296 L480 296 L480 192 Q440 182 400 190 Q360 182 330 186Z" fill="#5e9a5c"/>
+<path d="M330 186 Q290 214 262 256 Q248 276 238 296 L252 296 Q262 270 280 246 Q304 214 336 192Z" fill="#b29c7c"/>
+<path d="M326 186 Q284 214 256 256 Q242 278 232 296 L246 296 Q258 270 276 244 Q300 212 332 190Z" fill="#fff"/>
+<path d="M312 196 Q276 224 252 266 Q240 284 226 300" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" opacity=".85"/>
+<path d="M296 214 Q266 240 244 276" stroke="#e2f6f4" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+<g fill="#fff" opacity=".8"><ellipse cx="300" cy="206" rx="9" ry="2.5" transform="rotate(-35 300 206)"/><ellipse cx="282" cy="226" rx="11" ry="3" transform="rotate(-45 282 226)"/><ellipse cx="262" cy="252" rx="13" ry="3.4" transform="rotate(-52 262 252)"/><ellipse cx="246" cy="278" rx="14" ry="4" transform="rotate(-58 246 278)"/><ellipse cx="232" cy="292" rx="12" ry="4"/></g>
+<g stroke="#fff" stroke-width="1.6" fill="none" opacity=".7" stroke-linecap="round"><path d="M290 204 q-6 8 -12 12 M268 232 q-6 10 -12 14 M250 262 q-6 10 -12 16"/></g>
+<path d="M340 200 Q400 186 480 196 L480 250 Q420 236 360 250 Q330 240 340 200Z" fill="#4c8a50"/>
+<rect x="378" y="190" width="42" height="7" rx="1" fill="#f6f8f9"/><rect x="378" y="190" width="42" height="2" fill="#c6d0d8"/><rect x="372" y="193" width="8" height="5" fill="#eef1f3"/>
+<path d="M0 262 Q30 248 60 254 Q100 248 140 262 Q180 270 210 290 Q230 300 260 306 L320 300 Q370 278 420 282 Q450 272 480 276 L480 360 L0 360Z" fill="#2f6b34"/>
+<g fill="#3b7d3c"><circle cx="20" cy="262" r="18"/><circle cx="58" cy="256" r="16"/><circle cx="100" cy="260" r="18"/><circle cx="142" cy="268" r="16"/><circle cx="180" cy="280" r="16"/><circle cx="214" cy="296" r="14"/><circle cx="310" cy="302" r="14"/><circle cx="356" cy="288" r="18"/><circle cx="400" cy="282" r="16"/><circle cx="444" cy="278" r="18"/><circle cx="478" cy="280" r="14"/></g>
+<g fill="#4f9846"><circle cx="196" cy="318" r="24"/><circle cx="240" cy="320" r="22"/><circle cx="282" cy="322" r="24"/><circle cx="330" cy="312" r="26"/><circle cx="380" cy="306" r="26"/><circle cx="430" cy="306" r="26"/><circle cx="478" cy="304" r="22"/></g>
+<g fill="#6cb352"><circle cx="214" cy="346" r="26"/><circle cx="262" cy="344" r="24"/><circle cx="310" cy="350" r="28"/><circle cx="362" cy="340" r="28"/><circle cx="414" cy="344" r="28"/><circle cx="466" cy="338" r="26"/></g>
+<g fill="#8ccb64"><circle cx="256" cy="336" r="7"/><circle cx="356" cy="330" r="8"/><circle cx="420" cy="336" r="8"/><circle cx="304" cy="342" r="6"/></g>
+<rect x="0" y="330" width="190" height="30" fill="#b48a5e"/><rect x="0" y="330" width="190" height="5" fill="#9a734c"/>
+<path d="M50 300 Q52 280 66 278 Q80 280 82 300 L84 330 H48Z" fill="#2f5fd0"/>
+<rect x="50" y="324" width="32" height="12" fill="#1f2229"/>
+<path d="M50 286 Q42 300 44 314" stroke="#2f5fd0" stroke-width="8" stroke-linecap="round" fill="none"/>
+<path d="M82 286 Q90 298 98 306" stroke="#2f5fd0" stroke-width="8" stroke-linecap="round" fill="none"/>
+<circle cx="100" cy="308" r="4" fill="#efc09c"/>
+<rect x="61" y="268" width="10" height="12" fill="#efc09c"/>
+<ellipse cx="66" cy="258" rx="15" ry="17" fill="#f2c7a5"/><ellipse cx="51" cy="260" rx="3" ry="5" fill="#e9b893"/><ellipse cx="81" cy="260" rx="3" ry="5" fill="#e9b893"/>
+<path d="M51 262 Q48 240 66 239 Q84 240 81 262 Q76 268 70 266 Q66 270 62 266 Q56 268 51 262Z" fill="#17171d"/>
+<path d="M104 300 Q106 280 122 278 Q138 280 140 300 L142 330 H102Z" fill="#5aa27a"/>
+<rect x="104" y="324" width="36" height="12" fill="#d8c49a"/>
+<path d="M104 286 Q100 298 102 306" stroke="#5aa27a" stroke-width="8" stroke-linecap="round" fill="none"/>
+<path d="M140 284 Q148 270 142 258" stroke="#5aa27a" stroke-width="8" stroke-linecap="round" fill="none"/>
+<path d="M114 246 Q116 232 127 230 Q138 232 140 246 L140 262 H114Z" fill="#f4f1e6"/>
+<path d="M115 240 H139 M114 246 H140 M114 252 H140" stroke="#8fb2a0" stroke-width="1.8"/>
+<path d="M114 244 Q106 252 110 260" stroke="#f6d2b4" stroke-width="5" stroke-linecap="round" fill="none"/>
+<path d="M140 244 Q146 252 142 258" stroke="#f6d2b4" stroke-width="5" stroke-linecap="round" fill="none"/>
+<circle cx="142" cy="258" r="4" fill="#efbf9b"/>
+<rect x="116" y="268" width="12" height="12" fill="#e7b48f"/>
+<ellipse cx="122" cy="260" rx="16" ry="17" fill="#efbf9b"/><ellipse cx="106" cy="262" rx="3" ry="5" fill="#e4ad87"/><ellipse cx="138" cy="262" rx="3" ry="5" fill="#e4ad87"/>
+<path d="M106 260 Q106 242 122 242 Q138 242 138 260 Q130 266 122 265 Q114 266 106 260Z" fill="#3a3a42"/>
+<ellipse cx="114" cy="220" rx="2.4" ry="3.4" fill="#f0c3a1"/><ellipse cx="140" cy="220" rx="2.4" ry="3.4" fill="#f0c3a1"/>
+<ellipse cx="127" cy="229" rx="7" ry="4" fill="#f6d2b4"/>
+<ellipse cx="127" cy="218" rx="13" ry="12.5" fill="#1d1d24"/>
+<path d="M124 207 L122 199 L127 205 L129 197 L131 205 L136 200 L133 208Z" fill="#1d1d24"/>
+<path d="M121 212 Q127 208 133 211" stroke="#3a3a46" stroke-width="1.2" fill="none"/>
+<g stroke="#8a6440" stroke-width="5" stroke-linecap="round"><path d="M4 316 H186 M10 304 V340 M96 304 V340 M182 304 V340"/></g>
+<path d="M104 64 l6 -3 l6 3 M124 52 l5 -2 l5 2" stroke="#3a4a66" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+</svg>
+<figcaption><div class="stamp"><b>17</b><span>10/7（三） 14:01</span><span>・往旭海途中眺望九棚海岸</span></div><p class="story">山路轉個彎，大海突然整片打開。白色的浪花沿著沙灘畫出一條長長的曲線，遠遠的山丘上有一棟小白房子。好藍——藍到說不出話來。</p><div class="note"><a href="#d5">看 D5 行程 →</a></div></figcaption></figure>
+<figure class="book-page" id="sb18">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-label="旭海大草原上，一家三口在金黃草坡與藍色大海前開心自拍">
+<defs>
+<linearGradient id="sb18-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8fb6dc"/><stop offset="1" stop-color="#d9e9f3"/></linearGradient>
+<linearGradient id="sb18-sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2f6e9c"/><stop offset="1" stop-color="#1f557f"/></linearGradient>
+<linearGradient id="sb18-grass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2c27c"/><stop offset="1" stop-color="#c9a25e"/></linearGradient>
+</defs>
+<rect width="480" height="360" fill="url(#sb18-sky)"/>
+<g fill="#fff" opacity=".92">
+<path d="M300 40 Q306 22 326 26 Q336 10 358 18 Q376 8 392 22 Q414 20 416 38 Q430 44 420 52 L304 52 Q290 48 300 40Z"/>
+<path d="M60 52 Q66 40 82 44 Q92 32 108 40 Q124 38 126 50 Q132 56 124 60 L64 60 Q54 58 60 52Z" opacity=".8"/>
+<path d="M190 30 Q198 22 210 26 Q220 18 232 26 Q244 26 242 34 L194 36Z" opacity=".7"/>
+</g>
+<rect y="104" width="480" height="60" fill="url(#sb18-sea)"/>
+<path d="M150 118 h30 M230 128 h24 M300 114 h20 M380 124 h28" stroke="#8fc0e0" stroke-width="2" stroke-linecap="round" opacity=".6"/>
+<path d="M0 72 Q40 64 70 78 Q110 92 150 140 L0 170Z" fill="#4f8f4a"/>
+<path d="M0 100 Q50 96 90 120 Q120 140 140 170 L0 190Z" fill="#69a65a"/>
+<g fill="#5c9a4f"><circle cx="30" cy="84" r="10"/><circle cx="58" cy="82" r="9"/><circle cx="84" cy="96" r="9"/><circle cx="20" cy="110" r="11"/><circle cx="60" cy="112" r="10"/></g>
+<path d="M480 90 Q440 92 420 110 Q390 118 370 132 L480 200Z" fill="#4f8f4a"/>
+<g fill="#68a75a"><circle cx="470" cy="100" r="18"/><circle cx="446" cy="116" r="15"/><circle cx="420" cy="122" r="11"/><circle cx="470" cy="140" r="20"/><circle cx="400" cy="130" r="8"/></g>
+<path d="M455 70 l-6 40 M462 64 l-4 30 M448 80 l14 -12" stroke="#8a7a68" stroke-width="2" fill="none" stroke-linecap="round"/>
+<path d="M0 190 Q120 150 240 146 Q340 140 400 132 Q440 140 480 160 L480 360 L0 360Z" fill="url(#sb18-grass)"/>
+<path d="M200 152 q40 -6 80 -8" stroke="#cfae6a" stroke-width="3" fill="none"/>
+<g stroke="#b88f4e" stroke-width="1.6" stroke-linecap="round" opacity=".7">
+<path d="M30 220 l4 -8 M38 222 l2 -9 M160 190 l3 -7 M168 192 l-2 -7 M300 176 l3 -7 M308 178 l1 -8 M220 210 l4 -8 M420 196 l3 -8 M90 260 l4 -9 M260 240 l3 -8"/>
+</g>
+<path d="M30 360 Q34 290 80 272 L172 272 Q214 290 220 360Z" fill="#f4f5f7" stroke="#d3d8de" stroke-width="2"/>
+<path d="M104 272 L126 320 L148 272Z" fill="#2f5fbf"/>
+<path d="M60 284 Q66 320 64 360 M196 288 Q196 330 198 360" stroke="#2a3150" stroke-width="12" fill="none"/>
+<use href="#sb-a" x="62" y="146" width="132" height="132"/>
+<path d="M150 172 Q176 160 196 170 Q180 172 170 182Z M160 186 Q186 180 202 192 Q186 192 172 196Z M120 166 Q146 150 170 160 Q150 164 140 172Z" fill="#17171d"/>
+<path d="M88 206 Q128 198 170 204 L168 220 Q162 230 146 227 Q134 223 128 221 Q122 229 108 230 Q92 230 88 220Z" fill="#596474" stroke="#fff" stroke-width="4" stroke-linejoin="round"/>
+<path d="M96 210 Q110 206 122 208" stroke="#9fb2c6" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M88 208 L78 212 M170 206 L180 210" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+<path d="M262 360 Q266 268 316 250 L410 250 Q462 270 470 360Z" fill="#eef0f2" stroke="#cdd3da" stroke-width="2"/>
+<path d="M342 250 L364 296 L386 250Z" fill="#33a6d6"/>
+<path d="M300 262 Q300 310 304 360" stroke="#b5bcc4" stroke-width="10" fill="none"/>
+<path d="M420 256 Q448 300 452 360" stroke="#b5bcc4" stroke-width="10" fill="none"/>
+<path d="M440 300 Q470 260 474 220" stroke="#eef0f2" stroke-width="26" fill="none" stroke-linecap="round"/>
+<use href="#sb-b" x="298" y="118" width="132" height="132"/>
+<path d="M330 162 Q344 150 358 156 L358 170 Q344 172 332 176Z M366 156 Q380 150 394 162 L392 176 Q380 172 366 170Z" fill="#7a5544" opacity=".85" stroke="#3e3f46" stroke-width="1.6"/><path d="M336 162 l10 -4 M372 158 l10 4" stroke="#e8d2c0" stroke-width="2" stroke-linecap="round"/>
+<path d="M357 166 L367 166 M362 166 L362 178" stroke="#3e3f46" stroke-width="2.4"/>
+<path d="M438 150 l10 -6 M440 162 l12 0 M290 150 l-10 -6" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+<path d="M218 360 Q222 300 268 290 Q312 300 318 360Z" fill="#fbfbf7"/>
+<g stroke="#7bbf74" stroke-width="5"><path d="M224 330 H312"/></g>
+<g stroke="#5a8fd0" stroke-width="5"><path d="M222 344 H316"/><path d="M228 316 H308"/></g>
+<path d="M226 300 Q200 304 180 318" stroke="#fbfbf7" stroke-width="20" fill="none" stroke-linecap="round"/>
+<path d="M210 304 l-4 18 M196 310 l-4 16" stroke="#5a8fd0" stroke-width="3"/>
+<circle cx="174" cy="322" r="9" fill="#f6d2b4"/>
+<path d="M210 360 Q216 316 236 300 M330 360 Q322 316 300 300" stroke="#6d7680" stroke-width="12" fill="none"/>
+<ellipse cx="270" cy="282" rx="42" ry="40" fill="#f0c3a1"/>
+<ellipse cx="228" cy="290" rx="6" ry="9" fill="#f0c3a1"/><ellipse cx="312" cy="290" rx="6" ry="9" fill="#f0c3a1"/>
+<ellipse cx="270" cy="278" rx="42" ry="38" fill="#1d1d24"/>
+<path d="M262 246 L254 224 L268 240 L274 218 L280 240 L294 226 L286 250Z" fill="#1d1d24"/>
+<path d="M270 262 q12 2 10 12 q-4 10 -16 6 q-8 -6 0 -12 M240 270 q8 -14 22 -18 M298 266 q-4 -12 -16 -16" stroke="#40404c" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+<path d="M200 70 q30 -8 60 0 q14 4 22 -6 M220 86 q26 -6 48 0" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" opacity=".8"/>
+</svg>
+<figcaption><div class="stamp"><b>18</b><span>10/7（三） 14:53</span><span>・旭海大草原</span></div><p class="story">金黃色的草原一路滑到海邊，風把每個人的頭髮都吹得亂七八糟。戴上太陽眼鏡，三個人擠在一起大笑。這是這趟旅行最遠、最大的一片天空。</p><div class="note"><a href="#d5">看 D5 行程 →</a></div></figcaption></figure>
+<figure class="book-page" id="sb19">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-label="墾丁夜空下，船帆石與小馬陪伴，一家三口開車沿海岸回家，未完待續">
+<defs>
+<linearGradient id="sb19-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1e2350"/><stop offset=".7" stop-color="#4a4c8c"/><stop offset="1" stop-color="#8a7bb0"/></linearGradient>
+<linearGradient id="sb19-sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b4a8a"/><stop offset="1" stop-color="#26306a"/></linearGradient>
+<radialGradient id="sb19-glow"><stop offset="0" stop-color="#ffe9a8" stop-opacity=".55"/><stop offset="1" stop-color="#ffe9a8" stop-opacity="0"/></radialGradient>
+</defs>
+<rect width="480" height="360" fill="url(#sb19-sky)"/>
+<circle cx="408" cy="62" r="56" fill="url(#sb19-glow)"/>
+<path d="M398 30 A34 34 0 1 0 438 84 A28 28 0 1 1 398 30Z" fill="#ffe7a0"/>
+<g fill="#fff4c8">
+<circle cx="40" cy="30" r="1.8"/><circle cx="90" cy="60" r="1.4"/><circle cx="150" cy="24" r="2"/><circle cx="210" cy="56" r="1.4"/><circle cx="262" cy="22" r="1.8"/><circle cx="320" cy="44" r="1.4"/><circle cx="352" cy="110" r="1.4"/><circle cx="24" cy="100" r="1.4"/><circle cx="120" cy="110" r="1.6"/><circle cx="460" cy="140" r="1.4"/><circle cx="190" cy="100" r="1.2"/><circle cx="280" cy="96" r="1.4"/>
+<path d="M70 82 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3Z M236 74 l2 6 6 2 -6 2 -2 6 -2 -6 -6 -2 6 -2Z M350 18 l2 6 6 2 -6 2 -2 6 -2 -6 -6 -2 6 -2Z"/>
+</g>
+<rect y="196" width="480" height="164" fill="url(#sb19-sea)"/>
+<path d="M300 300 q20 -4 40 0 M80 300 q14 -3 28 0" stroke="#ffe7a0" stroke-width="2" opacity=".5" stroke-linecap="round"/>
+<path d="M396 204 h28 M392 214 h36 M398 224 h22" stroke="#ffe7a0" stroke-width="2.4" opacity=".55" stroke-linecap="round"/>
+<path d="M190 204 Q230 150 290 140 Q340 134 370 170 Q384 190 390 204Z" fill="#2c4a52"/>
+<path d="M210 204 Q250 172 300 168 Q340 168 360 204Z" fill="#355a5e"/>
+<g fill="#1a2234">
+<ellipse cx="318" cy="130" rx="20" ry="9"/>
+<path d="M306 128 Q302 120 297 113 L293 106 Q289 102 285 106 L280 113 Q278 117 283 118 L290 118 Q294 124 298 133Z"/>
+<path d="M295 107 l-1 -7 5 5Z"/>
+<path d="M303 125 v18 h3 v-14Z M311 132 v12 h3 v-12Z M324 132 v12 h3 v-12Z M331 128 l2 15 h3 l-1 -16Z"/>
+<path d="M337 126 q10 2 8 18 q-4 -10 -10 -14Z"/>
+</g>
+<path d="M296 108 q6 6 9 18" stroke="#4a4c8c" stroke-width="2" fill="none"/>
+<circle cx="288" cy="110" r="1.1" fill="#ffe7a0"/>
+<g fill="#2a2f5c">
+<rect x="404" y="178" width="8" height="20"/><rect x="414" y="168" width="10" height="30"/><rect x="426" y="182" width="7" height="16"/><rect x="435" y="160" width="6" height="38"/><rect x="443" y="174" width="12" height="24"/><rect x="457" y="184" width="8" height="14"/><rect x="467" y="170" width="9" height="28"/>
+</g>
+<g fill="#ffd36e"><rect x="416" y="174" width="2" height="2"/><rect x="420" y="182" width="2" height="2"/><rect x="437" y="168" width="2" height="2"/><rect x="446" y="180" width="2" height="2"/><rect x="450" y="188" width="2" height="2"/><rect x="470" y="178" width="2" height="2"/><rect x="406" y="186" width="2" height="2"/></g>
+<text x="440" y="154" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#e8e2ff">高雄→蘆洲</text>
+<path d="M44 222 Q46 168 70 146 Q94 132 108 150 Q110 184 118 222Z" fill="#6a6478"/>
+<path d="M70 146 Q94 132 108 150 Q100 186 104 222 L92 222 Q86 184 70 146Z" fill="#544f66"/>
+<path d="M36 222 q42 -8 90 0" stroke="#c9d3ff" stroke-width="2.4" fill="none" stroke-linecap="round" opacity=".6"/>
+<text x="80" y="242" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#e8e2ff">船帆石</text>
+<path d="M0 290 Q160 252 300 232 Q380 214 480 204 L480 360 L0 360Z" fill="#2e3f45"/>
+<path d="M0 316 Q160 270 300 246 Q390 226 480 212 L480 222 Q390 238 300 262 Q160 292 0 340Z" fill="#5a5e6e"/>
+<path d="M20 322 l20 -6 M90 302 l22 -6 M170 282 l22 -5 M250 264 l20 -4 M330 248 l16 -3 M400 234 l12 -2" stroke="#ffe7a0" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M0 340 Q160 292 300 262 Q390 238 480 222 L480 360 L0 360Z" fill="#22303a"/>
+<g fill="#2f4a3e"><circle cx="40" cy="344" r="14"/><circle cx="66" cy="350" r="12"/><circle cx="440" cy="250" r="10"/><circle cx="460" cy="246" r="8"/></g>
+<g transform="translate(0 -26) rotate(-9 256 290)">
+<ellipse cx="252" cy="306" rx="96" ry="6" fill="#141a24" opacity=".5"/>
+<use href="#sb-a" x="176" y="196" width="60" height="60"/>
+<use href="#sb-kid" x="226" y="204" width="50" height="50"/>
+<use href="#sb-b" x="270" y="196" width="60" height="60"/>
+<path fill-rule="evenodd" fill="#e3e7ee" stroke="#9aa3b4" stroke-width="1.5" d="M164 270 Q166 256 184 252 L198 226 Q204 216 216 216 L296 216 Q308 216 316 228 L330 252 Q350 254 352 270 L352 294 Q352 302 344 302 L170 302 Q162 302 162 294Z M190 250 L204 226 Q206 222 212 222 L226 222 L226 250Z M232 222 L270 222 L270 250 L232 250Z M276 222 L298 222 Q304 222 308 228 L320 250 L276 250Z"/>
+<path d="M164 272 H352" stroke="#b9c0cc" stroke-width="3"/>
+<rect x="250" y="276" width="14" height="3" rx="1.5" fill="#8a92a2"/>
+<circle cx="200" cy="302" r="16" fill="#2a2a34"/><circle cx="200" cy="302" r="7" fill="#c9ccd6"/>
+<circle cx="312" cy="302" r="16" fill="#2a2a34"/><circle cx="312" cy="302" r="7" fill="#c9ccd6"/>
+<ellipse cx="350" cy="280" rx="4" ry="5" fill="#fff6c0"/>
+<path d="M354 280 L420 266 L420 298Z" fill="#fff6c0" opacity=".25"/>
+<rect x="160" y="276" width="6" height="8" rx="2" fill="#e5484d"/>
+</g>
+<g fill="#ffe7a0"><path d="M150 186 l-3 -6 a3 3 0 0 1 6 -1 a3 3 0 0 1 6 1 l-3 6 -3 3Z" opacity=".8"/></g>
+<text x="240" y="346" text-anchor="middle" font-family="sans-serif" font-size="24" font-weight="bold" fill="#fff4c8">未完待續…</text>
+<text x="24" y="30" font-family="sans-serif" font-size="13" fill="#e8e2ff">10/8–10/11 墾丁</text>
+</svg>
+<figcaption><div class="stamp"><b>19</b><span>10/8–10/11 —</span><span>・悠客馬場 → 船帆石 → 高雄 → 回家</span></div><p class="story">接下來還有會打噴嚏的馬、像一艘船的大石頭，還有長長的回家路。這幾天還沒有照片，故事就先寫到這裡——未完待續……</p><div class="note">10/8 之後尚無照片，維持原計畫・<a href="#d6">看 D6 行程 →</a></div></figcaption></figure>
+</div>
+</section>
+<!-- BOOK:END -->
 <section id="highlights" class="gallery-wrap">
   <div class="section-title">
     <h2>景點圖片精選</h2>
@@ -314,6 +1602,7 @@ section[id]{scroll-margin-top:86px}
     <div class="route">週六國五南下：提早離開蘆洲，午睡放在蘇花移動段。</div>
     <div class="daymeta"><span class="pill">住宿：重飛 Go Around House（已訂）</span><span class="pill">預估駕駛 3.8–4.2h</span><span class="pill">重點：不排大景點</span></div>
   </div>
+  <!-- ACTUAL:BEGIN --><div class="actual"><b class="tag">實際足跡</b>比原計畫早：宜蘭不停，08:07 已出蘇花改和平端，中午前就到花蓮市。<ol><li><a href="#sb01"><time>08:07</time>台泥DAKA園區（和平）休息，看太陽能和平花</a></li><li><a href="#sb02"><time>11:55</time>松園別館（計畫外新增）</a></li><li><a href="#sb03"><time>14:58</time>花蓮冰果室吃水果冰</a></li><li><a href="#storybook"><time>晚上</time>入住重飛 Go Around House</a></li></ol><div class="miss">原排的五峰旗／東岳湧泉／崇德觀景台沒有照片紀錄，推測未停。</div></div><!-- ACTUAL:END -->
   <div class="day-media">
     <div>
       <div class="route-steps"><span>蘆洲</span><span>宜蘭放風</span><span>蘇花公路</span><span>花蓮住宿</span></div>
@@ -423,6 +1712,7 @@ section[id]{scroll-margin-top:86px}
     <div class="route">取代瑞穗牧場：森林＋糖廠，和後面的初鹿、悠客馬場不重複。</div>
     <div class="daymeta"><span class="pill">住宿：小牧山秋（已訂，連住 2 晚，補助後實付 400）</span><span class="pill">預估駕駛 2.2–2.5h</span></div>
   </div>
+  <!-- ACTUAL:BEGIN --><div class="actual"><b class="tag">實際足跡</b>順序對調：上午先撒固兒瀑布，大農大富移到午睡後的下午。<ol><li><a href="#sb04"><time>10:37</time>撒固兒瀑布</a></li><li><a href="#sb05"><time>14:34</time>大農大富平地森林園區（自行車林道）</a></li><li><a href="#sb06"><time>17:43</time>玉里・小牧山秋，先洗衣</a></li><li><a href="#storybook"><time>18:02</time>晚餐（長桌包廂）</a></li></ol><div class="miss">花蓮觀光糖廠沒有照片紀錄。</div></div><!-- ACTUAL:END -->
   <div class="day-media">
     <div>
       <div class="route-steps"><span>花蓮</span><span>大農大富</span><span>花蓮觀光糖廠</span><span>玉里</span></div>
@@ -469,6 +1759,7 @@ section[id]{scroll-margin-top:86px}
     <div class="route">利用玉里連住的優勢：活動結束直接回原房間睡午覺，再走午後短版瓦拉米。</div>
     <div class="daymeta"><span class="pill">住宿：小牧山秋（續住）</span><span class="pill">預估駕駛 1.1–1.5h</span><span class="pill">陶錫：預約制，10/5 尚待店家確認</span></div>
   </div>
+  <!-- ACTUAL:BEGIN --><div class="actual"><b class="tag">實際足跡</b>南安瀑布移到早上；下午沒走瓦拉米，改去台東長濱八仙洞。<ol><li><a href="#sb07"><time>09:03</time>南安瀑布</a></li><li><a href="#sb08"><time>10:15</time>陶錫工藝體驗（稻田邊帳篷）</a></li><li><a href="#sb09"><time>16:44</time>八仙洞・靈岩洞（玉長公路，單程約 50 分）</a></li><li><a href="#sb10"><time>18:36</time>回玉里吃晚餐（推測星馬茶餐廳）</a></li></ol><div class="miss">瓦拉米步道沒有照片紀錄，推測取消。</div></div><!-- ACTUAL:END -->
   <div class="day-media">
     <div>
       <div class="route-steps"><span>玉里住宿</span><span>陶錫工藝</span><span>回房午睡</span><span>瓦拉米前段</span><span>回玉里</span></div>
@@ -587,6 +1878,7 @@ section[id]{scroll-margin-top:86px}
     <div class="route">池上放在早上；午睡放在池上到初鹿的車程；初鹿之後順路加卑南遺址公園（只多 3 分鐘車程）。</div>
     <div class="daymeta"><span class="pill">住宿：台東市</span><span class="pill">預估駕駛 2.6–2.9h</span></div>
   </div>
+  <!-- ACTUAL:BEGIN --><div class="actual"><b class="tag">實際足跡</b>大致照計畫：池上上午、初鹿下午、傍晚入住台東。<ol><li><a href="#sb11"><time>11:34</time>池上街上手作小店</a></li><li><a href="#sb12"><time>13:39</time>初鹿牧場吃牛奶霜淇淋</a></li><li><a href="#sb13"><time>14:51</time>初鹿牧場 DIY 彩繪動物撲滿（卑南族服飾小牛）</a></li><li><a href="#sb14"><time>17:14</time>入住台東市民宿（推測門廷若室）</a></li></ol><div class="miss">伯朗大道、卑南遺址公園沒有照片紀錄。</div></div><!-- ACTUAL:END -->
   <div class="day-media">
     <div>
       <div class="route-steps"><span>玉里</span><span>伯朗大道</span><span>池上早午餐</span><span>初鹿牧場</span><span>卑南遺址公園</span><span>台東</span></div>
@@ -633,6 +1925,7 @@ section[id]{scroll-margin-top:86px}
     <div class="route">避免「吃完午餐立刻上山路」：先抵旭海、提早吃、休息＋午睡，再去草原，最後才走 199 甲。</div>
     <div class="daymeta"><span class="pill">住宿：悠客馬場</span><span class="pill">預估駕駛 4.0–4.4h</span><span class="pill">全程最長移動日</span></div>
   </div>
+  <!-- ACTUAL:BEGIN --><div class="actual"><b class="tag">實際足跡</b>比原計畫晚約 2–3 小時出發（孩子 08:10 還在熟睡），旭海改成下午。<ol><li><a href="#sb15"><time>08:10</time>台東民宿，孩子還在睡</a></li><li><a href="#sb16"><time>12:24</time>壽卡驛站</a></li><li><a href="#sb17"><time>14:01</time>199 甲往旭海途中眺望九棚海岸</a></li><li><a href="#sb18"><time>14:53</time>旭海大草原</a></li></ol><div class="miss">晚上入住悠客馬場（無照片）。</div></div><!-- ACTUAL:END -->
   <div class="day-media">
     <div>
       <div class="route-steps"><span>台東</span><span>南迴短休</span><span>旭海午餐</span><span>旭海大草原</span><span>199甲</span><span>悠客馬場</span></div>
@@ -687,6 +1980,7 @@ section[id]{scroll-margin-top:86px}
     <div class="route">取消海生館。車城到船帆石只要 45 分鐘，下午只排船帆石附近、免門票、短停留也有內容的地方。</div>
     <div class="daymeta"><span class="pill">住宿：草分木 B&amp;B 船帆石店</span><span class="pill">預估駕駛 0.7–1.0h</span><span class="pill">景點免門票</span></div>
   </div>
+  <!-- ACTUAL:BEGIN --><div class="actual"><b class="tag">實際足跡</b>10/8 之後尚無照片，以下維持原計畫。</div><!-- ACTUAL:END -->
   <div class="day-media">
     <div>
       <div class="route-steps"><span>悠客馬場</span><span>午餐</span><span>車上午睡</span><span>砂島展示館</span><span>船帆石住宿</span></div>
@@ -737,6 +2031,7 @@ section[id]{scroll-margin-top:86px}
     <div class="route">10/9 為國慶連假首日：少移動、早出早回，把塞車風險降到最低。</div>
     <div class="daymeta"><span class="pill">重點：低里程</span><span class="pill">午睡回住宿最好</span></div>
   </div>
+  <!-- ACTUAL:BEGIN --><div class="actual"><b class="tag">實際足跡</b>尚無照片，以下維持原計畫。</div><!-- ACTUAL:END -->
   <div class="day-media">
     <div>
       <div class="route-steps"><span>船帆石住宿</span><span>晨間散步</span><span>龍磐公園</span><span>早午餐</span><span>回房午睡</span></div>
