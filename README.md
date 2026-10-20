@@ -9,6 +9,7 @@
 - **台灣東部 9 天 8 夜親子悠遊** (`taiwan-east-family-202610.html`) — 2026/10/3–10/11，蘆洲→花蓮→玉里→池上→台東→旭海→車城→船帆石（2 晚）→高雄→蘆洲；每日實際道路路線圖（OSRM）、景點實景照（`assets/taiwan-east/`）
 - **沖繩 5 天 4 夜雙家庭自駕** (`okinawa-family-202607.html`) — 2026/7/23–7/27 行後實錄
 - **福岡 6 天 5 夜親子旅遊紀錄** (`fukuoka-family-202606.html`) — 2026/6/9–6/14 親子實際執行版（原訂 6/13 回程，虎航延誤改 6/14）
+- **紐西蘭南島 12 夜自駕紀錄** (`newzealand-south-202511.html`) — 2025/11/9–11/23，基督城→Twizel→Wanaka→皇后鎮→Te Anau→但尼丁→Oamaru→基督城；依 Google 地圖時間軸整理，OSRM 路線圖、與台灣東部每日開車距離比較，景點示意照（`assets/newzealand/`）
 - **喀比攀岩 8 天逐日紀錄** (`krabi-climbing-202502.html`) — 2025/2/7–2/14
 
 ## 結構
@@ -19,9 +20,11 @@ travel/
 ├── taiwan-east-family-202610.html   # 台灣東部親子悠遊
 ├── okinawa-family-202607.html       # 沖繩雙家庭自駕
 ├── fukuoka-family-202606.html       # 福岡親子交通計畫
+├── newzealand-south-202511.html     # 紐西蘭南島自駕紀錄
 ├── krabi-climbing-202502.html       # 喀比攀岩紀錄
 ├── assets/
 │   ├── krabi/                       # CC 授權實景照 + SOURCES.txt
+│   ├── newzealand/                  # CC 授權實景照 + SOURCES.txt
 │   └── taiwan-east/                 # CC 授權實景照 + SOURCES.txt
 └── README.md
 ```

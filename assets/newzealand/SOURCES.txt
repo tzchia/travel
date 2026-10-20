@@ -1,0 +1,86 @@
+New Zealand South Island road trip page — image sources (Wikimedia Commons, CC / public domain)
+Representative photos of each spot, NOT taken on this trip. Downscaled to ≤1000px (longest side).
+
+geraldine-main-st.jpg
+  file: File:Geraldine Main Street 003.JPG
+  license: CC BY 3.0
+  author: Mattinbgn
+  source: https://commons.wikimedia.org/wiki/File:Geraldine_Main_Street_003.JPG
+
+aoraki-hooker-valley.jpg
+  file: File:Aoraki-Mount Cook from Hooker Valley.jpg
+  license: CC BY-SA 3.0
+  author: Mr. Tickle
+  source: https://commons.wikimedia.org/wiki/File:Aoraki-Mount_Cook_from_Hooker_Valley.jpg
+
+lake-pukaki.jpg
+  file: File:Lake Pukaki 21.jpg
+  license: CC BY-SA 4.0
+  author: Krzysztof Golik
+  source: https://commons.wikimedia.org/wiki/File:Lake_Pukaki_21.jpg
+
+lindis-pass.jpg
+  file: File:Lindis Pass, Otago, New Zealand.jpg
+  license: CC BY-SA 4.0
+  author: Charlie Mitchell
+  source: https://commons.wikimedia.org/wiki/File:Lindis_Pass,_Otago,_New_Zealand.jpg
+
+lake-wanaka.jpg
+  file: File:Lake Wanaka 19.jpg
+  license: CC BY-SA 4.0
+  author: Krzysztof Golik
+  source: https://commons.wikimedia.org/wiki/File:Lake_Wanaka_19.jpg
+
+queenstown-wakatipu.jpg
+  file: File:Queenstown. Lake Wakatipu. (50854629786).jpg
+  license: CC0
+  author: Bernard Spragg
+  source: https://commons.wikimedia.org/wiki/File:Queenstown._Lake_Wakatipu._(50854629786).jpg
+
+glenorchy-shed.jpg
+  file: File:Otago, assorted - Otago9700.jpg
+  license: CC0
+  author: lumoplank
+  source: https://commons.wikimedia.org/wiki/File:Otago,_assorted_-_Otago9700.jpg
+
+fergburger.jpg
+  file: File:Fergburger-hole-in-wall.jpg
+  license: CC BY-SA 3.0
+  author: Andre Chalmers
+  source: https://commons.wikimedia.org/wiki/File:Fergburger-hole-in-wall.jpg
+
+lake-te-anau.jpg
+  file: File:00 1356 New Zealand - Lake Te Anau (Fiordland National Park).jpg
+  license: CC BY-SA 4.0
+  author: W. Bulach
+  source: https://commons.wikimedia.org/wiki/File:00_1356_New_Zealand_-_Lake_Te_Anau_(Fiordland_National_Park).jpg
+
+milford-mitre-peak.jpg
+  file: File:Milford Sound Mitre Peak.JPG
+  license: CC BY-SA 4.0
+  author: MurielBendel
+  source: https://commons.wikimedia.org/wiki/File:Milford_Sound_Mitre_Peak.JPG
+
+dunedin-railway-station.jpg
+  file: File:00 1513 Dunedin (New Zealand) - Railway Station.jpg
+  license: CC BY-SA 4.0
+  author: W. Bulach
+  source: https://commons.wikimedia.org/wiki/File:00_1513_Dunedin_(New_Zealand)_-_Railway_Station.jpg
+
+oamaru-harbour-st.jpg
+  file: File:Habour St Oamaru NZ. (52101976304).jpg
+  license: Public domain
+  author: Bernard Spragg
+  source: https://commons.wikimedia.org/wiki/File:Habour_St_Oamaru_NZ._(52101976304).jpg
+
+cardboard-cathedral.jpg
+  file: File:Cardboard Cathedral, Christchurch, New Zealand.jpg
+  license: CC BY-SA 4.0
+  author: Michal Klajban
+  source: https://commons.wikimedia.org/wiki/File:Cardboard_Cathedral,_Christchurch,_New_Zealand.jpg
+
+riverside-market.jpg
+  file: File:Riverside2024 from Lichfield corner.jpg
+  license: CC BY-SA 4.0
+  author: David Palmer
+  source: https://commons.wikimedia.org/wiki/File:Riverside2024_from_Lichfield_corner.jpg
