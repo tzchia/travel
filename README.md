@@ -1,6 +1,6 @@
 # travel
 
-子家的旅遊筆記合集 — 自由行精選景點、行程模板、實用 tips。
+旅遊筆記合集 — 自由行精選景點、行程模板、實用 tips。
 
 🌐 **Live site:** https://tzchia.github.io/travel/
 
