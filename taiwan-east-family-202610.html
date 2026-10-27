@@ -76,7 +76,7 @@ li{margin:.22rem 0}
 }
 
 /* ===== 頁內導覽：捲動進度條 + TOC + 桌機側欄（移植自沖繩／福岡頁，改用山林綠） ===== */
-section[id]{scroll-margin-top:86px}
+section[id]{scroll-margin-top:80px}
 .navbar{position:sticky;top:0;z-index:60;background:rgba(245,247,244,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);margin:0 0 18px;padding:9px 10px 6px;border-radius:16px;border:1px solid var(--line);box-shadow:0 6px 20px rgba(47,111,84,.10)}
 .progressbar{height:5px;background:#dbe8df;border-radius:999px;overflow:hidden;margin-bottom:9px}
 .progressbar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,#7bc5a0,#2f6f54);border-radius:999px;transition:width .08s linear}
@@ -88,7 +88,7 @@ section[id]{scroll-margin-top:86px}
 .sidedock{position:fixed;right:16px;top:50%;transform:translateY(-50%);z-index:55;display:none;flex-direction:column;gap:2px;background:rgba(245,247,244,.95);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:16px;padding:12px 10px;box-shadow:0 12px 30px rgba(47,111,84,.18);max-height:88vh;overflow:auto;scrollbar-width:thin}
 .sidedock::-webkit-scrollbar{width:5px}.sidedock::-webkit-scrollbar-thumb{background:#b9d3c3;border-radius:999px}
 .sidedock .sd-head{font-size:11px;font-weight:900;color:var(--muted);letter-spacing:.08em;padding:0 8px 6px;text-transform:uppercase}
-.sidedock .sd-prog{height:4px;background:#dbe8df;border-radius:999px;overflow:hidden;margin:0 6px 8px}
+.sidedock .sd-prog{flex:none;height:4px;background:#dbe8df;border-radius:999px;overflow:hidden;margin:0 6px 8px}
 .sidedock .sd-prog>i{display:block;height:100%;width:0;background:linear-gradient(90deg,#7bc5a0,#2f6f54);border-radius:999px;transition:width .08s linear}
 .sidedock a{display:flex;align-items:center;gap:9px;padding:6px 10px;border-radius:10px;font-size:13px;font-weight:700;color:var(--muted);border:0;text-decoration:none;white-space:nowrap;transition:background .15s,color .15s}
 .sidedock a .sd-dot{width:9px;height:9px;border-radius:999px;background:#c5d8cc;flex:0 0 auto;transition:background .15s,box-shadow .15s}
@@ -163,7 +163,7 @@ section[id]{scroll-margin-top:86px}
 @media (max-width:720px){.photo-strip{padding-left:13px;padding-right:13px;grid-auto-columns:minmax(200px,82%)}.strip-head{display:block;padding-left:13px;padding-right:13px}.strip-head .subtle{margin-top:4px}.hero-photo img{height:220px}}
 @media print{.photo-strip{display:grid;grid-auto-flow:row;grid-template-columns:1fr 1fr;overflow:visible}}
 /* ===== D3 陶錫工藝專區 ===== */
-#taoxi{scroll-margin-top:86px}
+#taoxi{scroll-margin-top:80px}
 .craft{padding:4px 18px 10px;border-bottom:1px solid #edf1ee;background:#fff}
 .craft-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0}
 .craft .info-panel{height:100%}

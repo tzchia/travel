@@ -33,6 +33,7 @@
     .ok{background:#edf9f1;border-left:5px solid #44a86f;border-radius:14px;padding:12px 14px;margin:12px 0;color:#1d5739}
     .tag{display:inline-block;border-radius:999px;padding:4px 9px;font-weight:800;font-size:13px;margin-right:6px;background:#eef6ff;color:#165e9f}
     .tag.orange{background:#fff0df;color:#a9510f}.tag.green{background:#e8f7ee;color:#24764b}.tag.pink{background:#ffeaf0;color:#b2385d}.tag.gray{background:#eef2f5;color:#52606b}
+    .tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%}
     table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:16px;border:1px solid var(--line);background:white}
     th,td{padding:12px;border-bottom:1px solid var(--line);vertical-align:top}th{background:#eef7ff;text-align:left;color:#14304a}tr:last-child td{border-bottom:none}
     .timeline{position:relative;margin:10px 0}.step{display:grid;grid-template-columns:96px 1fr;gap:14px;align-items:start;padding:13px 0;border-bottom:1px dashed #d8e1e8}.step:last-child{border-bottom:0}.time{font-weight:900;color:#0e5f9e;background:#edf7ff;border-radius:13px;padding:8px 10px;text-align:center}.step strong{color:#14304a}
@@ -54,7 +55,7 @@
     .sidedock{position:fixed;right:16px;top:50%;transform:translateY(-50%);z-index:55;display:none;flex-direction:column;gap:2px;background:rgba(247,251,255,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:16px;padding:12px 10px;box-shadow:0 12px 30px rgba(20,48,74,.16);max-height:88vh;overflow:auto;scrollbar-width:thin}
     .sidedock::-webkit-scrollbar{width:5px}.sidedock::-webkit-scrollbar-thumb{background:#cdd9e3;border-radius:999px}
     .sidedock .sd-head{font-size:11px;font-weight:900;color:#8997a3;letter-spacing:.08em;padding:0 8px 6px;text-transform:uppercase}
-    .sidedock .sd-prog{height:4px;background:#e3edf5;border-radius:999px;overflow:hidden;margin:0 6px 8px}
+    .sidedock .sd-prog{flex:none;height:4px;background:#e3edf5;border-radius:999px;overflow:hidden;margin:0 6px 8px}
     .sidedock .sd-prog>i{display:block;height:100%;width:0;background:linear-gradient(90deg,#277bca,#0e5f9e);border-radius:999px;transition:width .08s linear}
     .sidedock a{display:flex;align-items:center;gap:9px;padding:6px 10px;border-radius:10px;font-size:13px;font-weight:700;color:#52606b;border:0;text-decoration:none;white-space:nowrap;transition:background .15s,color .15s}
     .sidedock a .sd-dot{width:9px;height:9px;border-radius:999px;background:#cdd9e3;flex:0 0 auto;transition:background .15s,box-shadow .15s}
@@ -88,7 +89,7 @@
     /* 當日足跡（嵌進每個 Day 卡片內） */
     .daymap{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line)}
     .daymap .dm-head{font-size:14px;font-weight:900;color:var(--navy);margin-bottom:9px;display:flex;align-items:center;gap:6px}
-    @media print{.print{display:none}.sidedock{display:none}.wrap{max-width:none}.card,.hero{box-shadow:none}a{border-bottom:none}.hero{break-inside:avoid}.card{break-inside:avoid}}
+    @media print{.tablewrap{overflow:visible}.print{display:none}.sidedock{display:none}.wrap{max-width:none}.card,.hero{box-shadow:none}a{border-bottom:none}.hero{break-inside:avoid}.card{break-inside:avoid}}
   </style>
 </head>
 <body>
@@ -179,7 +180,7 @@
         <div class="pill no">不買 Tourist City Pass</div>
       </div>
       <div class="note"><strong>一句話：</strong>福岡市區交通很短，真正該買的是「方便」，不是「看起來很划算的 pass」。</div>
-      <table>
+      <div class="tablewrap"><table>
         <tr><th>項目</th><th>建議</th></tr>
         <tr><td>住宿</td><td>ホテルメトロポリタン福岡（博多區住吉 2-9-4，運河城旁），離博多站約步行 10–13 分；回程早班機建議計程車。</td></tr>
         <tr><td>Day 1（已完成）</td><td>機場直達巴士 11 分鐘進博多，又快又便宜、推車可上車。</td></tr>
@@ -187,13 +188,13 @@
         <tr><td>市區地鐵</td><td>感應信用卡／手機錢包可用，同一張卡同日上限 ¥640。</td></tr>
         <tr><td>JR 短程</td><td>去海之中道用 IC 卡即可，不需要 JR pass。</td></tr>
         <tr><td>1 歲小孩</td><td>不佔位原則上不用買交通票；飛機嬰兒票依虎航規定。</td></tr>
-      </table>
+      </table></div>
     </div>
   </section>
 
   <section class="card" id="overview">
     <h2>每日交通總覽</h2>
-    <table>
+    <div class="tablewrap"><table>
       <tr><th>日期</th><th>主行程</th><th>主要交通</th><th>親子關鍵</th></tr>
       <tr><td><strong>6/9（二）✅</strong></td><td>抵達福岡、巴士進博多、入住、一幸舍拉麵、超市採買</td><td>巴士：FUK 國際線 → 博多站（11 分）</td><td>不轉乘、不逛遠，早睡。已完成。</td></tr>
       <tr><td><strong>6/10（三）✅</strong></td><td>大濠公園散步 → 天神購物美食日（玄海丸海鮮午餐、Tenjin LOFT＋福岡PARCO、晚餐両国だししゃもじ 大名店）</td><td>博多→大濠→天神 地鐵＋步行；全日步行 6 公里</td><td>大濠公園已去，麵包超人未去。已完成。</td></tr>
@@ -201,7 +202,7 @@
       <tr><td><strong>6/12（五）✅</strong></td><td>太宰府半日＋天神／博多購物；晚餐もんじ天神大名店（吃到飽）</td><td>地下鐵＋西鐵；太宰府參道步行</td><td>梅枝餅、御神牛，慢慢逛。</td></tr>
       <tr><td><strong>6/13（六）⚠️改期</strong></td><td>原訂回程日。一早到機場、機場用餐（ROYAL MIYABI＋コクミン），<strong>班機延誤改隔日</strong>，折返博多市區→攀岩→串燒（焼とり家 庵）</td><td>機場↔博多來回；臨時加碼室內攀岩</td><td>虎航 IT241 維修延誤、改 6/14 IT2241。</td></tr>
       <tr><td><strong>6/14（日）✅</strong></td><td>實際返台。機場 Lawson 早餐後搭 IT2241</td><td>博多 → FUK 國際線</td><td>實際 12:21 起飛、13:44 抵桃園。</td></tr>
-    </table>
+    </table></div>
   </section>
 
   <section class="card day" id="day1">
@@ -341,12 +342,12 @@
     <div class="note"><strong>🛡️ 理賠提醒：</strong>虎航的延誤證明（航班離/到證明，開立日 6/14）寫明「延誤至 14 日起飛、改班號 IT2241、機務因素」。憑此＋住宿／餐飲收據，可向信用卡附贈或自購的<strong>旅遊不便險</strong>申請班機延誤賠償（多數需延誤 4 小時以上，本案延誤逾 24 小時）。記得保留登機證或訂位確認。</div>
     <div class="ok" style="margin-top:12px">
       <strong>✅ 理賠結果（已核賠）：</strong>「個人海外旅行不便保險」班機延誤賠付已下來。<strong>爸爸、媽媽兩位大人都有投保並獲理賠</strong>；<strong>1 歲的寶寶因投保時辰太趕、沒保到</strong>，本次無法理賠。
-      <table style="margin-top:10px">
+      <div class="tablewrap"><table style="margin-top:10px">
         <tr><th>被保人</th><th>狀態</th><th>賠案號碼</th><th>給付日</th><th>理賠金額</th></tr>
         <tr><td><strong>爸爸</strong></td><td><span class="tag green">已核賠</span></td><td>150315CTD07831</td><td>2026-06-17</td><td class="price">6,000 元</td></tr>
         <tr><td><strong>媽媽</strong></td><td><span class="tag green">已核賠</span></td><td>—</td><td>—</td><td class="price">6,000 元 <span class="mini">（同方案・待確認）</span></td></tr>
         <tr><td><strong>寶寶（1 歲）</strong></td><td><span class="tag gray">未保到</span></td><td colspan="2">投保時辰太趕，沒保到</td><td>—</td></tr>
-      </table>
+      </table></div>
       <div class="mini" style="margin-top:8px">給付項目：個人海外旅行不便保險｜事故日 2026/06/13（民國 115/06/13）｜發生狀況：班機延誤(T)、航班 IT241｜報案號碼 150126RP143228。※ 實際入帳日依各銀行作業時間為主；媽媽的賠案號碼／金額如與此不同再告訴我修正。</div>
     </div>
     <div class="daymap">
@@ -387,7 +388,7 @@
     </div>
     <div class="note"><strong>📅 實際返台是 6/14（日）下午</strong>，因虎航 IT241 維修延誤改隔日 IT2241，被迫多留一晚——6/13 晚上還在博多攀岩（18:13）＋吃串燒（焼とり家 庵 22:36），6/14 機場 Lawson 買早餐後才搭機，13:44 落地桃園。帳單入帳日多為 6/15。</div>
     <h3 style="margin-top:18px">逐筆對帳表</h3>
-    <table>
+    <div class="tablewrap"><table>
       <tr><th>日期</th><th>商店 / 內容</th><th style="text-align:right">日幣</th><th style="text-align:right">台幣入帳</th><th>備註</th></tr>
       <tr><td>6/9</td><td>LAWSON 福岡空港（到達日宵夜）</td><td style="text-align:right">¥538</td><td style="text-align:right">NT$106</td><td>本期帳單：另收手續費 NT$2</td></tr>
       <tr><td>6/9</td><td>博多一幸舍 總本店（拉麵）</td><td style="text-align:right">¥3,700</td><td style="text-align:right">NT$731</td><td></td></tr>
@@ -417,7 +418,7 @@
       <tr><td>6/13</td><td>LAWSON 博多駅西店</td><td style="text-align:right">¥957</td><td style="text-align:right">NT$190</td><td>帳單記 RO-SON</td></tr>
       <tr><td>6/13</td><td>ボルダリングジム・ホアホア（攀岩館·延誤多留那晚）🧗</td><td style="text-align:right">¥2,300</td><td style="text-align:right">NT$456</td><td>帳單記 SQ*BOULDERING GYM；Mastercard 觸碰 18:13</td></tr>
       <tr><td>6/14</td><td>LAWSON 福岡空港（回程日早餐）</td><td style="text-align:right">¥1,193</td><td style="text-align:right">NT$237</td><td>行程最後一筆</td></tr>
-    </table>
+    </table></div>
     <div class="grid two" style="margin-top:14px">
       <div class="ok">
         <strong>🔁 去除的重複收據（同一筆消費的多張）：</strong>
@@ -489,7 +490,7 @@
 
     <h3>逐項比價表</h3>
     <p class="mini">綠＝日本買賺到、灰＝差不多、紅＝台灣買就好。台灣價為現售參考（UNIQLO 官網被擋，取蝦皮全新轉售；藥品取同類替代品）。</p>
-    <table>
+    <div class="tablewrap"><table>
       <tr><th>類</th><th>品項</th><th>日本實付</th><th>台灣參考</th><th>判定</th></tr>
       <tr><td>👟 鞋</td><td>NIKE Zoom Fly 4 跑鞋 ×2</td><td>NT$1,069/雙</td><td>NT$4,000–4,500</td><td><span class="tag green">省 75%</span></td></tr>
       <tr><td>👟 鞋</td><td>NIKE Structure Plus 寬楦跑鞋</td><td>NT$2,673</td><td>NT$4,900</td><td><span class="tag green">省 45%</span></td></tr>
@@ -509,7 +510,7 @@
       <tr><td>👖 衣</td><td>UNIQLO EZY 牛仔褲（男／女）×2</td><td>NT$988</td><td>NT$790–990</td><td><span class="tag orange">台灣便宜</span></td></tr>
       <tr><td>💊 藥</td><td>せんねん灸 太陽（火を使わない，60入）</td><td>NT$1,049<br><span class="mini">每片 NT$17.5</span></td><td>NT$1,200<br><span class="mini">每片 NT$20（樂樂代購60入）</span></td><td><span class="tag green">省 13%</span></td></tr>
       <tr><td>💊 藥</td><td>龍角散（第3類·鐵罐）×2</td><td>NT$392/罐</td><td>台灣電商未上架原款</td><td><span class="tag gray">無同款</span></td></tr>
-    </table>
+    </table></div>
 
     <div class="warn"><strong>🇹🇼 這幾樣下次別特地揹：</strong>
       <ul class="small-list">
@@ -523,7 +524,7 @@
 
   <section class="card" id="passes">
     <h2>交通卡與優惠方案：買什麼、不買什麼</h2>
-    <table>
+    <div class="tablewrap"><table>
       <tr><th>方案</th><th>建議</th><th>理由</th></tr>
       <tr><td><strong>手機 Suica／ICOCA</strong></td><td><span class="tag green">推薦</span></td><td>JR、地下鐵、便利商店都好用。兩位大人各一張最順。</td></tr>
       <tr><td><strong>Hayakaken／SUGOCA／nimoca 實體 IC 卡</strong></td><td><span class="tag green">沒有手機 IC 卡時買</span></td><td>福岡市地下鐵官方列有 HAYAKAKEN IC 卡；可作為交通與小額支付工具。</td></tr>
@@ -532,7 +533,7 @@
       <tr><td><strong>Fukuoka Tourist City Pass</strong></td><td><span class="tag pink">不建議</span></td><td>這趟不是一天狂搭公車／地鐵／JR，回本機率低。</td></tr>
       <tr><td><strong>JR Kyushu Pass</strong></td><td><span class="tag pink">不買</span></td><td>你們只用短程 JR 到海之中道，單買／IC 卡最划算。</td></tr>
       <tr><td><strong>1 歲小孩交通票</strong></td><td><span class="tag gray">通常不用</span></td><td>JR 九州 FAQ 說 5 歲以下幼兒免費，但需要單獨使用座位或超過同行幼兒限制時另計。</td></tr>
-    </table>
+    </table></div>
     <div class="ok"><strong>最簡執行：</strong>兩位大人各準備一張手機 IC 卡或實體 IC 卡；地鐵天用各自的感應信用卡也可以。小孩 1 歲不佔位，市內交通通常不用另買票。</div>
   </section>
 

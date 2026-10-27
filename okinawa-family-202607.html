@@ -275,7 +275,7 @@
 
   /* ===== 頁內導覽：捲動進度條 + TOC（移植自福岡頁，改用海洋色） ===== */
   html { scroll-behavior: smooth; }
-  h2.sec[id] { scroll-margin-top: 92px; }
+  h2.sec[id] { scroll-margin-top: 80px; }
   .navbar { position: sticky; top: 0; z-index: 60; background: rgba(240,250,251,.94); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); margin: 0 0 18px; padding: 9px 10px 6px; border-radius: 16px; border: 1px solid var(--line); box-shadow: 0 6px 20px rgba(8,145,178,.10); }
   .progressbar { height: 5px; background: #d8eef2; border-radius: 999px; overflow: hidden; margin-bottom: 9px; }
   .progressbar > i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #22D3EE, #0891B2); border-radius: 999px; transition: width .08s linear; }
@@ -287,7 +287,7 @@
   .sidedock { position: fixed; right: 16px; top: 50%; transform: translateY(-50%); z-index: 55; display: none; flex-direction: column; gap: 2px; background: rgba(240,250,251,.95); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid var(--line); border-radius: 16px; padding: 12px 10px; box-shadow: 0 12px 30px rgba(8,145,178,.18); max-height: 88vh; overflow: auto; scrollbar-width: thin; }
   .sidedock::-webkit-scrollbar { width: 5px; } .sidedock::-webkit-scrollbar-thumb { background: #b6d9e0; border-radius: 999px; }
   .sidedock .sd-head { font-size: 11px; font-weight: 900; color: var(--muted); letter-spacing: .08em; padding: 0 8px 6px; text-transform: uppercase; }
-  .sidedock .sd-prog { height: 4px; background: #d8eef2; border-radius: 999px; overflow: hidden; margin: 0 6px 8px; }
+  .sidedock .sd-prog { flex: none; height: 4px; background: #d8eef2; border-radius: 999px; overflow: hidden; margin: 0 6px 8px; }
   .sidedock .sd-prog > i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #22D3EE, #0891B2); border-radius: 999px; transition: width .08s linear; }
   .sidedock a { display: flex; align-items: center; gap: 9px; padding: 6px 10px; border-radius: 10px; font-size: 13px; font-weight: 700; color: var(--muted); border: 0; text-decoration: none; white-space: nowrap; transition: background .15s, color .15s; }
   .sidedock a .sd-dot { width: 9px; height: 9px; border-radius: 999px; background: #c4dde3; flex: 0 0 auto; transition: background .15s, box-shadow .15s; }
