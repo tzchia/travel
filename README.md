@@ -33,7 +33,7 @@ travel/
 
 - 圖片：只用 Wikimedia Commons 的 CC／公眾領域圖，縮圖後存本站，`SOURCES.txt` 與頁尾列攝影者＋授權；政府觀光網站圖片（林業署、台東觀光網等）多為「版權所有、需事先同意」，不要熱連。
 - 地圖：Leaflet + OpenStreetMap 標準圖磚（CARTO 免費圖磚自 2026 起需 API key，已全站改掉）。路線幾何用 OSRM 公用伺服器抓後編碼為 polyline 內嵌。
-- 頁內導覽：sticky 進度條＋TOC（手機）／右側 sidedock（≥1100–1280px），scrollspy 高亮，三頁共用同一段程式。
+- 頁內導覽：sticky 進度條＋TOC（手機）／右側 sidedock（≥1280px），scrollspy 高亮；所有行程頁共用同一段 scrollspy 程式（以東部頁為準，逐字相同），各頁只調配色與版面寬度。
 
 ## 新增旅遊指南
 

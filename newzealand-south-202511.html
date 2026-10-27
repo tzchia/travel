@@ -10,16 +10,12 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 <style>
 :root{--bg:#f3f6f6;--card:#fff;--ink:#1c2b33;--muted:#62737b;--line:#dfe7e8;--teal:#14505c;--teal2:#1f7a8c;--lake:#2a9dbf;--gold:#c99a3b;--goldbg:#fbf3e2;--soft:#e8f2f3;--radius:18px}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:70px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;font-size:15.5px;line-height:1.7}
 a{color:var(--teal2)}img{max-width:100%;display:block}
-#prog{position:fixed;inset:0 0 auto;height:4px;z-index:130;background:#dde6e7}#prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--lake),var(--teal),var(--gold))}
 .top{position:sticky;top:0;z-index:120;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-.top .in{max-width:1120px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:10px 16px 8px}
+.top .in{max-width:1120px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:0 14px;padding:10px 16px 8px}
 .brand{font-weight:800;color:var(--teal);text-decoration:none;white-space:nowrap;letter-spacing:.04em}
-.nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}.nav::-webkit-scrollbar{display:none}
-.nav a{white-space:nowrap;text-decoration:none;color:var(--muted);font-size:.88rem;font-weight:700;padding:5px 11px;border-radius:999px}
-.nav a.active{background:var(--teal);color:#fff}
 .hero{position:relative;min-height:420px;display:flex;align-items:flex-end;color:#fff;background:#14505c url(assets/newzealand/lake-pukaki.jpg) center/cover}
 .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,30,40,.05) 20%,rgba(10,30,40,.78))}
 .hero .in{position:relative;max-width:1120px;width:100%;margin:0 auto;padding:40px 16px 34px}
@@ -89,15 +85,62 @@ figcaption{font-size:.8rem;color:var(--ink);margin-top:3px}figcaption span{displ
 .notes{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 18px}.notes li{margin:4px 0}
 footer{max-width:1120px;margin:0 auto;padding:20px 16px 40px;color:var(--muted);font-size:.8rem;border-top:1px solid var(--line)}
 #totop{position:fixed;right:14px;bottom:16px;z-index:110;border:none;border-radius:50%;width:42px;height:42px;background:var(--teal);color:#fff;font-size:18px;box-shadow:0 2px 10px rgba(0,0,0,.2);opacity:0;pointer-events:none;transition:opacity .2s;cursor:pointer}#totop.show{opacity:1;pointer-events:auto}
+/* ===== 頁內導覽：捲動進度條 + TOC + 桌機側欄（移植自東部／沖繩／福岡頁，改用湖水青；TOC 併入原本的 sticky header.top＝#navbar） ===== */
+section[id],.day,#top{scroll-margin-top:84px}
+.progressbar{flex:0 0 100%;height:5px;background:#dde6e7;border-radius:999px;overflow:hidden;margin-bottom:9px}
+.progressbar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--lake),var(--teal),var(--gold));border-radius:999px;transition:width .08s linear}
+.toc{flex:1 1 0;min-width:0;display:flex;gap:8px;flex-wrap:nowrap;overflow-x:auto;margin:0;padding:2px 2px 6px;scrollbar-width:thin;scroll-behavior:smooth}
+.toc::-webkit-scrollbar{height:6px}.toc::-webkit-scrollbar-thumb{background:#bcd7de;border-radius:999px}
+.toc a{flex:0 0 auto;white-space:nowrap;border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 12px;color:var(--teal);font-weight:800;text-decoration:none;font-size:13.5px;transition:background .15s,color .15s,border-color .15s}
+.toc a:hover{border-color:var(--teal2);color:var(--teal2)}
+.toc a.active{background:var(--teal);color:#fff;border-color:var(--teal)}
+.sidedock{position:fixed;right:16px;top:50%;transform:translateY(-50%);z-index:55;display:none;flex-direction:column;gap:2px;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:16px;padding:12px 10px;box-shadow:0 12px 30px rgba(20,80,92,.18);max-height:88vh;overflow:auto;scrollbar-width:thin}
+.sidedock::-webkit-scrollbar{width:5px}.sidedock::-webkit-scrollbar-thumb{background:#bcd7de;border-radius:999px}
+.sidedock .sd-head{font-size:11px;font-weight:900;color:var(--muted);letter-spacing:.08em;padding:0 8px 6px;text-transform:uppercase}
+.sidedock .sd-prog{flex:none;height:4px;background:#dde6e7;border-radius:999px;overflow:hidden;margin:0 6px 8px}
+.sidedock .sd-prog>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--lake),var(--teal),var(--gold));border-radius:999px;transition:width .08s linear}
+.sidedock a{display:flex;align-items:center;gap:9px;padding:6px 10px;border-radius:10px;font-size:13px;font-weight:700;color:var(--muted);border:0;text-decoration:none;white-space:nowrap;transition:background .15s,color .15s}
+.sidedock a .sd-dot{width:9px;height:9px;border-radius:999px;background:#bcd7de;flex:0 0 auto;transition:background .15s,box-shadow .15s}
+.sidedock a:hover{background:var(--soft);color:var(--ink)}
+.sidedock a:hover .sd-dot{background:var(--teal2)}
+.sidedock a.active{background:var(--teal);color:#fff}
+.sidedock a.active .sd-dot{background:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.28)}
+/* 桌機：header 只留 brand（TOC／進度條交給側欄）；版心讓出右側欄的寬度，避免側欄蓋住內容與首圖授權；側欄 20 項較高，上下各留 75px 避開 header 與 #totop */
+@media (min-width:1280px){.sidedock{display:flex;max-height:calc(100vh - 150px)}.top .toc,.top .progressbar{display:none}section[id],.day,#top{scroll-margin-top:50px}
+.top .in,.hero .in,main,footer{max-width:min(1120px,calc(100vw - 440px))}.hero .credit{right:220px}}
 @media (max-width:860px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.chart{grid-template-columns:1fr}}
 @media (max-width:640px){body{font-size:15px}.kpi b{font-size:1.2rem}.hero{min-height:360px}#map{height:400px}.pics{grid-template-columns:1fr}figure img{height:200px}
-.hero{flex-direction:column;justify-content:flex-end;align-items:stretch}.hero .credit{position:relative;right:auto;bottom:auto;padding:0 16px 8px}.nav{min-width:0}.tl{padding:4px 12px 12px}.tl li{grid-template-columns:6.6em 1.4em 1fr;gap:4px}.tl time{font-size:.78rem}.day>header{padding:12px 12px 6px}.brand{display:none}}
-@media print{.top,#prog,#totop,.legend{display:none}.day{break-inside:avoid}}
+.hero{flex-direction:column;justify-content:flex-end;align-items:stretch}.hero .credit{position:relative;right:auto;bottom:auto;padding:0 16px 8px}.tl{padding:4px 12px 12px}.tl li{grid-template-columns:6.6em 1.4em 1fr;gap:4px}.tl time{font-size:.78rem}.day>header{padding:12px 12px 6px}.brand{display:none}}
+@media print{.top,.sidedock,#totop,.legend{display:none}.day{break-inside:avoid}}
 </style>
 </head>
 <body>
-<div id="prog" role="progressbar" aria-label="閱讀進度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i></i></div>
-<header class="top"><div class="in"><a class="brand" href="#top">NZ 2025 ✦</a><nav class="nav" aria-label="頁內導覽"><a href="#overview">總覽</a><a href="#route">路線圖</a><a href="#drive">開車比較</a><a href="#days">逐日足跡</a><a href="#stays">住宿</a><a href="#notes">資料說明</a></nav></div></header>
+<!-- ===== 頁內導覽（手機/平板：sticky header 內的進度條＋TOC；桌機寬螢幕：右側懸浮） ===== -->
+<header class="top" id="navbar"><div class="in"><div class="progressbar"><i id="progressFill"></i></div><a class="brand" href="#top">NZ 2025 ✦</a><nav class="toc" id="toc" aria-label="頁內導覽"><a href="#overview">總覽</a><a href="#route">路線圖</a><a href="#drive">開車比較</a><a href="#days">逐日足跡</a><a href="#d1">D1 出發</a><a href="#d2">D2 抵基督城</a><a href="#d3">D3 Tekapo</a><a href="#d4">D4 Hooker</a><a href="#d5">D5 庫克山</a><a href="#d6">D6 Wanaka</a><a href="#d7">D7 皇后鎮</a><a href="#d8">D8 Glenorchy</a><a href="#d9">D9 Te Anau</a><a href="#d10">D10 米佛峽灣</a><a href="#d11">D11 但尼丁</a><a href="#d12">D12 Oamaru</a><a href="#d13">D13 回基督城</a><a href="#d14">D14 返台</a><a href="#stays">住宿</a><a href="#notes">資料說明</a></nav></div></header>
+<nav class="sidedock" id="sidedock" aria-label="頁面導覽">
+<div class="sd-head">本頁導覽</div>
+<div class="sd-prog"><i id="sideFill"></i></div>
+<a href="#overview"><span class="sd-dot"></span>總覽</a>
+<a href="#route"><span class="sd-dot"></span>路線圖</a>
+<a href="#drive"><span class="sd-dot"></span>開車距離比較</a>
+<a href="#days"><span class="sd-dot"></span>逐日足跡</a>
+<a href="#d1"><span class="sd-dot"></span>D1 11/9 台北出發</a>
+<a href="#d2"><span class="sd-dot"></span>D2 11/10 抵基督城</a>
+<a href="#d3"><span class="sd-dot"></span>D3 11/11 Tekapo</a>
+<a href="#d4"><span class="sd-dot"></span>D4 11/12 Hooker</a>
+<a href="#d5"><span class="sd-dot"></span>D5 11/13 庫克山村</a>
+<a href="#d6"><span class="sd-dot"></span>D6 11/14 Wanaka</a>
+<a href="#d7"><span class="sd-dot"></span>D7 11/15 皇后鎮</a>
+<a href="#d8"><span class="sd-dot"></span>D8 11/16 Glenorchy</a>
+<a href="#d9"><span class="sd-dot"></span>D9 11/17 Te Anau</a>
+<a href="#d10"><span class="sd-dot"></span>D10 11/18 米佛峽灣</a>
+<a href="#d11"><span class="sd-dot"></span>D11 11/19 但尼丁</a>
+<a href="#d12"><span class="sd-dot"></span>D12 11/20 Oamaru</a>
+<a href="#d13"><span class="sd-dot"></span>D13 11/21 回基督城</a>
+<a href="#d14"><span class="sd-dot"></span>D14 11/22 返台</a>
+<a href="#stays"><span class="sd-dot"></span>住宿</a>
+<a href="#notes"><span class="sd-dot"></span>資料說明</a>
+</nav>
 <div class="hero" id="top"><div class="in">
 <div class="eyebrow">SOUTH ISLAND ROAD TRIP · 2025/11/9 – 11/23</div>
 <h1>紐西蘭南島 12 夜自駕紀錄</h1>
@@ -157,9 +200,9 @@ footer{max-width:1120px;margin:0 auto;padding:20px 16px 40px;color:var(--muted);
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
 (function(){
-const links=[...document.querySelectorAll('.nav a')],secs=links.map(a=>document.querySelector(a.getAttribute('href'))),bar=document.querySelector('#prog i'),pr=document.getElementById('prog'),up=document.getElementById('totop');let busy=false;
-function upd(){busy=false;const d=document.documentElement,r=Math.max(0,Math.min(1,d.scrollTop/Math.max(1,d.scrollHeight-d.clientHeight)));bar.style.width=(r*100)+'%';pr.setAttribute('aria-valuenow',String(Math.round(r*100)));up.classList.toggle('show',d.scrollTop>600);let a=-1;secs.forEach((s,i)=>{if(s&&s.getBoundingClientRect().top<=90)a=i});if(d.scrollTop+d.clientHeight>=d.scrollHeight-4)a=secs.length-1;links.forEach((l,i)=>l.classList.toggle('active',i===a));const al=links[a];if(al&&al.dataset.on!=='1'){links.forEach(l=>l.dataset.on='');al.dataset.on='1';const n=al.parentElement;n.scrollLeft=al.offsetLeft-(n.clientWidth-al.offsetWidth)/2}}
-function sch(){if(!busy){busy=true;requestAnimationFrame(upd)}}addEventListener('scroll',sch,{passive:true});addEventListener('resize',sch);upd();
+const up=document.getElementById('totop');let busy=false;
+function upd(){busy=false;up.classList.toggle('show',document.documentElement.scrollTop>600)}
+function sch(){if(!busy){busy=true;requestAnimationFrame(upd)}}addEventListener('scroll',sch,{passive:true});upd();
 up.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
 if(!window.L)return;
 function dec(s){let i=0,la=0,lo=0,o=[];while(i<s.length){let b,sh=0,r=0;do{b=s.charCodeAt(i++)-63;r|=(b&31)<<sh;sh+=5}while(b>=32);la+=(r&1)?~(r>>1):(r>>1);sh=0;r=0;do{b=s.charCodeAt(i++)-63;r|=(b&31)<<sh;sh+=5}while(b>=32);lo+=(r&1)?~(r>>1):(r>>1);o.push([la/1e5,lo/1e5])}return o}
@@ -173,6 +216,63 @@ const ic={stay:'🛏',air:'✈'};
 MK.forEach(m=>{const mk=m.k==='stop'?L.circleMarker([m.lat,m.lon],{radius:5,color:'#14505c',weight:2,fillColor:'#fff',fillOpacity:1}):L.marker([m.lat,m.lon],{icon:L.divIcon({className:'pin',html:'<span>'+ic[m.k]+'</span>',iconSize:[26,26],iconAnchor:[13,13]})});mk.bindPopup(m.t).addTo(map)});
 const btns=[...document.querySelectorAll('.legend button')];
 btns.forEach(b=>b.addEventListener('click',()=>{btns.forEach(x=>x.classList.toggle('on',x===b));const k=b.dataset.k;Object.entries(lines).forEach(([kk,l])=>l.setStyle({opacity:k==='all'||kk===k?.9:.18}));map.fitBounds((k==='all'?all:lines[k]).getBounds(),{padding:[24,24]})}));
+})();
+</script>
+<!-- ===== 捲動進度條 + scrollspy 高亮（移植自沖繩／福岡頁） ===== -->
+<script>
+(function(){
+  var toc=document.getElementById('toc');
+  var fill=document.getElementById('progressFill');
+  var navbar=document.getElementById('navbar');
+  var sidedock=document.getElementById('sidedock');
+  var sideFill=document.getElementById('sideFill');
+  if(!toc||!fill||!navbar) return;
+  var links=Array.prototype.slice.call(toc.querySelectorAll('a'));
+  var sideLinks=sidedock?Array.prototype.slice.call(sidedock.querySelectorAll('a')):[];
+  var sections=links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));});
+  var ticking=false;
+  function update(){
+    ticking=false;
+    var doc=document.documentElement;
+    var max=doc.scrollHeight-doc.clientHeight;
+    var pct=max>0?(doc.scrollTop/max)*100:0;
+    pct=Math.min(100,Math.max(0,pct));
+    fill.style.width=pct+'%';
+    if(sideFill) sideFill.style.width=pct+'%';
+    // 判定目前主題：navbar 顯示時用其下緣，桌機隱藏 navbar 時 fallback 90
+    var nbB=navbar.getBoundingClientRect().bottom;
+    var line=(nbB>0?nbB:90)+8;
+    var idx=0;
+    for(var i=0;i<sections.length;i++){
+      var s=sections[i]; if(!s)continue;
+      if(s.getBoundingClientRect().top<=line) idx=i;
+    }
+    // 接近頁尾時直接點亮最後一項
+    if(doc.scrollTop+doc.clientHeight>=doc.scrollHeight-4) idx=links.length-1;
+    links.forEach(function(a,i){
+      if(i===idx){
+        if(!a.classList.contains('active')){
+          a.classList.add('active');
+          var ar=a.getBoundingClientRect(), tr=toc.getBoundingClientRect();
+          if(ar.left<tr.left||ar.right>tr.right){ toc.scrollLeft+=ar.left-tr.left-tr.width/2+ar.width/2; }
+        }
+      } else a.classList.remove('active');
+    });
+    sideLinks.forEach(function(a,i){
+      if(i===idx){
+        if(!a.classList.contains('active')){
+          a.classList.add('active');
+          var ar=a.getBoundingClientRect(), sr=sidedock.getBoundingClientRect();
+          if(ar.top<sr.top||ar.bottom>sr.bottom){ sidedock.scrollTop+=ar.top-sr.top-sr.height/2+ar.height/2; }
+        }
+      } else a.classList.remove('active');
+    });
+  }
+  function onScroll(){ if(!ticking){ ticking=true; requestAnimationFrame(update);} }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  links.concat(sideLinks).forEach(function(a){a.addEventListener('click',function(){setTimeout(update,400);});});
+  update();
 })();
 </script>
 </body>

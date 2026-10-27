@@ -214,6 +214,39 @@
     font-size: 0.78em; color:#92400E; background:#FFFBEB; border:1px solid #FDE68A;
     border-radius: 10px; padding: 8px 12px; margin: 6px 0 0; line-height:1.55;
   }
+
+  /* ===== 頁內導覽：捲動進度條 + TOC + 桌機側欄（移植自東部／沖繩頁，改用本頁青藍色） ===== */
+  html{scroll-behavior:smooth}
+  /* 82px：讓跳轉後的標題落在 sticky 列（約 77px）下方，且不超過 scrollspy 判定線（列底 +8） */
+  section[id],details.day[id]{scroll-margin-top:82px}
+  #map{position:relative;z-index:1} /* Leaflet 圖層 z-index 400+，收進地圖內，捲動時不蓋過導覽列 */
+  /* 頁尾段（同行夥伴＋footer）很短：高螢幕（平板直向／桌機）時 2/13、2/14 捲不到判定線、只會亮最後一項，
+     依視窗高度補底部留白，讓每一天都能被點亮；矮螢幕維持原本 60px；列印不套用 */
+  @media screen{.container{padding-bottom:max(60px,calc(100vh - 680px))}}
+  /* 1280–1373px：右側欄（約 187px＋right 16px）會蓋住內容右緣最多約 35px（照片授權、地圖 OSM 標示、每日展開箭頭），
+     內容欄稍縮讓位並保留約 12px 間距；≥1374px 仍是原本 980px */
+  @media (min-width:1280px){.container{max-width:min(980px,calc(100% - 394px))}}
+  .navbar{position:sticky;top:0;z-index:60;background:rgba(247,250,252,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);margin:0 0 18px;padding:9px 10px 6px;border-radius:16px;border:1px solid var(--line);box-shadow:0 6px 20px rgba(8,145,178,.10)}
+  .progressbar{height:5px;background:#d8eef2;border-radius:999px;overflow:hidden;margin-bottom:9px}
+  .progressbar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent-deep));border-radius:999px;transition:width .08s linear}
+  .toc{display:flex;gap:8px;flex-wrap:nowrap;overflow-x:auto;margin:0;padding:2px 2px 6px;scrollbar-width:thin;scroll-behavior:smooth}
+  .toc::-webkit-scrollbar{height:6px}.toc::-webkit-scrollbar-thumb{background:#A5F3FC;border-radius:999px}
+  .toc a{flex:0 0 auto;white-space:nowrap;border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 12px;color:var(--ink-soft);font-weight:800;text-decoration:none;font-size:13.5px;transition:background .15s,color .15s,border-color .15s}
+  .toc a:hover{border-color:var(--accent);color:var(--accent-deep);text-decoration:none}
+  .toc a.active{background:var(--accent-deep);color:#fff;border-color:var(--accent-deep)}
+  .sidedock{position:fixed;right:16px;top:50%;transform:translateY(-50%);z-index:55;display:none;flex-direction:column;gap:2px;background:rgba(247,250,252,.95);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:16px;padding:12px 10px;box-shadow:0 12px 30px rgba(8,145,178,.18);max-height:88vh;overflow:auto;scrollbar-width:thin}
+  .sidedock::-webkit-scrollbar{width:5px}.sidedock::-webkit-scrollbar-thumb{background:#A5F3FC;border-radius:999px}
+  .sidedock .sd-head{font-size:11px;font-weight:900;color:var(--muted);letter-spacing:.08em;padding:0 8px 6px;text-transform:uppercase}
+  .sidedock .sd-prog{height:4px;background:#d8eef2;border-radius:999px;overflow:hidden;margin:0 6px 8px}
+  .sidedock .sd-prog>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent-deep));border-radius:999px;transition:width .08s linear}
+  .sidedock a{display:flex;align-items:center;gap:9px;padding:6px 10px;border-radius:10px;font-size:13px;font-weight:700;color:var(--muted);border:0;text-decoration:none;white-space:nowrap;transition:background .15s,color .15s}
+  .sidedock a .sd-dot{width:9px;height:9px;border-radius:999px;background:#A5F3FC;flex:0 0 auto;transition:background .15s,box-shadow .15s}
+  .sidedock a:hover{background:var(--accent-soft);color:var(--ink);text-decoration:none}
+  .sidedock a:hover .sd-dot{background:var(--accent)}
+  .sidedock a.active{background:var(--accent-deep);color:#fff}
+  .sidedock a.active .sd-dot{background:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.28)}
+  @media (min-width:1280px){.sidedock{display:flex}.navbar{display:none}}
+  @media print{.navbar,.sidedock{display:none}}
 </style>
 </head>
 <body>
@@ -227,6 +260,32 @@
     <p class="subtitle">泰國 Krabi · Railay｜Tonsai｜Phra Nang · 2025/02/07–02/14</p>
   </header>
 
+  <!-- ===== 頁內導覽（手機/平板：頂端 sticky 橫條；桌機寬螢幕：右側懸浮） ===== -->
+  <div class="navbar" id="navbar">
+    <div class="progressbar"><i id="progressFill"></i></div>
+    <div class="toc" id="toc">
+      <a href="#overview">總覽</a><a href="#grades">難度分布</a><a href="#cragmap">岩場地圖</a><a href="#d1">2/7 Duncan's</a><a href="#d2">2/8 Phra Nang</a><a href="#d3">2/9 North Wall</a><a href="#d4">2/10 Diamond</a><a href="#d5">2/11 Big Wave</a><a href="#d6">2/12 The Bar</a><a href="#d7">2/13 One Two Three</a><a href="#d8">2/14 Jurassic</a><a href="#partners">同行夥伴</a>
+    </div>
+  </div>
+
+  <nav class="sidedock" id="sidedock" aria-label="頁面導覽">
+    <div class="sd-head">本頁導覽</div>
+    <div class="sd-prog"><i id="sideFill"></i></div>
+    <a href="#overview"><span class="sd-dot"></span>總覽・統計</a>
+    <a href="#grades"><span class="sd-dot"></span>難度分布</a>
+    <a href="#cragmap"><span class="sd-dot"></span>岩場地理・地形圖</a>
+    <a href="#d1"><span class="sd-dot"></span>2/7 Duncan's Boot</a>
+    <a href="#d2"><span class="sd-dot"></span>2/8 Phra Nang</a>
+    <a href="#d3"><span class="sd-dot"></span>2/9 North Wall</a>
+    <a href="#d4"><span class="sd-dot"></span>2/10 Diamond Wall</a>
+    <a href="#d5"><span class="sd-dot"></span>2/11 Big Wave Pillar</a>
+    <a href="#d6"><span class="sd-dot"></span>2/12 The Bar</a>
+    <a href="#d7"><span class="sd-dot"></span>2/13 One Two Three</a>
+    <a href="#d8"><span class="sd-dot"></span>2/14 Jurassic X-Mas</a>
+    <a href="#partners"><span class="sd-dot"></span>同行夥伴</a>
+  </nav>
+
+  <section id="overview">
   <div class="truth">
     📌 <b>資料來源</b>：以下逐日內容全部來自當事人第一手攀岩筆記（逐字謄錄），未經任何虛構補充。
     路線難度／長度／心得皆為原紀錄；地圖僅標公開知名灘區位置，個別 crag 精確座標待對照 theCrag 後再補。
@@ -251,8 +310,10 @@
     <div class="stat fav"><div class="num">⭐ Diamonds Are Forever 6b+</div><div class="lbl">此行最愛 slab（很有小川山的感覺）</div></div>
     <div class="stat fav"><div class="num">⭐ Titanium from Hell 7a</div><div class="lbl">爬過最好玩的 tufa roof</div></div>
   </div>
+  </section>
 
   <!-- DIFFICULTY -->
+  <section id="grades">
   <div class="section-title">📊 難度分布</div>
   <div class="panel">
     <div class="bar-row"><div class="bar-grade">5 / 5c</div><div class="bar-track"><div class="bar-fill" style="width:67%;background:var(--g5)"></div></div><div class="bar-cnt">6</div></div>
@@ -269,8 +330,10 @@
       7b* 為 <em>Alter Schwede!</em>，當事人對「是否為該區／該線」仍有疑慮。
     </div>
   </div>
+  </section>
 
   <!-- MAP -->
+  <section id="cragmap">
   <div class="section-title">🗺️ 岩場地理（喀比攀岩半島）</div>
   <div id="map"></div>
   <div class="map-note">
@@ -288,13 +351,14 @@
     ⚠️ <b>關於照片</b>：本頁實景照皆取自 Wikimedia Commons 的創用 CC 授權圖（已標攝者／來源／授權），是各灘區的<b>代表性實景脈絡照，並非你所爬特定路線的側拍</b>。
     有版權的 guidebook topo（畫線地形圖）不可重製轉貼，請點上方按鈕到 theCrag／Mountain Project 看正版地形圖。
   </div>
+  </section>
 
   <!-- TIMELINE -->
   <div class="section-title">📅 逐日紀錄</div>
   <div class="tl-controls"><button id="toggleAll">全部展開</button></div>
 
   <!-- 02/07 -->
-  <details class="day" open>
+  <details class="day" id="d1" open>
     <summary>
       <span class="day-date">02/07</span>
       <span><span class="day-where">Duncan's Boot · Lap Lair</span><br><span class="day-sub">同行：岩友 A、岩友 B、教練</span></span>
@@ -327,7 +391,7 @@
   </details>
 
   <!-- 02/08 -->
-  <details class="day">
+  <details class="day" id="d2">
     <summary>
       <span class="day-date">02/08</span>
       <span><span class="day-where">Phra-Nang Beach · Thaiwand Wall</span><br><span class="day-sub">同行：岩友 A、岩友 B</span></span>
@@ -376,7 +440,7 @@
   </details>
 
   <!-- 02/09 -->
-  <details class="day">
+  <details class="day" id="d3">
     <summary>
       <span class="day-date">02/09</span>
       <span><span class="day-where">North Wall · Rock'n Roll / Life of Leif</span><br><span class="day-sub">同行：岩友 A、岩友 B、岩友 C</span></span>
@@ -409,7 +473,7 @@
   </details>
 
   <!-- 02/10 -->
-  <details class="day">
+  <details class="day" id="d4">
     <summary>
       <span class="day-date">02/10</span>
       <span><span class="day-where">Escher World · Diamond Wall</span><br><span class="day-sub">同行：岩友 C</span></span>
@@ -444,7 +508,7 @@
   </details>
 
   <!-- 02/11 -->
-  <details class="day">
+  <details class="day" id="d5">
     <summary>
       <span class="day-date">02/11</span>
       <span><span class="day-where">Gibbon Roof · Big Wave Pillar</span><br><span class="day-sub">同行：岩友 A、岩友 B</span></span>
@@ -483,7 +547,7 @@
   </details>
 
   <!-- 02/12 -->
-  <details class="day">
+  <details class="day" id="d6">
     <summary>
       <span class="day-date">02/12</span>
       <span><span class="day-where">Tonsai《The Bar》· Sleeping Indian《The Monitor》</span><br><span class="day-sub">同行：岩友 A、岩友 B、岩友 D</span></span>
@@ -539,7 +603,7 @@
   </details>
 
   <!-- 02/13 -->
-  <details class="day">
+  <details class="day" id="d7">
     <summary>
       <span class="day-date">02/13</span>
       <span><span class="day-where">One Two Three</span><br><span class="day-sub">同行：岩友 A、岩友 B</span></span>
@@ -564,7 +628,7 @@
   </details>
 
   <!-- 02/14 -->
-  <details class="day">
+  <details class="day" id="d8">
     <summary>
       <span class="day-date">02/14</span>
       <span><span class="day-where">North Wall · Jurassic X-Mas / Life of Leif</span><br><span class="day-sub">同行：岩友 A、岩友 B、岩友 C、岩友 D</span></span>
@@ -592,6 +656,7 @@
   </details>
 
   <!-- PARTNERS -->
+  <section id="partners">
   <div class="section-title">👥 同行夥伴</div>
   <div class="panel">
     <div class="pp">
@@ -604,6 +669,7 @@
     </div>
     <div class="map-note" style="margin-top:12px">夥伴出場天數依逐日紀錄署名統計（同場巧遇的岩友 D、E 於 02/10 出現但當日同行欄未列）。</div>
   </div>
+  </section>
 
   <footer>
     🧗 Krabi 2025/02 · 逐字第一手紀錄 · Made with ❤️ ·
@@ -631,6 +697,14 @@
     refresh();
   })();
 
+  // ---- 從頁內導覽跳到某天時，若該天收合就先展開（預設只開 02/07）----
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a, #sidedock a'), function(a){
+    a.addEventListener('click', function(){
+      var t = document.getElementById(a.getAttribute('href').slice(1));
+      if (t && t.tagName === 'DETAILS') t.open = true;
+    });
+  });
+
   // ---- 地圖（公開知名灘區，非個別 crag 精確座標）----
   (function(){
     var map = L.map('map', { scrollWheelZoom:false }).setView([8.0095, 98.8375], 14);
@@ -649,6 +723,63 @@
       L.marker(s.ll).addTo(map).bindPopup('<b>'+s.name+'</b><br>'+s.desc);
     });
   })();
+</script>
+<!-- ===== 捲動進度條 + scrollspy 高亮（移植自沖繩／福岡頁） ===== -->
+<script>
+(function(){
+  var toc=document.getElementById('toc');
+  var fill=document.getElementById('progressFill');
+  var navbar=document.getElementById('navbar');
+  var sidedock=document.getElementById('sidedock');
+  var sideFill=document.getElementById('sideFill');
+  if(!toc||!fill||!navbar) return;
+  var links=Array.prototype.slice.call(toc.querySelectorAll('a'));
+  var sideLinks=sidedock?Array.prototype.slice.call(sidedock.querySelectorAll('a')):[];
+  var sections=links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));});
+  var ticking=false;
+  function update(){
+    ticking=false;
+    var doc=document.documentElement;
+    var max=doc.scrollHeight-doc.clientHeight;
+    var pct=max>0?(doc.scrollTop/max)*100:0;
+    pct=Math.min(100,Math.max(0,pct));
+    fill.style.width=pct+'%';
+    if(sideFill) sideFill.style.width=pct+'%';
+    // 判定目前主題：navbar 顯示時用其下緣，桌機隱藏 navbar 時 fallback 90
+    var nbB=navbar.getBoundingClientRect().bottom;
+    var line=(nbB>0?nbB:90)+8;
+    var idx=0;
+    for(var i=0;i<sections.length;i++){
+      var s=sections[i]; if(!s)continue;
+      if(s.getBoundingClientRect().top<=line) idx=i;
+    }
+    // 接近頁尾時直接點亮最後一項
+    if(doc.scrollTop+doc.clientHeight>=doc.scrollHeight-4) idx=links.length-1;
+    links.forEach(function(a,i){
+      if(i===idx){
+        if(!a.classList.contains('active')){
+          a.classList.add('active');
+          var ar=a.getBoundingClientRect(), tr=toc.getBoundingClientRect();
+          if(ar.left<tr.left||ar.right>tr.right){ toc.scrollLeft+=ar.left-tr.left-tr.width/2+ar.width/2; }
+        }
+      } else a.classList.remove('active');
+    });
+    sideLinks.forEach(function(a,i){
+      if(i===idx){
+        if(!a.classList.contains('active')){
+          a.classList.add('active');
+          var ar=a.getBoundingClientRect(), sr=sidedock.getBoundingClientRect();
+          if(ar.top<sr.top||ar.bottom>sr.bottom){ sidedock.scrollTop+=ar.top-sr.top-sr.height/2+ar.height/2; }
+        }
+      } else a.classList.remove('active');
+    });
+  }
+  function onScroll(){ if(!ticking){ ticking=true; requestAnimationFrame(update);} }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  links.concat(sideLinks).forEach(function(a){a.addEventListener('click',function(){setTimeout(update,400);});});
+  update();
+})();
 </script>
 </body>
 </html>
